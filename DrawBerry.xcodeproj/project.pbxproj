@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
+		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
+		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
+		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
+		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
+		B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
 		FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE92417941600F0DE03 /* ViewController.swift */; };
@@ -35,6 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0512DC0375238871C0778AA1 /* Pods-DrawBerry-DrawBerryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.debug.xcconfig"; sourceTree = "<group>"; };
+		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
+		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.release.xcconfig"; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +64,7 @@
 		FCEC3C032417941700F0DE03 /* DrawBerryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawBerryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3C072417941700F0DE03 /* DrawBerryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBerryUITests.swift; sourceTree = "<group>"; };
 		FCEC3C092417941700F0DE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry_DrawBerryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +88,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DC5CBA0BFA55A45E799CE59 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */,
+				86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */,
+				1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */,
+				0512DC0375238871C0778AA1 /* Pods-DrawBerry-DrawBerryUITests.release.xcconfig */,
+				6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */,
+				51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8AB14D868021087EE84C9DC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */,
+				FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */,
+				14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FCEC3BD92417941600F0DE03 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +126,8 @@
 				FCEC3BFB2417941700F0DE03 /* DrawBerryTests */,
 				FCEC3C062417941700F0DE03 /* DrawBerryUITests */,
 				FCEC3BE32417941600F0DE03 /* Products */,
+				4DC5CBA0BFA55A45E799CE59 /* Pods */,
+				8AB14D868021087EE84C9DC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +151,7 @@
 				FCEC3BEE2417941700F0DE03 /* Assets.xcassets */,
 				FCEC3BF02417941700F0DE03 /* LaunchScreen.storyboard */,
 				FCEC3BF32417941700F0DE03 /* Info.plist */,
+				1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */,
 			);
 			path = DrawBerry;
 			sourceTree = "<group>";
@@ -135,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCEC3C0C2417941700F0DE03 /* Build configuration list for PBXNativeTarget "DrawBerry" */;
 			buildPhases = (
+				47579F87E12D9E744FE5306B /* [CP] Check Pods Manifest.lock */,
 				FCEC3BDE2417941600F0DE03 /* Sources */,
 				FCEC3BDF2417941600F0DE03 /* Frameworks */,
 				FCEC3BE02417941600F0DE03 /* Resources */,
+				712C2D26C76618A38AA36669 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCEC3C0F2417941700F0DE03 /* Build configuration list for PBXNativeTarget "DrawBerryTests" */;
 			buildPhases = (
+				BC3E7847B0AE7989D468F26A /* [CP] Check Pods Manifest.lock */,
 				FCEC3BF42417941700F0DE03 /* Sources */,
 				FCEC3BF52417941700F0DE03 /* Frameworks */,
 				FCEC3BF62417941700F0DE03 /* Resources */,
@@ -170,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCEC3C122417941700F0DE03 /* Build configuration list for PBXNativeTarget "DrawBerryUITests" */;
 			buildPhases = (
+				20513E0962EAB5870DA36F13 /* [CP] Check Pods Manifest.lock */,
 				FCEC3BFF2417941700F0DE03 /* Sources */,
 				FCEC3C002417941700F0DE03 /* Frameworks */,
 				FCEC3C012417941700F0DE03 /* Resources */,
+				89569A255367B9ECB50EF6B5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCEC3BF22417941700F0DE03 /* LaunchScreen.storyboard in Resources */,
+				1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */,
 				FCEC3BEF2417941700F0DE03 /* Assets.xcassets in Resources */,
 				FCEC3BED2417941600F0DE03 /* Main.storyboard in Resources */,
 			);
@@ -242,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,10 +302,114 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20513E0962EAB5870DA36F13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DrawBerry-DrawBerryUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47579F87E12D9E744FE5306B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DrawBerry-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		712C2D26C76618A38AA36669 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrawBerry/Pods-DrawBerry-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrawBerry/Pods-DrawBerry-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrawBerry/Pods-DrawBerry-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89569A255367B9ECB50EF6B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC3E7847B0AE7989D468F26A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DrawBerryTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FCEC3BDE2417941600F0DE03 /* Sources */ = {
@@ -432,6 +589,7 @@
 		};
 		FCEC3C0D2417941700F0DE03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -449,6 +607,7 @@
 		};
 		FCEC3C0E2417941700F0DE03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -466,6 +625,7 @@
 		};
 		FCEC3C102417941700F0DE03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +647,7 @@
 		};
 		FCEC3C112417941700F0DE03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +669,7 @@
 		};
 		FCEC3C132417941700F0DE03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -527,6 +689,7 @@
 		};
 		FCEC3C142417941700F0DE03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0512DC0375238871C0778AA1 /* Pods-DrawBerry-DrawBerryUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
