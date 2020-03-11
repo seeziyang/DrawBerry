@@ -1,0 +1,6 @@
+framework module Pods_DrawBerry {
+  umbrella header "Pods-DrawBerry-umbrella.h"
+
+  export *
+  module * { export * }
+}
