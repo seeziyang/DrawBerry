@@ -10,4 +10,7 @@ import PencilKit
 protocol Canvas: UIView {
     // Add methods here if necessary, I will implement them
     func getDrawing() -> PKDrawing
+
+    var isClearButtonEnabled: Bool { get set }
+
 }

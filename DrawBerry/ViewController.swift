@@ -20,15 +20,16 @@ class ViewController: UIViewController {
 
         let topLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
         let topLeftRect = CGRect(origin: topLeftOrigin, size: defaultSize)
-        guard let topLeftCanvas = ClassicCanvas.createCanvas(within: topLeftRect) else {
+        guard let topLeftCanvas: Canvas = ClassicCanvas.createCanvas(within: topLeftRect) else {
             return
         }
         self.view.addSubview(topLeftCanvas)
         let topRightOrigin = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.minY)
         let topRightRect = CGRect(origin: topRightOrigin, size: defaultSize)
-        guard let topRightCanvas = ClassicCanvas.createCanvas(within: topRightRect) else {
+        guard let topRightCanvas: Canvas = ClassicCanvas.createCanvas(within: topRightRect) else {
             return
         }
+        topRightCanvas.isClearButtonEnabled = false
         self.view.addSubview(topRightCanvas)
     }
 }
