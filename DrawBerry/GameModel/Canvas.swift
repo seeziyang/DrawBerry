@@ -9,8 +9,11 @@ import PencilKit
 
 protocol Canvas: UIView {
     // Add methods here if necessary, I will implement them
-    func getDrawing() -> PKDrawing
+    var numberOfStrokes: Int { get }
+
+    var drawing: PKDrawing { get }
 
     var isClearButtonEnabled: Bool { get set }
 
+    func undo()
 }

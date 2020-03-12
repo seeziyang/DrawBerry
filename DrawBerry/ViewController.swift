@@ -12,10 +12,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        addCanvasToView()
+        addCanvasesToView()
     }
 
-    private func addCanvasToView() {
+    private func addCanvasesToView() {
         let defaultSize = CGSize(width: self.view.bounds.width / 2, height: self.view.bounds.height / 2)
 
         let topLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
@@ -31,6 +31,20 @@ class ViewController: UIViewController {
         }
         topRightCanvas.isClearButtonEnabled = false
         self.view.addSubview(topRightCanvas)
+        let bottomLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.midY)
+        let bottomLeftRect = CGRect(origin: bottomLeftOrigin, size: defaultSize)
+        guard let bottomLeftCanvas: Canvas = ClassicCanvas.createCanvas(within: bottomLeftRect) else {
+            return
+        }
+        bottomLeftCanvas.isClearButtonEnabled = false
+        self.view.addSubview(bottomLeftCanvas)
+        let bottomRightOrigin = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+        let bottomRightRect = CGRect(origin: bottomRightOrigin, size: defaultSize)
+        guard let bottomRightCanvas: Canvas = ClassicCanvas.createCanvas(within: bottomRightRect) else {
+            return
+        }
+        bottomRightCanvas.isClearButtonEnabled = true
+        self.view.addSubview(bottomRightCanvas)
     }
 }
 
