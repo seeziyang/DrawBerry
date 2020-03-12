@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
+		37CE06532418809D0085BE4A /* ClassicCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* ClassicCanvas.swift */; };
+		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
 		B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
@@ -46,6 +48,8 @@
 		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37CE06512418809D0085BE4A /* ClassicCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassicCanvas.swift; sourceTree = "<group>"; };
+		37CE06522418809D0085BE4A /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.debug.xcconfig"; sourceTree = "<group>"; };
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +99,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37CE06502418809D0085BE4A /* GameModel */ = {
+			isa = PBXGroup;
+			children = (
+				37CE06512418809D0085BE4A /* ClassicCanvas.swift */,
+				37CE06522418809D0085BE4A /* Canvas.swift */,
+			);
+			path = GameModel;
+			sourceTree = "<group>";
+		};
 		4DC5CBA0BFA55A45E799CE59 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +118,6 @@
 				6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */,
 				51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -147,6 +159,7 @@
 				FCEC3BE52417941600F0DE03 /* AppDelegate.swift */,
 				FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */,
 				FCEC3BE92417941600F0DE03 /* ViewController.swift */,
+				37CE06502418809D0085BE4A /* GameModel */,
 				FCEC3BEB2417941600F0DE03 /* Main.storyboard */,
 				FCEC3BEE2417941700F0DE03 /* Assets.xcassets */,
 				FCEC3BF02417941700F0DE03 /* LaunchScreen.storyboard */,
@@ -416,8 +429,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37CE06532418809D0085BE4A /* ClassicCanvas.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
+				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
