@@ -118,6 +118,33 @@
 			path = GameModel;
 			sourceTree = "<group>";
 		};
+		3E2BDC87241A6224001D8E8A /* UserAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				3EF004F5241906A300136234 /* LoginViewController.swift */,
+				3EF004F72419071F00136234 /* SignUpViewController.swift */,
+			);
+			path = UserAuthentication;
+			sourceTree = "<group>";
+		};
+		3E2BDC88241A6257001D8E8A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FCEC3BE52417941600F0DE03 /* AppDelegate.swift */,
+				FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3E2BDC89241A626B001D8E8A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				3EF004FB2419149A00136234 /* Helper.swift */,
+				3E2BDC85241A59C0001D8E8A /* Message.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		4DC5CBA0BFA55A45E799CE59 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,19 +193,16 @@
 		FCEC3BE42417941600F0DE03 /* DrawBerry */ = {
 			isa = PBXGroup;
 			children = (
-				FCEC3BE52417941600F0DE03 /* AppDelegate.swift */,
-				FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */,
 				FCEC3BE92417941600F0DE03 /* ViewController.swift */,
-				3EF004F5241906A300136234 /* LoginViewController.swift */,
-				3E2BDC85241A59C0001D8E8A /* Message.swift */,
-				3EF004F72419071F00136234 /* SignUpViewController.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
+				3E2BDC87241A6224001D8E8A /* UserAuthentication */,
+				3E2BDC89241A626B001D8E8A /* Helper */,
 				37CE06502418809D0085BE4A /* GameModel */,
 				FCEC3BEB2417941600F0DE03 /* Main.storyboard */,
-				3EF004FB2419149A00136234 /* Helper.swift */,
 				FCEC3BEE2417941700F0DE03 /* Assets.xcassets */,
 				FCEC3BF02417941700F0DE03 /* LaunchScreen.storyboard */,
 				FCEC3BF32417941700F0DE03 /* Info.plist */,
+				3E2BDC88241A6257001D8E8A /* Supporting Files */,
 				1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */,
 			);
 			path = DrawBerry;
