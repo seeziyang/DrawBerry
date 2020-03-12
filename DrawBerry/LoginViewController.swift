@@ -11,10 +11,10 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
@@ -25,38 +25,40 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if Auth.auth().currentUser != nil {
-            performSegue(withIdentifier: "loginToHome", sender: self)
-            //goToHomeScreen()
+            goToHomeScreen()
         }
     }
 
     func initializeElements() {
         errorLabel.alpha = 0
-        usernameTextField.text = "sample username"
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        emailTextField.text = "test@test.com"
+        passwordTextField.text = "123456"
     }
 
+    /// Shows an error message on the page
     func showErrorMessage(_ error: String) {
         errorLabel.text = error
         errorLabel.alpha = 1
     }
 
+    /// Checks if user inputs are valid
+    /// Returns an error message
+    /// Returns nil if no errors are found
     func validateTextFields() -> String? {
         guard let email = Helper.trim(string: emailTextField.text),
             let password = Helper.trim(string: passwordTextField.text) else {
-                return "Empty field"
+                return Message.emptyTextField
         }
 
-        guard email != "", password != "" else {
-            return "Whitespace"
+        if email == "" || password == "" {
+            return Message.whitespaceOnlyTextField
         }
 
         return nil
     }
     
     @IBAction func handleLoginButtonTapped(_ sender: UIButton) {
-        // Check for empty fields
+        // Checks input text-fields
         if let errorMessage = validateTextFields() {
             showErrorMessage(errorMessage)
             return
@@ -70,19 +72,18 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
 
             if error != nil {
-                self.showErrorMessage("Account not registered")
+                self.showErrorMessage(Message.signInError)
             } else {
-                self.performSegue(withIdentifier: "loginToHome", sender: self)
-                // self.goToHomeScreen()
+                self.goToHomeScreen()
             }
         }
     }
-//
-//    func goToHomeScreen() {
-//        let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
-//
-//        view.window?.rootViewController = homeViewController
-//        view.window?.makeKeyAndVisible()
-//    }
+
+    func goToHomeScreen() {
+        let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
+
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
+    }
 
 }

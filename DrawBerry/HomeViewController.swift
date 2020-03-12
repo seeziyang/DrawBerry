@@ -10,16 +10,22 @@ import UIKit
 import Firebase
 
 class HomeViewController: UIViewController {
-
-    @IBAction func handleLogOutButtonTapped(_ sender: UIButton) {
-        try? Auth.auth().signOut()
-        dismiss(animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        // Do any additional setup after loading the view.
+
+    @IBAction func handleLogOutButtonTapped(_ sender: UIButton) {
+        try? Auth.auth().signOut()
+        goToLoginScreen()
+    }
+
+    func goToLoginScreen() {
+        let loginViewController = storyboard?.instantiateViewController(identifier: "LoginVC") as? LoginViewController
+
+        view.window?.rootViewController = loginViewController
+        view.window?.makeKeyAndVisible()
     }
 
 

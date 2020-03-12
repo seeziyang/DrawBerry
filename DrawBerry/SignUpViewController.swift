@@ -29,12 +29,13 @@ class SignUpViewController: UIViewController {
         guard let username = Helper.trim(string: usernameTextField.text),
             let email = Helper.trim(string: emailTextField.text),
             let password = Helper.trim(string: passwordTextField.text) else {
-                return "Empty field"
+                return Message.emptyTextField
         }
 
-        guard username != "", email != "", password != "" else {
-            return "Whitespace"
+        if username == "" || email == "" || password == "" {
+            return Message.whitespaceOnlyTextField
         }
+
         // TODO: Test Regex
         return nil
     }
@@ -61,18 +62,16 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
 
             if error != nil {
-                print(error?.localizedDescription ?? "")
-                self.showErrorMessage("Unable to register user")
+                self.showErrorMessage(Message.signUpError)
             } else {
                 // TODO: Store relevant data in firestore
-                self.performSegue(withIdentifier: "loginToHome", sender: self)
-                //self.dismiss(animated: true, completion: nil)
+                self.goToHomeScreen()
             }
         }
     }
 
     @IBAction func goBackToLoginScreen(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
 
 
