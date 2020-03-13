@@ -7,7 +7,7 @@
 //
 import PencilKit
 
-class ClassicCanvas: UIView, Canvas {
+class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     var canvasView: PKCanvasView
     let palatte: UIView
     let background: UIView
@@ -44,14 +44,15 @@ class ClassicCanvas: UIView, Canvas {
             canvasView.drawing = PKDrawing()
             return
         }
+        print(lastDrawing)
         canvasView.drawing = lastDrawing
     }
 
-    static func createCanvas(within bounds: CGRect) -> ClassicCanvas? {
+    static func createCanvas(within bounds: CGRect) -> BerryCanvas? {
         if outOfBounds(bounds: bounds) {
             return nil
         }
-        return ClassicCanvas(frame: bounds)
+        return BerryCanvas(frame: bounds)
     }
 
     private static func outOfBounds(bounds: CGRect) -> Bool {
@@ -59,10 +60,10 @@ class ClassicCanvas: UIView, Canvas {
     }
 
     private override init(frame: CGRect) {
-        palatte = ClassicCanvas.createPalette(within: frame)
-        canvasView = ClassicCanvas.createCanvasView(within: frame)
-        background = ClassicCanvas.createBackground(within: frame)
-        clearButton = ClassicCanvas.createClearButton(within: frame)
+        palatte = BerryCanvas.createPalette(within: frame)
+        canvasView = BerryCanvas.createCanvasView(within: frame)
+        background = BerryCanvas.createBackground(within: frame)
+        clearButton = BerryCanvas.createClearButton(within: frame)
         isClearButtonEnabled = true
 
         super.init(frame: frame)
@@ -76,6 +77,30 @@ class ClassicCanvas: UIView, Canvas {
 
     private func bindGestureRecognizers() {
         clearButton.addTarget(self, action: #selector(clearButtonTap), for: .touchUpInside)
+        let draw = UIPanGestureRecognizer(target: self, action: #selector(handleDraw(recognizer:)))
+        draw.delegate = self
+        guard let dgrView = retrieveDrawingView() else {
+            return
+        }
+        dgrView.addGestureRecognizer(draw)
+    }
+
+    private func retrieveDrawingView() -> UIView? {
+        let nestedSubviews = canvasView.subviews.map {$0.subviews}
+        var allSubviews: [UIView] = []
+        nestedSubviews.forEach {allSubviews += $0}
+        let dgrView = allSubviews.filter {$0 == canvasView.drawingGestureRecognizer.view}
+        if dgrView.count != 1 {
+            return nil
+        }
+        return dgrView[0]
+    }
+
+    @objc func handleDraw(recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == .ended {
+            let currentDrawing = canvasView.drawing
+            history.append(currentDrawing)
+        }
     }
 
     private func addComponentsToCanvas() {
@@ -86,13 +111,13 @@ class ClassicCanvas: UIView, Canvas {
     }
 
     private static func createBackground(within bounds: CGRect) -> UIView {
-        let background = UIImageView(frame: ClassicCanvas.getBackgroundRect(within: bounds))
+        let background = UIImageView(frame: getBackgroundRect(within: bounds))
         background.image = UIImage(named: "paper-brown")
         return background
     }
 
     private static func createCanvasView(within bounds: CGRect) -> PKCanvasView {
-        let newCanvasView = PKCanvasView(frame: ClassicCanvas.getCanvasRect(within: bounds))
+        let newCanvasView = PKCanvasView(frame: getCanvasRect(within: bounds))
         newCanvasView.allowsFingerDrawing = true
         newCanvasView.isOpaque = false
         newCanvasView.isUserInteractionEnabled = true
@@ -100,15 +125,24 @@ class ClassicCanvas: UIView, Canvas {
     }
 
     private static func createPalette(within bounds: CGRect) -> UIView {
-        let newPalette = UIView(frame: ClassicCanvas.getPalatteRect(within: bounds))
+        let newPalette = UIView(frame: getPalatteRect(within: bounds))
         // For visualisation of palatte location during dev
         newPalette.layer.borderWidth = 3
         newPalette.layer.borderColor = UIColor.red.cgColor
+        populate(palette: newPalette)
         return newPalette
     }
 
+    private static func populate(palette: UIView) {
+        // TODO: Add functionality for palette
+        let button = UIButton(frame: getUndoButtonRect(within: palette.bounds))
+        let icon = UIImage(named: "delete")
+        button.setImage(icon , for: .normal)
+        palette.addSubview(button)
+    }
+
     private static func createClearButton(within bounds: CGRect) -> UIButton {
-        let button = UIButton(frame: ClassicCanvas.getClearButtonRect(within: bounds))
+        let button = UIButton(frame: getClearButtonRect(within: bounds))
         let icon = UIImage(named: "delete")
         button.setImage(icon , for: .normal)
         return button
@@ -119,27 +153,45 @@ class ClassicCanvas: UIView, Canvas {
         history.append(canvasView.drawing)
     }
 
+    @objc func undoButtonTap() {
+        undo()
+    }
+
     private static func getClearButtonRect(within bounds: CGRect) -> CGRect {
         let size = CGSize(width: clearButtonRadius, height: clearButtonRadius)
         let origin = CGPoint(
-            x: bounds.width - clearButtonRadius - ClassicCanvas.canvasPadding,
-            y: ClassicCanvas.canvasPadding)
+            x: bounds.width - clearButtonRadius - BerryCanvas.canvasPadding,
+            y: BerryCanvas.canvasPadding)
+        return CGRect(origin: origin, size: size)
+    }
+
+    private static func getUndoButtonRect(within bounds: CGRect) -> CGRect {
+        let size = CGSize(width: clearButtonRadius, height: clearButtonRadius)
+        let origin = CGPoint(
+            x: bounds.width - clearButtonRadius - BerryCanvas.canvasPadding,
+            y: BerryCanvas.canvasPadding)
         return CGRect(origin: origin, size: size)
     }
 
     private static func getCanvasRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: bounds.width, height: bounds.height - ClassicCanvas.palatteHeight)
+        let size = CGSize(width: bounds.width, height: bounds.height - BerryCanvas.palatteHeight)
         let origin = CGPoint.zero
         return CGRect(origin: origin, size: size)
     }
 
     private static func getPalatteRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: bounds.width, height: ClassicCanvas.palatteHeight)
-        let origin = CGPoint(x: 0, y: bounds.height - ClassicCanvas.palatteHeight)
+        let size = CGSize(width: bounds.width, height: BerryCanvas.palatteHeight)
+        let origin = CGPoint(x: 0, y: bounds.height - BerryCanvas.palatteHeight)
         return CGRect(origin: origin, size: size)
     }
 
     private static func getBackgroundRect(within bounds: CGRect) -> CGRect {
         return CGRect(origin: CGPoint.zero, size: bounds.size)
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
+            -> Bool {
+        return true
     }
 }
