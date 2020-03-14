@@ -46,7 +46,7 @@ class CompetitiveViewController: UIViewController {
         for player in game.players {
             if player.canvasDrawing.numberOfStrokes == Player.COMPETITIVE_GAME_MAX_STROKES {
                 // Player has used their stroke, disable their canvas
-                player.canvasDrawing.isEnabled = false
+                player.canvasDrawing.isAbleToDraw = false
             }
         }
     }
@@ -121,7 +121,7 @@ class CompetitiveViewController: UIViewController {
 
     private func disableAllPlayerDrawings() {
         for player in game.players {
-            player.canvasDrawing.isEnabled = false
+            player.canvasDrawing.isAbleToDraw = false
         }
     }
 

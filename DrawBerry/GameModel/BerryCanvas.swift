@@ -8,7 +8,7 @@
 import PencilKit
 
 class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
-    var isEnabled = true
+    var isAbleToDraw = true
 
     var canvasView: PKCanvasView
     let palatte: UIView
@@ -99,7 +99,13 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     @objc func handleDraw(recognizer: UIPanGestureRecognizer) {
+        if !isAbleToDraw {
+            recognizer.state = .ended
+        }
+
         if recognizer.state == .ended {
+            canvasView.drawingGestureRecognizer.state = .ended
+
             let currentDrawing = canvasView.drawing
             history.append(currentDrawing)
         }
@@ -194,6 +200,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
             -> Bool {
-        return isEnabled
+        return isAbleToDraw
     }
 }
