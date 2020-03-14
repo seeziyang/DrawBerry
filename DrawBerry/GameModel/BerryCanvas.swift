@@ -8,6 +8,8 @@
 import PencilKit
 
 class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
+    var isEnabled = true
+
     var canvasView: PKCanvasView
     let palatte: UIView
     let background: UIView
@@ -192,6 +194,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
             -> Bool {
-        return true
+        return isEnabled
     }
 }

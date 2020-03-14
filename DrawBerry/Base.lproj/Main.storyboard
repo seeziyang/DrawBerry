@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4J-Ox-CFn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4J-Ox-CFn">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -220,6 +220,9 @@
                                         <rect key="frame" x="0.0" y="110" width="168" height="80"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Competitive"/>
+                                        <connections>
+                                            <segue destination="hsU-YQ-DKO" kind="presentation" modalPresentationStyle="fullScreen" id="EYg-6M-ZMl"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -301,6 +304,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BlD-xQ-EH3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-599.25925925925924" y="116.66666666666666"/>
+        </scene>
+        <!--Competitive View Controller-->
+        <scene sceneID="chW-ve-GdM">
+            <objects>
+                <viewController id="hsU-YQ-DKO" customClass="CompetitiveViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jqp-gI-3cb">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="CE8-SM-fV0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u66-hz-AXl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fHn-qo-geZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1692" y="822"/>
         </scene>
     </scenes>
 </document>

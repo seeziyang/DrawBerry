@@ -9,6 +9,8 @@ import PencilKit
 
 protocol Canvas: UIView {
     // Add methods here if necessary, I will implement them
+    var isEnabled: Bool { get set }
+    
     var numberOfStrokes: Int { get }
 
     var drawing: PKDrawing { get }
