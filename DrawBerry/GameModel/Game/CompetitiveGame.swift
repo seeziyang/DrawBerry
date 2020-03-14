@@ -16,6 +16,7 @@ import Foundation
 
 struct CompetitiveGame {
     static let MAX_ROUNDS = 5
+    static let MAX_STROKES_PER_PLAYER = 1
     static let TIME_PER_ROUND = 3 // Set to small number for testing purposes
 
     var players = [Player]()

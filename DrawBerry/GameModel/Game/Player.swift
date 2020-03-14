@@ -9,8 +9,6 @@
 import Foundation
 
 struct Player {
-    static let COMPETITIVE_GAME_MAX_STROKES = 1
-
     var name: String
     var canvasDrawing: Canvas
 }
