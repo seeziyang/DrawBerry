@@ -11,4 +11,10 @@ enum Message {
     static let whitespaceOnlyTextField = "Text field should not contain whitespaces only!"
     static let signInError = "Error signing in!"
     static let signUpError = "Unable to register user!"
+    static let invalidEmail = "Email address is invalid."
+    static let invalidPassword = """
+    Password should be alpha-numerical,
+    with at least 8 characters, containing an alphabet and a number.
+    """
+    static let passwordsDoNotMatch = "Passwords do not match!"
 }
