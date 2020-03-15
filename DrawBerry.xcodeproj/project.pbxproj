@@ -12,7 +12,11 @@
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
-		37CE0658241B1E240085BE4A /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* Palette.swift */; };
+		37CE0658241B1E240085BE4A /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
+		37CE065A241E17230085BE4A /* PaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0659241E17230085BE4A /* PaletteDelegate.swift */; };
+		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
+		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
+		37CE0660241E24230085BE4A /* BerryPaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
@@ -63,7 +67,11 @@
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CE06512418809D0085BE4A /* BerryCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BerryCanvas.swift; sourceTree = "<group>"; };
 		37CE06522418809D0085BE4A /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		37CE0657241B1E240085BE4A /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		37CE0657241B1E240085BE4A /* BerryPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPalette.swift; sourceTree = "<group>"; };
+		37CE0659241E17230085BE4A /* PaletteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDelegate.swift; sourceTree = "<group>"; };
+		37CE065B241E19850085BE4A /* BerryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryConstants.swift; sourceTree = "<group>"; };
+		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
+		37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPaletteDelegate.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +139,12 @@
 				FC48897C241C79D900375140 /* Game */,
 				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
 				37CE06522418809D0085BE4A /* Canvas.swift */,
-				37CE0657241B1E240085BE4A /* Palette.swift */,
+				37CE0659241E17230085BE4A /* PaletteDelegate.swift */,
+				37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */,
+				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
+				37CE0657241B1E240085BE4A /* BerryPalette.swift */,
+				37CE065D241E1BF20085BE4A /* InkView.swift */,
+				37CE065B241E19850085BE4A /* BerryConstants.swift */,
 			);
 			path = GameModel;
 			sourceTree = "<group>";
@@ -512,6 +525,9 @@
 				37CE0658241B1E240085BE4A /* Palette.swift in Sources */,
 				FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
+				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
+				37CE0658241B1E240085BE4A /* BerryPalette.swift in Sources */,
+				37CE065A241E17230085BE4A /* PaletteDelegate.swift in Sources */,
 				3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */,
 				3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */,
 				37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */,
@@ -520,12 +536,14 @@
 				FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* Helper.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
+				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */,
 				FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */,
 				FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */,
 				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
 				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
+				37CE0660241E24230085BE4A /* BerryPaletteDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
