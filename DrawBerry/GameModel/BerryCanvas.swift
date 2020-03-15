@@ -1,5 +1,5 @@
 //
-//  ClassicCanvas.swift
+//  BerryCanvas.swift
 //  DrawBerry
 //
 //  Created by Hol Yin Ho on 11/3/20.
@@ -112,6 +112,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
 
     /// Tracks the state of the drawing and update the history when the stroke is ended.
     @objc func handleDraw(recognizer: UIPanGestureRecognizer) {
+        if !isAbleToDraw {
+            recognizer.state = .ended
+            recognizer.isEnabled = false
+        }
         if recognizer.state == .ended {
             let currentDrawing = canvasView.drawing
             history.append(currentDrawing)

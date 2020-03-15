@@ -1,5 +1,5 @@
 //
-//  Palette.swift
+//  BerryPalette.swift
 //  DrawBerry
 //
 //  Created by Hol Yin Ho on 13/3/20.
