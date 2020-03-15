@@ -8,6 +8,15 @@
 import PencilKit
 
 class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
+    var isAbleToDraw = true {
+        didSet {
+            if !isAbleToDraw {
+                canvasView.drawingGestureRecognizer.state = .ended
+                canvasView.drawingGestureRecognizer.isEnabled = false
+            }
+        }
+    }
+
     var canvasView: PKCanvasView
     let palette: BerryPalette
     let background: UIView

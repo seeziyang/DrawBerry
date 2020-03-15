@@ -25,6 +25,9 @@
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
 		B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
+		FC488980241C79FD00375140 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* Player.swift */; };
+		FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488981241C7A8B00375140 /* CompetitiveGame.swift */; };
+		FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488987241C7C4D00375140 /* CompetitiveViewController.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
 		FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE92417941600F0DE03 /* ViewController.swift */; };
@@ -74,6 +77,9 @@
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.release.xcconfig"; sourceTree = "<group>"; };
+		FC48897F241C79FD00375140 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		FC488981241C7A8B00375140 /* CompetitiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGame.swift; sourceTree = "<group>"; };
+		FC488987241C7C4D00375140 /* CompetitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveViewController.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +128,8 @@
 		37CE06502418809D0085BE4A /* GameModel */ = {
 			isa = PBXGroup;
 			children = (
+				FC48897C241C79D900375140 /* Game */,
+				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
 				37CE06522418809D0085BE4A /* Canvas.swift */,
 				37CE0659241E17230085BE4A /* PaletteDelegate.swift */,
 				37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */,
@@ -183,6 +191,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FC48897C241C79D900375140 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				FC48897F241C79FD00375140 /* Player.swift */,
+				FC488981241C7A8B00375140 /* CompetitiveGame.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		FCEC3BD92417941600F0DE03 = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +225,7 @@
 		FCEC3BE42417941600F0DE03 /* DrawBerry */ = {
 			isa = PBXGroup;
 			children = (
+				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
 				FCEC3BE92417941600F0DE03 /* ViewController.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
 				3E2BDC87241A6224001D8E8A /* UserAuthentication */,
@@ -490,12 +508,15 @@
 				3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */,
 				3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */,
 				37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */,
+				FC488980241C79FD00375140 /* Player.swift in Sources */,
+				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* Helper.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */,
 				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
+				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 				37CE0660241E24230085BE4A /* BerryPaletteDelegate.swift in Sources */,
 			);
@@ -672,6 +693,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = DrawBerry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -690,6 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = DrawBerry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
