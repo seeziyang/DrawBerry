@@ -17,5 +17,11 @@ protocol Canvas: UIView {
 
     var isClearButtonEnabled: Bool { get set }
 
+    var selectedInkTool: PKInkingTool? { get }
+
+    var isEraserSelected: Bool { get }
+
     func undo()
+
+    func setTool(to tool: PKTool)
 }
