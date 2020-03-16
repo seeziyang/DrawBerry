@@ -46,6 +46,13 @@ class BerryPalette: UIView {
         inks.append(newInkTool)
     }
 
+    func selectFirstColor() {
+        if inks.count < 1 {
+            return
+        }
+        select(color: inks[0].color)
+    }
+
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
@@ -71,7 +78,7 @@ class BerryPalette: UIView {
     /// Creates the eraser view.
     private func createEraserView() -> UIImageView {
         let newEraserView = UIImageView(frame: getEraserRect(within: self.frame))
-        newEraserView.image = UIImage(named: "eraser")
+        newEraserView.image = BerryConstants.eraserIcon
         let newEraserTap = UITapGestureRecognizer(target: self, action: #selector(handleEraserTap))
         newEraserView.addGestureRecognizer(newEraserTap)
         newEraserView.isUserInteractionEnabled = true

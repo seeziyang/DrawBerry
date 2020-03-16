@@ -22,4 +22,8 @@ struct BerryConstants {
         UIColor.blue : "blue",
         UIColor.red : "red"
     ]
+
+    static let paperBackgroundImage = UIImage(named: "paper-brown")
+    static let deleteIcon = UIImage(named: "delete")
+    static let eraserIcon = UIImage(named: "eraser")
 }
