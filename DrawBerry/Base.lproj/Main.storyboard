@@ -194,6 +194,87 @@
             </objects>
             <point key="canvasLocation" x="827.33812949640298" y="-255.27638190954775"/>
         </scene>
+        <!--Enter Room View Controller-->
+        <scene sceneID="3kR-9I-uNp">
+            <objects>
+                <viewController id="Hnz-Vf-gJ2" customClass="EnterRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rte-z2-TPt">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-7k-t7V">
+                                <rect key="frame" x="192" y="394" width="384" height="236"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Qa-g5-cEd">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdW-AQ-rxh">
+                                        <rect key="frame" x="0.0" y="93" width="384" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JPh-cX-mJg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <state key="normal" title="Join"/>
+                                        <connections>
+                                            <action selector="joinOnTap:" destination="Hnz-Vf-gJ2" eventType="touchUpInside" id="NU0-vG-ir5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sz2-KC-ChA">
+                                        <rect key="frame" x="0.0" y="186" width="384" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="pij-lq-3jy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <state key="normal" title="Create"/>
+                                        <connections>
+                                            <action selector="createOnTap:" destination="Hnz-Vf-gJ2" eventType="touchUpInside" id="yu6-zp-TEc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0Qa-g5-cEd" firstAttribute="height" secondItem="MdW-AQ-rxh" secondAttribute="height" id="bDd-dv-tsa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Vqa-7k-t7V" firstAttribute="centerX" secondItem="WC8-j0-3iZ" secondAttribute="centerX" id="ICa-LC-ehg"/>
+                            <constraint firstItem="MdW-AQ-rxh" firstAttribute="width" secondItem="Rte-z2-TPt" secondAttribute="width" multiplier="0.5" id="M2H-J8-RAB"/>
+                            <constraint firstItem="sz2-KC-ChA" firstAttribute="width" secondItem="Rte-z2-TPt" secondAttribute="width" multiplier="0.5" id="tsv-NS-vif"/>
+                            <constraint firstItem="Vqa-7k-t7V" firstAttribute="centerY" secondItem="WC8-j0-3iZ" secondAttribute="centerY" id="xFS-I1-ZXL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WC8-j0-3iZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gZn-Y0-cpx"/>
+                    <connections>
+                        <outlet property="roomCodeField" destination="0Qa-g5-cEd" id="mj7-pz-PEF"/>
+                        <segue destination="cuu-G9-htT" kind="presentation" identifier="segueToRoom" modalPresentationStyle="fullScreen" id="hhy-aR-wLp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QaY-f7-xXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1651.5625" y="-57.421874999999993"/>
+        </scene>
+        <!--Game Room View Controller-->
+        <scene sceneID="THO-bA-Aan">
+            <objects>
+                <viewController id="cuu-G9-htT" customClass="GameRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5zX-Tv-BhM">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="R4z-ns-TkY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="A3K-k2-ONo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yxX-MX-JnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2463" y="-57"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="TBj-Dl-UIi">
             <objects>
@@ -213,7 +294,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Classic"/>
                                         <connections>
-                                            <segue destination="1RG-Zu-Bow" kind="show" id="XiI-G9-5tK"/>
+                                            <segue destination="Hnz-Vf-gJ2" kind="presentation" modalPresentationStyle="fullScreen" id="zNG-GW-NTE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qeg-qU-QVj">
@@ -286,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNe-2z-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1692" y="140"/>
+            <point key="canvasLocation" x="3451" y="169"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="03Q-NG-2HP">

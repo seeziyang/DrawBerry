@@ -69,14 +69,17 @@ class SignUpViewController: UIViewController {
             if error != nil {
                 // TODO show more descriptive error based on error code
                 self.showErrorMessage(Message.signUpError)
-            } else {
-                // TODO: Store relevant data in firestore
-                self.db.child("users").setValue([
-                    result?.user.uid: ["email": result?.user.email]
-                ])
-
-                self.goToHomeScreen()
+                return
             }
+
+            guard let userID = result?.user.uid, let email = result?.user.email else {
+                self.showErrorMessage(Message.signUpError)
+                return
+            }
+
+            NetworkHelper.addUserToDB(userID: userID, email: email)
+
+            self.goToHomeScreen()
         }
     }
 
