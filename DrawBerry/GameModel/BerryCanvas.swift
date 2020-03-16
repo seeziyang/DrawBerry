@@ -149,9 +149,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Creates the palette with the given bounds.
     private static func createPalette(within bounds: CGRect) -> BerryPalette {
         let newPalette = BerryPalette(frame: getPalatteRect(within: bounds))
-        // For visualisation of palatte location during dev
-        newPalette.layer.borderWidth = 3
-        newPalette.layer.borderColor = UIColor.red.cgColor
         initialise(palette: newPalette)
         return newPalette
     }
@@ -161,7 +158,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         palette.add(color: UIColor.black)
         palette.add(color: UIColor.blue)
         palette.add(color: UIColor.red)
-        palette.select(color: UIColor.black)
+        palette.select(color: palette.inks[0].color)
         /*
         let button = UIButton(frame: getUndoButtonRect(within: palette.bounds))
         let icon = UIImage(named: "delete")
