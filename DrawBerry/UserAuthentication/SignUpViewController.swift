@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+// TODO: do smthg about username
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
@@ -16,8 +17,12 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
 
     @IBOutlet weak var errorLabel: UILabel!
+
+    var db: DatabaseReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        db = Database.database().reference()
         initializeElements()
     }
 
@@ -62,9 +67,14 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
 
             if error != nil {
+                // TODO show more descriptive error based on error code
                 self.showErrorMessage(Message.signUpError)
             } else {
                 // TODO: Store relevant data in firestore
+                self.db.child("users").setValue([
+                    result?.user.uid: ["email": result?.user.email]
+                ])
+
                 self.goToHomeScreen()
             }
         }
