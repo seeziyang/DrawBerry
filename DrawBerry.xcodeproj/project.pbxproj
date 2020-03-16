@@ -125,17 +125,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		37CE06502418809D0085BE4A /* GameModel */ = {
+		1A5252B3241FAD0D00E7F68C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FC48897C241C79D900375140 /* Game */,
-				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
+				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
+				FCEC3BE92417941600F0DE03 /* ViewController.swift */,
+				3EF004F9241907FB00136234 /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1A5252B4241FAF0300E7F68C /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
 				37CE06522418809D0085BE4A /* Canvas.swift */,
 				37CE0659241E17230085BE4A /* PaletteDelegate.swift */,
 				37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */,
 				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
 				37CE0657241B1E240085BE4A /* BerryPalette.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		1A5252B5241FAF3F00E7F68C /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				37CE065D241E1BF20085BE4A /* InkView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		37CE06502418809D0085BE4A /* GameModel */ = {
+			isa = PBXGroup;
+			children = (
+				1A5252B4241FAF0300E7F68C /* Canvas */,
+				FC48897C241C79D900375140 /* Game */,
 				37CE065B241E19850085BE4A /* BerryConstants.swift */,
 			);
 			path = GameModel;
@@ -225,9 +249,8 @@
 		FCEC3BE42417941600F0DE03 /* DrawBerry */ = {
 			isa = PBXGroup;
 			children = (
-				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
-				FCEC3BE92417941600F0DE03 /* ViewController.swift */,
-				3EF004F9241907FB00136234 /* HomeViewController.swift */,
+				1A5252B5241FAF3F00E7F68C /* Views */,
+				1A5252B3241FAD0D00E7F68C /* ViewControllers */,
 				3E2BDC87241A6224001D8E8A /* UserAuthentication */,
 				3E2BDC89241A626B001D8E8A /* Helper */,
 				37CE06502418809D0085BE4A /* GameModel */,
