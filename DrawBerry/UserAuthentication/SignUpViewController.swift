@@ -18,11 +18,8 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var errorLabel: UILabel!
 
-    var db: DatabaseReference!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Database.database().reference()
         initializeElements()
     }
 
