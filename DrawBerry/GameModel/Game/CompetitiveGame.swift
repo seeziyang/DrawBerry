@@ -6,9 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-import Foundation
-
-// MARK: TODOS
+// MARK: TODO
 // 1. Timer
 // 2. Categories
 // 3. Player names?
@@ -16,9 +14,19 @@ import Foundation
 
 struct CompetitiveGame {
     static let MAX_ROUNDS = 5
-    static let MAX_STROKES_PER_PLAYER = 1
-    static let TIME_PER_ROUND = 3 // Set to small number for testing purposes
+    static let STROKES_PER_PLAYER = 1
+    static let TIME_PER_ROUND = 45
 
     var players = [Player]()
     var currentRound = 1
+
+    var currentPowerups: [Powerup] {
+        powerupManager.allPowerups
+    }
+
+    var powerupManager = PowerupManager()
+
+    func rollForPowerups() {
+        powerupManager.rollForPowerup(for: players)
+    }
 }
