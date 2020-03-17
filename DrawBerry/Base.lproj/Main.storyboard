@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4J-Ox-CFn">
-    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="ipad10_2" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="LoginVC" id="kQ9-bP-JPN" customClass="LoginViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xcx-US-Vex">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6s-Yy-914">
-                                <rect key="frame" x="184" y="100" width="400" height="67"/>
+                                <rect key="frame" x="205" y="100" width="400" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="67" id="5ig-iH-Hpn"/>
                                 </constraints>
@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Xod-pJ-xky">
-                                <rect key="frame" x="184" y="207" width="400" height="460"/>
+                                <rect key="frame" x="205" y="207" width="400" height="460"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C0O-Th-g7a">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
@@ -104,11 +104,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="SignUpViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7d-G6-bCe">
-                                <rect key="frame" x="338.5" y="150" width="91" height="67"/>
+                                <rect key="frame" x="359.5" y="150" width="91" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="67" id="Tjn-WT-lz7"/>
                                 </constraints>
@@ -117,7 +117,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="7zI-6B-OQh">
-                                <rect key="frame" x="184" y="257" width="400" height="580"/>
+                                <rect key="frame" x="205" y="257" width="400" height="580"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYl-d6-dhX">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
@@ -212,21 +212,21 @@
         <!--Enter Room View Controller-->
         <scene sceneID="3kR-9I-uNp">
             <objects>
-                <viewController id="Hnz-Vf-gJ2" customClass="EnterRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Hnz-Vf-gJ2" customClass="EnterRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rte-z2-TPt">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-7k-t7V">
-                                <rect key="frame" x="192" y="394" width="384" height="236"/>
+                                <rect key="frame" x="202.5" y="422" width="405" height="236"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Qa-g5-cEd">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="405" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdW-AQ-rxh">
-                                        <rect key="frame" x="0.0" y="93" width="384" height="50"/>
+                                        <rect key="frame" x="0.0" y="93" width="405" height="50"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="JPh-cX-mJg"/>
@@ -238,7 +238,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sz2-KC-ChA">
-                                        <rect key="frame" x="0.0" y="186" width="384" height="50"/>
+                                        <rect key="frame" x="0.0" y="186" width="405" height="50"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="pij-lq-3jy"/>
@@ -254,10 +254,24 @@
                                     <constraint firstItem="0Qa-g5-cEd" firstAttribute="height" secondItem="MdW-AQ-rxh" secondAttribute="height" id="bDd-dv-tsa"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nc4-uc-Ab2">
+                                <rect key="frame" x="64" y="61" width="105" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="qmE-Pm-bFe"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="zjG-Uc-LAN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backOnTap:" destination="Hnz-Vf-gJ2" eventType="touchUpInside" id="jTn-qF-2oA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Nc4-uc-Ab2" firstAttribute="leading" secondItem="WC8-j0-3iZ" secondAttribute="leading" constant="64" id="2oS-oK-rVC"/>
                             <constraint firstItem="Vqa-7k-t7V" firstAttribute="centerX" secondItem="WC8-j0-3iZ" secondAttribute="centerX" id="ICa-LC-ehg"/>
+                            <constraint firstItem="Nc4-uc-Ab2" firstAttribute="top" secondItem="WC8-j0-3iZ" secondAttribute="top" constant="61" id="LQf-ih-0ai"/>
                             <constraint firstItem="MdW-AQ-rxh" firstAttribute="width" secondItem="Rte-z2-TPt" secondAttribute="width" multiplier="0.5" id="M2H-J8-RAB"/>
                             <constraint firstItem="sz2-KC-ChA" firstAttribute="width" secondItem="Rte-z2-TPt" secondAttribute="width" multiplier="0.5" id="tsv-NS-vif"/>
                             <constraint firstItem="Vqa-7k-t7V" firstAttribute="centerY" secondItem="WC8-j0-3iZ" secondAttribute="centerY" id="xFS-I1-ZXL"/>
@@ -267,19 +281,19 @@
                     <navigationItem key="navigationItem" id="gZn-Y0-cpx"/>
                     <connections>
                         <outlet property="roomCodeField" destination="0Qa-g5-cEd" id="mj7-pz-PEF"/>
-                        <segue destination="cuu-G9-htT" kind="presentation" identifier="segueToRoom" modalPresentationStyle="fullScreen" id="hhy-aR-wLp"/>
+                        <segue destination="cuu-G9-htT" kind="show" identifier="segueToRoom" id="qM3-6L-xtS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaY-f7-xXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651.5625" y="-57.421874999999993"/>
+            <point key="canvasLocation" x="1636" y="33"/>
         </scene>
         <!--Game Room View Controller-->
         <scene sceneID="THO-bA-Aan">
             <objects>
-                <viewController id="cuu-G9-htT" customClass="GameRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="cuu-G9-htT" customClass="GameRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5zX-Tv-BhM">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="R4z-ns-TkY"/>
@@ -288,21 +302,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxX-MX-JnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2463" y="-57"/>
+            <point key="canvasLocation" x="2449" y="33"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="TBj-Dl-UIi">
             <objects>
                 <viewController storyboardIdentifier="HomeVC" modalPresentationStyle="fullScreen" id="TxN-r9-amb" customClass="HomeViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2yE-JX-vlv">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="9X0-Aq-ddT">
-                                <rect key="frame" x="300" y="437" width="168" height="190"/>
+                                <rect key="frame" x="300" y="437" width="210" height="190"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-wv-MOV">
-                                        <rect key="frame" x="0.0" y="0.0" width="168" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="210" height="80"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Wb8-TG-26b"/>
@@ -310,16 +324,16 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Classic"/>
                                         <connections>
-                                            <segue destination="Hnz-Vf-gJ2" kind="presentation" modalPresentationStyle="fullScreen" id="zNG-GW-NTE"/>
+                                            <segue destination="Hnz-Vf-gJ2" kind="show" id="GIz-Hk-xlZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qeg-qU-QVj">
-                                        <rect key="frame" x="0.0" y="110" width="168" height="80"/>
+                                        <rect key="frame" x="0.0" y="110" width="210" height="80"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Competitive"/>
                                         <connections>
-                                            <segue destination="hsU-YQ-DKO" kind="presentation" modalPresentationStyle="fullScreen" id="EYg-6M-ZMl"/>
+                                            <segue destination="hsU-YQ-DKO" kind="show" id="tCy-1e-rRB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -328,7 +342,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0X-Aq-3wY">
-                                <rect key="frame" x="621" y="36" width="100" height="80"/>
+                                <rect key="frame" x="663" y="36" width="100" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="3Tn-AH-2io"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="XmO-o6-oMv"/>
@@ -340,7 +354,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t22-nm-sNV">
-                                <rect key="frame" x="279" y="231" width="210" height="100"/>
+                                <rect key="frame" x="279" y="231" width="252" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="seD-bu-NNb"/>
                                 </constraints>
@@ -368,14 +382,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXX-1H-sKE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826.61870503597129" y="445.7286432160804"/>
+            <point key="canvasLocation" x="827" y="496"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="win-Bf-CTU">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="1RG-Zu-Bow" customClass="ViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QwM-93-2Ce">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="BxC-sI-OoJ"/>
@@ -384,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNe-2z-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3451" y="169"/>
+            <point key="canvasLocation" x="4207.4074074074069" y="168.88888888888889"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="03Q-NG-2HP">
@@ -406,9 +420,9 @@
         <!--Competitive View Controller-->
         <scene sceneID="chW-ve-GdM">
             <objects>
-                <viewController id="hsU-YQ-DKO" customClass="CompetitiveViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="hsU-YQ-DKO" customClass="CompetitiveViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jqp-gI-3cb">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CE8-SM-fV0"/>
@@ -417,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHn-qo-geZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1692" y="822"/>
+            <point key="canvasLocation" x="1636" y="778"/>
         </scene>
     </scenes>
 </document>

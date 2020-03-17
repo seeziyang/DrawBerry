@@ -15,6 +15,12 @@ class EnterRoomViewController: UIViewController {
 
     @IBOutlet private weak var roomCodeField: UITextField!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBar.isHidden = false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +34,10 @@ class EnterRoomViewController: UIViewController {
         }
     }
 
+    @IBAction private func backOnTap(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+
     @IBAction private func joinOnTap(_ sender: UIButton) {
         joinRoom()
     }
@@ -39,7 +49,7 @@ class EnterRoomViewController: UIViewController {
     private func isRoomCodeValid(_ roomCode: String) -> Bool {
         // TODO
         // check valid string
-        return true
+        return !roomCode.isEmpty
     }
 
     private func joinRoom() {
