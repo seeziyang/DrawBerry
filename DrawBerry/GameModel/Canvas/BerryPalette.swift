@@ -10,12 +10,12 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
-    private var delegate: PaletteDelegate
+    private weak var delegate: PaletteDelegate?
     var isEraserSelected: Bool {
-        delegate.isEraserSelected
+        delegate?.isEraserSelected ?? false
     }
     var selectedInkTool: PKInkingTool? {
-        delegate.selectedInkTool
+        delegate?.selectedInkTool
     }
     var inks: [PKInkingTool] = [] {
         didSet {
@@ -28,9 +28,10 @@ class BerryPalette: UIView {
     var selectedColor: UIColor?
 
     override init(frame: CGRect) {
-        delegate = BerryPaletteDelegate()
+        let newDelegate = BerryPaletteDelegate()
+        delegate = newDelegate
         super.init(frame: frame)
-        delegate.selectedInkTool = getInkingToolFrom(color: UIColor.black)
+        delegate?.selectedInkTool = getInkingToolFrom(color: UIColor.black)
     }
 
     required init?(coder: NSCoder) {
@@ -46,12 +47,19 @@ class BerryPalette: UIView {
         inks.append(newInkTool)
     }
 
+    func selectFirstColor() {
+        if inks.count < 1 {
+            return
+        }
+        select(color: inks[0].color)
+    }
+
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
-        inkViews.forEach { $0.removeFromSuperview() }
+        self.subviews.forEach { $0.removeFromSuperview() }
         inkViews = []
-        eraserView?.removeFromSuperview()
+        eraserView = nil
 
         for ink in inks {
             let inkView = InkView(
@@ -66,12 +74,30 @@ class BerryPalette: UIView {
         let newEraserView = createEraserView()
         eraserView = newEraserView
         self.addSubview(newEraserView)
+        let undoButton = createUndoButton()
+        self.addSubview(undoButton)
+    }
+
+    private func createUndoButton() -> UIButton {
+        let button = UIButton(frame: getUndoButtonRect(within: self.bounds))
+        let icon = UIImage(named: "delete")
+        button.setImage(icon, for: .normal)
+        button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
+        return button
+    }
+
+    /// Undo the drawing one stroke before when the undo button is tapped.
+    @objc func undoButtonTap() {
+        guard let canvas = self.superview as? Canvas else {
+            return
+        }
+        canvas.undo()
     }
 
     /// Creates the eraser view.
     private func createEraserView() -> UIImageView {
         let newEraserView = UIImageView(frame: getEraserRect(within: self.frame))
-        newEraserView.image = UIImage(named: "eraser")
+        newEraserView.image = BerryConstants.eraserIcon
         let newEraserTap = UITapGestureRecognizer(target: self, action: #selector(handleEraserTap))
         newEraserView.addGestureRecognizer(newEraserTap)
         newEraserView.isUserInteractionEnabled = true
@@ -87,7 +113,7 @@ class BerryPalette: UIView {
 
     /// Selects the erasor as the selected `PKTool`.
     @objc func handleEraserTap() {
-        delegate.isEraserSelected = true
+        delegate?.isEraserSelected = true
         brightenAllInks()
         setToolInCavas(to: eraser)
     }
@@ -108,7 +134,7 @@ class BerryPalette: UIView {
         guard let selectedInkTool = getInkingToolFrom(color: inkView.color) else {
             return
         }
-        delegate.selectedInkTool = selectedInkTool
+        delegate?.selectedInkTool = selectedInkTool
         inkView.alpha = 1
         dimAllInks(except: inkView.color)
         setToolInCavas(to: selectedInkTool)
@@ -175,8 +201,16 @@ class BerryPalette: UIView {
     private func getEraserRect(within bounds: CGRect) -> CGRect {
         let size = CGSize(width: BerryConstants.toolLength, height: BerryConstants.toolLength)
         let origin = CGPoint(
-            x: bounds.width - BerryConstants.palettePadding - BerryConstants.toolLength,
+            x: bounds.width - (BerryConstants.palettePadding * 2) - (BerryConstants.toolLength * 2),
             y: BerryConstants.palettePadding)
+        return CGRect(origin: origin, size: size)
+    }
+
+    private func getUndoButtonRect(within bounds: CGRect) -> CGRect {
+        let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
+        let origin = CGPoint(
+            x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
+            y: BerryConstants.canvasPadding)
         return CGRect(origin: origin, size: size)
     }
 }

@@ -8,21 +8,19 @@
 import PencilKit
 
 class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
+    private weak var delegate: CanvasDelegate?
     var isAbleToDraw = true {
         didSet {
             if !isAbleToDraw {
                 canvasView.drawingGestureRecognizer.state = .ended
-                canvasView.drawingGestureRecognizer.isEnabled = false
-            } else {
-                canvasView.drawingGestureRecognizer.isEnabled = true
             }
+            canvasView.drawingGestureRecognizer.isEnabled = isAbleToDraw
         }
     }
 
     var canvasView: PKCanvasView
     let palette: BerryPalette
     let background: UIView
-    var history: [PKDrawing] = []
     var clearButton: UIButton
     var selectedInkTool: PKInkingTool? {
         palette.selectedInkTool
@@ -39,7 +37,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     var numberOfStrokes: Int {
-        history.count
+        delegate?.numberOfStrokes ?? 0
     }
 
     var drawing: PKDrawing {
@@ -57,17 +55,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         return dgrView[0]
     }
 
-    /// Undo the drawing to the previous state one stroke before.
     func undo() {
-        if history.isEmpty {
-            return
-        }
-        _ = history.popLast()
-        guard let lastDrawing = history.last else {
-            canvasView.drawing = PKDrawing()
-            return
-        }
-        canvasView.drawing = lastDrawing
+        canvasView.drawing = delegate?.undo() ?? PKDrawing()
     }
 
     /// Creates a `Canvas` with the given bounds.
@@ -89,6 +78,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     override private init(frame: CGRect) {
+        let canvasDelegate = BerryCanvasDelegate()
+        delegate = canvasDelegate
         palette = BerryCanvas.createPalette(within: frame)
         canvasView = BerryCanvas.createCanvasView(within: frame)
         background = BerryCanvas.createBackground(within: frame)
@@ -112,16 +103,14 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         drawingView?.addGestureRecognizer(draw)
     }
 
-    /// Tracks the state of the drawing and update the history when the stroke is ended.
+    /// Tracks the state of the drawing and update the history when the stroke has ended.
     @objc func handleDraw(recognizer: UIPanGestureRecognizer) {
-        if !isAbleToDraw {
-            recognizer.state = .ended
-            recognizer.isEnabled = false
+        if canvasView.drawingGestureRecognizer.state == .ended {
         }
         if recognizer.state == .ended {
-            let currentDrawing = canvasView.drawing
-            history.append(currentDrawing)
+            canvasView.drawingGestureRecognizer.state = .ended
         }
+        delegate?.handleDraw(recognizer: recognizer, canvas: self)
     }
 
     /// Populate the canvas with the required components.
@@ -135,7 +124,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Creates the background with the given bounds.
     private static func createBackground(within bounds: CGRect) -> UIView {
         let background = UIImageView(frame: getBackgroundRect(within: bounds))
-        background.image = UIImage(named: "paper-brown")
+        background.image = BerryConstants.paperBackgroundImage
         return background
     }
 
@@ -151,9 +140,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Creates the palette with the given bounds.
     private static func createPalette(within bounds: CGRect) -> BerryPalette {
         let newPalette = BerryPalette(frame: getPalatteRect(within: bounds))
-        // For visualisation of palatte location during dev
-        newPalette.layer.borderWidth = 3
-        newPalette.layer.borderColor = UIColor.red.cgColor
         initialise(palette: newPalette)
         return newPalette
     }
@@ -163,19 +149,13 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         palette.add(color: UIColor.black)
         palette.add(color: UIColor.blue)
         palette.add(color: UIColor.red)
-        palette.select(color: UIColor.black)
-        /*
-        let button = UIButton(frame: getUndoButtonRect(within: palette.bounds))
-        let icon = UIImage(named: "delete")
-        button.setImage(icon , for: .normal)
-        palette.addSubview(button)
-         */
+        palette.selectFirstColor()
     }
 
     /// Creates the clear button with the given bounds.
     private static func createClearButton(within bounds: CGRect) -> UIButton {
         let button = UIButton(frame: getClearButtonRect(within: bounds))
-        let icon = UIImage(named: "delete")
+        let icon = BerryConstants.deleteIcon
         button.setImage(icon, for: .normal)
         return button
     }
@@ -183,23 +163,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Clears the canvas when the clear button is tapped.
     @objc func clearButtonTap() {
         canvasView.drawing = PKDrawing()
-        history.append(canvasView.drawing)
-    }
-
-    /// Undo the drawing one stroke before when the undo button is tapped.
-    @objc func undoButtonTap() {
-        undo()
+        delegate?.clear()
     }
 
     private static func getClearButtonRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
-        let origin = CGPoint(
-            x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
-            y: BerryConstants.canvasPadding)
-        return CGRect(origin: origin, size: size)
-    }
-
-    private static func getUndoButtonRect(within bounds: CGRect) -> CGRect {
         let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
         let origin = CGPoint(
             x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
