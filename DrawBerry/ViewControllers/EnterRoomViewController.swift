@@ -15,12 +15,6 @@ class EnterRoomViewController: UIViewController {
 
     @IBOutlet private weak var roomCodeField: UITextField!
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        self.navigationController?.navigationBar.isHidden = false
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
