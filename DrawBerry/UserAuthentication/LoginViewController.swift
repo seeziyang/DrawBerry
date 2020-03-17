@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
             return
         }
 
-        Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if error != nil {
                 self.showErrorMessage(Message.signInError)
             } else {

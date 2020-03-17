@@ -12,11 +12,11 @@ class NetworkHelper {
 
     // should be called only after user is logged in
     static func getLoggedInUserID() -> String {
-        return Auth.auth().currentUser!.uid
+        Auth.auth().currentUser!.uid
     }
 
     static func getLoggedInUserName() -> String? {
-        return Auth.auth().currentUser!.displayName
+        Auth.auth().currentUser!.displayName
     }
 
     static func addUserToDB(userID: String, email: String) {

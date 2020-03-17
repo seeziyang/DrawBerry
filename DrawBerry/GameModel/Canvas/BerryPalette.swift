@@ -34,7 +34,7 @@ class BerryPalette: UIView {
     }
 
     required init?(coder: NSCoder) {
-        return nil
+        nil
     }
 
     /// Adds a color to the palette.
@@ -49,7 +49,7 @@ class BerryPalette: UIView {
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
-        inkViews.forEach {$0.removeFromSuperview()}
+        inkViews.forEach { $0.removeFromSuperview() }
         inkViews = []
         eraserView?.removeFromSuperview()
 
@@ -124,7 +124,7 @@ class BerryPalette: UIView {
 
     /// Returns an `InkView` given a `UIColor`.
     private func getInkViewFrom(color: UIColor) -> InkView? {
-        let inkView = inkViews.filter {$0.color == color}
+        let inkView = inkViews.filter { $0.color == color }
         if inkView.count != 1 {
             return nil
         }
@@ -133,7 +133,7 @@ class BerryPalette: UIView {
 
     /// Returns a  `PKInkingTool` from a given `UIColor`.
     private func getInkingToolFrom(color: UIColor) -> PKInkingTool? {
-        let tool = inks.filter {$0.color == color}
+        let tool = inks.filter { $0.color == color }
         if tool.count != 1 {
             return nil
         }
@@ -142,17 +142,17 @@ class BerryPalette: UIView {
 
     /// Dims all the `InkView`s except the `InkView` corresponding to the given `UIColor`.
     private func dimAllInks(except selected: UIColor) {
-        inkViews.filter {$0.color != selected}.forEach {$0.alpha = 0.5}
+        inkViews.filter { $0.color != selected }.forEach { $0.alpha = 0.5 }
     }
 
     /// Brightens all the `InkView`s.
     private func brightenAllInks() {
-        inkViews.forEach {$0.alpha = 1}
+        inkViews.forEach { $0.alpha = 1 }
     }
 
     /// Returns true if the given `UIColor` exists in the  `BerryPalette`.
     private func colorExists(color: UIColor) -> Bool {
-        return inks.map {$0.color}.filter {color == $0}.count >= 1
+        inks.map { $0.color }.filter { color == $0 }.count >= 1
     }
 
     /// Creates a `PKInkingTool` that corresponds to the given `UIColor`.

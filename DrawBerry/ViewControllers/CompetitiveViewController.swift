@@ -29,10 +29,12 @@ class CompetitiveViewController: UIViewController {
     private func addTimeLeftText() {
         let resultWidth = 200, resultHeight = 200, resultSize = 120, resultFont = "MarkerFelt-Thin"
 
-        timeLeftLabel = UITextView(frame: CGRect(x: self.view.bounds.midX - CGFloat(resultWidth / 2),
-                                            y: self.view.bounds.midY - CGFloat(resultHeight / 2),
-                                            width: CGFloat(resultWidth), height: CGFloat(resultHeight)),
-                              textContainer: nil)
+        timeLeftLabel = UITextView(
+            frame: CGRect(x: self.view.bounds.midX - CGFloat(resultWidth / 2),
+                          y: self.view.bounds.midY - CGFloat(resultHeight / 2),
+                          width: CGFloat(resultWidth),
+                          height: CGFloat(resultHeight)),
+            textContainer: nil)
         timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(resultSize))
         timeLeftLabel.textAlignment = NSTextAlignment.center
         timeLeftLabel.text = String(timeLeft)

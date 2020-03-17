@@ -16,10 +16,10 @@ struct BerryConstants {
 
     static let palettePadding: CGFloat = 10
     static let toolLength: CGFloat = 40
-    
+
     static let UIColorToAssetName = [
-        UIColor.black : "black",
-        UIColor.blue : "blue",
-        UIColor.red : "red"
+        UIColor.black: "black",
+        UIColor.blue: "blue",
+        UIColor.red: "red"
     ]
 }

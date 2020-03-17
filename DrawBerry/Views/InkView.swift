@@ -16,12 +16,12 @@ class InkView: UIImageView {
         super.init(frame: frame)
     }
 
-    private override init(frame: CGRect) {
+    override private init(frame: CGRect) {
         color = UIColor.black
         super.init(frame: frame)
     }
 
     required init?(coder: NSCoder) {
-        return nil
+        nil
     }
 }

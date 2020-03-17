@@ -13,7 +13,7 @@ class EnterRoomViewController: UIViewController {
 
     var networkRoomHelper: NetworkRoomHelper!
 
-    @IBOutlet weak var roomCodeField: UITextField!
+    @IBOutlet private weak var roomCodeField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,11 @@ class EnterRoomViewController: UIViewController {
         }
     }
 
-    @IBAction func joinOnTap(_ sender: UIButton) {
+    @IBAction private func joinOnTap(_ sender: UIButton) {
         joinRoom()
     }
 
-    @IBAction func createOnTap(_ sender: UIButton) {
+    @IBAction private func createOnTap(_ sender: UIButton) {
         createRoom()
     }
 

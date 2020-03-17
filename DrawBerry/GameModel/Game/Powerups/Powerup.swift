@@ -15,7 +15,7 @@ protocol Powerup {
 
 protocol TogglePowerup: Powerup {
     var duration: Double { get set }
-    
+
     mutating func activate()
     mutating func deactivate()
 }
