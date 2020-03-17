@@ -7,8 +7,7 @@
 //
 import PencilKit
 
-protocol CanvasDelegate {
-
+protocol CanvasDelegate: AnyObject {
     func handleDraw(recognizer: UIPanGestureRecognizer, canvas: Canvas)
 
     func updateHistory(with drawing: PKDrawing)

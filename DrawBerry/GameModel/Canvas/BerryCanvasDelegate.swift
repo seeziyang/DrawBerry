@@ -17,9 +17,13 @@ class BerryCanvasDelegate: CanvasDelegate {
             recognizer.isEnabled = false
             return
         }
-        syncHistory(on: canvas)
+        if recognizer.state == .ended {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.syncHistory(on: canvas)
+            }
+        }
     }
-    
+
     func syncHistory(on canvas: Canvas) {
         let prevSize = history.last?.dataRepresentation().count ?? PKDrawing().dataRepresentation().count
         if prevSize < canvas.drawing.dataRepresentation().count {

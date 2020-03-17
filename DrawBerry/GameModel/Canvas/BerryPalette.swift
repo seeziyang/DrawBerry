@@ -10,12 +10,12 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
-    private var delegate: PaletteDelegate
+    private weak var delegate: PaletteDelegate?
     var isEraserSelected: Bool {
-        delegate.isEraserSelected
+        delegate?.isEraserSelected ?? false
     }
     var selectedInkTool: PKInkingTool? {
-        delegate.selectedInkTool
+        delegate?.selectedInkTool
     }
     var inks: [PKInkingTool] = [] {
         didSet {
@@ -28,9 +28,10 @@ class BerryPalette: UIView {
     var selectedColor: UIColor?
 
     override init(frame: CGRect) {
-        delegate = BerryPaletteDelegate()
+        let newDelegate = BerryPaletteDelegate()
+        delegate = newDelegate
         super.init(frame: frame)
-        delegate.selectedInkTool = getInkingToolFrom(color: UIColor.black)
+        delegate?.selectedInkTool = getInkingToolFrom(color: UIColor.black)
     }
 
     required init?(coder: NSCoder) {
@@ -56,7 +57,7 @@ class BerryPalette: UIView {
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
-        self.subviews.forEach {$0.removeFromSuperview()}
+        self.subviews.forEach { $0.removeFromSuperview() }
         inkViews = []
         eraserView = nil
 
@@ -80,11 +81,11 @@ class BerryPalette: UIView {
     private func createUndoButton() -> UIButton {
         let button = UIButton(frame: getUndoButtonRect(within: self.bounds))
         let icon = UIImage(named: "delete")
-        button.setImage(icon , for: .normal)
+        button.setImage(icon, for: .normal)
         button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
         return button
     }
-    
+
     /// Undo the drawing one stroke before when the undo button is tapped.
     @objc func undoButtonTap() {
         guard let canvas = self.superview as? Canvas else {
@@ -92,7 +93,6 @@ class BerryPalette: UIView {
         }
         canvas.undo()
     }
-
 
     /// Creates the eraser view.
     private func createEraserView() -> UIImageView {
@@ -113,7 +113,7 @@ class BerryPalette: UIView {
 
     /// Selects the erasor as the selected `PKTool`.
     @objc func handleEraserTap() {
-        delegate.isEraserSelected = true
+        delegate?.isEraserSelected = true
         brightenAllInks()
         setToolInCavas(to: eraser)
     }
@@ -134,7 +134,7 @@ class BerryPalette: UIView {
         guard let selectedInkTool = getInkingToolFrom(color: inkView.color) else {
             return
         }
-        delegate.selectedInkTool = selectedInkTool
+        delegate?.selectedInkTool = selectedInkTool
         inkView.alpha = 1
         dimAllInks(except: inkView.color)
         setToolInCavas(to: selectedInkTool)
