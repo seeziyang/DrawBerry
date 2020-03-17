@@ -18,22 +18,27 @@
 		1A432BDF241FC6AC0097A14F /* NetworkRoomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* NetworkRoomHelper.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
-		37CE0658241B1E240085BE4A /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
 		37CE065A241E17230085BE4A /* PaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0659241E17230085BE4A /* PaletteDelegate.swift */; };
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
 		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
 		37CE0660241E24230085BE4A /* BerryPaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
+		3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EECC1D5241DE416002331EA /* StringHelperTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
 		3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F9241907FB00136234 /* HomeViewController.swift */; };
-		3EF004FC2419149A00136234 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004FB2419149A00136234 /* Helper.swift */; };
+		3EF004FC2419149A00136234 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004FB2419149A00136234 /* StringHelper.swift */; };
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
 		B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
+		FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
 		FC488980241C79FD00375140 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* Player.swift */; };
 		FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488981241C7A8B00375140 /* CompetitiveGame.swift */; };
 		FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488987241C7C4D00375140 /* CompetitiveViewController.swift */; };
+		FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3C241E0A10004D50EF /* Powerup.swift */; };
+		FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */; };
+		FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */; };
+		FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
 		FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE92417941600F0DE03 /* ViewController.swift */; };
@@ -81,10 +86,11 @@
 		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
 		37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPaletteDelegate.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3EECC1D5241DE416002331EA /* StringHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3EF004F9241907FB00136234 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		3EF004FB2419149A00136234 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		3EF004FB2419149A00136234 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.debug.xcconfig"; sourceTree = "<group>"; };
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +98,10 @@
 		FC48897F241C79FD00375140 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		FC488981241C7A8B00375140 /* CompetitiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGame.swift; sourceTree = "<group>"; };
 		FC488987241C7C4D00375140 /* CompetitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveViewController.swift; sourceTree = "<group>"; };
+		FC59CA3C241E0A10004D50EF /* Powerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Powerup.swift; sourceTree = "<group>"; };
+		FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManager.swift; sourceTree = "<group>"; };
+		FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraStrokePowerup.swift; sourceTree = "<group>"; };
+		FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAlphaPowerup.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +180,7 @@
 		1A5252B4241FAF0300E7F68C /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				FC48897C241C79D900375140 /* Game */,
 				37CE06522418809D0085BE4A /* Canvas.swift */,
 				37CE0659241E17230085BE4A /* PaletteDelegate.swift */,
 				37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */,
@@ -218,7 +229,7 @@
 		3E2BDC89241A626B001D8E8A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				3EF004FB2419149A00136234 /* Helper.swift */,
+				3EF004FB2419149A00136234 /* StringHelper.swift */,
 				3E2BDC85241A59C0001D8E8A /* Message.swift */,
 			);
 			path = Helper;
@@ -250,10 +261,22 @@
 		FC48897C241C79D900375140 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				FC59CA3E241E0BD2004D50EF /* Powerups */,
 				FC48897F241C79FD00375140 /* Player.swift */,
 				FC488981241C7A8B00375140 /* CompetitiveGame.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		FC59CA3E241E0BD2004D50EF /* Powerups */ = {
+			isa = PBXGroup;
+			children = (
+				FC59CA3C241E0A10004D50EF /* Powerup.swift */,
+				FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */,
+				FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */,
+				FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */,
+			);
+			path = Powerups;
 			sourceTree = "<group>";
 		};
 		FCEC3BD92417941600F0DE03 = {
@@ -302,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
+				3EECC1D5241DE416002331EA /* StringHelperTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,
 			);
 			path = DrawBerryTests;
@@ -328,6 +352,7 @@
 				FCEC3BDF2417941600F0DE03 /* Frameworks */,
 				FCEC3BE02417941600F0DE03 /* Resources */,
 				712C2D26C76618A38AA36669 /* [CP] Embed Pods Frameworks */,
+				3EECC1D4241DE1D8002331EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -473,6 +498,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3EECC1D4241DE1D8002331EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi  \n";
+		};
 		47579F87E12D9E744FE5306B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -558,10 +600,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */,
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
+				FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */,
+				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
-				37CE0658241B1E240085BE4A /* BerryPalette.swift in Sources */,
 				37CE065A241E17230085BE4A /* PaletteDelegate.swift in Sources */,
 				1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */,
 				3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */,
@@ -571,12 +615,14 @@
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
 				1A432BDF241FC6AC0097A14F /* NetworkRoomHelper.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */,
-				3EF004FC2419149A00136234 /* Helper.swift in Sources */,
+				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				1A432BD6241FB30A0097A14F /* GameRoom.swift in Sources */,
 				1A432BD8241FB6240097A14F /* GameRoomViewController.swift in Sources */,
 				3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */,
+				FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */,
+				FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */,
 				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
 				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
@@ -589,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */,
 				FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,7 +841,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawBerryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -816,7 +865,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawBerryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -838,6 +889,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawBerryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -858,6 +910,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = DrawBerryUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

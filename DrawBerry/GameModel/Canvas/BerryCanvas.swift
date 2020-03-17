@@ -13,6 +13,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
             if !isAbleToDraw {
                 canvasView.drawingGestureRecognizer.state = .ended
                 canvasView.drawingGestureRecognizer.isEnabled = false
+            } else {
+                canvasView.drawingGestureRecognizer.isEnabled = true
             }
         }
     }
