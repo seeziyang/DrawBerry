@@ -22,6 +22,8 @@
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
 		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
 		37CE0660241E24230085BE4A /* BerryPaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */; };
+		37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
+		37CE0664241FC2230085BE4A /* BerryCanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0663241FC2230085BE4A /* BerryCanvasDelegate.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
 		3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EECC1D5241DE416002331EA /* StringHelperTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
@@ -85,6 +87,8 @@
 		37CE065B241E19850085BE4A /* BerryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryConstants.swift; sourceTree = "<group>"; };
 		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
 		37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPaletteDelegate.swift; sourceTree = "<group>"; };
+		37CE0661241FC1120085BE4A /* CanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegate.swift; sourceTree = "<group>"; };
+		37CE0663241FC2230085BE4A /* BerryCanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasDelegate.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3EECC1D5241DE416002331EA /* StringHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -183,8 +187,10 @@
 			children = (
 				37CE06522418809D0085BE4A /* Canvas.swift */,
 				37CE0659241E17230085BE4A /* PaletteDelegate.swift */,
-				37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */,
+				37CE0661241FC1120085BE4A /* CanvasDelegate.swift */,
 				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
+				37CE065F241E24230085BE4A /* BerryPaletteDelegate.swift */,
+				37CE0663241FC2230085BE4A /* BerryCanvasDelegate.swift */,
 				37CE0657241B1E240085BE4A /* BerryPalette.swift */,
 			);
 			path = Canvas;
@@ -612,6 +618,7 @@
 				37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */,
 				FC488980241C79FD00375140 /* Player.swift in Sources */,
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
+				37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */,
 				1A432BDF241FC6AC0097A14F /* NetworkRoomHelper.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
@@ -627,6 +634,7 @@
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 				1A432BDA241FBA540097A14F /* EnterRoomViewController.swift in Sources */,
 				37CE0660241E24230085BE4A /* BerryPaletteDelegate.swift in Sources */,
+				37CE0664241FC2230085BE4A /* BerryCanvasDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
