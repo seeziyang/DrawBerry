@@ -77,12 +77,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
     }
 
-<<<<<<< HEAD:DrawBerry/GameModel/BerryCanvas.swift
     private override init(frame: CGRect) {
         delegate = BerryCanvasDelegate()
-=======
-    override private init(frame: CGRect) {
->>>>>>> 53babb77005bf8fcabc6b5bd7790fabc9776cc7b:DrawBerry/GameModel/Canvas/BerryCanvas.swift
         palette = BerryCanvas.createPalette(within: frame)
         canvasView = BerryCanvas.createCanvasView(within: frame)
         background = BerryCanvas.createBackground(within: frame)
@@ -162,13 +158,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Creates the clear button with the given bounds.
     private static func createClearButton(within bounds: CGRect) -> UIButton {
         let button = UIButton(frame: getClearButtonRect(within: bounds))
-<<<<<<< HEAD:DrawBerry/GameModel/BerryCanvas.swift
         let icon = BerryConstants.deleteIcon
         button.setImage(icon , for: .normal)
-=======
-        let icon = UIImage(named: "delete")
-        button.setImage(icon, for: .normal)
->>>>>>> 53babb77005bf8fcabc6b5bd7790fabc9776cc7b:DrawBerry/GameModel/Canvas/BerryCanvas.swift
         return button
     }
 
