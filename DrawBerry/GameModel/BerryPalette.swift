@@ -56,9 +56,9 @@ class BerryPalette: UIView {
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
-        inkViews.forEach {$0.removeFromSuperview()}
+        self.subviews.forEach {$0.removeFromSuperview()}
         inkViews = []
-        eraserView?.removeFromSuperview()
+        eraserView = nil
 
         for ink in inks {
             let inkView = InkView(
@@ -73,7 +73,26 @@ class BerryPalette: UIView {
         let newEraserView = createEraserView()
         eraserView = newEraserView
         self.addSubview(newEraserView)
+        let undoButton = createUndoButton()
+        self.addSubview(undoButton)
     }
+
+    private func createUndoButton() -> UIButton {
+        let button = UIButton(frame: getUndoButtonRect(within: self.bounds))
+        let icon = UIImage(named: "delete")
+        button.setImage(icon , for: .normal)
+        button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
+        return button
+    }
+    
+    /// Undo the drawing one stroke before when the undo button is tapped.
+    @objc func undoButtonTap() {
+        guard let canvas = self.superview as? Canvas else {
+            return
+        }
+        canvas.undo()
+    }
+
 
     /// Creates the eraser view.
     private func createEraserView() -> UIImageView {
@@ -182,8 +201,16 @@ class BerryPalette: UIView {
     private func getEraserRect(within bounds: CGRect) -> CGRect {
         let size = CGSize(width: BerryConstants.toolLength, height: BerryConstants.toolLength)
         let origin = CGPoint(
-            x: bounds.width - BerryConstants.palettePadding - BerryConstants.toolLength,
+            x: bounds.width - (BerryConstants.palettePadding * 2) - (BerryConstants.toolLength * 2),
             y: BerryConstants.palettePadding)
+        return CGRect(origin: origin, size: size)
+    }
+
+    private func getUndoButtonRect(within bounds: CGRect) -> CGRect {
+        let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
+        let origin = CGPoint(
+            x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
+            y: BerryConstants.canvasPadding)
         return CGRect(origin: origin, size: size)
     }
 }

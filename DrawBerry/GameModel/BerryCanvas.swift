@@ -13,8 +13,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         didSet {
             if !isAbleToDraw {
                 canvasView.drawingGestureRecognizer.state = .ended
-                canvasView.drawingGestureRecognizer.isEnabled = false
             }
+            canvasView.drawingGestureRecognizer.isEnabled = isAbleToDraw
         }
     }
 
@@ -104,6 +104,15 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
 
     /// Tracks the state of the drawing and update the history when the stroke has ended.
     @objc func handleDraw(recognizer: UIPanGestureRecognizer) {
+        if canvasView.drawingGestureRecognizer.state == .ended {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.delegate.syncHistory(on: self)
+                print(self.delegate.history)
+            }
+        }
+        if recognizer.state == .ended {
+            canvasView.drawingGestureRecognizer.state = .ended
+        }
         delegate.handleDraw(recognizer: recognizer, canvas: self)
     }
 
@@ -144,12 +153,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         palette.add(color: UIColor.blue)
         palette.add(color: UIColor.red)
         palette.selectFirstColor()
-        /*
-        let button = UIButton(frame: getUndoButtonRect(within: palette.bounds))
-        let icon = UIImage(named: "delete")
-        button.setImage(icon , for: .normal)
-        palette.addSubview(button)
-         */
     }
 
     /// Creates the clear button with the given bounds.
@@ -166,20 +169,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         delegate.clear()
     }
 
-    /// Undo the drawing one stroke before when the undo button is tapped.
-    @objc func undoButtonTap() {
-        undo()
-    }
-
     private static func getClearButtonRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
-        let origin = CGPoint(
-            x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
-            y: BerryConstants.canvasPadding)
-        return CGRect(origin: origin, size: size)
-    }
-
-    private static func getUndoButtonRect(within bounds: CGRect) -> CGRect {
         let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
         let origin = CGPoint(
             x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,

@@ -13,6 +13,8 @@ protocol CanvasDelegate {
 
     func updateHistory(with drawing: PKDrawing)
 
+    func syncHistory(on canvas: Canvas)
+
     func undo() -> PKDrawing
 
     func clear()

@@ -15,18 +15,24 @@ class BerryCanvasDelegate: CanvasDelegate {
         if !canvas.isAbleToDraw {
             recognizer.state = .ended
             recognizer.isEnabled = false
+            return
         }
-        if !canvas.isEraserSelected && recognizer.state == .ended {
+        syncHistory(on: canvas)
+    }
+    
+    func syncHistory(on canvas: Canvas) {
+        let prevSize = history.last?.dataRepresentation().count ?? PKDrawing().dataRepresentation().count
+        if prevSize < canvas.drawing.dataRepresentation().count {
+            // A stroke was added
             updateHistory(with: canvas.drawing)
             numberOfStrokes += 1
-        }
-        guard let prevSize = history.last?.dataRepresentation().count else {
             return
         }
         if prevSize > canvas.drawing.dataRepresentation().count {
             // A stroke was deleted
             updateHistory(with: canvas.drawing)
             numberOfStrokes -= 1
+            return
         }
     }
 
@@ -40,9 +46,11 @@ class BerryCanvasDelegate: CanvasDelegate {
             return PKDrawing()
         }
         _ = history.popLast()
+        numberOfStrokes -= 1
         guard let lastDrawing = history.last else {
             return PKDrawing()
         }
+        print(history)
         return lastDrawing
     }
 
