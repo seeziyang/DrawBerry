@@ -15,8 +15,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
-
     @IBOutlet private weak var errorLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
