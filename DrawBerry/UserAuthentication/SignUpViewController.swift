@@ -11,11 +11,12 @@ import Firebase
 
 class SignUpViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet private weak var usernameTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var confirmPasswordTextField: UITextField!
+    @IBOutlet private weak var errorLabel: UILabel!
 
-    @IBOutlet weak var errorLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
@@ -26,17 +27,31 @@ class SignUpViewController: UIViewController {
     }
 
     func validateTextFields() -> String? {
-        guard let username = Helper.trim(string: usernameTextField.text),
-            let email = Helper.trim(string: emailTextField.text),
-            let password = Helper.trim(string: passwordTextField.text) else {
+        guard let username = StringHelper.trim(string: usernameTextField.text),
+              let email = StringHelper.trim(string: emailTextField.text),
+              let password = StringHelper.trim(string: passwordTextField.text),
+              let passwordConfirmation = StringHelper.trim(string: confirmPasswordTextField.text) else {
                 return Message.emptyTextField
         }
 
-        if username == "" || email == "" || password == "" {
+        if username.isEmpty || email.isEmpty ||
+        password.isEmpty || passwordConfirmation.isEmpty {
             return Message.whitespaceOnlyTextField
         }
 
-        // TODO: Test Regex
+        // Test regex
+        if StringHelper.isInvalidEmail(email: email) {
+            return Message.invalidEmail
+        }
+
+        if StringHelper.isInvalidPassword(password: password) {
+            return Message.invalidPassword
+        }
+
+        if password != passwordConfirmation {
+            return Message.passwordsDoNotMatch
+        }
+
         return nil
     }
 
@@ -44,22 +59,21 @@ class SignUpViewController: UIViewController {
         errorLabel.text = error
         errorLabel.alpha = 1
     }
-    
 
-    @IBAction func handleSignUpButtonTapped(_ sender: UIButton) {
+    @IBAction private func handleSignUpButtonTapped(_ sender: UIButton) {
 
-        // Check for empty fields
+        // Checks validity of user input
         if let errorMessage = validateTextFields() {
             showErrorMessage(errorMessage)
             return
         }
 
-        guard let email = Helper.trim(string: emailTextField.text!),
-              let password = Helper.trim(string: passwordTextField.text!) else {
+        guard let email = StringHelper.trim(string: emailTextField.text),
+              let password = StringHelper.trim(string: passwordTextField.text) else {
             return
         }
 
-        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (_, error) in
 
             if error != nil {
                 self.showErrorMessage(Message.signUpError)
@@ -70,12 +84,11 @@ class SignUpViewController: UIViewController {
         }
     }
 
-    @IBAction func goBackToLoginScreen(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
+    @IBAction private func goBackToLoginScreen(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 
-
-    func goToHomeScreen() {
+    private func goToHomeScreen() {
         let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
 
         view.window?.rootViewController = homeViewController
