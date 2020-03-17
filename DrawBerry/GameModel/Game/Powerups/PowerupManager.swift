@@ -9,7 +9,7 @@
 import UIKit
 
 class PowerupManager {
-    static let POWERUP_PROBABILITY = 0.000375
+    static let POWERUP_PROBABILITY = 0.000_375
 
     var allPowerups = [Powerup]()
 
@@ -18,7 +18,7 @@ class PowerupManager {
             let random = Double.random
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
-                let powerup = ChangeAlphaPowerup(targets: players.filter {$0 != player}, location: CGPoint.zero)
+                let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player }, location: CGPoint.zero)
                 allPowerups.append(powerup)
 
                 // Just for testing purposes
@@ -36,15 +36,12 @@ class PowerupManager {
                 togglePowerup.deactivate()
                 timer.invalidate()
             }
-            
+
             togglePowerup.activate()
-            break
         case var lastingPowerup as LastingPowerup:
             lastingPowerup.activate()
-            break
         default:
             print("Unrecognized powerup")
-            break
         }
     }
 }

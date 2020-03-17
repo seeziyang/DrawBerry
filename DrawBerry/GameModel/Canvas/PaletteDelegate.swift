@@ -7,7 +7,7 @@
 //
 import PencilKit
 
-protocol PaletteDelegate {
+protocol PaletteDelegate: AnyObject {
     var selectedInkTool: PKInkingTool? { get set }
 
     var isEraserSelected: Bool { get set }

@@ -47,10 +47,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     var drawingView: UIView? {
-        let nestedSubviews = canvasView.subviews.map {$0.subviews}
+        let nestedSubviews = canvasView.subviews.map { $0.subviews }
         var allSubviews: [UIView] = []
-        nestedSubviews.forEach {allSubviews += $0}
-        let dgrView = allSubviews.filter {$0 == canvasView.drawingGestureRecognizer.view}
+        nestedSubviews.forEach { allSubviews += $0 }
+        let dgrView = allSubviews.filter { $0 == canvasView.drawingGestureRecognizer.view }
         if dgrView.count != 1 {
             return nil
         }
@@ -85,10 +85,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
 
     /// Checks if the given bounds is within the acceptable bounds.
     private static func outOfBounds(bounds: CGRect) -> Bool {
-        return bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
+        bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
     }
 
-    private override init(frame: CGRect) {
+    override private init(frame: CGRect) {
         palette = BerryCanvas.createPalette(within: frame)
         canvasView = BerryCanvas.createCanvasView(within: frame)
         background = BerryCanvas.createBackground(within: frame)
@@ -101,7 +101,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     required init?(coder: NSCoder) {
-        return nil
+        nil
     }
 
     /// Binds the required gesture recognizers to the views in the `BerryCanvas`.
@@ -176,7 +176,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     private static func createClearButton(within bounds: CGRect) -> UIButton {
         let button = UIButton(frame: getClearButtonRect(within: bounds))
         let icon = UIImage(named: "delete")
-        button.setImage(icon , for: .normal)
+        button.setImage(icon, for: .normal)
         return button
     }
 
@@ -220,12 +220,13 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     private static func getBackgroundRect(within bounds: CGRect) -> CGRect {
-        return CGRect(origin: CGPoint.zero, size: bounds.size)
+        CGRect(origin: CGPoint.zero, size: bounds.size)
     }
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer)
-            -> Bool {
-        return true
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
+    ) -> Bool {
+        true
     }
 }

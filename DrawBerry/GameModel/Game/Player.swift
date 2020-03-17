@@ -18,7 +18,7 @@ class Player: CustomStringConvertible, Equatable {
     var extraStrokes = 0
 
     var description: String {
-        return "(\(name))"
+        "(\(name))"
     }
 
     static func == (lhs: Player, rhs: Player) -> Bool {
