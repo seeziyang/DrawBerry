@@ -29,10 +29,12 @@ class CompetitiveViewController: UIViewController {
     private func addTimeLeftText() {
         let resultWidth = 200, resultHeight = 200, resultSize = 120, resultFont = "MarkerFelt-Thin"
 
-        timeLeftLabel = UITextView(frame: CGRect(x: self.view.bounds.midX - CGFloat(resultWidth / 2),
-                                            y: self.view.bounds.midY - CGFloat(resultHeight / 2),
-                                            width: CGFloat(resultWidth), height: CGFloat(resultHeight)),
-                              textContainer: nil)
+        timeLeftLabel = UITextView(
+            frame: CGRect(x: self.view.bounds.midX - CGFloat(resultWidth / 2),
+                          y: self.view.bounds.midY - CGFloat(resultHeight / 2),
+                          width: CGFloat(resultWidth),
+                          height: CGFloat(resultHeight)),
+            textContainer: nil)
         timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(resultSize))
         timeLeftLabel.textAlignment = NSTextAlignment.center
         timeLeftLabel.text = String(timeLeft)
@@ -43,12 +45,20 @@ class CompetitiveViewController: UIViewController {
     }
 
     @objc func update() {
+        if timeLeft <= 0 {
+            return
+        }
+
         for player in game.players {
-            if player.canvasDrawing.numberOfStrokes == CompetitiveGame.MAX_STROKES_PER_PLAYER {
+            if player.canvasDrawing.numberOfStrokes >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 // Player has used their stroke, disable their canvas
                 player.canvasDrawing.isAbleToDraw = false
+            } else {
+                player.canvasDrawing.isAbleToDraw = true
             }
         }
+
+        game.rollForPowerups()
     }
 
     /// Adds the four players to the competitive game.
@@ -129,15 +139,4 @@ class CompetitiveViewController: UIViewController {
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: .common)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

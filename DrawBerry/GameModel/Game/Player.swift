@@ -6,9 +6,22 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-import Foundation
+class Player: CustomStringConvertible, Equatable {
+    init(name: String, canvasDrawing: Canvas) {
+        self.name = name
+        self.canvasDrawing = canvasDrawing
+    }
 
-struct Player {
     var name: String
     var canvasDrawing: Canvas
+
+    var extraStrokes = 0
+
+    var description: String {
+        "(\(name))"
+    }
+
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        lhs.name == rhs.name
+    }
 }

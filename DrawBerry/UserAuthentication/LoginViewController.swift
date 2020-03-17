@@ -11,19 +11,17 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var errorLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if Auth.auth().currentUser != nil {
             goToHomeScreen()
         }
@@ -31,8 +29,8 @@ class LoginViewController: UIViewController {
 
     func initializeElements() {
         errorLabel.alpha = 0
-        emailTextField.text = "test@test.com"
-        passwordTextField.text = "123456"
+        emailTextField.text = "admin@drawberry.com"
+        passwordTextField.text = "admin123"
     }
 
     /// Shows an error message on the page
@@ -45,32 +43,39 @@ class LoginViewController: UIViewController {
     /// Returns an error message
     /// Returns nil if no errors are found
     func validateTextFields() -> String? {
-        guard let email = Helper.trim(string: emailTextField.text),
-            let password = Helper.trim(string: passwordTextField.text) else {
+        guard let email = StringHelper.trim(string: emailTextField.text),
+              let password = StringHelper.trim(string: passwordTextField.text) else {
                 return Message.emptyTextField
         }
 
-        if email == "" || password == "" {
+        if email.isEmpty || password.isEmpty {
             return Message.whitespaceOnlyTextField
+        }
+
+        if StringHelper.isInvalidEmail(email: email) {
+            return Message.invalidEmail
+        }
+
+        if StringHelper.isInvalidPassword(password: password) {
+            return Message.invalidPassword
         }
 
         return nil
     }
-    
-    @IBAction func handleLoginButtonTapped(_ sender: UIButton) {
+
+    @IBAction private func handleLoginButtonTapped(_ sender: UIButton) {
         // Checks input text-fields
         if let errorMessage = validateTextFields() {
             showErrorMessage(errorMessage)
             return
         }
 
-        guard let email = Helper.trim(string: emailTextField.text!),
-              let password = Helper.trim(string: passwordTextField.text!) else {
+        guard let email = StringHelper.trim(string: emailTextField.text),
+              let password = StringHelper.trim(string: passwordTextField.text) else {
             return
         }
 
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if error != nil {
                 self.showErrorMessage(Message.signInError)
             } else {
