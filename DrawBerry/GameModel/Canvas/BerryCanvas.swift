@@ -8,6 +8,7 @@
 import PencilKit
 
 class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
+    // Since we do not have reference cycles, we do not need to make the reference to delegate weak
     private var delegate: CanvasDelegate
     var isAbleToDraw = true {
         didSet {
@@ -56,7 +57,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     func undo() {
-        canvasView.drawing = delegate.undo() 
+        canvasView.drawing = delegate.undo()
     }
 
     /// Creates a `Canvas` with the given bounds.

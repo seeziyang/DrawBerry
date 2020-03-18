@@ -10,6 +10,7 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
+    // Since we do not have reference cycles, we do not need to make the reference to delegate weak
     private var delegate: PaletteDelegate
     var isEraserSelected: Bool {
         delegate.isEraserSelected
