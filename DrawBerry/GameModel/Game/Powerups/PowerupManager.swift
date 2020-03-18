@@ -9,22 +9,37 @@
 import UIKit
 
 class PowerupManager {
-    static let POWERUP_PROBABILITY = 0.000_375
+    static let POWERUP_PROBABILITY = 0.000_35
+    static let POWERUP_RADIUS = 40
 
     var allPowerups = [Powerup]()
+    var powerupsToAdd = [Powerup]()
+    var powerupsToRemove = [Powerup]()
 
     func rollForPowerup(for players: [Player]) {
+        powerupsToAdd = []
+
         for player in players {
-            let random = Double.random
+            let random = Double.random(in: 0...1)
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
-                let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player }, location: CGPoint.zero)
+                let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player },
+                                                 location: getRandomLocation(for: player))
                 allPowerups.append(powerup)
-
-                // Just for testing purposes
-                applyPowerup(powerup)
+                powerupsToAdd.append(powerup)
             }
         }
+    }
+
+    private func getRandomLocation(for player: Player) -> CGPoint {
+        let playerFrame = player.canvasDrawing.frame
+        let maxX = playerFrame.width - CGFloat(PowerupManager.POWERUP_RADIUS)
+        let maxY = playerFrame.height - CGFloat(PowerupManager.POWERUP_RADIUS)
+
+        let randomX = CGFloat.random(in: 0...maxX)
+        let randomY = CGFloat.random(in: 0...maxY)
+        return CGPoint(x: playerFrame.origin.x + randomX,
+                       y: playerFrame.origin.y + randomY)
     }
 
     func applyPowerup(_ powerup: Powerup) {
@@ -43,11 +58,5 @@ class PowerupManager {
         default:
             print("Unrecognized powerup")
         }
-    }
-}
-
-extension Double {
-    static var random: Double {
-        Double(arc4random()) / 0xFFFFFFFF
     }
 }

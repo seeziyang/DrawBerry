@@ -9,6 +9,7 @@
 import UIKit
 
 protocol Powerup {
+    var image: UIImage? { get }
     var targets: [Player] { get set }
     var location: CGPoint { get set }
 }

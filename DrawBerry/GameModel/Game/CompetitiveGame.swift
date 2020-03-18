@@ -18,13 +18,13 @@ struct CompetitiveGame {
     static let TIME_PER_ROUND = 45
 
     var players = [Player]()
+    var powerupManager = PowerupManager()
+
     var currentRound = 1
 
     var currentPowerups: [Powerup] {
         powerupManager.allPowerups
     }
-
-    var powerupManager = PowerupManager()
 
     func rollForPowerups() {
         powerupManager.rollForPowerup(for: players)

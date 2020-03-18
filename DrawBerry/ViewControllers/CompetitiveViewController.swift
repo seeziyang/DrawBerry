@@ -11,37 +11,29 @@ import UIKit
 class CompetitiveViewController: UIViewController {
     var game = CompetitiveGame()
     var timer: Timer?
-    var timeLeft = CompetitiveGame.TIME_PER_ROUND
-    var timeLeftLabel = UITextView()
+
+    var competitiveView = CompetitiveView()
+    var timeLeft = CompetitiveGame.TIME_PER_ROUND {
+        didSet {
+            competitiveView.updateTimeLeftText(to: String(timeLeft))
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setupPlayers()
         addCanvasesToView()
-        addTimeLeftText()
+        setupViews()
         setupTimer()
         setupDisplayLink()
     }
 
-    // Just a small function to show the time left for testing purposes.
-    // Will probably remove/refactor this as gameplay is further developed.
-    private func addTimeLeftText() {
-        let resultWidth = 200, resultHeight = 200, resultSize = 120, resultFont = "MarkerFelt-Thin"
-
-        timeLeftLabel = UITextView(
-            frame: CGRect(x: self.view.bounds.midX - CGFloat(resultWidth / 2),
-                          y: self.view.bounds.midY - CGFloat(resultHeight / 2),
-                          width: CGFloat(resultWidth),
-                          height: CGFloat(resultHeight)),
-            textContainer: nil)
-        timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(resultSize))
-        timeLeftLabel.textAlignment = NSTextAlignment.center
-        timeLeftLabel.text = String(timeLeft)
-        timeLeftLabel.backgroundColor = UIColor.clear
-        timeLeftLabel.isUserInteractionEnabled = false
-
-        self.view.addSubview(timeLeftLabel)
+    private func setupViews() {
+        competitiveView.frame = CGRect(x: 0, y: 0,
+                                       width: view.bounds.maxX - view.bounds.minX,
+                                       height: view.bounds.maxY - view.bounds.minY)
+        self.view.addSubview(competitiveView)
+        competitiveView.setupViews()
     }
 
     @objc func update() {
@@ -58,7 +50,10 @@ class CompetitiveViewController: UIViewController {
             }
         }
 
+        // Get powerups and redraw
         game.rollForPowerups()
+        let powerups = game.powerupManager.powerupsToAdd
+        competitiveView.addPowerups(powerups)
     }
 
     /// Adds the four players to the competitive game.
@@ -119,9 +114,6 @@ class CompetitiveViewController: UIViewController {
     @objc func onTimerFires() {
         timeLeft -= 1
 
-        timeLeftLabel.text = String(timeLeft)
-        timeLeftLabel.setNeedsDisplay()
-
         if timeLeft <= 0 {
             disableAllPlayerDrawings()
             timer?.invalidate()
@@ -129,6 +121,7 @@ class CompetitiveViewController: UIViewController {
         }
     }
 
+    /// DIsables the canvas for all players
     private func disableAllPlayerDrawings() {
         for player in game.players {
             player.canvasDrawing.isAbleToDraw = false

@@ -9,6 +9,7 @@
 import UIKit
 
 struct ChangeAlphaPowerup: TogglePowerup {
+    var image = PowerupAssets.changeAlphaUIImage
     var duration: Double
     var targets: [Player]
     var location: CGPoint

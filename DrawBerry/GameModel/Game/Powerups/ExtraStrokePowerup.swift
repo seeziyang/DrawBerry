@@ -9,6 +9,7 @@
 import UIKit
 
 struct ExtraStrokePowerup: LastingPowerup {
+    var image = PowerupAssets.changeAlphaUIImage
     var targets: [Player]
     var location: CGPoint
 
