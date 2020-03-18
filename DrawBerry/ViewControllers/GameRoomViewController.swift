@@ -13,8 +13,41 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBOutlet private weak var playersTableView: UITableView!
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // TODO
+//        if let roomVC = segue.destination as? GameRoomViewController,
+//            let roomCode = roomCodeField.text {
+//            roomVC.room = GameRoom(roomCode: roomCode)
+//            roomVC.room.delegate = roomVC
+//        }
+    }
+
+    @IBAction private func backOnTap(_ sender: UIBarButtonItem) {
+        leaveGameRoom()
+    }
+
+    @IBAction private func startOnTap(_ sender: UIBarButtonItem) {
+        startGame()
+    }
+
     func playersDidUpdate() {
         playersTableView.reloadData()
+    }
+
+    private func leaveGameRoom() {
+        // TODO: Exit game room
+
+        dismiss(animated: true, completion: nil)
+    }
+
+    private func startGame() {
+        // TODO: Check min players
+
+        segueToGameVC()
+    }
+
+    private func segueToGameVC() {
+        performSegue(withIdentifier: "segueToClassicGame", sender: self)
     }
 }
 
