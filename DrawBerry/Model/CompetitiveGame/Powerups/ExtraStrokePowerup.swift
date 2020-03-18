@@ -9,10 +9,10 @@
 import UIKit
 
 struct ExtraStrokePowerup: LastingPowerup {
-    var targets: [Player]
+    var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    init(targets: [Player], location: CGPoint) {
+    init(targets: [CompetitivePlayer], location: CGPoint) {
         self.targets = targets
         self.location = location
     }

@@ -17,7 +17,7 @@ struct CompetitiveGame {
     static let STROKES_PER_PLAYER = 1
     static let TIME_PER_ROUND = 45
 
-    var players = [Player]()
+    var players = [CompetitivePlayer]()
     var currentRound = 1
 
     var currentPowerups: [Powerup] {

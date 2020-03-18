@@ -64,7 +64,7 @@ class CompetitiveViewController: UIViewController {
     /// Adds the four players to the competitive game.
     private func setupPlayers() {
         for i in 1...4 {
-            let newPlayer = Player(name: "Player \(i)", canvasDrawing: BerryCanvas())
+            let newPlayer = CompetitivePlayer(name: "Player \(i)", canvasDrawing: BerryCanvas())
             game.players.append(newPlayer)
         }
     }

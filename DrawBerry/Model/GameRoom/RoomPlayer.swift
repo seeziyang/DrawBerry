@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct RoomPlayer {
-    var displayName: String
+class RoomPlayer: Player {
+    let name: String
     var isRoomMaster: Bool
+
+    init(name: String, isRoomMaster: Bool) {
+        self.name = name
+        self.isRoomMaster = isRoomMaster
+    }
 }

@@ -13,7 +13,7 @@ class PowerupManager {
 
     var allPowerups = [Powerup]()
 
-    func rollForPowerup(for players: [Player]) {
+    func rollForPowerup(for players: [CompetitivePlayer]) {
         for player in players {
             let random = Double.random
 

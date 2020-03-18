@@ -9,7 +9,7 @@
 import UIKit
 
 protocol Powerup {
-    var targets: [Player] { get set }
+    var targets: [CompetitivePlayer] { get set }
     var location: CGPoint { get set }
 }
 

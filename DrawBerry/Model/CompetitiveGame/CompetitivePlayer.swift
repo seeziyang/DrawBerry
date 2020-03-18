@@ -6,7 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-class Player: CustomStringConvertible, Equatable {
+class CompetitivePlayer: Player, CustomStringConvertible, Equatable {
     init(name: String, canvasDrawing: Canvas) {
         self.name = name
         self.canvasDrawing = canvasDrawing
@@ -21,7 +21,7 @@ class Player: CustomStringConvertible, Equatable {
         "(\(name))"
     }
 
-    static func == (lhs: Player, rhs: Player) -> Bool {
+    static func == (lhs: CompetitivePlayer, rhs: CompetitivePlayer) -> Bool {
         lhs.name == rhs.name
     }
 }
