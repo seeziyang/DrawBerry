@@ -8,7 +8,8 @@
 
 import UIKit
 
-struct ChangeAlphaPowerup: TogglePowerup {
+class ChangeAlphaPowerup: TogglePowerup {
+    var image = PowerupAssets.changeAlphaUIImage
     var duration: Double
     var targets: [Player]
     var location: CGPoint
@@ -20,14 +21,12 @@ struct ChangeAlphaPowerup: TogglePowerup {
     }
 
     func activate() {
-        print("Powerup activated!")
         for target in targets {
-            target.canvasDrawing.alpha = 0.1
+            target.canvasDrawing.alpha = 0.2
         }
     }
 
     func deactivate() {
-        print("Powerup deactivated!")
         for target in targets {
             target.canvasDrawing.alpha = 1
         }
