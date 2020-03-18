@@ -27,6 +27,19 @@ class NetworkRoomHelper {
         })
     }
 
+    func checkRoomEnterable(roomCode: String, completionHandler: @escaping (GameRoomStatus) -> Void) {
+        db.child("activeRooms").child(roomCode).child("players")
+            .observeSingleEvent(of: .value, with: { snapshot in
+                guard let playersValue = snapshot.value as? [String: [String: Bool]] else {
+                    completionHandler(.doesNotExist) // room does not exists
+                    return
+                }
+
+                let isNotFull = playersValue.count <= GameRoom.maxPlayers
+                completionHandler(isNotFull ? .enterable : .full)
+            })
+    }
+
     func joinRoom(roomCode: String) {
         db.child("activeRooms").child(roomCode).child("players")
             .child(NetworkHelper.getLoggedInUserID()).setValue(["isRoomMaster": false])

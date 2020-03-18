@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED62422208C007FDB32 /* GameRoomStatus.swift */; };
 		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		0512DC0375238871C0778AA1 /* Pods-DrawBerry-DrawBerryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A000ED62422208C007FDB32 /* GameRoomStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomStatus.swift; sourceTree = "<group>"; };
 		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A3F39992421C0FB0084859F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1A432BD3241FB2E00097A14F /* RoomPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPlayer.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				1A432BD3241FB2E00097A14F /* RoomPlayer.swift */,
 				1A432BD5241FB30A0097A14F /* GameRoom.swift */,
+				1A000ED62422208C007FDB32 /* GameRoomStatus.swift */,
 				1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */,
 			);
 			path = GameRoom;
@@ -644,6 +647,7 @@
 				1A432BD8241FB6240097A14F /* GameRoomViewController.swift in Sources */,
 				3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */,
 				FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */,
+				1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */,
 				FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */,
 				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
 				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,

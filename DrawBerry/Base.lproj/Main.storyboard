@@ -218,7 +218,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-7k-t7V">
-                                <rect key="frame" x="192" y="394" width="384" height="236"/>
+                                <rect key="frame" x="192" y="358" width="384" height="308"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Qa-g5-cEd">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
@@ -249,6 +249,12 @@
                                             <action selector="createOnTap:" destination="Hnz-Vf-gJ2" eventType="touchUpInside" id="yu6-zp-TEc"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owq-Yi-Rtq">
+                                        <rect key="frame" x="0.0" y="279" width="384" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="0Qa-g5-cEd" firstAttribute="height" secondItem="MdW-AQ-rxh" secondAttribute="height" id="bDd-dv-tsa"/>
@@ -280,6 +286,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gZn-Y0-cpx"/>
                     <connections>
+                        <outlet property="errorLabel" destination="Owq-Yi-Rtq" id="XxQ-xS-Vz5"/>
                         <outlet property="roomCodeField" destination="0Qa-g5-cEd" id="mj7-pz-PEF"/>
                         <segue destination="cuu-G9-htT" kind="show" identifier="segueToRoom" id="qM3-6L-xtS"/>
                     </connections>
