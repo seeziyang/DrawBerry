@@ -9,8 +9,8 @@
 import UIKit
 
 struct PowerupManager {
-    static let POWERUP_PROBABILITY = 0.000_285
-    static let POWERUP_RADIUS = 40
+    static let POWERUP_PROBABILITY = 0.000_5
+    static let POWERUP_RADIUS = 20
 
     var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()
@@ -31,8 +31,8 @@ struct PowerupManager {
 
     private func getRandomLocation(for player: Player) -> CGPoint {
         let playerFrame = player.canvasDrawing.frame
-        let maxX = playerFrame.width - CGFloat(PowerupManager.POWERUP_RADIUS)
-        let maxY = playerFrame.height - CGFloat(PowerupManager.POWERUP_RADIUS)
+        let maxX = playerFrame.width - CGFloat(PowerupManager.POWERUP_RADIUS * 2)
+        let maxY = playerFrame.height - CGFloat(PowerupManager.POWERUP_RADIUS * 2) - 50
 
         let randomX = CGFloat.random(in: 0...maxX)
         let randomY = CGFloat.random(in: 0...maxY)
@@ -62,8 +62,6 @@ struct PowerupManager {
     }
 
     private func removePowerupFromArray(_ arr: inout [Powerup], _ powerup: Powerup) {
-        for i in 0..<arr.count where arr[i] === powerup {
-            arr.remove(at: i)
-        }
+        arr = arr.filter { $0.location != powerup.location }
     }
 }

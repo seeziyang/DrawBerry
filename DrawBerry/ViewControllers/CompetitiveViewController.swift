@@ -14,12 +14,12 @@ class CompetitiveViewController: UIViewController {
     var powerupManager = PowerupManager() {
         didSet {
             if !powerupManager.powerupsToAdd.isEmpty {
-                competitiveView.addPowerups(powerupManager.powerupsToAdd)
+                competitiveView.addPowerupsToView(powerupManager.powerupsToAdd)
                 powerupManager.powerupsToAdd.removeAll()
             }
 
             if !powerupManager.powerupsToRemove.isEmpty {
-                competitiveView.removePowerups(powerupManager.powerupsToRemove)
+                competitiveView.removePowerupsFromView(powerupManager.powerupsToRemove)
                 powerupManager.powerupsToRemove.removeAll()
             }
         }
@@ -57,6 +57,13 @@ class CompetitiveViewController: UIViewController {
             return
         }
 
+        powerupManager.rollForPowerup(for: game.players)
+
+        checkNumberOfStrokesUsed()
+        checkPowerupActivations()
+    }
+
+    private func checkNumberOfStrokesUsed() {
         for player in game.players {
             if player.canvasDrawing.numberOfStrokes >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 // Player has used their stroke, disable their canvas
@@ -65,8 +72,31 @@ class CompetitiveViewController: UIViewController {
                 player.canvasDrawing.isAbleToDraw = true
             }
         }
+    }
 
-        powerupManager.rollForPowerup(for: game.players)
+    private func checkPowerupActivations() {
+        for player in game.players {
+            guard let currentCoordinates = player.canvasDrawing.currentCoordinate else {
+                return
+            }
+
+            let playerCoordinates = CGPoint(x: currentCoordinates.x + player.canvasDrawing.frame.origin.x,
+                                            y: currentCoordinates.y + player.canvasDrawing.frame.origin.y)
+            print(playerCoordinates)
+
+            for powerup in powerupManager.allAvailablePowerups {
+                let midPoint = CGPoint(x: powerup.location.x + CGFloat(PowerupManager.POWERUP_RADIUS),
+                                       y: powerup.location.y + CGFloat(PowerupManager.POWERUP_RADIUS))
+
+                let dx = midPoint.x - playerCoordinates.x
+                let dy = midPoint.y - playerCoordinates.y
+                let distance = sqrt(dx * dx + dy * dy)
+
+                if distance <= CGFloat(PowerupManager.POWERUP_RADIUS) {
+                    powerupManager.applyPowerup(powerup)
+                }
+            }
+        }
     }
 
     /// Adds the four players to the competitive game.

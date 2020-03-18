@@ -10,7 +10,7 @@ import UIKit
 
 class CompetitiveView: UIView {
     var timeLeftLabel = UITextView()
-    var powerupViews = [PowerupView]()
+    var powerupViews = Set<PowerupView>()
 
     func setupViews() {
         setupTimeLeftText()
@@ -37,18 +37,24 @@ class CompetitiveView: UIView {
         timeLeftLabel.setNeedsDisplay()
     }
 
-    func addPowerups(_ powerups: [Powerup]) {
+    func addPowerupsToView(_ powerups: [Powerup]) {
         for powerup in powerups {
             let powerupImage = PowerupView(image: powerup.image, coordinates: powerup.location)
             powerupImage.frame = CGRect(x: powerup.location.x, y: powerup.location.y,
-                                        width: CGFloat(PowerupManager.POWERUP_RADIUS),
-                                        height: CGFloat(PowerupManager.POWERUP_RADIUS))
-            powerupViews.append(powerupImage)
+                                        width: CGFloat(PowerupManager.POWERUP_RADIUS * 2),
+                                        height: CGFloat(PowerupManager.POWERUP_RADIUS * 2))
+            powerupViews.insert(powerupImage)
             addSubview(powerupImage)
         }
     }
 
-    func removePowerups(_ powerups: [Powerup]) {
-        // MARK: TODO
+    func removePowerupsFromView(_ powerups: [Powerup]) {
+        for powerup in powerups {
+            let coordinates = powerup.location
+            for powerupView in powerupViews where powerupView.coordinates == coordinates {
+                powerupView.removeFromSuperview()
+                powerupViews.remove(powerupView)
+            }
+        }
     }
 }
