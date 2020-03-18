@@ -10,6 +10,7 @@ target 'DrawBerry' do
 
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
   target 'DrawBerryTests' do
     inherit! :search_paths
