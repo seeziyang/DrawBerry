@@ -37,10 +37,10 @@ class BerryPalette: UIView {
         }
     }
     var inkViews: [InkView] = []
-    var eraserView: UIImageView?
-    var eraser = PKEraserTool(PKEraserTool.EraserType.vector)
-    var selectedColor: UIColor?
-    var undoButton: UIButton?
+    private var eraserView: UIImageView?
+    private var eraser = PKEraserTool(PKEraserTool.EraserType.vector)
+    internal var selectedColor: UIColor?
+    internal var undoButton: UIButton?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,6 +60,7 @@ class BerryPalette: UIView {
         inks.append(newInkTool)
     }
 
+    /// Selects the first color in the palette.
     func selectFirstColor() {
         if inks.count < 1 {
             return
@@ -93,7 +94,7 @@ class BerryPalette: UIView {
 
     private func createUndoButton() -> UIButton {
         let button = UIButton(frame: getUndoButtonRect(within: self.bounds))
-        let icon = UIImage(named: "delete")
+        let icon = BerryConstants.deleteIcon
         button.setImage(icon, for: .normal)
         button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
         undoButton = button
@@ -182,12 +183,12 @@ class BerryPalette: UIView {
 
     /// Dims all the `InkView`s except the `InkView` corresponding to the given `UIColor`.
     private func dimAllInks(except selected: UIColor) {
-        inkViews.filter { $0.color != selected }.forEach { $0.alpha = 0.5 }
+        inkViews.filter { $0.color != selected }.forEach { $0.alpha = BerryConstants.halfOpacity }
     }
 
     /// Brightens all the `InkView`s.
     private func brightenAllInks() {
-        inkViews.forEach { $0.alpha = 1 }
+        inkViews.forEach { $0.alpha = BerryConstants.fullOpacity }
     }
 
     /// Returns true if the given `UIColor` exists in the  `BerryPalette`.
@@ -198,8 +199,7 @@ class BerryPalette: UIView {
     /// Creates a `PKInkingTool` that corresponds to the given `UIColor`.
     private func createInkTool(with color: UIColor) -> PKInkingTool {
         let defaultInkType = PKInkingTool.InkType.pen
-        let defaultWidth: CGFloat = 0.5
-        return PKInkingTool(defaultInkType, color: color, width: defaultWidth)
+        return PKInkingTool(defaultInkType, color: color, width: BerryConstants.defaultInkWidth)
     }
 
     /// Returns the `CGRect` for the `InkView` given the bounds and the horizontal displacement.
@@ -220,6 +220,7 @@ class BerryPalette: UIView {
         return CGRect(origin: origin, size: size)
     }
 
+    /// Returns the `CGRect` for the undo button given the bounds.
     private func getUndoButtonRect(within bounds: CGRect) -> CGRect {
         let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
         let origin = CGPoint(
