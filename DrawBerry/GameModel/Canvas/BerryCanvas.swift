@@ -37,6 +37,12 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         }
     }
 
+    var isUndoButtonEnabled: Bool = true {
+        didSet {
+            palette.isUndoButtonEnabled = isUndoButtonEnabled
+        }
+    }
+
     var numberOfStrokes: Int {
         delegate.numberOfStrokes
     }

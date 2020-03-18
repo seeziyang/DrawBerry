@@ -23,10 +23,17 @@ class BerryPalette: UIView {
             initialiseToolViews()
         }
     }
+    var isUndoButtonEnabled: Bool = true {
+        didSet {
+            undoButton?.isEnabled = isUndoButtonEnabled
+            undoButton?.isHidden = !isUndoButtonEnabled
+        }
+    }
     var inkViews: [InkView] = []
     var eraserView: UIImageView?
     var eraser = PKEraserTool(PKEraserTool.EraserType.vector)
     var selectedColor: UIColor?
+    var undoButton: UIButton?
 
     override init(frame: CGRect) {
         let newDelegate = BerryPaletteDelegate()
@@ -84,6 +91,7 @@ class BerryPalette: UIView {
         let icon = UIImage(named: "delete")
         button.setImage(icon, for: .normal)
         button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
+        undoButton = button
         return button
     }
 
