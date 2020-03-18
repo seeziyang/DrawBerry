@@ -12,15 +12,12 @@ protocol Powerup: AnyObject {
     var image: UIImage? { get }
     var targets: [Player] { get set }
     var location: CGPoint { get set }
+
+    func activate()
 }
 
 protocol TogglePowerup: Powerup {
     var duration: Double { get set }
 
-    func activate()
     func deactivate()
-}
-
-protocol LastingPowerup: Powerup {
-    func activate()
 }

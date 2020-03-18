@@ -41,20 +41,13 @@ struct PowerupManager {
     }
 
     mutating func applyPowerup(_ powerup: Powerup) {
-        switch powerup {
-        case let togglePowerup as TogglePowerup:
+        powerup.activate()
 
-            // Disable the powerup after duration is over
+        if let togglePowerup = powerup as? TogglePowerup {
             _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(togglePowerup.duration), repeats: false) { timer in
                 togglePowerup.deactivate()
                 timer.invalidate()
             }
-
-            togglePowerup.activate()
-        case let lastingPowerup as LastingPowerup:
-            lastingPowerup.activate()
-        default:
-            print("Unrecognized powerup")
         }
 
         removePowerupFromArray(&allAvailablePowerups, powerup)

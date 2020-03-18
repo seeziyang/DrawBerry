@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExtraStrokePowerup: LastingPowerup {
+class ExtraStrokePowerup: Powerup {
     var image = PowerupAssets.extraStrokeUIImage
     var targets: [Player]
     var location: CGPoint
