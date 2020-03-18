@@ -19,7 +19,8 @@
 		1A432BD8241FB6240097A14F /* GameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD7241FB6240097A14F /* GameRoomViewController.swift */; };
 		1A432BDA241FBA540097A14F /* EnterRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */; };
 		1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
-		1A432BDF241FC6AC0097A14F /* NetworkRoomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* NetworkRoomHelper.swift */; };
+		1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */; };
+		1A4C5F252422619500937244 /* ClassGameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* ClassGameNetworkAdapter.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
@@ -86,7 +87,8 @@
 		1A432BD7241FB6240097A14F /* GameRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomViewController.swift; sourceTree = "<group>"; };
 		1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewController.swift; sourceTree = "<group>"; };
 		1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
-		1A432BDE241FC6AC0097A14F /* NetworkRoomHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoomHelper.swift; sourceTree = "<group>"; };
+		1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNetworkAdapter.swift; sourceTree = "<group>"; };
+		1A4C5F242422619500937244 /* ClassGameNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassGameNetworkAdapter.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,9 +108,9 @@
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.release.xcconfig"; sourceTree = "<group>"; };
-		FC48897F241C79FD00375140 /* CompetitivePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayer.swift; sourceTree = "<group>"; };
 		FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupAssets.swift; sourceTree = "<group>"; };
 		FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupView.swift; sourceTree = "<group>"; };
+		FC48897F241C79FD00375140 /* CompetitivePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayer.swift; sourceTree = "<group>"; };
 		FC488981241C7A8B00375140 /* CompetitiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGame.swift; sourceTree = "<group>"; };
 		FC488987241C7C4D00375140 /* CompetitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveViewController.swift; sourceTree = "<group>"; };
 		FC59CA3C241E0A10004D50EF /* Powerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Powerup.swift; sourceTree = "<group>"; };
@@ -185,7 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */,
-				1A432BDE241FC6AC0097A14F /* NetworkRoomHelper.swift */,
+				1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */,
+				1A4C5F242422619500937244 /* ClassGameNetworkAdapter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -644,9 +647,10 @@
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
 				1A3F399A2421C0FB0084859F /* Player.swift in Sources */,
 				37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */,
-				1A432BDF241FC6AC0097A14F /* NetworkRoomHelper.swift in Sources */,
+				1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
+				1A4C5F252422619500937244 /* ClassGameNetworkAdapter.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */,

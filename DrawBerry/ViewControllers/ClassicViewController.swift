@@ -9,26 +9,27 @@
 import UIKit
 import PencilKit
 
-// TODO: rename topLeftCanvas to just canvas since classic game only one canvas
 class ClassicViewController: UIViewController {
+    var classicGame: ClassicGame!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        addCanvasesToView()
+        addCanvasToView()
     }
 
-    private func addCanvasesToView() {
+    private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
         let topLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
         let topLeftRect = CGRect(origin: topLeftOrigin, size: defaultSize)
-        guard let topLeftCanvas: Canvas = BerryCanvas.createCanvas(within: topLeftRect) else {
+        guard let canvas = BerryCanvas.createCanvas(within: topLeftRect) else {
             return
         }
-        topLeftCanvas.isClearButtonEnabled = true
-        topLeftCanvas.isUndoButtonEnabled = true
-        topLeftCanvas.delegate = self
-        self.view.addSubview(topLeftCanvas)
+        canvas.isClearButtonEnabled = true
+        canvas.isUndoButtonEnabled = true
+        canvas.delegate = self
+        self.view.addSubview(canvas)
     }
 }
 
