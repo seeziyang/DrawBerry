@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Powerup {
+protocol Powerup: AnyObject {
     var image: UIImage? { get }
     var targets: [Player] { get set }
     var location: CGPoint { get set }
@@ -17,10 +17,10 @@ protocol Powerup {
 protocol TogglePowerup: Powerup {
     var duration: Double { get set }
 
-    mutating func activate()
-    mutating func deactivate()
+    func activate()
+    func deactivate()
 }
 
 protocol LastingPowerup: Powerup {
-    mutating func activate()
+    func activate()
 }

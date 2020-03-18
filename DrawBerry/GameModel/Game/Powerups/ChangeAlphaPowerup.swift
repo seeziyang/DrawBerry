@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ChangeAlphaPowerup: TogglePowerup {
+class ChangeAlphaPowerup: TogglePowerup {
     var image = PowerupAssets.changeAlphaUIImage
     var duration: Double
     var targets: [Player]

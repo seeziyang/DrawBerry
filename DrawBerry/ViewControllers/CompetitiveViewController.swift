@@ -10,6 +10,20 @@ import UIKit
 
 class CompetitiveViewController: UIViewController {
     var game = CompetitiveGame()
+    var powerupManager = PowerupManager() {
+        didSet {
+            if !powerupManager.powerupsToAdd.isEmpty {
+                competitiveView.addPowerups(powerupManager.powerupsToAdd)
+                powerupManager.powerupsToAdd.removeAll()
+            }
+
+            if !powerupManager.powerupsToRemove.isEmpty {
+                competitiveView.removePowerups(powerupManager.powerupsToRemove)
+                powerupManager.powerupsToRemove.removeAll()
+            }
+        }
+    }
+
     var timer: Timer?
 
     var competitiveView = CompetitiveView()
@@ -32,6 +46,7 @@ class CompetitiveViewController: UIViewController {
         competitiveView.frame = CGRect(x: 0, y: 0,
                                        width: view.bounds.maxX - view.bounds.minX,
                                        height: view.bounds.maxY - view.bounds.minY)
+        competitiveView.isUserInteractionEnabled = false
         self.view.addSubview(competitiveView)
         competitiveView.setupViews()
     }
@@ -50,10 +65,7 @@ class CompetitiveViewController: UIViewController {
             }
         }
 
-        // Get powerups and redraw
-        game.rollForPowerups()
-        let powerups = game.powerupManager.powerupsToAdd
-        competitiveView.addPowerups(powerups)
+        powerupManager.rollForPowerup(for: game.players)
     }
 
     /// Adds the four players to the competitive game.

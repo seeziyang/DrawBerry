@@ -9,7 +9,8 @@
 import UIKit
 
 struct PowerupAssets {
-    static let changeAlphaImage = "powerup-changealpha"
+    static let changeAlphaImage = "powerup-changealpha", extraStrokeImage = "powerup-extrastroke"
 
     static let changeAlphaUIImage = UIImage(named: changeAlphaImage)
+    static let extraStrokeUIImage = UIImage(named: extraStrokeImage)
 }

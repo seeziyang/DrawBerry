@@ -8,24 +8,22 @@
 
 import UIKit
 
-class PowerupManager {
-    static let POWERUP_PROBABILITY = 0.000_35
+struct PowerupManager {
+    static let POWERUP_PROBABILITY = 0.000_285
     static let POWERUP_RADIUS = 40
 
-    var allPowerups = [Powerup]()
+    var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()
     var powerupsToRemove = [Powerup]()
 
-    func rollForPowerup(for players: [Player]) {
-        powerupsToAdd = []
-
+    mutating func rollForPowerup(for players: [Player]) {
         for player in players {
             let random = Double.random(in: 0...1)
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
                 let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player },
                                                  location: getRandomLocation(for: player))
-                allPowerups.append(powerup)
+                allAvailablePowerups.append(powerup)
                 powerupsToAdd.append(powerup)
             }
         }
@@ -42,9 +40,9 @@ class PowerupManager {
                        y: playerFrame.origin.y + randomY)
     }
 
-    func applyPowerup(_ powerup: Powerup) {
+    mutating func applyPowerup(_ powerup: Powerup) {
         switch powerup {
-        case var togglePowerup as TogglePowerup:
+        case let togglePowerup as TogglePowerup:
 
             // Disable the powerup after duration is over
             _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(togglePowerup.duration), repeats: false) { timer in
@@ -53,10 +51,19 @@ class PowerupManager {
             }
 
             togglePowerup.activate()
-        case var lastingPowerup as LastingPowerup:
+        case let lastingPowerup as LastingPowerup:
             lastingPowerup.activate()
         default:
             print("Unrecognized powerup")
+        }
+
+        removePowerupFromArray(&allAvailablePowerups, powerup)
+        powerupsToRemove.append(powerup)
+    }
+
+    private func removePowerupFromArray(_ arr: inout [Powerup], _ powerup: Powerup) {
+        for i in 0..<arr.count where arr[i] === powerup {
+            arr.remove(at: i)
         }
     }
 }
