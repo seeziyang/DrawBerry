@@ -50,7 +50,7 @@ class EnterRoomViewController: UIViewController {
     }
 
     private func isRoomCodeValid(_ roomCode: String) -> Bool {
-        return !roomCode.isEmpty
+        !roomCode.isEmpty
     }
 
     private func joinRoom() {
@@ -66,7 +66,7 @@ class EnterRoomViewController: UIViewController {
 
         networkRoomHelper
             .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
-                switch(roomStatus) {
+                switch roomStatus {
                 case .enterable:
                     self?.networkRoomHelper.joinRoom(roomCode: roomCode)
                     self?.segueToRoomVC()

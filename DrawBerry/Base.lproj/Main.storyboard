@@ -441,10 +441,10 @@
             </objects>
             <point key="canvasLocation" x="827" y="496"/>
         </scene>
-        <!--View Controller-->
+        <!--Classic View Controller-->
         <scene sceneID="win-Bf-CTU">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="1RG-Zu-Bow" customClass="ViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="1RG-Zu-Bow" customClass="ClassicViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QwM-93-2Ce">
                         <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

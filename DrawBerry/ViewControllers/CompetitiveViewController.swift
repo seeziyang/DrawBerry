@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PencilKit
 
 class CompetitiveViewController: UIViewController {
     var game = CompetitiveGame()
@@ -69,6 +70,7 @@ class CompetitiveViewController: UIViewController {
         }
     }
 
+    // Maybe we should create a helper class to populate canvases in the view
     private func addCanvasesToView() {
         assert(game.players.count == 4, "Player count should be 4")
 
@@ -80,6 +82,8 @@ class CompetitiveViewController: UIViewController {
             return
         }
         topLeftCanvas.isClearButtonEnabled = false
+        topLeftCanvas.isUndoButtonEnabled = false
+        topLeftCanvas.delegate = self
         game.players[0].canvasDrawing = topLeftCanvas
         self.view.addSubview(topLeftCanvas)
 
@@ -89,6 +93,8 @@ class CompetitiveViewController: UIViewController {
             return
         }
         topRightCanvas.isClearButtonEnabled = false
+        topRightCanvas.isUndoButtonEnabled = false
+        topRightCanvas.delegate = self
         game.players[1].canvasDrawing = topRightCanvas
         self.view.addSubview(topRightCanvas)
 
@@ -98,6 +104,8 @@ class CompetitiveViewController: UIViewController {
             return
         }
         bottomLeftCanvas.isClearButtonEnabled = false
+        bottomLeftCanvas.isUndoButtonEnabled = false
+        bottomLeftCanvas.delegate = self
         game.players[2].canvasDrawing = bottomLeftCanvas
         self.view.addSubview(bottomLeftCanvas)
 
@@ -107,6 +115,8 @@ class CompetitiveViewController: UIViewController {
             return
         }
         bottomRightCanvas.isClearButtonEnabled = false
+        bottomRightCanvas.isUndoButtonEnabled = false
+        bottomRightCanvas.delegate = self
         game.players[3].canvasDrawing = bottomRightCanvas
         self.view.addSubview(bottomRightCanvas)
     }
@@ -138,5 +148,58 @@ class CompetitiveViewController: UIViewController {
     private func setupDisplayLink() {
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: .common)
+    }
+}
+
+extension CompetitiveViewController: CanvasDelegate {
+    func handleDraw(recognizer: UIPanGestureRecognizer, canvas: Canvas) {
+        if !canvas.isAbleToDraw {
+            recognizer.state = .ended
+            recognizer.isEnabled = false
+            return
+        }
+        if recognizer.state == .ended {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.syncHistory(on: canvas)
+            }
+        }
+    }
+
+    func syncHistory(on canvas: Canvas) {
+        let prevSize = canvas.history.last?.dataRepresentation().count ?? PKDrawing().dataRepresentation().count
+        if prevSize < canvas.drawing.dataRepresentation().count {
+            // A stroke was added
+            updateHistory(on: canvas, with: canvas.drawing)
+            canvas.numberOfStrokes += 1
+            return
+        }
+        if prevSize > canvas.drawing.dataRepresentation().count {
+            // A stroke was deleted
+            updateHistory(on: canvas, with: canvas.drawing)
+            canvas.numberOfStrokes -= 1
+            return
+        }
+    }
+
+    func updateHistory(on canvas: Canvas, with drawing: PKDrawing) {
+        canvas.history.append(drawing)
+    }
+
+    /// Undo the drawing to the previous state one stroke before.
+    func undo(on canvas: Canvas) -> PKDrawing {
+        if canvas.history.isEmpty {
+            return PKDrawing()
+        }
+        _ = canvas.history.popLast()
+        canvas.numberOfStrokes -= 1
+        guard let lastDrawing = canvas.history.last else {
+            return PKDrawing()
+        }
+        return lastDrawing
+    }
+
+    func clear(canvas: Canvas) {
+        updateHistory(on: canvas, with: PKDrawing())
+        canvas.numberOfStrokes = 0
     }
 }

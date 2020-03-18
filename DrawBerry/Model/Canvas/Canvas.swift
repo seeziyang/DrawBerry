@@ -11,15 +11,23 @@ protocol Canvas: UIView {
     // Add methods here if necessary, I will implement them
     var isAbleToDraw: Bool { get set }
 
-    var numberOfStrokes: Int { get }
+    var numberOfStrokes: Int { get set }
 
     var drawing: PKDrawing { get }
 
     var isClearButtonEnabled: Bool { get set }
 
+    var isUndoButtonEnabled: Bool { get set }
+
     var selectedInkTool: PKInkingTool? { get }
 
     var isEraserSelected: Bool { get }
+
+    var history: [PKDrawing] { get set }
+
+    var delegate: CanvasDelegate? { get set }
+
+    var currentCoordinate: CGPoint? { get }
 
     func undo()
 
