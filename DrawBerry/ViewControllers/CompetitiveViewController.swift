@@ -77,12 +77,11 @@ class CompetitiveViewController: UIViewController {
     private func checkPowerupActivations() {
         for player in game.players {
             guard let currentCoordinates = player.canvasDrawing.currentCoordinate else {
-                return
+                continue
             }
 
             let playerCoordinates = CGPoint(x: currentCoordinates.x + player.canvasDrawing.frame.origin.x,
                                             y: currentCoordinates.y + player.canvasDrawing.frame.origin.y)
-            print(playerCoordinates)
 
             for powerup in powerupManager.allAvailablePowerups {
                 let midPoint = CGPoint(x: powerup.location.x + CGFloat(PowerupManager.POWERUP_RADIUS),
