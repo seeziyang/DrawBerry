@@ -12,27 +12,18 @@ class GameRoom {
     static let maxPlayers = 8
 
     weak var delegate: GameRoomDelegate?
-    private(set) var players: [RoomPlayer]
+    let networkRoomHelper: NetworkRoomHelper
     let roomCode: String
+    private(set) var players: [RoomPlayer]
 
     init(roomCode: String) {
+        self.networkRoomHelper = NetworkRoomHelper()
         self.roomCode = roomCode
-        players = []
+        self.players = []
 
-        let db = Database.database().reference()
-
-        db.child("activeRooms").child(roomCode).child("players")
-            .observe(.value, with: { [weak self] snapshot in
-                guard let playersValue = snapshot.value as? [String: [String: Bool]] else {
-                    return
-                }
-
-                self?.players = playersValue.map { playerUID, properties in
-                    RoomPlayer(name: playerUID, uid: playerUID,
-                               isRoomMaster: properties["isRoomMaster"] ?? false)
-                }
-
-                self?.delegate?.playersDidUpdate()
-            })
+        networkRoomHelper.observeRoomPlayers(roomCode: roomCode, listener: { [weak self] players in
+            self?.players = players
+            self?.delegate?.playersDidUpdate()
+        })
     }
 }
