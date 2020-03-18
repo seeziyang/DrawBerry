@@ -33,3 +33,9 @@ protocol Canvas: UIView {
 
     func setTool(to tool: PKTool)
 }
+
+extension Canvas {
+    var drawingImage: UIImage {
+        drawing.image(from: drawing.bounds, scale: 1.0)
+    }
+}

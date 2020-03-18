@@ -51,7 +51,7 @@ class ClassicViewController: UIViewController {
     }
 
     private func finishRound() {
-
+        classicGame.addUsersDrawingImage(canvas.drawingImage)
     }
 }
 

@@ -20,7 +20,7 @@
 		1A432BDA241FBA540097A14F /* EnterRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */; };
 		1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
 		1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */; };
-		1A4C5F252422619500937244 /* ClassGameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* ClassGameNetworkAdapter.swift */; };
+		1A4C5F252422619500937244 /* ClassicGameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* ClassicGameNetworkAdapter.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
@@ -88,7 +88,7 @@
 		1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewController.swift; sourceTree = "<group>"; };
 		1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNetworkAdapter.swift; sourceTree = "<group>"; };
-		1A4C5F242422619500937244 /* ClassGameNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassGameNetworkAdapter.swift; sourceTree = "<group>"; };
+		1A4C5F242422619500937244 /* ClassicGameNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameNetworkAdapter.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +188,7 @@
 			children = (
 				1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */,
 				1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */,
-				1A4C5F242422619500937244 /* ClassGameNetworkAdapter.swift */,
+				1A4C5F242422619500937244 /* ClassicGameNetworkAdapter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -650,7 +650,7 @@
 				1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
-				1A4C5F252422619500937244 /* ClassGameNetworkAdapter.swift in Sources */,
+				1A4C5F252422619500937244 /* ClassicGameNetworkAdapter.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */,
