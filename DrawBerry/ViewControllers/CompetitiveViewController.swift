@@ -75,6 +75,7 @@ class CompetitiveViewController: UIViewController {
             return
         }
         topLeftCanvas.isClearButtonEnabled = false
+        topLeftCanvas.isUndoButtonEnabled = false
         game.players[0].canvasDrawing = topLeftCanvas
         self.view.addSubview(topLeftCanvas)
 
@@ -84,6 +85,7 @@ class CompetitiveViewController: UIViewController {
             return
         }
         topRightCanvas.isClearButtonEnabled = false
+        topRightCanvas.isUndoButtonEnabled = false
         game.players[1].canvasDrawing = topRightCanvas
         self.view.addSubview(topRightCanvas)
 
@@ -93,6 +95,7 @@ class CompetitiveViewController: UIViewController {
             return
         }
         bottomLeftCanvas.isClearButtonEnabled = false
+        bottomLeftCanvas.isUndoButtonEnabled = false
         game.players[2].canvasDrawing = bottomLeftCanvas
         self.view.addSubview(bottomLeftCanvas)
 
@@ -102,6 +105,7 @@ class CompetitiveViewController: UIViewController {
             return
         }
         bottomRightCanvas.isClearButtonEnabled = false
+        bottomRightCanvas.isUndoButtonEnabled = false
         game.players[3].canvasDrawing = bottomRightCanvas
         self.view.addSubview(bottomRightCanvas)
     }

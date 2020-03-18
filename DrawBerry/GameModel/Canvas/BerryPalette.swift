@@ -10,28 +10,36 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
-    private weak var delegate: PaletteDelegate?
+    // Since we do not have reference cycles, we do not need to make the reference to delegate weak
+    private var delegate: PaletteDelegate
     var isEraserSelected: Bool {
-        delegate?.isEraserSelected ?? false
+        delegate.isEraserSelected
     }
     var selectedInkTool: PKInkingTool? {
-        delegate?.selectedInkTool
+        delegate.selectedInkTool
     }
     var inks: [PKInkingTool] = [] {
         didSet {
             initialiseToolViews()
         }
     }
+    var isUndoButtonEnabled: Bool = true {
+        didSet {
+            undoButton?.isEnabled = isUndoButtonEnabled
+            undoButton?.isHidden = !isUndoButtonEnabled
+        }
+    }
     var inkViews: [InkView] = []
     var eraserView: UIImageView?
     var eraser = PKEraserTool(PKEraserTool.EraserType.vector)
     var selectedColor: UIColor?
+    var undoButton: UIButton?
 
     override init(frame: CGRect) {
         let newDelegate = BerryPaletteDelegate()
         delegate = newDelegate
         super.init(frame: frame)
-        delegate?.selectedInkTool = getInkingToolFrom(color: UIColor.black)
+        delegate.selectedInkTool = getInkingToolFrom(color: UIColor.black)
     }
 
     required init?(coder: NSCoder) {
@@ -83,6 +91,7 @@ class BerryPalette: UIView {
         let icon = UIImage(named: "delete")
         button.setImage(icon, for: .normal)
         button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
+        undoButton = button
         return button
     }
 
@@ -113,7 +122,7 @@ class BerryPalette: UIView {
 
     /// Selects the erasor as the selected `PKTool`.
     @objc func handleEraserTap() {
-        delegate?.isEraserSelected = true
+        delegate.isEraserSelected = true
         brightenAllInks()
         setToolInCavas(to: eraser)
     }
@@ -134,7 +143,7 @@ class BerryPalette: UIView {
         guard let selectedInkTool = getInkingToolFrom(color: inkView.color) else {
             return
         }
-        delegate?.selectedInkTool = selectedInkTool
+        delegate.selectedInkTool = selectedInkTool
         inkView.alpha = 1
         dimAllInks(except: inkView.color)
         setToolInCavas(to: selectedInkTool)
