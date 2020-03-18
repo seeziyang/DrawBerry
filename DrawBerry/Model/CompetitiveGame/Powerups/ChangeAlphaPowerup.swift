@@ -11,10 +11,10 @@ import UIKit
 class ChangeAlphaPowerup: TogglePowerup {
     var image = PowerupAssets.changeAlphaUIImage
     var duration: Double
-    var targets: [Player]
+    var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    init(targets: [Player], location: CGPoint) {
+    init(targets: [CompetitivePlayer], location: CGPoint) {
         self.targets = targets
         self.location = location
         self.duration = 1.0

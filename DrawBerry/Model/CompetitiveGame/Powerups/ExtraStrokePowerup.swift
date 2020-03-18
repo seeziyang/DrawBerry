@@ -10,10 +10,10 @@ import UIKit
 
 class ExtraStrokePowerup: Powerup {
     var image = PowerupAssets.extraStrokeUIImage
-    var targets: [Player]
+    var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    init(targets: [Player], location: CGPoint) {
+    init(targets: [CompetitivePlayer], location: CGPoint) {
         self.targets = targets
         self.location = location
     }

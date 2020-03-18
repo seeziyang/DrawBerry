@@ -15,9 +15,12 @@ class EnterRoomViewController: UIViewController {
 
     @IBOutlet private weak var roomCodeField: UITextField!
 
+    @IBOutlet private weak var errorLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        errorLabel.alpha = 0
         networkRoomHelper = NetworkRoomHelper()
     }
 
@@ -25,7 +28,17 @@ class EnterRoomViewController: UIViewController {
         if let roomVC = segue.destination as? GameRoomViewController,
             let roomCode = roomCodeField.text {
             roomVC.room = GameRoom(roomCode: roomCode)
+            roomVC.room.delegate = roomVC
         }
+    }
+
+    func showErrorMessage(_ message: String) {
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
+
+    @IBAction private func backOnTap(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction private func joinOnTap(_ sender: UIButton) {
@@ -37,38 +50,43 @@ class EnterRoomViewController: UIViewController {
     }
 
     private func isRoomCodeValid(_ roomCode: String) -> Bool {
-        // TODO
-        // check valid string
-        return true
+        !roomCode.isEmpty
     }
 
     private func joinRoom() {
         guard let roomCode = roomCodeField.text else {
+            showErrorMessage(Message.emptyTextField)
             return
         }
 
         if !isRoomCodeValid(roomCode) {
-            return // TODO: show error message
+            showErrorMessage(Message.whitespaceOnlyTextField)
+            return
         }
 
         networkRoomHelper
-            .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
-                if roomExists {
+            .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
+                switch roomStatus {
+                case .enterable:
                     self?.networkRoomHelper.joinRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
-                } else {
-                    // TODO: show error message
+                case .doesNotExist:
+                    self?.showErrorMessage(Message.roomDoesNotExist)
+                case .full:
+                    self?.showErrorMessage(Message.roomFull)
                 }
             })
     }
 
     private func createRoom() {
-        guard let roomCode = roomCodeField.text else {
+        guard let roomCode = StringHelper.trim(string: roomCodeField.text) else {
+            showErrorMessage(Message.emptyTextField)
             return
         }
 
         if !isRoomCodeValid(roomCode) {
-            return // TODO: show error message
+            showErrorMessage(Message.whitespaceOnlyTextField)
+            return
         }
 
         networkRoomHelper
@@ -77,7 +95,7 @@ class EnterRoomViewController: UIViewController {
                     self?.networkRoomHelper.createRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 } else {
-                    // TODO: show error message
+                    self?.showErrorMessage(Message.roomDoesNotExist)
                 }
             })
     }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol Powerup: AnyObject {
     var image: UIImage? { get }
-    var targets: [Player] { get set }
+    var targets: [CompetitivePlayer] { get set }
     var location: CGPoint { get set }
 
     func activate()
