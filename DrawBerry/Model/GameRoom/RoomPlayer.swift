@@ -10,10 +10,12 @@ import Foundation
 
 class RoomPlayer: Player {
     let name: String
+    let uid: String
     var isRoomMaster: Bool
 
-    init(name: String, isRoomMaster: Bool) {
+    init(name: String, uid: String, isRoomMaster: Bool) {
         self.name = name
+        self.uid = uid
         self.isRoomMaster = isRoomMaster
     }
 }

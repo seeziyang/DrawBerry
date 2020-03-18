@@ -25,6 +25,7 @@ class EnterRoomViewController: UIViewController {
         if let roomVC = segue.destination as? GameRoomViewController,
             let roomCode = roomCodeField.text {
             roomVC.room = GameRoom(roomCode: roomCode)
+            roomVC.room.delegate = roomVC
         }
     }
 

@@ -17,6 +17,7 @@
 		1A432BDA241FBA540097A14F /* EnterRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */; };
 		1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
 		1A432BDF241FC6AC0097A14F /* NetworkRoomHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* NetworkRoomHelper.swift */; };
+		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		37CE065A241E17230085BE4A /* PaletteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0659241E17230085BE4A /* PaletteDelegate.swift */; };
@@ -80,6 +81,7 @@
 		1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewController.swift; sourceTree = "<group>"; };
 		1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		1A432BDE241FC6AC0097A14F /* NetworkRoomHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRoomHelper.swift; sourceTree = "<group>"; };
+		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CE06512418809D0085BE4A /* BerryCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BerryCanvas.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				1A432BD3241FB2E00097A14F /* RoomPlayer.swift */,
 				1A432BD5241FB30A0097A14F /* GameRoom.swift */,
+				1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */,
 			);
 			path = GameRoom;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */,
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
+				1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */,
 				FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,

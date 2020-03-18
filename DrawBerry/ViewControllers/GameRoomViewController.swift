@@ -8,6 +8,25 @@
 
 import UIKit
 
-class GameRoomViewController: UIViewController {
+class GameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
+
+    @IBOutlet private weak var playersTableView: UITableView!
+
+    func playersDidUpdate() {
+        playersTableView.reloadData()
+    }
+}
+
+extension GameRoomViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        room.players.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = playersTableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath)
+        cell.textLabel?.text = room.players[indexPath.row].name
+        return cell
+    }
+
 }
