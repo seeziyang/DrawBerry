@@ -9,6 +9,7 @@
 import UIKit
 import PencilKit
 
+// TODO: rename topLeftCanvas to just canvas since classic game only one canvas
 class ClassicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()

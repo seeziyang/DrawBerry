@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED62422208C007FDB32 /* GameRoomStatus.swift */; };
+		1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */; };
+		1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000EDA24222AF4007FDB32 /* ClassicGame.swift */; };
 		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
@@ -72,6 +74,8 @@
 		0512DC0375238871C0778AA1 /* Pods-DrawBerry-DrawBerryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A000ED62422208C007FDB32 /* GameRoomStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomStatus.swift; sourceTree = "<group>"; };
+		1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayer.swift; sourceTree = "<group>"; };
+		1A000EDA24222AF4007FDB32 /* ClassicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGame.swift; sourceTree = "<group>"; };
 		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A3F39992421C0FB0084859F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1A432BD3241FB2E00097A14F /* RoomPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPlayer.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		1A3F39972421C0CD0084859F /* ClassicGame */ = {
 			isa = PBXGroup;
 			children = (
+				1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */,
+				1A000EDA24222AF4007FDB32 /* ClassicGame.swift */,
 			);
 			path = ClassicGame;
 			sourceTree = "<group>";
@@ -621,6 +627,7 @@
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
 				1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */,
+				1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */,
 				3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */,
 				3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */,
 				37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */,
@@ -641,6 +648,7 @@
 				FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */,
 				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
 				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,
+				1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 				1A432BDA241FBA540097A14F /* EnterRoomViewController.swift in Sources */,
 			);
