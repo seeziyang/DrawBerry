@@ -93,7 +93,7 @@ class EnterRoomViewController: UIViewController {
                     self?.roomNetworkAdapter.createRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 } else {
-                    self?.showErrorMessage(Message.roomDoesNotExist)
+                    self?.showErrorMessage(Message.roomCodeTaken)
                 }
             })
     }

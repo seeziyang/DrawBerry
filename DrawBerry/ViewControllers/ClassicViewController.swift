@@ -11,11 +11,13 @@ import PencilKit
 
 class ClassicViewController: UIViewController {
     var classicGame: ClassicGame!
+    var canvas: Canvas!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addCanvasToView()
+        addDoneButtonToView()
     }
 
     private func addCanvasToView() {
@@ -30,6 +32,26 @@ class ClassicViewController: UIViewController {
         canvas.isUndoButtonEnabled = true
         canvas.delegate = self
         self.view.addSubview(canvas)
+        self.canvas = canvas
+    }
+
+    private func addDoneButtonToView() {
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.maxY - 250,
+                              width: 100, height: 50)
+        button.backgroundColor = .systemYellow
+        button.setTitle("Done", for: .normal)
+        button.addTarget(self, action: #selector(doneOnTap(sender:)), for: .touchUpInside)
+
+        self.view.addSubview(button)
+    }
+
+    @objc private func doneOnTap(sender: UIButton) {
+        finishRound()
+    }
+
+    private func finishRound() {
+
     }
 }
 
