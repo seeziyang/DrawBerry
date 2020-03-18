@@ -20,9 +20,8 @@ class ClassicGameNetworkAdapter {
         self.cloud = Storage.storage().reference()
     }
 
+    // TODO: delete room from active room (in both db and cloud) when game room ends
 
-    // TODO: delete room from active room when game room ends
-    
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
         guard let imageData = image.pngData() else {
             return
@@ -32,5 +31,24 @@ class ClassicGameNetworkAdapter {
             .child(NetworkHelper.getLoggedInUserID()).child("\(round).png")
 
         pathRef.putData(imageData)
+    }
+
+    func downloadPlayerDrawing(playerUID: String, forRound round: Int,
+                               completionHandler: @escaping (UIImage) -> Void) {
+        let pathRef = cloud.child("activeRooms").child(roomCode).child("players")
+            .child(NetworkHelper.getLoggedInUserID()).child("\(round).png")
+
+        pathRef.getData(maxSize: 10 * 1_024 * 1_024, completion: { data, error in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            guard let data = data, let image = UIImage(data: data) else {
+                return
+            }
+
+            completionHandler(image)
+        })
     }
 }
