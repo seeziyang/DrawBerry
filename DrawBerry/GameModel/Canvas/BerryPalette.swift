@@ -10,13 +10,20 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
-    // Since we do not have reference cycles, we do not need to make the reference to delegate weak
-    private var delegate: PaletteDelegate
-    var isEraserSelected: Bool {
-        delegate.isEraserSelected
-    }
     var selectedInkTool: PKInkingTool? {
-        delegate.selectedInkTool
+        didSet {
+            if selectedInkTool != nil {
+                isEraserSelected = false
+            }
+        }
+    }
+
+    var isEraserSelected: Bool = false {
+        didSet {
+            if isEraserSelected {
+                selectedInkTool = nil
+            }
+        }
     }
     var inks: [PKInkingTool] = [] {
         didSet {
@@ -36,10 +43,8 @@ class BerryPalette: UIView {
     var undoButton: UIButton?
 
     override init(frame: CGRect) {
-        let newDelegate = BerryPaletteDelegate()
-        delegate = newDelegate
         super.init(frame: frame)
-        delegate.selectedInkTool = getInkingToolFrom(color: UIColor.black)
+        selectedInkTool = getInkingToolFrom(color: UIColor.black)
     }
 
     required init?(coder: NSCoder) {
@@ -122,7 +127,7 @@ class BerryPalette: UIView {
 
     /// Selects the erasor as the selected `PKTool`.
     @objc func handleEraserTap() {
-        delegate.isEraserSelected = true
+        isEraserSelected = true
         brightenAllInks()
         setToolInCavas(to: eraser)
     }
@@ -140,13 +145,13 @@ class BerryPalette: UIView {
         guard let inkView = getInkViewFrom(color: color) else {
             return
         }
-        guard let selectedInkTool = getInkingToolFrom(color: inkView.color) else {
+        guard let currentSelectedInkTool = getInkingToolFrom(color: inkView.color) else {
             return
         }
-        delegate.selectedInkTool = selectedInkTool
+        selectedInkTool = currentSelectedInkTool
         inkView.alpha = 1
         dimAllInks(except: inkView.color)
-        setToolInCavas(to: selectedInkTool)
+        setToolInCavas(to: currentSelectedInkTool)
     }
 
     /// Sets the given tool in the canvas.
