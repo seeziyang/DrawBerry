@@ -10,12 +10,12 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
-    private weak var delegate: PaletteDelegate?
+    private var delegate: PaletteDelegate
     var isEraserSelected: Bool {
-        delegate?.isEraserSelected ?? false
+        delegate.isEraserSelected
     }
     var selectedInkTool: PKInkingTool? {
-        delegate?.selectedInkTool
+        delegate.selectedInkTool
     }
     var inks: [PKInkingTool] = [] {
         didSet {
@@ -31,7 +31,7 @@ class BerryPalette: UIView {
         let newDelegate = BerryPaletteDelegate()
         delegate = newDelegate
         super.init(frame: frame)
-        delegate?.selectedInkTool = getInkingToolFrom(color: UIColor.black)
+        delegate.selectedInkTool = getInkingToolFrom(color: UIColor.black)
     }
 
     required init?(coder: NSCoder) {
@@ -113,7 +113,7 @@ class BerryPalette: UIView {
 
     /// Selects the erasor as the selected `PKTool`.
     @objc func handleEraserTap() {
-        delegate?.isEraserSelected = true
+        delegate.isEraserSelected = true
         brightenAllInks()
         setToolInCavas(to: eraser)
     }
@@ -134,7 +134,7 @@ class BerryPalette: UIView {
         guard let selectedInkTool = getInkingToolFrom(color: inkView.color) else {
             return
         }
-        delegate?.selectedInkTool = selectedInkTool
+        delegate.selectedInkTool = selectedInkTool
         inkView.alpha = 1
         dimAllInks(except: inkView.color)
         setToolInCavas(to: selectedInkTool)

@@ -8,7 +8,7 @@
 import PencilKit
 
 class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
-    private weak var delegate: CanvasDelegate?
+    private var delegate: CanvasDelegate
     var isAbleToDraw = true {
         didSet {
             if !isAbleToDraw {
@@ -37,7 +37,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     var numberOfStrokes: Int {
-        delegate?.numberOfStrokes ?? 0
+        delegate.numberOfStrokes
     }
 
     var drawing: PKDrawing {
@@ -56,7 +56,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     func undo() {
-        canvasView.drawing = delegate?.undo() ?? PKDrawing()
+        canvasView.drawing = delegate.undo() 
     }
 
     /// Creates a `Canvas` with the given bounds.
@@ -77,9 +77,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
     }
 
-    override private init(frame: CGRect) {
-        let canvasDelegate = BerryCanvasDelegate()
-        delegate = canvasDelegate
+    override init(frame: CGRect) {
+        delegate = BerryCanvasDelegate()
         palette = BerryCanvas.createPalette(within: frame)
         canvasView = BerryCanvas.createCanvasView(within: frame)
         background = BerryCanvas.createBackground(within: frame)
@@ -110,7 +109,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
         if recognizer.state == .ended {
             canvasView.drawingGestureRecognizer.state = .ended
         }
-        delegate?.handleDraw(recognizer: recognizer, canvas: self)
+        delegate.handleDraw(recognizer: recognizer, canvas: self)
     }
 
     /// Populate the canvas with the required components.
@@ -163,7 +162,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Clears the canvas when the clear button is tapped.
     @objc func clearButtonTap() {
         canvasView.drawing = PKDrawing()
-        delegate?.clear()
+        delegate.clear()
     }
 
     private static func getClearButtonRect(within bounds: CGRect) -> CGRect {
