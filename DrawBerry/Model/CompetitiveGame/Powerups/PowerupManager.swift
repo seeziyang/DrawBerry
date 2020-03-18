@@ -16,7 +16,7 @@ struct PowerupManager {
     var powerupsToAdd = [Powerup]()
     var powerupsToRemove = [Powerup]()
 
-    mutating func rollForPowerup(for players: [Player]) {
+    mutating func rollForPowerup(for players: [CompetitivePlayer]) {
         for player in players {
             let random = Double.random(in: 0...1)
 
@@ -29,7 +29,7 @@ struct PowerupManager {
         }
     }
 
-    private func getRandomLocation(for player: Player) -> CGPoint {
+    private func getRandomLocation(for player: CompetitivePlayer) -> CGPoint {
         let playerFrame = player.canvasDrawing.frame
         let maxX = playerFrame.width - CGFloat(PowerupManager.POWERUP_RADIUS * 2)
         let maxY = playerFrame.height - CGFloat(PowerupManager.POWERUP_RADIUS * 2) - 50
