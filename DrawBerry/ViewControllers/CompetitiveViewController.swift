@@ -11,38 +11,45 @@ import PencilKit
 
 class CompetitiveViewController: UIViewController {
     var game = CompetitiveGame()
+    var powerupManager = PowerupManager() {
+        didSet {
+            if !powerupManager.powerupsToAdd.isEmpty {
+                competitiveView.addPowerupsToView(powerupManager.powerupsToAdd)
+                powerupManager.powerupsToAdd.removeAll()
+            }
+
+            if !powerupManager.powerupsToRemove.isEmpty {
+                competitiveView.removePowerupsFromView(powerupManager.powerupsToRemove)
+                powerupManager.powerupsToRemove.removeAll()
+            }
+        }
+    }
+
     var timer: Timer?
-    var timeLeft = CompetitiveGame.TIME_PER_ROUND
-    var timeLeftLabel = UITextView()
+
+    var competitiveView = CompetitiveView()
+    var timeLeft = CompetitiveGame.TIME_PER_ROUND {
+        didSet {
+            competitiveView.updateTimeLeftText(to: String(timeLeft))
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setupPlayers()
         addCanvasesToView()
-        addTimeLeftText()
+        setupViews()
         setupTimer()
         setupDisplayLink()
     }
 
-    // Just a small function to show the time left for testing purposes.
-    // Will probably remove/refactor this as gameplay is further developed.
-    private func addTimeLeftText() {
-        let resultWidth = 200, resultHeight = 200, resultSize = 120, resultFont = "MarkerFelt-Thin"
-
-        timeLeftLabel = UITextView(
-            frame: CGRect(x: self.view.bounds.midX - CGFloat(resultWidth / 2),
-                          y: self.view.bounds.midY - CGFloat(resultHeight / 2),
-                          width: CGFloat(resultWidth),
-                          height: CGFloat(resultHeight)),
-            textContainer: nil)
-        timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(resultSize))
-        timeLeftLabel.textAlignment = NSTextAlignment.center
-        timeLeftLabel.text = String(timeLeft)
-        timeLeftLabel.backgroundColor = UIColor.clear
-        timeLeftLabel.isUserInteractionEnabled = false
-
-        self.view.addSubview(timeLeftLabel)
+    private func setupViews() {
+        competitiveView.frame = CGRect(x: 0, y: 0,
+                                       width: view.bounds.maxX - view.bounds.minX,
+                                       height: view.bounds.maxY - view.bounds.minY)
+        competitiveView.isUserInteractionEnabled = false
+        self.view.addSubview(competitiveView)
+        competitiveView.setupViews()
     }
 
     @objc func update() {
@@ -50,6 +57,13 @@ class CompetitiveViewController: UIViewController {
             return
         }
 
+        powerupManager.rollForPowerup(for: game.players)
+
+        checkNumberOfStrokesUsed()
+        checkPowerupActivations()
+    }
+
+    private func checkNumberOfStrokesUsed() {
         for player in game.players {
             if player.canvasDrawing.numberOfStrokes >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 // Player has used their stroke, disable their canvas
@@ -58,8 +72,30 @@ class CompetitiveViewController: UIViewController {
                 player.canvasDrawing.isAbleToDraw = true
             }
         }
+    }
 
-        game.rollForPowerups()
+    private func checkPowerupActivations() {
+        for player in game.players {
+            guard let currentCoordinates = player.canvasDrawing.currentCoordinate else {
+                continue
+            }
+
+            let playerCoordinates = CGPoint(x: currentCoordinates.x + player.canvasDrawing.frame.origin.x,
+                                            y: currentCoordinates.y + player.canvasDrawing.frame.origin.y)
+
+            for powerup in powerupManager.allAvailablePowerups {
+                let midPoint = CGPoint(x: powerup.location.x + CGFloat(PowerupManager.POWERUP_RADIUS),
+                                       y: powerup.location.y + CGFloat(PowerupManager.POWERUP_RADIUS))
+
+                let dx = midPoint.x - playerCoordinates.x
+                let dy = midPoint.y - playerCoordinates.y
+                let distance = sqrt(dx * dx + dy * dy)
+
+                if distance <= CGFloat(PowerupManager.POWERUP_RADIUS) {
+                    powerupManager.applyPowerup(powerup)
+                }
+            }
+        }
     }
 
     /// Adds the four players to the competitive game.
@@ -129,9 +165,6 @@ class CompetitiveViewController: UIViewController {
     @objc func onTimerFires() {
         timeLeft -= 1
 
-        timeLeftLabel.text = String(timeLeft)
-        timeLeftLabel.setNeedsDisplay()
-
         if timeLeft <= 0 {
             disableAllPlayerDrawings()
             timer?.invalidate()
@@ -139,6 +172,7 @@ class CompetitiveViewController: UIViewController {
         }
     }
 
+    /// DIsables the canvas for all players
     private func disableAllPlayerDrawings() {
         for player in game.players {
             player.canvasDrawing.isAbleToDraw = false

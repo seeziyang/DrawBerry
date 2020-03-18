@@ -8,46 +8,53 @@
 
 import UIKit
 
-class PowerupManager {
-    static let POWERUP_PROBABILITY = 0.000_375
+struct PowerupManager {
+    static let POWERUP_PROBABILITY = 0.000_5
+    static let POWERUP_RADIUS = 20
 
-    var allPowerups = [Powerup]()
+    var allAvailablePowerups = [Powerup]()
+    var powerupsToAdd = [Powerup]()
+    var powerupsToRemove = [Powerup]()
 
-    func rollForPowerup(for players: [CompetitivePlayer]) {
+    mutating func rollForPowerup(for players: [CompetitivePlayer]) {
         for player in players {
-            let random = Double.random
+            let random = Double.random(in: 0...1)
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
-                let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player }, location: CGPoint.zero)
-                allPowerups.append(powerup)
-
-                // Just for testing purposes
-                applyPowerup(powerup)
+                let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player },
+                                                 location: getRandomLocation(for: player))
+                allAvailablePowerups.append(powerup)
+                powerupsToAdd.append(powerup)
             }
         }
     }
 
-    func applyPowerup(_ powerup: Powerup) {
-        switch powerup {
-        case var togglePowerup as TogglePowerup:
+    private func getRandomLocation(for player: CompetitivePlayer) -> CGPoint {
+        let playerFrame = player.canvasDrawing.frame
+        let maxX = playerFrame.width - CGFloat(PowerupManager.POWERUP_RADIUS * 2)
+        let maxY = playerFrame.height - CGFloat(PowerupManager.POWERUP_RADIUS * 2) - 50
 
-            // Disable the powerup after duration is over
+        let randomX = CGFloat.random(in: 0...maxX)
+        let randomY = CGFloat.random(in: 0...maxY)
+        return CGPoint(x: playerFrame.origin.x + randomX,
+                       y: playerFrame.origin.y + randomY)
+    }
+
+    mutating func applyPowerup(_ powerup: Powerup) {
+        powerup.activate()
+
+        if let togglePowerup = powerup as? TogglePowerup {
             _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(togglePowerup.duration), repeats: false) { timer in
                 togglePowerup.deactivate()
                 timer.invalidate()
             }
-
-            togglePowerup.activate()
-        case var lastingPowerup as LastingPowerup:
-            lastingPowerup.activate()
-        default:
-            print("Unrecognized powerup")
         }
-    }
-}
 
-extension Double {
-    static var random: Double {
-        Double(arc4random()) / 0xFFFFFFFF
+        removePowerupFromArray(&allAvailablePowerups, powerup)
+        powerupsToRemove.append(powerup)
+    }
+
+    private func removePowerupFromArray(_ arr: inout [Powerup], _ powerup: Powerup) {
+        arr = arr.filter { $0.location != powerup.location }
     }
 }

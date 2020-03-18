@@ -8,7 +8,8 @@
 
 import UIKit
 
-struct ExtraStrokePowerup: LastingPowerup {
+class ExtraStrokePowerup: Powerup {
+    var image = PowerupAssets.extraStrokeUIImage
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
@@ -17,7 +18,7 @@ struct ExtraStrokePowerup: LastingPowerup {
         self.location = location
     }
 
-    mutating func activate() {
+    func activate() {
         for target in targets {
             target.extraStrokes += 1
         }
