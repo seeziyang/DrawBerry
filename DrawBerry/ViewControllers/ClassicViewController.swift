@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ClassicViewController.swift
 //  DrawBerry
 //
 //  Created by Jon Chua on 10/3/20.
