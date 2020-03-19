@@ -9,7 +9,7 @@
 import UIKit
 import PencilKit
 
-class CompetitiveViewController: UIViewController {
+class CompetitiveViewController: CanvasDelegateViewController {
     var game = CompetitiveGame()
     var powerupManager = PowerupManager() {
         didSet {
@@ -182,58 +182,5 @@ class CompetitiveViewController: UIViewController {
     private func setupDisplayLink() {
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: .common)
-    }
-}
-
-extension CompetitiveViewController: CanvasDelegate {
-    func handleDraw(recognizer: UIPanGestureRecognizer, canvas: Canvas) {
-        if !canvas.isAbleToDraw {
-            recognizer.state = .ended
-            recognizer.isEnabled = false
-            return
-        }
-        if recognizer.state == .ended {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.syncHistory(on: canvas)
-            }
-        }
-    }
-
-    func syncHistory(on canvas: Canvas) {
-        let prevSize = canvas.history.last?.dataRepresentation().count ?? PKDrawing().dataRepresentation().count
-        if prevSize < canvas.drawing.dataRepresentation().count {
-            // A stroke was added
-            updateHistory(on: canvas, with: canvas.drawing)
-            canvas.numberOfStrokes += 1
-            return
-        }
-        if prevSize > canvas.drawing.dataRepresentation().count {
-            // A stroke was deleted
-            updateHistory(on: canvas, with: canvas.drawing)
-            canvas.numberOfStrokes -= 1
-            return
-        }
-    }
-
-    func updateHistory(on canvas: Canvas, with drawing: PKDrawing) {
-        canvas.history.append(drawing)
-    }
-
-    /// Undo the drawing to the previous state one stroke before.
-    func undo(on canvas: Canvas) -> PKDrawing {
-        if canvas.history.isEmpty {
-            return PKDrawing()
-        }
-        _ = canvas.history.popLast()
-        canvas.numberOfStrokes -= 1
-        guard let lastDrawing = canvas.history.last else {
-            return PKDrawing()
-        }
-        return lastDrawing
-    }
-
-    func clear(canvas: Canvas) {
-        updateHistory(on: canvas, with: PKDrawing())
-        canvas.numberOfStrokes = 0
     }
 }

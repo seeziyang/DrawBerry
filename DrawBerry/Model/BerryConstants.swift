@@ -16,6 +16,9 @@ struct BerryConstants {
 
     static let palettePadding: CGFloat = 10
     static let toolLength: CGFloat = 40
+    static let defaultInkWidth: CGFloat = 0.5
+    static let fullOpacity: CGFloat = 1
+    static let halfOpacity: CGFloat = 0.5
 
     static let UIColorToAssetName = [
         UIColor.black: "black",

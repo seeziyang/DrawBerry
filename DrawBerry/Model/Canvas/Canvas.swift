@@ -19,10 +19,6 @@ protocol Canvas: UIView {
 
     var isUndoButtonEnabled: Bool { get set }
 
-    var selectedInkTool: PKInkingTool? { get }
-
-    var isEraserSelected: Bool { get }
-
     var history: [PKDrawing] { get set }
 
     var delegate: CanvasDelegate? { get set }
@@ -31,5 +27,5 @@ protocol Canvas: UIView {
 
     func undo()
 
-    func setTool(to tool: PKTool)
+    func select(tool: PKTool)
 }
