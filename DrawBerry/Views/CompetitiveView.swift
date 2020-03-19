@@ -27,6 +27,7 @@ class CompetitiveView: UIView {
         timeLeftLabel.text = String(CompetitiveGame.TIME_PER_ROUND)
         timeLeftLabel.backgroundColor = UIColor.clear
         timeLeftLabel.isUserInteractionEnabled = false
+        timeLeftLabel.alpha = 0.3
 
         addSubview(timeLeftLabel)
     }
@@ -36,24 +37,20 @@ class CompetitiveView: UIView {
         timeLeftLabel.setNeedsDisplay()
     }
 
-    func addPowerupsToView(_ powerups: [Powerup]) {
-        for powerup in powerups {
+    func addPowerupToView(_ powerup: Powerup) {
             let powerupImage = PowerupView(image: powerup.image, coordinates: powerup.location)
             powerupImage.frame = CGRect(x: powerup.location.x, y: powerup.location.y,
                                         width: PowerupManager.POWERUP_RADIUS * 2,
                                         height: PowerupManager.POWERUP_RADIUS * 2)
             powerupViews.insert(powerupImage)
             addSubview(powerupImage)
-        }
     }
 
-    func removePowerupsFromView(_ powerups: [Powerup]) {
-        for powerup in powerups {
-            let coordinates = powerup.location
-            for powerupView in powerupViews where powerupView.coordinates == coordinates {
-                powerupView.removeFromSuperview()
-                powerupViews.remove(powerupView)
-            }
+    func removePowerupFromView(_ powerup: Powerup) {
+        let coordinates = powerup.location
+        for powerupView in powerupViews where powerupView.coordinates == coordinates {
+            powerupView.removeFromSuperview()
+            powerupViews.remove(powerupView)
         }
     }
 }

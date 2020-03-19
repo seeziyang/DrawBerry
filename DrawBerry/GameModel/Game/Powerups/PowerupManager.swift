@@ -21,7 +21,7 @@ struct PowerupManager {
             let random = Double.random(in: 0...1)
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
-                let powerup = ChangeAlphaPowerup(targets: players.filter { $0 != player },
+                let powerup = ChangeAlphaPowerup(owner: player, targets: players.filter { $0 != player },
                                                  location: getRandomLocation(for: player))
                 allAvailablePowerups.append(powerup)
                 powerupsToAdd.append(powerup)
@@ -36,7 +36,7 @@ struct PowerupManager {
 
         let randomX = CGFloat.random(in: 0...maxX)
         let randomY = CGFloat.random(in: 0...maxY)
-        return CGPoint(x: playerFrame.origin.x + randomX, y: playerFrame.origin.y + randomY)
+        return CGPoint(x: randomX, y: randomY)
     }
 
     mutating func applyPowerup(_ powerup: Powerup) {

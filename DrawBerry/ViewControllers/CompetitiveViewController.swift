@@ -10,18 +10,18 @@ import UIKit
 import PencilKit
 
 class CompetitiveViewController: UIViewController {
-    private var competitiveView = CompetitiveView()
+    private var competitiveViews: [Player: CompetitiveView] = [:]
     private var competitiveGame = CompetitiveGame()
 
     private var powerupManager = PowerupManager() {
         didSet {
             if !powerupManager.powerupsToAdd.isEmpty {
-                competitiveView.addPowerupsToView(powerupManager.powerupsToAdd)
+                powerupManager.powerupsToAdd.forEach { competitiveViews[$0.owner]?.addPowerupToView($0) }
                 powerupManager.powerupsToAdd.removeAll()
             }
 
             if !powerupManager.powerupsToRemove.isEmpty {
-                competitiveView.removePowerupsFromView(powerupManager.powerupsToRemove)
+                powerupManager.powerupsToRemove.forEach { competitiveViews[$0.owner]?.removePowerupFromView($0) }
                 powerupManager.powerupsToRemove.removeAll()
             }
         }
@@ -30,7 +30,7 @@ class CompetitiveViewController: UIViewController {
     private var timer: Timer?
     private var timeLeft = CompetitiveGame.TIME_PER_ROUND {
         didSet {
-            competitiveView.updateTimeLeftText(to: String(timeLeft))
+            competitiveViews.values.forEach { $0.updateTimeLeftText(to: String(timeLeft)) }
         }
     }
 
@@ -39,18 +39,8 @@ class CompetitiveViewController: UIViewController {
 
         setupPlayers()
         addCanvasesToView()
-        setupViews()
         setupTimer()
         setupDisplayLink()
-    }
-
-    private func setupViews() {
-        competitiveView.frame = CGRect(x: 0, y: 0,
-                                       width: view.bounds.maxX - view.bounds.minX,
-                                       height: view.bounds.maxY - view.bounds.minY)
-        competitiveView.isUserInteractionEnabled = false
-        self.view.addSubview(competitiveView)
-        competitiveView.setupViews()
     }
 
     @objc func update() {
@@ -98,18 +88,15 @@ class CompetitiveViewController: UIViewController {
                 continue
             }
 
-            let playerCoordinates = CGPoint(x: currentCoordinates.x + player.canvasDrawing.frame.origin.x,
-                                            y: currentCoordinates.y + player.canvasDrawing.frame.origin.y)
-
             for powerup in powerupManager.allAvailablePowerups {
                 let midPoint = CGPoint(x: powerup.location.x + PowerupManager.POWERUP_RADIUS,
                                        y: powerup.location.y + PowerupManager.POWERUP_RADIUS)
 
-                let dx = midPoint.x - playerCoordinates.x
-                let dy = midPoint.y - playerCoordinates.y
+                let dx = midPoint.x - currentCoordinates.x
+                let dy = midPoint.y - currentCoordinates.y
                 let distance = sqrt(dx * dx + dy * dy)
 
-                if distance <= PowerupManager.POWERUP_RADIUS {
+                if distance <= PowerupManager.POWERUP_RADIUS && player == powerup.owner {
                     powerupManager.applyPowerup(powerup)
                 }
             }
@@ -142,13 +129,23 @@ class CompetitiveViewController: UIViewController {
                 guard let canvas = createBerryCanvas(within: rect) else {
                     return
                 }
-                competitiveGame.players[playerNum].canvasDrawing = canvas
+
+                let currentPlayer = competitiveGame.players[playerNum]
+                currentPlayer.canvasDrawing = canvas
+
+                let currentPlayerCompetitiveView = CompetitiveView(frame: rect)
+                competitiveViews[currentPlayer] = currentPlayerCompetitiveView
+                currentPlayerCompetitiveView.isUserInteractionEnabled = false
+                currentPlayerCompetitiveView.setupViews()
+
                 self.view.addSubview(canvas)
+                self.view.addSubview(currentPlayerCompetitiveView)
                 playerNum += 1
             }
         }
     }
 
+    /// Creates a canvas within the specified `CGRect`.
     private func createBerryCanvas(within rect: CGRect) -> Canvas? {
         guard let canvas = BerryCanvas.createCanvas(within: rect) else {
             return nil
@@ -160,6 +157,7 @@ class CompetitiveViewController: UIViewController {
         return canvas
     }
 
+    /// Sets up the timer for the game which fires every 1 second.
     private func setupTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self,
                                      selector: #selector(onTimerFires), userInfo: nil, repeats: true)
@@ -175,13 +173,14 @@ class CompetitiveViewController: UIViewController {
         }
     }
 
-    /// DIsables the canvas for all players
+    /// Disables the canvas for all players.
     private func disableAllPlayerDrawings() {
         for player in competitiveGame.players {
             player.canvasDrawing.isAbleToDraw = false
         }
     }
 
+    /// Sets up the display link for the game.
     private func setupDisplayLink() {
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: .common)
