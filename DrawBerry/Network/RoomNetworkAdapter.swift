@@ -8,12 +8,19 @@
 
 import Firebase
 
-class NetworkRoomHelper {
+class RoomNetworkAdapter {
 
     let db: DatabaseReference
+    private var observingRoomCode: String?
 
     init() {
-        db = Database.database().reference()
+        self.db = Database.database().reference()
+    }
+
+    deinit {
+        if let observingRoomCode = observingRoomCode {
+            db.child("activeRooms").child(observingRoomCode).child("player").removeAllObservers()
+        }
     }
 
     func createRoom(roomCode: String) {
@@ -48,8 +55,6 @@ class NetworkRoomHelper {
     // TODO: add activeRoom room deletion from db when room/game ends
 
     // TODO: delete player from active room if he leaves
-
-    // Todo remove observer when room/game ends
 
     func observeRoomPlayers(roomCode: String, listener: @escaping ([RoomPlayer]) -> Void) {
         db.child("activeRooms").child(roomCode).child("players")

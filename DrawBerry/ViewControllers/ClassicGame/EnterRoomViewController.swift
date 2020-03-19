@@ -10,18 +10,16 @@ import UIKit
 import Firebase
 
 class EnterRoomViewController: UIViewController {
-
-    var networkRoomHelper: NetworkRoomHelper!
+    var roomNetworkAdapter: RoomNetworkAdapter!
 
     @IBOutlet private weak var roomCodeField: UITextField!
-
     @IBOutlet private weak var errorLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         errorLabel.alpha = 0
-        networkRoomHelper = NetworkRoomHelper()
+        roomNetworkAdapter = RoomNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,11 +62,11 @@ class EnterRoomViewController: UIViewController {
             return
         }
 
-        networkRoomHelper
+        roomNetworkAdapter
             .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
                 switch roomStatus {
                 case .enterable:
-                    self?.networkRoomHelper.joinRoom(roomCode: roomCode)
+                    self?.roomNetworkAdapter.joinRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 case .doesNotExist:
                     self?.showErrorMessage(Message.roomDoesNotExist)
@@ -89,13 +87,13 @@ class EnterRoomViewController: UIViewController {
             return
         }
 
-        networkRoomHelper
+        roomNetworkAdapter
             .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
                 if !roomExists {
-                    self?.networkRoomHelper.createRoom(roomCode: roomCode)
+                    self?.roomNetworkAdapter.createRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 } else {
-                    self?.showErrorMessage(Message.roomDoesNotExist)
+                    self?.showErrorMessage(Message.roomCodeTaken)
                 }
             })
     }

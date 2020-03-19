@@ -14,12 +14,9 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
     @IBOutlet private weak var playersTableView: UITableView!
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // TODO
-//        if let roomVC = segue.destination as? GameRoomViewController,
-//            let roomCode = roomCodeField.text {
-//            roomVC.room = GameRoom(roomCode: roomCode)
-//            roomVC.room.delegate = roomVC
-//        }
+        if let classicVC = segue.destination as? ClassicViewController {
+            classicVC.classicGame = ClassicGame(from: room)
+        }
     }
 
     @IBAction private func backOnTap(_ sender: UIBarButtonItem) {
@@ -41,7 +38,10 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     private func startGame() {
-        // TODO: Check min players
+        if !room.canStart {
+            // TODO: show some UIPrompt indicating minPlayer amount not reached
+            return
+        }
 
         segueToGameVC()
     }

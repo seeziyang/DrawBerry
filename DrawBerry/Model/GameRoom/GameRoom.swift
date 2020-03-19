@@ -13,16 +13,19 @@ class GameRoom {
     static let minStartablePlayers = 0 // for testing, change to 3 for game
 
     weak var delegate: GameRoomDelegate?
-    let networkRoomHelper: NetworkRoomHelper
+    let roomNetworkAdapter: RoomNetworkAdapter
     let roomCode: String
     private(set) var players: [RoomPlayer]
+    var canStart: Bool {
+        players.count >= GameRoom.minStartablePlayers && players.count <= GameRoom.maxPlayers
+    }
 
     init(roomCode: String) {
-        self.networkRoomHelper = NetworkRoomHelper()
+        self.roomNetworkAdapter = RoomNetworkAdapter()
         self.roomCode = roomCode
         self.players = []
 
-        networkRoomHelper.observeRoomPlayers(roomCode: roomCode, listener: { [weak self] players in
+        roomNetworkAdapter.observeRoomPlayers(roomCode: roomCode, listener: { [weak self] players in
             self?.players = players
             self?.delegate?.playersDidUpdate()
         })

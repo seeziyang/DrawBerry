@@ -6,12 +6,37 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
+import UIKit
 
-// WIP
 class ClassicPlayer: Player {
-    var name: String
+    let name: String
+    let uid: String
+    var isRoomMaster: Bool
+    var points: Int
+    private var drawingImages: [UIImage]
 
-    init(name: String) {
+    init(name: String, uid: String, isRoomMaster: Bool) {
         self.name = name
+        self.uid = uid
+        self.isRoomMaster = isRoomMaster
+        self.points = 0
+        self.drawingImages = []
+    }
+
+    convenience init(from roomPlayer: RoomPlayer) {
+        self.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
+    }
+
+    func addDrawingImage(_ image: UIImage) {
+        drawingImages.append(image)
+    }
+
+    func getDrawingImage(ofRound round: Int) -> UIImage? {
+        let index = round - 1
+        if index >= drawingImages.count && index < 0 {
+            return nil
+        } else {
+            return drawingImages[index]
+        }
     }
 }

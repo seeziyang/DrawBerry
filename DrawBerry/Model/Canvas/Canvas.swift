@@ -29,3 +29,10 @@ protocol Canvas: UIView {
 
     func select(tool: PKTool)
 }
+
+extension Canvas {
+    var drawingImage: UIImage {
+        // TODO: can increase scale later to account for iphones having smaller screen
+        drawing.image(from: drawing.bounds, scale: 1.0)
+    }
+}

@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -452,10 +453,65 @@
                         <viewLayoutGuide key="safeArea" id="BxC-sI-OoJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="DTn-PK-Kgs"/>
+                    <connections>
+                        <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVoting" id="Uzk-c9-9Y5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNe-2z-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3239" y="33"/>
+        </scene>
+        <!--Voting View Controller-->
+        <scene sceneID="ynA-aB-NlZ">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="iV6-EF-2OA" customClass="VotingViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R1u-3a-Ksv">
+                        <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="r8J-hz-9HJ">
+                                <rect key="frame" x="0.0" y="0.0" width="810" height="1080"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="16Z-5D-l44">
+                                    <size key="itemSize" width="350" height="329"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="votingImageCell" id="dbP-b0-Eu7">
+                                        <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Udp-ZE-E7s">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="350" height="400"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="iV6-EF-2OA" id="4kZ-oF-vZV"/>
+                                    <outlet property="delegate" destination="iV6-EF-2OA" id="5U8-NC-oRQ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Y90-7v-6NH" firstAttribute="bottom" secondItem="r8J-hz-9HJ" secondAttribute="bottom" id="GCU-OD-0qr"/>
+                            <constraint firstItem="Y90-7v-6NH" firstAttribute="trailing" secondItem="r8J-hz-9HJ" secondAttribute="trailing" id="Kfp-lZ-sgK"/>
+                            <constraint firstItem="r8J-hz-9HJ" firstAttribute="leading" secondItem="Y90-7v-6NH" secondAttribute="leading" id="c0h-XG-sCe"/>
+                            <constraint firstItem="r8J-hz-9HJ" firstAttribute="top" secondItem="Y90-7v-6NH" secondAttribute="top" id="v8S-X8-f47"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y90-7v-6NH"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MoF-7t-NFl"/>
+                    <connections>
+                        <outlet property="votingImagesCollectionView" destination="r8J-hz-9HJ" id="iCd-Rk-wVP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ws-xT-Mdx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4085.9259259259256" y="32.777777777777779"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="03Q-NG-2HP">
