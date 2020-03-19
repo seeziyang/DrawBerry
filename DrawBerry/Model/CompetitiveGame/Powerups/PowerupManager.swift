@@ -11,22 +11,35 @@ import UIKit
 struct PowerupManager {
     static let POWERUP_PROBABILITY = 0.000_5
     static let POWERUP_RADIUS: CGFloat = 20
+    static let ALL_POWERUPS: [Powerup.Type] = [ChangeAlphaPowerup.self, ExtraStrokePowerup.self,
+                                               InkSplotchPowerup.self]
 
     var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()
     var powerupsToRemove = [Powerup]()
 
+    /// Rolls for powerups for all players. A powerup is randomly generated when the random value is less than `POWERUP_PROBABILITY`
     mutating func rollForPowerup(for players: [CompetitivePlayer]) {
         for player in players {
             let random = Double.random(in: 0...1)
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
-                let powerup = ChangeAlphaPowerup(owner: player, targets: players.filter { $0 != player },
-                                                 location: getRandomLocation(for: player))
+
+                guard let randomPowerupType = PowerupManager.ALL_POWERUPS.randomElement() else {
+                    return
+                }
+                let powerup = generateRandomPowerup(powerupType: randomPowerupType, owner: player, players: players)
+
                 allAvailablePowerups.append(powerup)
                 powerupsToAdd.append(powerup)
             }
         }
+    }
+
+    /// Generates a random powerup from the list of powerups.
+    func generateRandomPowerup(powerupType: Powerup.Type, owner: CompetitivePlayer,
+                               players: [CompetitivePlayer]) -> Powerup {
+        powerupType.init(owner: owner, players: players, location: getRandomLocation(for: owner))
     }
 
     private func getRandomLocation(for player: CompetitivePlayer) -> CGPoint {
@@ -39,6 +52,7 @@ struct PowerupManager {
         return CGPoint(x: randomX, y: randomY)
     }
 
+    /// Applies the selected powerup. Activates a timer to deactivate the applied powerup if it is a `TogglePowerup`.
     mutating func applyPowerup(_ powerup: Powerup) {
         powerup.activate()
 

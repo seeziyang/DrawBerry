@@ -50,6 +50,7 @@
 		FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */; };
 		FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */; };
 		FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */; };
+		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC7F3E82421CA690096F934 /* CompetitiveView.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
@@ -125,6 +126,7 @@
 		FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManager.swift; sourceTree = "<group>"; };
 		FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraStrokePowerup.swift; sourceTree = "<group>"; };
 		FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAlphaPowerup.swift; sourceTree = "<group>"; };
+		FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkSplotchPowerup.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */,
 				FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */,
 				FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */,
+				FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */,
 			);
 			path = Powerups;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */,
 				3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */,
 				37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */,
+				FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */,
 				FC488980241C79FD00375140 /* CompetitivePlayer.swift in Sources */,
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
 				1A3F399A2421C0FB0084859F /* Player.swift in Sources */,

@@ -15,18 +15,17 @@ class ChangeAlphaPowerup: TogglePowerup {
     var targets: [CompetitivePlayer]
 
     var location: CGPoint
-    var duration: Double
+    var duration = 1.0
 
-    init(owner: CompetitivePlayer, targets: [CompetitivePlayer], location: CGPoint) {
+    required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner
-        self.targets = targets
+        self.targets = players.filter { $0 != owner }
         self.location = location
-        self.duration = 1.0
     }
 
     func activate() {
         for target in targets {
-            target.canvasDrawing.alpha = 0.2
+            target.canvasDrawing.alpha = 0.3
         }
     }
 

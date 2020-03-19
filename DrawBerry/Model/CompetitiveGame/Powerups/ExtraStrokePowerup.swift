@@ -15,9 +15,9 @@ class ExtraStrokePowerup: Powerup {
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    init(owner: CompetitivePlayer, targets: [CompetitivePlayer], location: CGPoint) {
+    required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner
-        self.targets = targets
+        self.targets = [owner]
         self.location = location
     }
 

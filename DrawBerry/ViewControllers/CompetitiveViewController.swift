@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PencilKit
 
 class CompetitiveViewController: CanvasDelegateViewController {
     private var competitiveViews: [CompetitivePlayer: CompetitiveView] = [:]
@@ -123,8 +122,10 @@ class CompetitiveViewController: CanvasDelegateViewController {
         let maxY = self.view.bounds.maxY
 
         var playerNum = 0
+
         for y in stride(from: minY, to: maxY, by: (maxY + minY) / 2) {
             for x in stride(from: minX, to: maxX, by: (maxX + minX) / 2) {
+
                 let rect = CGRect(origin: CGPoint(x: x, y: y), size: defaultSize)
                 guard let canvas = createBerryCanvas(within: rect) else {
                     return
@@ -138,8 +139,15 @@ class CompetitiveViewController: CanvasDelegateViewController {
                 currentPlayerCompetitiveView.isUserInteractionEnabled = false
                 currentPlayerCompetitiveView.setupViews()
 
+                if playerNum < 2 {
+                    canvas.transform = canvas.transform.rotated(by: CGFloat.pi)
+                    currentPlayerCompetitiveView.transform =
+                        currentPlayerCompetitiveView.transform.rotated(by: CGFloat.pi)
+                }
+
                 self.view.addSubview(canvas)
                 self.view.addSubview(currentPlayerCompetitiveView)
+
                 playerNum += 1
             }
         }

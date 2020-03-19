@@ -9,8 +9,8 @@
 import UIKit
 
 class CompetitiveView: UIView {
-    var timeLeftLabel = UITextView()
-    var powerupViews = Set<PowerupView>()
+    private var timeLeftLabel = UITextView()
+    private var powerupViews = Set<PowerupView>()
 
     func setupViews() {
         setupTimeLeftText()
@@ -27,7 +27,7 @@ class CompetitiveView: UIView {
         timeLeftLabel.text = String(CompetitiveGame.TIME_PER_ROUND)
         timeLeftLabel.backgroundColor = UIColor.clear
         timeLeftLabel.isUserInteractionEnabled = false
-        timeLeftLabel.alpha = 0.3
+        timeLeftLabel.alpha = 0.4
 
         addSubview(timeLeftLabel)
     }

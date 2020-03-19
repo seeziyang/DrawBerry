@@ -15,6 +15,8 @@ protocol Powerup: AnyObject {
     var location: CGPoint { get }
 
     func activate()
+
+    init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint)
 }
 
 protocol TogglePowerup: Powerup {
