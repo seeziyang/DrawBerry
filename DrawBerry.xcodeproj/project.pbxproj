@@ -23,6 +23,7 @@
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		379EE014242210E8005257E1 /* BerryCanvasTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* BerryCanvasTest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
+		379EE01E24230909005257E1 /* UIViewController+CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* UIViewController+CanvasDelegate.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
@@ -94,6 +95,7 @@
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		379EE013242210E8005257E1 /* BerryCanvasTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasTest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
+		379EE01D24230909005257E1 /* UIViewController+CanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CanvasDelegate.swift"; sourceTree = "<group>"; };
 		37CE06512418809D0085BE4A /* BerryCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BerryCanvas.swift; sourceTree = "<group>"; };
 		37CE06522418809D0085BE4A /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		37CE0657241B1E240085BE4A /* BerryPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPalette.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				3E2BDC87241A6224001D8E8A /* UserAuthentication */,
 				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
 				FCEC3BE92417941600F0DE03 /* ClassicViewController.swift */,
+				379EE01D24230909005257E1 /* UIViewController+CanvasDelegate.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
 				1A432BD9241FBA540097A14F /* EnterRoomViewController.swift */,
 				1A432BD7241FB6240097A14F /* GameRoomViewController.swift */,
@@ -634,6 +637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379EE01E24230909005257E1 /* UIViewController+CanvasDelegate.swift in Sources */,
 				FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */,
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
