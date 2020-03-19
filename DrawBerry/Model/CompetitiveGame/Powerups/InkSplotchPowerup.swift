@@ -9,7 +9,7 @@
 import UIKit
 
 class InkSplotchPowerup: Powerup {
-    var image = PowerupAssets.drawOutOfBoundsUIImage
+    var image = PowerupAssets.inksplotchPowerupUIImage
 
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]

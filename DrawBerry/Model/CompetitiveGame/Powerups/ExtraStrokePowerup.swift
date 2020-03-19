@@ -9,7 +9,7 @@
 import UIKit
 
 class ExtraStrokePowerup: Powerup {
-    var image = PowerupAssets.extraStrokeUIImage
+    var image = PowerupAssets.extraStrokePowerupUIImage
 
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]

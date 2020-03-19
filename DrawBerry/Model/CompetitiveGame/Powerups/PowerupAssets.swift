@@ -9,11 +9,11 @@
 import UIKit
 
 struct PowerupAssets {
-    static let changeAlphaImage = "powerup-changealpha", extraStrokeImage = "powerup-extrastroke",
-               drawOutOfBoundsImage = "powerup-drawoutofbounds", inkSplotchImage = "ink-splotch"
+    static let changeAlphaPowerupImage = "powerup-changealpha", extraStrokePowerupImage = "powerup-extrastroke",
+               inksplotchPowerupImage = "powerup-inksplotch", inkSplotchImage = "ink-splotch"
 
-    static let changeAlphaUIImage = UIImage(named: changeAlphaImage)
-    static let extraStrokeUIImage = UIImage(named: extraStrokeImage)
-    static let drawOutOfBoundsUIImage = UIImage(named: drawOutOfBoundsImage)
+    static let changeAlphaPowerupUIImage = UIImage(named: changeAlphaPowerupImage)
+    static let extraStrokePowerupUIImage = UIImage(named: extraStrokePowerupImage)
+    static let inksplotchPowerupUIImage = UIImage(named: inksplotchPowerupImage)
     static let inkSplotchUIImage = UIImage(named: inkSplotchImage)
 }

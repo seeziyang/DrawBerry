@@ -18,7 +18,8 @@ struct PowerupManager {
     var powerupsToAdd = [Powerup]()
     var powerupsToRemove = [Powerup]()
 
-    /// Rolls for powerups for all players. A powerup is randomly generated when the random value is less than `POWERUP_PROBABILITY`
+    /// Rolls for powerups for all players. A powerup is randomly generated
+    /// when the random value is less than `POWERUP_PROBABILITY`
     mutating func rollForPowerup(for players: [CompetitivePlayer]) {
         for player in players {
             let random = Double.random(in: 0...1)

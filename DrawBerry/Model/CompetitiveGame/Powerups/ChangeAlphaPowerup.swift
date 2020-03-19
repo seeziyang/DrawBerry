@@ -9,7 +9,7 @@
 import UIKit
 
 class ChangeAlphaPowerup: TogglePowerup {
-    var image = PowerupAssets.changeAlphaUIImage
+    var image = PowerupAssets.changeAlphaPowerupUIImage
 
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
