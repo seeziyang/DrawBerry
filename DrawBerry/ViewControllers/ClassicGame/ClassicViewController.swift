@@ -20,6 +20,12 @@ class ClassicViewController: UIViewController {
         addDoneButtonToView()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let votingVC = segue.destination as? VotingViewController {
+            votingVC.classicGame = classicGame
+        }
+    }
+
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -52,6 +58,7 @@ class ClassicViewController: UIViewController {
 
     private func finishRound() {
         classicGame.addUsersDrawingImage(canvas.drawingImage)
+        performSegue(withIdentifier: "segueToVoting", sender: self)
     }
 }
 

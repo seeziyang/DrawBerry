@@ -14,7 +14,6 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
     @IBOutlet private weak var playersTableView: UITableView!
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // TODO
         if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = ClassicGame(from: room)
         }
