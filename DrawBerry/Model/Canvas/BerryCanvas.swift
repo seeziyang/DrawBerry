@@ -18,16 +18,9 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         }
     }
 
-    var drawingCanvas: PKCanvasView
-    let palette: BerryPalette
-    let background: UIView
-    var clearButton: UIButton
-    var selectedInkTool: PKInkingTool? {
-        palette.selectedInkTool
-    }
-    var isEraserSelected: Bool {
-        palette.isEraserSelected
-    }
+    private var drawingCanvas: PKCanvasView
+    private let palette: BerryPalette
+    private var clearButton: UIButton
 
     var currentCoordinate: CGPoint? {
         let currentState = drawingCanvas.drawingGestureRecognizer.state
@@ -93,7 +86,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
     override init(frame: CGRect) {
         palette = BerryCanvas.createPalette(within: frame)
         drawingCanvas = BerryCanvas.createCanvasView(within: frame)
-        background = BerryCanvas.createBackground(within: frame)
         clearButton = BerryCanvas.createClearButton(within: frame)
         isClearButtonEnabled = true
 
@@ -130,6 +122,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Populate the canvas with the required components.
     private func addComponentsToCanvas() {
+        let background = BerryCanvas.createBackground(within: frame)
         addSubview(background)
         addSubview(drawingCanvas)
         addSubview(palette)

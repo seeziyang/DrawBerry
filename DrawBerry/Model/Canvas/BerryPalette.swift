@@ -26,22 +26,25 @@ class BerryPalette: UIView {
             }
         }
     }
-    var inks: [PKInkingTool] = [] {
-        didSet {
-            initialiseToolViews()
-        }
-    }
+
     var isUndoButtonEnabled: Bool = true {
         didSet {
             undoButton?.isEnabled = isUndoButtonEnabled
             undoButton?.isHidden = !isUndoButtonEnabled
         }
     }
-    var inkViews: [InkView] = []
+
+    private var inks: [PKInkingTool] = [] {
+        didSet {
+            deinitialiseToolViews()
+            initialiseToolViews()
+        }
+    }
+
+    private var inkViews: [InkView] = []
     private var eraserView: UIImageView?
     private var eraser = PKEraserTool(PKEraserTool.EraserType.vector)
-    internal var selectedColor: UIColor?
-    internal var undoButton: UIButton?
+    private var undoButton: UIButton?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,10 +79,6 @@ class BerryPalette: UIView {
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
-        self.subviews.forEach { $0.removeFromSuperview() }
-        inkViews = []
-        eraserView = nil
-
         for ink in inks {
             let inkView = InkView(
                 frame: getInkViewRect(within: self.frame, horizontalDisplacement: xDisp), color: ink.color)
@@ -95,6 +94,12 @@ class BerryPalette: UIView {
         self.addSubview(newEraserView)
         let undoButton = createUndoButton()
         self.addSubview(undoButton)
+    }
+
+    private func deinitialiseToolViews() {
+        self.subviews.forEach { $0.removeFromSuperview() }
+        inkViews = []
+        eraserView = nil
     }
 
     private func createUndoButton() -> UIButton {
@@ -115,9 +120,11 @@ class BerryPalette: UIView {
     private func createEraserView() -> UIImageView {
         let newEraserView = UIImageView(frame: getEraserRect(within: self.frame))
         newEraserView.image = BerryConstants.eraserIcon
+
         let newEraserTap = UITapGestureRecognizer(target: self, action: #selector(handleEraserTap))
         newEraserView.addGestureRecognizer(newEraserTap)
         newEraserView.isUserInteractionEnabled = true
+
         return newEraserView
     }
 
@@ -160,19 +167,13 @@ class BerryPalette: UIView {
     /// Returns an `InkView` given a `UIColor`.
     private func getInkViewFrom(color: UIColor) -> InkView? {
         let inkView = inkViews.filter { $0.color == color }
-        if inkView.count != 1 {
-            return nil
-        }
-        return inkView[0]
+        return inkView.count != 1 ? nil : inkView[0]
     }
 
     /// Returns a  `PKInkingTool` from a given `UIColor`.
     private func getInkingToolFrom(color: UIColor) -> PKInkingTool? {
         let tool = inks.filter { $0.color == color }
-        if tool.count != 1 {
-            return nil
-        }
-        return tool[0]
+        return tool.count != 1 ? nil : tool[0]
     }
 
     /// Dims all the `InkView`s except the `InkView` corresponding to the given `UIColor`.
