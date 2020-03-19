@@ -9,7 +9,7 @@
 import UIKit
 import PencilKit
 
-class CompetitiveViewController: UIViewController {
+class CompetitiveViewController: CanvasDelegateViewController {
     var game = CompetitiveGame()
     var powerupManager = PowerupManager() {
         didSet {

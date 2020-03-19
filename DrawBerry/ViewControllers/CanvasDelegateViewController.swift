@@ -7,7 +7,7 @@
 //
 import PencilKit
 
-extension UIViewController: CanvasDelegate {
+class CanvasDelegateViewController: UIViewController, CanvasDelegate {
     func handleDraw(recognizer: UIGestureRecognizer, canvas: Canvas) {
         if !canvas.isAbleToDraw {
             recognizer.state = .ended
