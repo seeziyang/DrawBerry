@@ -27,11 +27,15 @@ class ClassicPlayer: Player {
         self.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
     }
 
-    func addDrawingImage(_ image: UIImage) {
+    func addDrawing(image: UIImage) {
         drawingImages.append(image)
     }
 
     func getDrawingImage(ofRound round: Int) -> UIImage? {
+        if drawingImages.isEmpty {
+            return nil
+        }
+
         let index = round - 1
         if index >= drawingImages.count && index < 0 {
             return nil

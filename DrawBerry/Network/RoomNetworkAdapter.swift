@@ -34,6 +34,8 @@ class RoomNetworkAdapter {
         })
     }
 
+
+    // TODO: check if game room started
     func checkRoomEnterable(roomCode: String, completionHandler: @escaping (GameRoomStatus) -> Void) {
         db.child("activeRooms").child(roomCode).child("players")
             .observeSingleEvent(of: .value, with: { snapshot in

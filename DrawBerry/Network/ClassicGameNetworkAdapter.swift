@@ -27,20 +27,32 @@ class ClassicGameNetworkAdapter {
             return
         }
 
-        let pathRef = cloud.child("activeRooms").child(roomCode).child("players")
-            .child(NetworkHelper.getLoggedInUserID()).child("\(round).png")
+        let userID = NetworkHelper.getLoggedInUserID()
 
-        pathRef.putData(imageData)
+        let dbPathRef = db.child("activeRooms").child(roomCode).child("players")
+            .child(userID).child("rounds").child(String(round)).child("hasUploadedImage")
+        let cloudPathRef = cloud.child("activeRooms").child(roomCode).child("players")
+            .child(userID).child("\(round).png")
+
+        cloudPathRef.putData(imageData, metadata: nil, completion: { _, error in
+            if let error = error {
+                // TODO: Handle error, count as player left?
+                print("Error \(error) occured while uploading user drawing to CloudStorage")
+                return
+            }
+
+            dbPathRef.setValue(true)
+        })
     }
 
-    func downloadPlayerDrawing(playerUID: String, forRound round: Int,
-                               completionHandler: @escaping (UIImage) -> Void) {
-        let pathRef = cloud.child("activeRooms").child(roomCode).child("players")
-            .child(NetworkHelper.getLoggedInUserID()).child("\(round).png")
+    private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
+                                       completionHandler: @escaping (UIImage) -> Void) {
+        let cloudPathRef = cloud.child("activeRooms").child(roomCode).child("players")
+            .child(playerUID).child("\(round).png")
 
-        pathRef.getData(maxSize: 10 * 1_024 * 1_024, completion: { data, error in
+        cloudPathRef.getData(maxSize: 10 * 1_024 * 1_024, completion: { data, error in
             if let error = error {
-                print(error)
+                print("Error \(error) occured while downloading player drawing")
                 return
             }
 
@@ -49,6 +61,23 @@ class ClassicGameNetworkAdapter {
             }
 
             completionHandler(image)
+        })
+    }
+
+    func waitAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
+                                      completionHandler: @escaping (UIImage) -> Void) {
+        let dbPathRef = db.child("activeRooms").child(roomCode).child("players")
+            .child(playerUID).child("rounds").child(String(round)).child("hasUploadedImage")
+
+        dbPathRef.observe(.value, with: { snapshot in
+            guard snapshot.value as? Bool ?? false else { // image not uploaded yet
+                return
+            }
+
+            self.downloadPlayerDrawing(playerUID: playerUID, forRound: round,
+                                       completionHandler: completionHandler)
+
+            dbPathRef.removeAllObservers() // remove observer after downloading image
         })
     }
 }
