@@ -186,7 +186,7 @@ class CompetitiveViewController: UIViewController {
 }
 
 extension CompetitiveViewController: CanvasDelegate {
-    func handleDraw(recognizer: UIPanGestureRecognizer, canvas: Canvas) {
+    func handleDraw(recognizer: UIGestureRecognizer, canvas: Canvas) {
         if !canvas.isAbleToDraw {
             recognizer.state = .ended
             recognizer.isEnabled = false

@@ -10,6 +10,7 @@ import UIKit
 import PencilKit
 
 class BerryPalette: UIView {
+    private var observer: PaletteObserver?
     var selectedInkTool: PKInkingTool? {
         didSet {
             if selectedInkTool != nil {
@@ -68,6 +69,10 @@ class BerryPalette: UIView {
         select(color: inks[0].color)
     }
 
+    func setObserver(_ newObserver: PaletteObserver) {
+        observer = newObserver
+    }
+
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         var xDisp = CGFloat.zero
@@ -103,10 +108,7 @@ class BerryPalette: UIView {
 
     /// Undo the drawing one stroke before when the undo button is tapped.
     @objc func undoButtonTap() {
-        guard let canvas = self.superview as? Canvas else {
-            return
-        }
-        canvas.undo()
+        observer?.undo()
     }
 
     /// Creates the eraser view.
@@ -129,8 +131,8 @@ class BerryPalette: UIView {
     /// Selects the erasor as the selected `PKTool`.
     @objc func handleEraserTap() {
         isEraserSelected = true
-        brightenAllInks()
-        setToolInCavas(to: eraser)
+        dimAllInks()
+        observer?.select(tool: eraser)
     }
 
     /// Selects the view attached to the given recognizer as the selected `PKTool`
@@ -152,15 +154,7 @@ class BerryPalette: UIView {
         selectedInkTool = currentSelectedInkTool
         inkView.alpha = 1
         dimAllInks(except: inkView.color)
-        setToolInCavas(to: currentSelectedInkTool)
-    }
-
-    /// Sets the given tool in the canvas.
-    private func setToolInCavas(to tool: PKTool) {
-        guard let canvas = self.superview as? Canvas else {
-            return
-        }
-        canvas.setTool(to: tool)
+        observer?.select(tool: currentSelectedInkTool)
     }
 
     /// Returns an `InkView` given a `UIColor`.
@@ -184,6 +178,10 @@ class BerryPalette: UIView {
     /// Dims all the `InkView`s except the `InkView` corresponding to the given `UIColor`.
     private func dimAllInks(except selected: UIColor) {
         inkViews.filter { $0.color != selected }.forEach { $0.alpha = BerryConstants.halfOpacity }
+    }
+
+    private func dimAllInks() {
+        inkViews.forEach { $0.alpha = BerryConstants.halfOpacity }
     }
 
     /// Brightens all the `InkView`s.

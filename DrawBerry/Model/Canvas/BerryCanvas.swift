@@ -7,19 +7,18 @@
 //
 import PencilKit
 
-class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
-    // Since we do not have reference cycles, we do not need to make the reference to delegate weak
+class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas {
     weak var delegate: CanvasDelegate?
     var isAbleToDraw = true {
         didSet {
             if !isAbleToDraw {
-                canvasView.drawingGestureRecognizer.state = .ended
+                drawingCanvas.drawingGestureRecognizer.state = .ended
             }
-            canvasView.drawingGestureRecognizer.isEnabled = isAbleToDraw
+            drawingCanvas.drawingGestureRecognizer.isEnabled = isAbleToDraw
         }
     }
 
-    var canvasView: PKCanvasView
+    var drawingCanvas: PKCanvasView
     let palette: BerryPalette
     let background: UIView
     var clearButton: UIButton
@@ -31,9 +30,9 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     var currentCoordinate: CGPoint? {
-        let currentState = canvasView.drawingGestureRecognizer.state
+        let currentState = drawingCanvas.drawingGestureRecognizer.state
         if currentState == .possible || currentState == .began || currentState == .changed {
-            return canvasView.drawingGestureRecognizer.location(in: drawingView)
+            return drawingCanvas.drawingGestureRecognizer.location(in: drawingView)
         }
         return nil
     }
@@ -52,16 +51,17 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     var drawing: PKDrawing {
-        canvasView.drawing
+        drawingCanvas.drawing
     }
+
     var history: [PKDrawing] = []
     var numberOfStrokes: Int = 0
 
     var drawingView: UIView? {
-        let nestedSubviews = canvasView.subviews.map { $0.subviews }
+        let nestedSubviews = drawingCanvas.subviews.map { $0.subviews }
         var allSubviews: [UIView] = []
         nestedSubviews.forEach { allSubviews += $0 }
-        let dgrView = allSubviews.filter { $0 == canvasView.drawingGestureRecognizer.view }
+        let dgrView = allSubviews.filter { $0 == drawingCanvas.drawingGestureRecognizer.view }
         if dgrView.count != 1 {
             return nil
         }
@@ -69,7 +69,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     func undo() {
-        canvasView.drawing = delegate?.undo(on: self) ?? PKDrawing()
+        drawingCanvas.drawing = PKDrawing().appending(delegate?.undo(on: self) ?? PKDrawing())
     }
 
     /// Creates a `Canvas` with the given bounds.
@@ -81,8 +81,8 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     }
 
     /// Sets the `PKTool` of the canvas to the given tool.
-    func setTool(to tool: PKTool) {
-        canvasView.tool = tool
+    func select(tool: PKTool) {
+        drawingCanvas.tool = tool
     }
 
     /// Checks if the given bounds is within the acceptable bounds.
@@ -92,12 +92,13 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
 
     override init(frame: CGRect) {
         palette = BerryCanvas.createPalette(within: frame)
-        canvasView = BerryCanvas.createCanvasView(within: frame)
+        drawingCanvas = BerryCanvas.createCanvasView(within: frame)
         background = BerryCanvas.createBackground(within: frame)
         clearButton = BerryCanvas.createClearButton(within: frame)
         isClearButtonEnabled = true
 
         super.init(frame: frame)
+        palette.setObserver(self)
         bindGestureRecognizers()
         addComponentsToCanvas()
     }
@@ -110,8 +111,16 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     private func bindGestureRecognizers() {
         clearButton.addTarget(self, action: #selector(clearButtonTap), for: .touchUpInside)
         let draw = UIPanGestureRecognizer(target: self, action: #selector(handleDraw(recognizer:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
         draw.delegate = self
+        tap.delegate = self
         drawingView?.addGestureRecognizer(draw)
+        drawingView?.addGestureRecognizer(tap)
+    }
+
+    /// Tracks the state of the drawing and update the history when the stroke has ended.
+    @objc func handleTap(recognizer: UITapGestureRecognizer) {
+        delegate?.handleDraw(recognizer: recognizer, canvas: self)
     }
 
     /// Tracks the state of the drawing and update the history when the stroke has ended.
@@ -122,7 +131,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
     /// Populate the canvas with the required components.
     private func addComponentsToCanvas() {
         addSubview(background)
-        addSubview(canvasView)
+        addSubview(drawingCanvas)
         addSubview(palette)
         addSubview(clearButton)
     }
@@ -168,7 +177,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, Canvas {
 
     /// Clears the canvas when the clear button is tapped.
     @objc func clearButtonTap() {
-        canvasView.drawing = PKDrawing()
+        drawingCanvas.drawing = PKDrawing()
         delegate?.clear(canvas: self)
     }
 

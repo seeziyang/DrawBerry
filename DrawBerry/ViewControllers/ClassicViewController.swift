@@ -33,7 +33,7 @@ class ClassicViewController: UIViewController {
 }
 
 extension ClassicViewController: CanvasDelegate {
-    func handleDraw(recognizer: UIPanGestureRecognizer, canvas: Canvas) {
+    func handleDraw(recognizer: UIGestureRecognizer, canvas: Canvas) {
         if !canvas.isAbleToDraw {
             recognizer.state = .ended
             recognizer.isEnabled = false
@@ -41,12 +41,12 @@ extension ClassicViewController: CanvasDelegate {
         }
         if recognizer.state == .ended {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.syncHistory(on: canvas)
+                self.syncStroke(to: canvas)
             }
         }
     }
 
-    func syncHistory(on canvas: Canvas) {
+    private func syncStroke(to canvas: Canvas) {
         let prevSize = canvas.history.last?.dataRepresentation().count ?? PKDrawing().dataRepresentation().count
         if prevSize < canvas.drawing.dataRepresentation().count {
             // A stroke was added
@@ -66,17 +66,27 @@ extension ClassicViewController: CanvasDelegate {
         canvas.history.append(drawing)
     }
 
-    /// Undo the drawing to the previous state one stroke before.
-    func undo(on canvas: Canvas) -> PKDrawing {
+    private func popHistory(from canvas: Canvas) -> PKDrawing {
+        let currentDrawing = canvas.drawing
+        _ = canvas.history.popLast()
         if canvas.history.isEmpty {
             return PKDrawing()
         }
-        _ = canvas.history.popLast()
-        canvas.numberOfStrokes -= 1
         guard let lastDrawing = canvas.history.last else {
             return PKDrawing()
         }
+        if currentDrawing.dataRepresentation().count < lastDrawing.dataRepresentation().count {
+            canvas.numberOfStrokes -= 1
+        }
+        if currentDrawing.dataRepresentation().count > lastDrawing.dataRepresentation().count {
+            canvas.numberOfStrokes += 1
+        }
         return lastDrawing
+    }
+
+    /// Undo the drawing to the previous state one stroke before.
+    func undo(on canvas: Canvas) -> PKDrawing {
+        return popHistory(from: canvas)
     }
 
     func clear(canvas: Canvas) {

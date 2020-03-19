@@ -31,5 +31,5 @@ protocol Canvas: UIView {
 
     func undo()
 
-    func setTool(to tool: PKTool)
+    func select(tool: PKTool)
 }
