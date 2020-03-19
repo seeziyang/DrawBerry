@@ -6,7 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-class Player: CustomStringConvertible, Equatable {
+class Player: CustomStringConvertible, Equatable, Hashable {
     init(name: String, canvasDrawing: Canvas) {
         self.name = name
         self.canvasDrawing = canvasDrawing
@@ -23,5 +23,9 @@ class Player: CustomStringConvertible, Equatable {
 
     static func == (lhs: Player, rhs: Player) -> Bool {
         lhs.name == rhs.name
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 struct PowerupManager {
     static let POWERUP_PROBABILITY = 0.000_5
-    static let POWERUP_RADIUS = 20
+    static let POWERUP_RADIUS: CGFloat = 20
 
     var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()
@@ -36,8 +36,7 @@ struct PowerupManager {
 
         let randomX = CGFloat.random(in: 0...maxX)
         let randomY = CGFloat.random(in: 0...maxY)
-        return CGPoint(x: playerFrame.origin.x + randomX,
-                       y: playerFrame.origin.y + randomY)
+        return CGPoint(x: playerFrame.origin.x + randomX, y: playerFrame.origin.y + randomY)
     }
 
     mutating func applyPowerup(_ powerup: Powerup) {

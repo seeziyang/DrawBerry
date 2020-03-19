@@ -17,13 +17,12 @@ class CompetitiveView: UIView {
     }
 
     private func setupTimeLeftText() {
-        let resultWidth = 200, resultHeight = 200, resultSize = 120, resultFont = "MarkerFelt-Thin"
+        let width = 200, height = 200, size = 120, resultFont = "MarkerFelt-Thin"
 
         timeLeftLabel = UITextView(
-            frame: CGRect(x: bounds.midX - CGFloat(resultWidth / 2), y: bounds.midY - CGFloat(resultHeight / 2),
-                          width: CGFloat(resultWidth), height: CGFloat(resultHeight)),
-            textContainer: nil)
-        timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(resultSize))
+            frame: CGRect(x: bounds.midX - CGFloat(width / 2), y: bounds.midY - CGFloat(height / 2),
+                          width: CGFloat(width), height: CGFloat(height)), textContainer: nil)
+        timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(size))
         timeLeftLabel.textAlignment = NSTextAlignment.center
         timeLeftLabel.text = String(CompetitiveGame.TIME_PER_ROUND)
         timeLeftLabel.backgroundColor = UIColor.clear
@@ -41,8 +40,8 @@ class CompetitiveView: UIView {
         for powerup in powerups {
             let powerupImage = PowerupView(image: powerup.image, coordinates: powerup.location)
             powerupImage.frame = CGRect(x: powerup.location.x, y: powerup.location.y,
-                                        width: CGFloat(PowerupManager.POWERUP_RADIUS * 2),
-                                        height: CGFloat(PowerupManager.POWERUP_RADIUS * 2))
+                                        width: PowerupManager.POWERUP_RADIUS * 2,
+                                        height: PowerupManager.POWERUP_RADIUS * 2)
             powerupViews.insert(powerupImage)
             addSubview(powerupImage)
         }
