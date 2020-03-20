@@ -160,6 +160,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
         }
         canvas.isClearButtonEnabled = false
         canvas.isUndoButtonEnabled = false
+        canvas.isEraserEnabled = false
         canvas.delegate = self
 
         return canvas

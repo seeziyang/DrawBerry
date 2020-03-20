@@ -28,6 +28,13 @@ class BerryPalette: UIView {
         }
     }
 
+    var isEraserEnabled: Bool = true {
+        didSet {
+            deinitialiseToolViews()
+            initialiseToolViews()
+        }
+    }
+
     var isUndoButtonEnabled: Bool = true {
         didSet {
             undoButton?.isEnabled = isUndoButtonEnabled
@@ -128,9 +135,11 @@ class BerryPalette: UIView {
             let undoButton = createUndoButton()
             self.addSubview(undoButton)
         }
-        let newEraserView = createEraserView()
-        eraserView = newEraserView
-        self.addSubview(newEraserView)
+        if isEraserEnabled {
+            let newEraserView = createEraserView()
+            eraserView = newEraserView
+            self.addSubview(newEraserView)
+        }
         initialiseAllInkViews()
         initialiseAllStrokeViews()
         selectFirstColorFirstStroke()
@@ -138,9 +147,15 @@ class BerryPalette: UIView {
 
     private func initialiseAllStrokeViews() {
         let topRightCorner = CGPoint(x: bounds.width, y: bounds.height)
-        var rightNeighbourOrigin = eraserView?.getOriginWithRespectToSuperview() ?? topRightCorner
+        var rightNeighbourOrigin = topRightCorner
+        if isEraserEnabled {
+            rightNeighbourOrigin = eraserView?.getOriginWithRespectToSuperview() ?? topRightCorner
+        } else if isUndoButtonEnabled {
+            rightNeighbourOrigin = undoButton?.getOriginWithRespectToSuperview() ?? topRightCorner
+        }
         for stroke in strokes.reversed() {
-            let strokeRect = getStrokeViewRect(within: self.bounds, rightNeighbourOrigin: rightNeighbourOrigin)
+            let strokeRect = getStrokeViewRect(
+                within: self.bounds, rightNeighbourOrigin: rightNeighbourOrigin)
             let strokeView = StrokeView(frame: strokeRect, stroke: stroke)
             strokeView.image = BerryConstants.strokeToAsset[stroke] as? UIImage
             bindTapAction(to: strokeView)

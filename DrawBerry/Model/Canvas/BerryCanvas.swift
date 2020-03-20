@@ -47,6 +47,12 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         }
     }
 
+    var isEraserEnabled: Bool = true {
+        didSet {
+            palette.isEraserEnabled = isEraserEnabled
+        }
+    }
+
     var drawing: PKDrawing {
         drawingCanvas.drawing
     }

@@ -15,7 +15,9 @@ class BerryCanvasTest: XCTestCase {
     // Defined for the convinience of testing.
 
     override func setUp() {
+        continueAfterFailure = false
         canvas = BerryCanvas(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 500, height: 500)))
+        canvas.accessibilityIdentifier = "BerryCanvas"
         canvas.delegate = self
         super.setUp()
     }
@@ -114,6 +116,18 @@ class BerryCanvasTest: XCTestCase {
             }
             XCTAssertEqual(randomTool.eraserType, currentTool.eraserType)
         }
+    }
+
+    // failing for now, trying to do UI test
+    func testDraw() {
+        let app = XCUIApplication()
+        app.launch()
+        app.buttons["Classic"].tap()
+        app.textFields["Room Code"].tap()
+        app.buttons["Join"].tap()
+        app.navigationBars["Players"].buttons["Start"].tap()
+        app.scrollViews.children(matching: .other).element(boundBy: 0).swipeRight()
+        XCTAssertTrue(canvas.history.count == 1)
     }
 }
 
