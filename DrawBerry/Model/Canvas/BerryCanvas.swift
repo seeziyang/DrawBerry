@@ -79,6 +79,9 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Sets the `PKTool` of the canvas to the given tool if the `PKTool` exists in the `BerryPalette`.
     func select(tool: PKTool) {
+        if !palette.contains(tool: tool) {
+            return
+        }
         drawingCanvas.tool = tool
     }
 
