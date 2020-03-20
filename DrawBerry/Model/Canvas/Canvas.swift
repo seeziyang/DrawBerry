@@ -28,6 +28,8 @@ protocol Canvas: UIView {
     func undo()
 
     func select(tool: PKTool)
+
+    func randomiseInkTool()
 }
 
 extension Canvas {

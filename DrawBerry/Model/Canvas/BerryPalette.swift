@@ -48,7 +48,7 @@ class BerryPalette: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        selectedInkTool = getInkingToolFrom(color: UIColor.black)
+        selectFirstColor()
     }
 
     required init?(coder: NSCoder) {
@@ -62,6 +62,7 @@ class BerryPalette: UIView {
         }
         let newInkTool = createInkTool(with: color)
         inks.append(newInkTool)
+        selectFirstColor()
     }
 
     /// Selects the first color in the palette.
@@ -74,6 +75,10 @@ class BerryPalette: UIView {
 
     func setObserver(_ newObserver: PaletteObserver) {
         observer = newObserver
+    }
+
+    func randomiseInkTool() {
+        select(color: inks[Int.random(in: 0..<inks.count)].color)
     }
 
     /// Initialise the tools in the palette.

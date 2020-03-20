@@ -78,6 +78,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         drawingCanvas.tool = tool
     }
 
+    func randomiseInkTool() {
+        palette.randomiseInkTool()
+    }
+
     /// Checks if the given bounds is within the acceptable bounds.
     private static func outOfBounds(bounds: CGRect) -> Bool {
         bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
@@ -91,6 +95,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
         super.init(frame: frame)
         palette.setObserver(self)
+        palette.selectFirstColor()
         bindGestureRecognizers()
         addComponentsToCanvas()
     }
@@ -154,10 +159,9 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Initialises the palette with the default colors.
     private static func initialise(palette: BerryPalette) {
-        palette.add(color: UIColor.black)
-        palette.add(color: UIColor.blue)
-        palette.add(color: UIColor.red)
-        palette.selectFirstColor()
+        palette.add(color: BerryConstants.berryBlack)
+        palette.add(color: BerryConstants.berryBlue)
+        palette.add(color: BerryConstants.berryRed)
     }
 
     /// Creates the clear button with the given bounds.

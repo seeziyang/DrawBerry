@@ -21,12 +21,19 @@ struct BerryConstants {
     static let halfOpacity: CGFloat = 0.5
 
     static let UIColorToAssetName = [
-        UIColor.black: "black",
-        UIColor.blue: "blue",
-        UIColor.red: "red"
+        berryBlack: "black",
+        berryGrey: "grey",
+        berryBlue: "blue",
+        berryRed: "red"
     ]
 
     static let paperBackgroundImage = UIImage(named: "paper-brown")
     static let deleteIcon = UIImage(named: "delete")
     static let eraserIcon = UIImage(named: "eraser")
+
+    static let berryBlack = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    static let berryGrey = UIColor(red: 164 / 255, green: 164 / 255, blue: 164 / 255, alpha: 1)
+    static let berryBlue = UIColor(red: 10 / 255, green: 128 / 255, blue: 146 / 255, alpha: 1)
+    static let berryRed = UIColor(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
+    static let berryGreen = UIColor(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
 }
