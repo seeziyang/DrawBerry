@@ -271,12 +271,12 @@ class BerryPalette: UIView {
         selectCurrentInkTool()
     }
 
-    func selectCurrentInkTool() {
+    private func selectCurrentInkTool() {
         select(color: selectedColor ?? UIColor.black, stroke: selectedStroke ?? Stroke.thin)
     }
 
     /// Sets the selected ink color to the given color.
-    func select(color: UIColor, stroke: Stroke) {
+    private func select(color: UIColor, stroke: Stroke) {
         let inkTool = createInkTool(with: color, stroke: stroke)
         observer?.select(tool: inkTool)
     }
