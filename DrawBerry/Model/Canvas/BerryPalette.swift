@@ -250,7 +250,9 @@ class BerryPalette: UIView {
         guard let strokeView = recognizer.view as? StrokeView else {
             return
         }
-        selectFirstColorFirstStroke()
+        if isEraserSelected {
+            selectFirstColorFirstStroke()
+        }
         selectedStroke = strokeView.stroke
         dimAllStrokes(except: strokeView.stroke)
         selectCurrentInkTool()
@@ -261,7 +263,9 @@ class BerryPalette: UIView {
         guard let inkView = recognizer.view as? InkView else {
             return
         }
-        selectFirstColorFirstStroke()
+        if isEraserSelected {
+            selectFirstColorFirstStroke()
+        }
         selectedColor = inkView.color
         dimAllInks(except: inkView.color)
         selectCurrentInkTool()
