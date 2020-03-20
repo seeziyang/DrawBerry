@@ -113,44 +113,48 @@ class CompetitiveViewController: CanvasDelegateViewController {
         let defaultSize = CGSize(width: self.view.bounds.width / 2, height: self.view.bounds.height / 2)
 
         let topLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
-        guard let topLeftCanvas = createCompetitiveCanvas(at: topLeftOrigin, size: defaultSize) else {
+        let topLeftRect = CGRect(origin: topLeftOrigin, size: defaultSize)
+        guard let topLeftCanvas: Canvas = BerryCanvas.createCanvas(within: topLeftRect) else {
             return
         }
+        topLeftCanvas.isClearButtonEnabled = false
+        topLeftCanvas.isUndoButtonEnabled = false
+        topLeftCanvas.delegate = self
         game.players[0].canvasDrawing = topLeftCanvas
         self.view.addSubview(topLeftCanvas)
 
         let topRightOrigin = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.minY)
-        guard let topRightCanvas = createCompetitiveCanvas(at: topRightOrigin, size: defaultSize) else {
+        let topRightRect = CGRect(origin: topRightOrigin, size: defaultSize)
+        guard let topRightCanvas: Canvas = BerryCanvas.createCanvas(within: topRightRect) else {
             return
         }
+        topRightCanvas.isClearButtonEnabled = false
+        topRightCanvas.isUndoButtonEnabled = false
+        topRightCanvas.delegate = self
         game.players[1].canvasDrawing = topRightCanvas
         self.view.addSubview(topRightCanvas)
 
         let bottomLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.midY)
-        guard let bottomLeftCanvas = createCompetitiveCanvas(at: bottomLeftOrigin, size: defaultSize) else {
+        let bottomLeftRect = CGRect(origin: bottomLeftOrigin, size: defaultSize)
+        guard let bottomLeftCanvas: Canvas = BerryCanvas.createCanvas(within: bottomLeftRect) else {
             return
         }
+        bottomLeftCanvas.isClearButtonEnabled = false
+        bottomLeftCanvas.isUndoButtonEnabled = false
+        bottomLeftCanvas.delegate = self
         game.players[2].canvasDrawing = bottomLeftCanvas
         self.view.addSubview(bottomLeftCanvas)
 
         let bottomRightOrigin = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
-        guard let bottomRightCanvas = createCompetitiveCanvas(at: bottomRightOrigin, size: defaultSize) else {
+        let bottomRightRect = CGRect(origin: bottomRightOrigin, size: defaultSize)
+        guard let bottomRightCanvas: Canvas = BerryCanvas.createCanvas(within: bottomRightRect) else {
             return
         }
+        bottomRightCanvas.isClearButtonEnabled = false
+        bottomRightCanvas.isUndoButtonEnabled = false
+        bottomRightCanvas.delegate = self
         game.players[3].canvasDrawing = bottomRightCanvas
         self.view.addSubview(bottomRightCanvas)
-    }
-
-    private func createCompetitiveCanvas(at point: CGPoint, size: CGSize) -> Canvas? {
-        let canvasOrigin = point
-        let rect = CGRect(origin: canvasOrigin, size: size)
-        guard let newCanvas: Canvas = BerryCanvas.createCanvas(within: rect) else {
-            return nil
-        }
-        newCanvas.isClearButtonEnabled = false
-        newCanvas.isUndoButtonEnabled = false
-        newCanvas.delegate = self
-        return newCanvas
     }
 
     private func setupTimer() {

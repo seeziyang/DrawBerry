@@ -16,6 +16,8 @@ struct BerryConstants {
 
     static let palettePadding: CGFloat = 10
     static let toolLength: CGFloat = 40
+    static let strokeLength: CGFloat = 40
+    static let strokeWidth: CGFloat = 30
     static let defaultInkWidth: CGFloat = 0.5
     static let fullOpacity: CGFloat = 1
     static let halfOpacity: CGFloat = 0.5
@@ -27,6 +29,12 @@ struct BerryConstants {
         berryRed: "red"
     ]
 
+    static let strokeToAssetName = [
+        Stroke.thick: "thick",
+        Stroke.medium: "medium",
+        Stroke.thin: "thin"
+    ]
+
     static let paperBackgroundImage = UIImage(named: "paper-brown")
     static let deleteIcon = UIImage(named: "delete")
     static let eraserIcon = UIImage(named: "eraser")
@@ -36,4 +44,8 @@ struct BerryConstants {
     static let berryBlue = UIColor(red: 10 / 255, green: 128 / 255, blue: 146 / 255, alpha: 1)
     static let berryRed = UIColor(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
     static let berryGreen = UIColor(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
+
+    static let thickIcon = UIImage(named: "thick")
+    static let mediumIcon = UIImage(named: "medium")
+    static let thinIcon = UIImage(named: "thin")
 }

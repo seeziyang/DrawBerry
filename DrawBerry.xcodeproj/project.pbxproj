@@ -26,6 +26,8 @@
 		379EE014242210E8005257E1 /* BerryCanvasTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* BerryCanvasTest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
+		379EE0202424556E005257E1 /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
+		379EE022242455AC005257E1 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE021242455AC005257E1 /* Stroke.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
@@ -100,6 +102,8 @@
 		379EE013242210E8005257E1 /* BerryCanvasTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasTest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
+		379EE01F2424556E005257E1 /* StrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
+		379EE021242455AC005257E1 /* Stroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroke.swift; sourceTree = "<group>"; };
 		37CE06512418809D0085BE4A /* BerryCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BerryCanvas.swift; sourceTree = "<group>"; };
 		37CE06522418809D0085BE4A /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		37CE0657241B1E240085BE4A /* BerryPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPalette.swift; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				37CE0661241FC1120085BE4A /* CanvasDelegate.swift */,
 				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
 				37CE0657241B1E240085BE4A /* BerryPalette.swift */,
+				379EE021242455AC005257E1 /* Stroke.swift */,
 				379EE01B24230283005257E1 /* PaletteObserver.swift */,
 			);
 			path = Canvas;
@@ -240,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				37CE065D241E1BF20085BE4A /* InkView.swift */,
+				379EE01F2424556E005257E1 /* StrokeView.swift */,
 				FCC7F3E82421CA690096F934 /* CompetitiveView.swift */,
 				FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */,
 			);
@@ -652,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */,
+				379EE022242455AC005257E1 /* Stroke.swift in Sources */,
 				FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */,
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
 				1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */,
@@ -673,6 +680,7 @@
 				1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
+				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
 				1A4C5F252422619500937244 /* ClassicGameNetworkAdapter.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,

@@ -95,7 +95,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
         super.init(frame: frame)
         palette.setObserver(self)
-        palette.selectFirstColor()
+        palette.selectFirstColorFirstStroke()
         bindGestureRecognizers()
         addComponentsToCanvas()
     }
@@ -162,6 +162,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         palette.add(color: BerryConstants.berryBlack)
         palette.add(color: BerryConstants.berryBlue)
         palette.add(color: BerryConstants.berryRed)
+        palette.add(stroke: Stroke.thin)
+        palette.add(stroke: Stroke.medium)
+        palette.add(stroke: Stroke.thick)
+        palette.selectFirstColorFirstStroke()
     }
 
     /// Creates the clear button with the given bounds.
