@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VotingViewController: UIViewController {
+class VotingViewController: UIViewController, ClassicGameDelegate {
     var classicGame: ClassicGame!
 
     @IBOutlet private weak var votingImagesCollectionView: UICollectionView!
@@ -23,6 +23,12 @@ class VotingViewController: UIViewController {
         // 2 for iPad, 1 for iPhone
         itemsPerRow = view.bounds.maxX >= minIPadWidth ? 2 : 1
     }
+
+    func drawingsDidUpdate() {
+        votingImagesCollectionView.reloadData()
+        // TODO: reload specific player's image only?
+        // TODO: show spinning wheel or some loading indicator if player havent upload
+    }
 }
 
 extension VotingViewController: UICollectionViewDataSource {
@@ -35,8 +41,13 @@ extension VotingViewController: UICollectionViewDataSource {
         let cell = collectionView
             .dequeueReusableCell(withReuseIdentifier: "votingImageCell", for: indexPath)
 
-        // TODO get image or loading
-        cell.backgroundColor = .systemYellow
+        let imageView = UIImageView(frame: cell.bounds)
+        imageView.image = classicGame.players[indexPath.row]
+            .getDrawingImage(ofRound: classicGame.currentRound)
+        imageView.contentMode = .scaleAspectFit
+
+        cell.addSubview(imageView)
+        cell.backgroundColor = .systemYellow // TODO: remove
         return cell
     }
 }

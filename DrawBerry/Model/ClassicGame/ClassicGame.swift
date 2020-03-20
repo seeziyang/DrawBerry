@@ -11,6 +11,7 @@ import UIKit
 class ClassicGame {
     static let maxRounds = 5
 
+    weak var delegate: ClassicGameDelegate?
     let networkAdapter: ClassicGameNetworkAdapter
     let roomCode: String
     let players: [ClassicPlayer]
@@ -36,8 +37,20 @@ class ClassicGame {
         currentRound += 1
     }
 
-    func addUsersDrawingImage(_ image: UIImage) {
-        user.addDrawingImage(image)
+    func addUsersDrawing(image: UIImage) {
+        user.addDrawing(image: image)
         networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
+    }
+
+    func observePlayersDrawing() {
+        for player in players where player !== user {
+            networkAdapter.waitAndDownloadPlayerDrawing(
+                playerUID: player.uid, forRound: currentRound, completionHandler: { [weak self] image in
+                    player.addDrawing(image: image)
+
+                    self?.delegate?.drawingsDidUpdate()
+                }
+            )
+        }
     }
 }
