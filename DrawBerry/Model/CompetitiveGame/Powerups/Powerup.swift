@@ -10,14 +10,17 @@ import UIKit
 
 protocol Powerup: AnyObject {
     var image: UIImage? { get }
-    var targets: [CompetitivePlayer] { get set }
-    var location: CGPoint { get set }
+    var owner: CompetitivePlayer { get }
+    var targets: [CompetitivePlayer] { get }
+    var location: CGPoint { get }
 
     func activate()
+
+    init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint)
 }
 
 protocol TogglePowerup: Powerup {
-    var duration: Double { get set }
+    var duration: Double { get }
 
     func deactivate()
 }
