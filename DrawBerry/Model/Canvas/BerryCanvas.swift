@@ -18,6 +18,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         }
     }
 
+    var tool: PKTool {
+        drawingCanvas.tool
+    }
+
     private var drawingCanvas: PKCanvasView
     private let palette: BerryPalette
     private var clearButton: UIButton
@@ -40,6 +44,12 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
     var isUndoButtonEnabled: Bool = true {
         didSet {
             palette.isUndoButtonEnabled = isUndoButtonEnabled
+        }
+    }
+
+    var isEraserEnabled: Bool = true {
+        didSet {
+            palette.isEraserEnabled = isEraserEnabled
         }
     }
 
@@ -73,9 +83,16 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         return BerryCanvas(frame: bounds)
     }
 
-    /// Sets the `PKTool` of the canvas to the given tool.
+    /// Sets the `PKTool` of the canvas to the given tool if the `PKTool` exists in the `BerryPalette`.
     func select(tool: PKTool) {
+        if !palette.contains(tool: tool) {
+            return
+        }
         drawingCanvas.tool = tool
+    }
+
+    func randomiseInkTool() {
+        palette.randomiseInkTool()
     }
 
     /// Checks if the given bounds is within the acceptable bounds.
@@ -91,6 +108,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
         super.init(frame: frame)
         palette.setObserver(self)
+        palette.selectFirstColorFirstStroke()
         bindGestureRecognizers()
         addComponentsToCanvas()
     }
@@ -154,10 +172,13 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Initialises the palette with the default colors.
     private static func initialise(palette: BerryPalette) {
-        palette.add(color: UIColor.black)
-        palette.add(color: UIColor.blue)
-        palette.add(color: UIColor.red)
-        palette.selectFirstColor()
+        palette.add(color: BerryConstants.berryBlack)
+        palette.add(color: BerryConstants.berryBlue)
+        palette.add(color: BerryConstants.berryRed)
+        palette.add(stroke: Stroke.thin)
+        palette.add(stroke: Stroke.medium)
+        palette.add(stroke: Stroke.thick)
+        palette.selectFirstColorFirstStroke()
     }
 
     /// Creates the clear button with the given bounds.

@@ -19,15 +19,21 @@ protocol Canvas: UIView {
 
     var isUndoButtonEnabled: Bool { get set }
 
+    var isEraserEnabled: Bool { get set }
+
     var history: [PKDrawing] { get set }
 
     var delegate: CanvasDelegate? { get set }
+
+    var tool: PKTool { get }
 
     var currentCoordinate: CGPoint? { get }
 
     func undo()
 
     func select(tool: PKTool)
+
+    func randomiseInkTool()
 }
 
 extension Canvas {

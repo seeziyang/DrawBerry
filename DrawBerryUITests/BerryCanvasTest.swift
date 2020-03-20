@@ -15,7 +15,9 @@ class BerryCanvasTest: XCTestCase {
     // Defined for the convinience of testing.
 
     override func setUp() {
+        continueAfterFailure = false
         canvas = BerryCanvas(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 500, height: 500)))
+        canvas.accessibilityIdentifier = "BerryCanvas"
         canvas.delegate = self
         super.setUp()
     }
@@ -26,55 +28,120 @@ class BerryCanvasTest: XCTestCase {
         XCTAssertEqual(canvas.drawing.dataRepresentation().count, PKDrawing().dataRepresentation().count)
     }
 
-    func testEraser() {
-        canvas.palette.isEraserSelected = true
-        XCTAssertTrue(canvas.isEraserSelected)
-        XCTAssertNil(canvas.selectedInkTool)
-    }
-
     func testSelectInk() {
-        let firstTool = canvas.palette.inks[0]
-        canvas.setTool(to: firstTool)
-        XCTAssertFalse(canvas.isEraserSelected)
-        guard let selectedTool = canvas.selectedInkTool else {
-            XCTFail("Selected tool should not be nil")
+        let blueMedium = createInkTool(with: BerryConstants.berryBlue, stroke: Stroke.medium)
+        canvas.select(tool: blueMedium)
+        XCTAssertTrue(canvas.tool is PKInkingTool)
+        guard let blueInkTool = canvas.tool as? PKInkingTool else {
+            XCTFail("Tool should be a PKInkingTool")
             return
         }
-        XCTAssertEqual(selectedTool, firstTool)
+        XCTAssertEqual(blueInkTool.color, blueMedium.color)
+        XCTAssertEqual(blueInkTool.width, blueMedium.width)
+
+        let redThick = createInkTool(with: BerryConstants.berryRed, stroke: Stroke.thick)
+        canvas.select(tool: redThick)
+        XCTAssertTrue(canvas.tool is PKInkingTool)
+        guard let redInkTool = canvas.tool as? PKInkingTool else {
+            XCTFail("Tool should be a PKInkingTool")
+            return
+        }
+        XCTAssertEqual(redInkTool.color, redThick.color)
+        XCTAssertEqual(redInkTool.width, redThick.width)
+
+        let doesNotExist = createInkTool(with: UIColor.purple, stroke: Stroke.medium)
+        canvas.select(tool: doesNotExist) // Should not be selected
+        XCTAssertTrue(canvas.tool is PKInkingTool)
+        XCTAssertEqual(redInkTool.color, redThick.color)
+        XCTAssertEqual(redInkTool.width, redThick.width)
     }
 
-    func testClearButtonEnabled() {
-        canvas.isClearButtonEnabled = true
-        XCTAssertTrue(canvas.clearButton.isEnabled)
-        XCTAssertFalse(canvas.clearButton.isHidden)
-
-        canvas.isClearButtonEnabled = false
-        XCTAssertFalse(canvas.clearButton.isEnabled)
-        XCTAssertTrue(canvas.clearButton.isHidden)
+    func testSelectEraser() {
+        let eraser = PKEraserTool(PKEraserTool.EraserType.vector)
+        canvas.select(tool: eraser)
+        XCTAssertTrue(canvas.tool is PKEraserTool)
+        guard let sampleEraser = canvas.tool as? PKEraserTool else {
+            XCTFail("Tool should be a PKEraserTool")
+            return
+        }
+        XCTAssertEqual(eraser.eraserType, sampleEraser.eraserType)
     }
 
-    func testUndoButtonEnabled() {
-        canvas.isUndoButtonEnabled = true
-        XCTAssertTrue(canvas.palette.undoButton?.isEnabled ?? false)
-        XCTAssertFalse(canvas.palette.undoButton?.isHidden ?? true)
-
-        canvas.isUndoButtonEnabled = false
-        XCTAssertFalse(canvas.palette.undoButton?.isEnabled ?? true)
-        XCTAssertTrue(canvas.palette.undoButton?.isHidden ?? false)
+    func testSelectInkThenEraser() {
+        let blueMedium = createInkTool(with: BerryConstants.berryBlue, stroke: Stroke.medium)
+        canvas.select(tool: blueMedium)
+        XCTAssertTrue(canvas.tool is PKInkingTool)
+        guard let blueInkTool = canvas.tool as? PKInkingTool else {
+            XCTFail("Tool should be a PKInkingTool")
+            return
+        }
+        XCTAssertEqual(blueInkTool.color, blueMedium.color)
+        XCTAssertEqual(blueInkTool.width, blueMedium.width)
+        let eraser = PKEraserTool(PKEraserTool.EraserType.vector)
+        canvas.select(tool: eraser)
+        XCTAssertTrue(canvas.tool is PKEraserTool)
+        guard let sampleEraser = canvas.tool as? PKEraserTool else {
+            XCTFail("Tool should be a PKEraserTool")
+            return
+        }
+        XCTAssertEqual(eraser.eraserType, sampleEraser.eraserType)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testRandomiseInkTool() {
+        canvas.randomiseInkTool()
+        let tool = canvas.tool
+        XCTAssertTrue(tool is PKInkingTool || tool is PKEraserTool)
+        // Test if random tool is from palette. If it can be selected, then it is in.
+        canvas.select(tool: tool)
+        if tool is PKInkingTool {
+            guard let randomTool = tool as? PKInkingTool else {
+                XCTFail("Tool should be a PKInkingTool")
+                return
+            }
+            guard let currentTool = canvas.tool as? PKInkingTool else {
+                XCTFail("Tool should be a PKInkingTool")
+                return
+            }
+            XCTAssertEqual(currentTool.color, randomTool.color)
+            XCTAssertEqual(currentTool.width, randomTool.width)
+        }
+        if tool is PKEraserTool {
+            guard let randomTool = tool as? PKEraserTool else {
+                XCTFail("Tool should be a PKEraserTool")
+                return
+            }
+            guard let currentTool = canvas.tool as? PKEraserTool else {
+                XCTFail("Tool should be a PKInkingTool")
+                return
+            }
+            XCTAssertEqual(randomTool.eraserType, currentTool.eraserType)
         }
     }
 
+    // failing for now, trying to do UI test
+    func testDraw() {
+        let app = XCUIApplication()
+        app.launch()
+        app.buttons["Classic"].tap()
+        app.textFields["Room Code"].tap()
+        app.buttons["Join"].tap()
+        app.navigationBars["Players"].buttons["Start"].tap()
+        app.scrollViews.children(matching: .other).element(boundBy: 0).swipeRight()
+        XCTAssertTrue(canvas.history.count == 1)
+    }
+}
+
+extension BerryCanvasTest {
+    // Helper methods
+    private func createInkTool(with color: UIColor, stroke: Stroke) -> PKInkingTool {
+        let defaultInkType = PKInkingTool.InkType.pen
+        print(stroke.rawValue)
+        return PKInkingTool(defaultInkType, color: color, width: stroke.rawValue)
+    }
 }
 
 extension BerryCanvasTest: CanvasDelegate {
-    func handleDraw(recognizer: UIPanGestureRecognizer, canvas: Canvas) {
-
+    func handleDraw(recognizer: UIGestureRecognizer, canvas: Canvas) {
         if !canvas.isAbleToDraw {
             recognizer.state = .ended
             recognizer.isEnabled = false
@@ -82,12 +149,12 @@ extension BerryCanvasTest: CanvasDelegate {
         }
         if recognizer.state == .ended {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.syncHistory(on: canvas)
+                self.syncStroke(to: canvas)
             }
         }
     }
 
-    func syncHistory(on canvas: Canvas) {
+    private func syncStroke(to canvas: Canvas) {
         let prevSize = canvas.history.last?.dataRepresentation().count ?? PKDrawing().dataRepresentation().count
         if prevSize < canvas.drawing.dataRepresentation().count {
             // A stroke was added
@@ -107,17 +174,27 @@ extension BerryCanvasTest: CanvasDelegate {
         canvas.history.append(drawing)
     }
 
-    /// Undo the drawing to the previous state one stroke before.
-    func undo(on canvas: Canvas) -> PKDrawing {
+    private func popHistory(from canvas: Canvas) -> PKDrawing {
+        let currentDrawing = canvas.drawing
+        _ = canvas.history.popLast()
         if canvas.history.isEmpty {
             return PKDrawing()
         }
-        _ = canvas.history.popLast()
-        canvas.numberOfStrokes -= 1
         guard let lastDrawing = canvas.history.last else {
             return PKDrawing()
         }
+        if currentDrawing.dataRepresentation().count < lastDrawing.dataRepresentation().count {
+            canvas.numberOfStrokes -= 1
+        }
+        if currentDrawing.dataRepresentation().count > lastDrawing.dataRepresentation().count {
+            canvas.numberOfStrokes += 1
+        }
         return lastDrawing
+    }
+
+    /// Undo the drawing to the previous state one stroke before.
+    func undo(on canvas: Canvas) -> PKDrawing {
+        return popHistory(from: canvas)
     }
 
     func clear(canvas: Canvas) {
