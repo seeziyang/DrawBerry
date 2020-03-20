@@ -18,7 +18,13 @@ class BerryPalette: UIView {
             }
         }
     }
-    var selectedStroke: Stroke?
+    private var selectedStroke: Stroke? {
+        didSet {
+            if selectedStroke != nil {
+                isEraserSelected = false
+            }
+        }
+    }
 
     private var isEraserSelected: Bool = false {
         didSet {
