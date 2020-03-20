@@ -256,7 +256,6 @@ class BerryPalette: UIView {
         inkViews.forEach {
             $0.alpha = $0.color == selected ? BerryConstants.fullOpacity : BerryConstants.halfOpacity
         }
-        print("dimmed inks")
     }
 
     private func dimAllStrokes() {
@@ -268,7 +267,6 @@ class BerryPalette: UIView {
         strokeViews.forEach {
             $0.alpha = $0.stroke == selected ? BerryConstants.fullOpacity : BerryConstants.halfOpacity
         }
-        print("dimmed strokes")
     }
 
     /// Returns true if the given `UIColor` exists in the  `BerryPalette`.
