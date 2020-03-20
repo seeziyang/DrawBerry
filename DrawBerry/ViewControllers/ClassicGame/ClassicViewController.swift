@@ -23,6 +23,8 @@ class ClassicViewController: CanvasDelegateViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let votingVC = segue.destination as? VotingViewController {
             votingVC.classicGame = classicGame
+            votingVC.classicGame.delegate = votingVC
+            votingVC.classicGame.observePlayersDrawing()
         }
     }
 
@@ -57,7 +59,7 @@ class ClassicViewController: CanvasDelegateViewController {
     }
 
     private func finishRound() {
-        classicGame.addUsersDrawingImage(canvas.drawingImage)
+        classicGame.addUsersDrawing(image: canvas.drawingImage)
         performSegue(withIdentifier: "segueToVoting", sender: self)
     }
 }

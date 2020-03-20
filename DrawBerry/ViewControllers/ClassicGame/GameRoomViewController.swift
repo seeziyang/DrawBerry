@@ -43,6 +43,8 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
             return
         }
 
+        // TODO: trigger game start in GameRoom (and db)
+
         segueToGameVC()
     }
 
