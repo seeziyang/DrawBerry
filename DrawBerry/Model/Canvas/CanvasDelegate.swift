@@ -10,8 +10,6 @@ import PencilKit
 protocol CanvasDelegate: AnyObject {
     func handleDraw(recognizer: UIGestureRecognizer, canvas: Canvas)
 
-    func updateHistory(on canvas: Canvas, with drawing: PKDrawing)
-
     func undo(on canvas: Canvas) -> PKDrawing
 
     func clear(canvas: Canvas)

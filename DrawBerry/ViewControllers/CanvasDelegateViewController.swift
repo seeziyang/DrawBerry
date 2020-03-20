@@ -37,7 +37,7 @@ class CanvasDelegateViewController: UIViewController, CanvasDelegate {
         }
     }
 
-    func updateHistory(on canvas: Canvas, with drawing: PKDrawing) {
+    private func updateHistory(on canvas: Canvas, with drawing: PKDrawing) {
         canvas.history.append(drawing)
     }
 
