@@ -11,7 +11,7 @@ import PencilKit
 
 class BerryPalette: UIView {
     private var observer: PaletteObserver?
-    var selectedColor: UIColor? {
+    private var selectedColor: UIColor? {
         didSet {
             if selectedColor != nil {
                 isEraserSelected = false
@@ -20,9 +20,11 @@ class BerryPalette: UIView {
     }
     var selectedStroke: Stroke?
 
-    var isEraserSelected: Bool = false {
+    private var isEraserSelected: Bool = false {
         didSet {
-            if isEraserSelected {
+            if isEraserSelected && !isEraserEnabled {
+                isEraserSelected = false
+            } else if isEraserSelected {
                 selectedColor = nil
             }
         }
@@ -30,6 +32,7 @@ class BerryPalette: UIView {
 
     var isEraserEnabled: Bool = true {
         didSet {
+            isEraserSelected = false
             deinitialiseToolViews()
             initialiseToolViews()
         }
@@ -241,6 +244,7 @@ class BerryPalette: UIView {
         guard let strokeView = recognizer.view as? StrokeView else {
             return
         }
+        selectFirstColorFirstStroke()
         selectedStroke = strokeView.stroke
         dimAllStrokes(except: strokeView.stroke)
         selectCurrentInkTool()
@@ -251,6 +255,7 @@ class BerryPalette: UIView {
         guard let inkView = recognizer.view as? InkView else {
             return
         }
+        selectFirstColorFirstStroke()
         selectedColor = inkView.color
         dimAllInks(except: inkView.color)
         selectCurrentInkTool()
