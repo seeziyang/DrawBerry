@@ -11,18 +11,26 @@ import PencilKit
 
 class BerryPalette: UIView {
     private var observer: PaletteObserver?
-    var selectedColor: UIColor? {
+    private var selectedColor: UIColor? {
         didSet {
             if selectedColor != nil {
                 isEraserSelected = false
             }
         }
     }
-    var selectedStroke: Stroke?
-
-    var isEraserSelected: Bool = false {
+    private var selectedStroke: Stroke? {
         didSet {
-            if isEraserSelected {
+            if selectedStroke != nil {
+                isEraserSelected = false
+            }
+        }
+    }
+
+    private var isEraserSelected: Bool = false {
+        didSet {
+            if isEraserSelected && !isEraserEnabled {
+                isEraserSelected = false
+            } else if isEraserSelected {
                 selectedColor = nil
             }
         }
@@ -30,6 +38,7 @@ class BerryPalette: UIView {
 
     var isEraserEnabled: Bool = true {
         didSet {
+            isEraserSelected = false
             deinitialiseToolViews()
             initialiseToolViews()
         }
@@ -241,6 +250,9 @@ class BerryPalette: UIView {
         guard let strokeView = recognizer.view as? StrokeView else {
             return
         }
+        if isEraserSelected {
+            selectFirstColorFirstStroke()
+        }
         selectedStroke = strokeView.stroke
         dimAllStrokes(except: strokeView.stroke)
         selectCurrentInkTool()
@@ -250,6 +262,9 @@ class BerryPalette: UIView {
     @objc func handleInkTap(recognizer: UITapGestureRecognizer) {
         guard let inkView = recognizer.view as? InkView else {
             return
+        }
+        if isEraserSelected {
+            selectFirstColorFirstStroke()
         }
         selectedColor = inkView.color
         dimAllInks(except: inkView.color)
