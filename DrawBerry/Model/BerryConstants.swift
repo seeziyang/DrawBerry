@@ -22,17 +22,23 @@ struct BerryConstants {
     static let fullOpacity: CGFloat = 1
     static let unselectedOpacity: CGFloat = 0.3
 
-    static let UIColorToAssetName = [
-        berryBlack: "black",
-        berryGrey: "grey",
-        berryBlue: "blue",
-        berryRed: "red"
+    static let UIColorToAsset = [
+        berryBlack: UIImage(named: "black"),
+        berryGrey: UIImage(named: "grey"),
+        berryBlue: UIImage(named: "blue"),
+        berryRed: UIImage(named: "red")
     ]
 
-    static let strokeToAssetName = [
-        Stroke.thick: "thick",
-        Stroke.medium: "medium",
-        Stroke.thin: "thin"
+    static let strokeToAsset = [
+        Stroke.thick: thickIcon,
+        Stroke.medium: mediumIcon,
+        Stroke.thin: thinIcon
+    ]
+
+    static let selectedStrokeToAsset = [
+        Stroke.thick: thickIconSelected,
+        Stroke.medium: mediumIconSelected,
+        Stroke.thin: thinIconSelected
     ]
 
     static let paperBackgroundImage = UIImage(named: "paper-brown")
@@ -48,4 +54,8 @@ struct BerryConstants {
     static let thickIcon = UIImage(named: "thick")
     static let mediumIcon = UIImage(named: "medium")
     static let thinIcon = UIImage(named: "thin")
+
+    static let thickIconSelected = UIImage(named: "thick-selected")
+    static let mediumIconSelected = UIImage(named: "medium-selected")
+    static let thinIconSelected = UIImage(named: "thin-selected")
 }

@@ -140,12 +140,9 @@ class BerryPalette: UIView {
         let topRightCorner = CGPoint(x: bounds.width, y: bounds.height)
         var rightNeighbourOrigin = eraserView?.getOriginWithRespectToSuperview() ?? topRightCorner
         for stroke in strokes.reversed() {
-            let strokeView = StrokeView(
-                frame: getStrokeViewRect(
-                    within: self.bounds,
-                    rightNeighbourOrigin: rightNeighbourOrigin),
-                stroke: stroke)
-            strokeView.image = UIImage(named: BerryConstants.strokeToAssetName[stroke] ?? "thin")
+            let strokeRect = getStrokeViewRect(within: self.bounds, rightNeighbourOrigin: rightNeighbourOrigin)
+            let strokeView = StrokeView(frame: strokeRect, stroke: stroke)
+            strokeView.image = BerryConstants.strokeToAsset[stroke] as? UIImage
             bindTapAction(to: strokeView)
             strokeViews.append(strokeView)
             addSubview(strokeView)
@@ -156,10 +153,10 @@ class BerryPalette: UIView {
     private func initialiseAllInkViews() {
         var xDisp = CGFloat.zero
         for ink in inks {
-            let inkView = InkView(
-                frame: getInkViewRect(within: self.frame, horizontalDisplacement: xDisp), color: ink)
+            let inkRect = getInkViewRect(within: self.frame, horizontalDisplacement: xDisp)
+            let inkView = InkView(frame: inkRect, color: ink)
             xDisp += inkView.bounds.width + BerryConstants.palettePadding
-            inkView.image = UIImage(named: BerryConstants.UIColorToAssetName[ink] ?? "black")
+            inkView.image = BerryConstants.UIColorToAsset[ink] as? UIImage
             bindTapAction(to: inkView)
             inkViews.append(inkView)
             addSubview(inkView)
@@ -170,7 +167,6 @@ class BerryPalette: UIView {
         self.subviews.forEach { $0.removeFromSuperview() }
         inkViews = []
         strokeViews = []
-        undoButton?.removeFromSuperview()
         undoButton = nil
         eraserView = nil
     }
@@ -193,9 +189,8 @@ class BerryPalette: UIView {
     private func createEraserView() -> UIImageView {
         let topRightCorner = CGPoint(x: bounds.width, y: bounds.height)
         let neighbourOrigin = isUndoButtonEnabled ? undoButton?.getOriginWithRespectToSuperview() : topRightCorner
-        let newEraserView = UIImageView(frame: getEraserRect(
-                within: self.frame,
-                rightNeighbourOrigin: neighbourOrigin ?? topRightCorner))
+        let eraserRect = getEraserRect(within: self.frame, rightNeighbourOrigin: neighbourOrigin ?? topRightCorner)
+        let newEraserView = UIImageView(frame: eraserRect)
         newEraserView.image = BerryConstants.eraserIcon
 
         let newEraserTap = UITapGestureRecognizer(target: self, action: #selector(handleEraserTap))
@@ -256,17 +251,7 @@ class BerryPalette: UIView {
         observer?.select(tool: inkTool)
     }
 
-    /// Returns an `InkView` given a `UIColor`.
-    private func getInkViewFrom(color: UIColor) -> InkView? {
-        let inkView = inkViews.filter { $0.color == color }
-        return inkView.count != 1 ? nil : inkView[0]
-    }
-
-    private func getStrokeViewFrom(stroke: Stroke) -> StrokeView? {
-        let strokeView = strokeViews.filter { $0.stroke == stroke }
-        return strokeView.count != 1 ? nil : strokeView[0]
-    }
-
+    /// Dims all the `InkView`s
     private func dimAllInks() {
         inkViews.forEach { $0.alpha = BerryConstants.unselectedOpacity }
     }
@@ -278,6 +263,7 @@ class BerryPalette: UIView {
         }
     }
 
+    /// Dims all the `StrokeView`s.
     private func dimAllStrokes() {
         strokeViews.forEach { $0.alpha = BerryConstants.unselectedOpacity }
     }
@@ -286,6 +272,11 @@ class BerryPalette: UIView {
     private func dimAllStrokes(except selected: Stroke) {
         strokeViews.forEach {
             $0.alpha = $0.stroke == selected ? BerryConstants.fullOpacity : BerryConstants.unselectedOpacity
+        }
+        strokeViews.forEach {
+            $0.image = $0.stroke == selected
+                ? BerryConstants.selectedStrokeToAsset[$0.stroke] as? UIImage
+                : BerryConstants.strokeToAsset[$0.stroke] as? UIImage
         }
     }
 
@@ -314,6 +305,7 @@ class BerryPalette: UIView {
         return CGRect(origin: origin, size: size)
     }
 
+    /// Returns the `CGRect` for the `StrokeView` given the bounds and the origin of the right UI element.
     private func getStrokeViewRect(within bounds: CGRect, rightNeighbourOrigin: CGPoint) -> CGRect {
         let size = CGSize(width: BerryConstants.strokeWidth, height: BerryConstants.strokeLength)
         let origin = CGPoint(
@@ -322,7 +314,7 @@ class BerryPalette: UIView {
         return CGRect(origin: origin, size: size)
     }
 
-    /// Returns the `CGRect` for the eraser view given the bounds.
+    /// Returns the `CGRect` for the eraser view given the bounds and the origin of the right UI element.
     private func getEraserRect(within bounds: CGRect, rightNeighbourOrigin: CGPoint) -> CGRect {
         let size = CGSize(width: BerryConstants.toolLength, height: BerryConstants.toolLength)
         let origin = CGPoint(
@@ -343,9 +335,6 @@ class BerryPalette: UIView {
 
 extension UIView {
     func getOriginWithRespectToSuperview() -> CGPoint {
-        return CGPoint(
-            x: self.center.x - (self.bounds.width / 2),
-            y: self.center.y - (self.bounds.height / 2)
-        )
+        return CGPoint( x: self.center.x - (self.bounds.width / 2), y: self.center.y - (self.bounds.height / 2))
     }
 }
