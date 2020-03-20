@@ -28,6 +28,15 @@
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
 		379EE0202424556E005257E1 /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
 		379EE022242455AC005257E1 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE021242455AC005257E1 /* Stroke.swift */; };
+		379EE0232424908E005257E1 /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
+		379EE02424249144005257E1 /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
+		379EE02524249150005257E1 /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
+		379EE02624249152005257E1 /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE021242455AC005257E1 /* Stroke.swift */; };
+		379EE02724249158005257E1 /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
+		379EE02824249170005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
+		379EE02924249172005257E1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
+		379EE02A24249185005257E1 /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
+		379EE02B24249187005257E1 /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
 		37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
 		37CE06542418809D0085BE4A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
@@ -714,8 +723,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379EE0232424908E005257E1 /* BerryCanvas.swift in Sources */,
+				379EE02B24249187005257E1 /* StrokeView.swift in Sources */,
+				379EE02624249152005257E1 /* Stroke.swift in Sources */,
 				FCEC3C082417941700F0DE03 /* DrawBerryUITests.swift in Sources */,
+				379EE02524249150005257E1 /* BerryPalette.swift in Sources */,
+				379EE02724249158005257E1 /* BerryConstants.swift in Sources */,
+				379EE02924249172005257E1 /* Canvas.swift in Sources */,
+				379EE02424249144005257E1 /* CanvasDelegate.swift in Sources */,
 				379EE014242210E8005257E1 /* BerryCanvasTest.swift in Sources */,
+				379EE02824249170005257E1 /* PaletteObserver.swift in Sources */,
+				379EE02A24249185005257E1 /* InkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

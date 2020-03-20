@@ -11,4 +11,8 @@ enum Stroke: CGFloat {
     case thick = 10
     case medium = 5
     case thin = 1
+
+    static func strokeExists(thickness: CGFloat) -> Bool {
+        return thickness == thick.rawValue || thickness == medium.rawValue || thickness == thin.rawValue
+    }
 }

@@ -106,6 +106,22 @@ class BerryPalette: UIView {
         select(color: inks[Int.random(in: 0..<inks.count)], stroke: strokes[Int.random(in: 0..<strokes.count)])
     }
 
+    func contains(tool: PKTool) -> Bool {
+        if tool is PKEraserTool {
+            guard let sampleEraser = tool as? PKEraserTool else {
+                return false
+            }
+            return sampleEraser.eraserType == eraser.eraserType
+        }
+        if tool is PKInkingTool {
+            guard let sampleInk = tool as? PKInkingTool else {
+                return false
+            }
+            return colorExists(color: sampleInk.color) && Stroke.strokeExists(thickness: sampleInk.width)
+        }
+        return false
+    }
+
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
         let undoButton = createUndoButton()

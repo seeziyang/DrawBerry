@@ -18,6 +18,10 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         }
     }
 
+    var tool: PKTool {
+        drawingCanvas.tool
+    }
+
     private var drawingCanvas: PKCanvasView
     private let palette: BerryPalette
     private var clearButton: UIButton

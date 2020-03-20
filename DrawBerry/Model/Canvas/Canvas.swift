@@ -23,6 +23,8 @@ protocol Canvas: UIView {
 
     var delegate: CanvasDelegate? { get set }
 
+    var tool: PKTool { get }
+
     var currentCoordinate: CGPoint? { get }
 
     func undo()
