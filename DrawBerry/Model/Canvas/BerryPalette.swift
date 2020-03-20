@@ -124,8 +124,10 @@ class BerryPalette: UIView {
 
     /// Initialise the tools in the palette.
     private func initialiseToolViews() {
-        let undoButton = createUndoButton()
-        self.addSubview(undoButton)
+        if isUndoButtonEnabled {
+            let undoButton = createUndoButton()
+            self.addSubview(undoButton)
+        }
         let newEraserView = createEraserView()
         eraserView = newEraserView
         self.addSubview(newEraserView)
@@ -168,6 +170,8 @@ class BerryPalette: UIView {
         self.subviews.forEach { $0.removeFromSuperview() }
         inkViews = []
         strokeViews = []
+        undoButton?.removeFromSuperview()
+        undoButton = nil
         eraserView = nil
     }
 
@@ -264,24 +268,24 @@ class BerryPalette: UIView {
     }
 
     private func dimAllInks() {
-        inkViews.forEach { $0.alpha = BerryConstants.halfOpacity }
+        inkViews.forEach { $0.alpha = BerryConstants.unselectedOpacity }
     }
 
     /// Dims all the `InkView`s except the `InkView` corresponding to the given `UIColor`.
     private func dimAllInks(except selected: UIColor) {
         inkViews.forEach {
-            $0.alpha = $0.color == selected ? BerryConstants.fullOpacity : BerryConstants.halfOpacity
+            $0.alpha = $0.color == selected ? BerryConstants.fullOpacity : BerryConstants.unselectedOpacity
         }
     }
 
     private func dimAllStrokes() {
-        strokeViews.forEach { $0.alpha = BerryConstants.halfOpacity }
+        strokeViews.forEach { $0.alpha = BerryConstants.unselectedOpacity }
     }
 
     /// Dims all the `InkView`s except the `InkView` corresponding to the given `UIColor`.
     private func dimAllStrokes(except selected: Stroke) {
         strokeViews.forEach {
-            $0.alpha = $0.stroke == selected ? BerryConstants.fullOpacity : BerryConstants.halfOpacity
+            $0.alpha = $0.stroke == selected ? BerryConstants.fullOpacity : BerryConstants.unselectedOpacity
         }
     }
 
@@ -298,7 +302,6 @@ class BerryPalette: UIView {
     /// Creates a `PKInkingTool` that corresponds to the given `UIColor`.
     private func createInkTool(with color: UIColor, stroke: Stroke) -> PKInkingTool {
         let defaultInkType = PKInkingTool.InkType.pen
-        print(stroke.rawValue)
         return PKInkingTool(defaultInkType, color: color, width: stroke.rawValue)
     }
 

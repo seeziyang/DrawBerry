@@ -20,7 +20,7 @@ struct BerryConstants {
     static let strokeWidth: CGFloat = 30
     static let defaultInkWidth: CGFloat = 0.5
     static let fullOpacity: CGFloat = 1
-    static let halfOpacity: CGFloat = 0.5
+    static let unselectedOpacity: CGFloat = 0.3
 
     static let UIColorToAssetName = [
         berryBlack: "black",

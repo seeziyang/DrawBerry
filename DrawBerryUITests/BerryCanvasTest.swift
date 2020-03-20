@@ -54,13 +54,71 @@ class BerryCanvasTest: XCTestCase {
         XCTAssertEqual(redInkTool.width, redThick.width)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testSelectEraser() {
+        let eraser = PKEraserTool(PKEraserTool.EraserType.vector)
+        canvas.select(tool: eraser)
+        XCTAssertTrue(canvas.tool is PKEraserTool)
+        guard let sampleEraser = canvas.tool as? PKEraserTool else {
+            XCTFail("Tool should be a PKEraserTool")
+            return
         }
+        XCTAssertEqual(eraser.eraserType, sampleEraser.eraserType)
     }
 
+    func testSelectInkThenEraser() {
+        let blueMedium = createInkTool(with: BerryConstants.berryBlue, stroke: Stroke.medium)
+        canvas.select(tool: blueMedium)
+        XCTAssertTrue(canvas.tool is PKInkingTool)
+        guard let blueInkTool = canvas.tool as? PKInkingTool else {
+            XCTFail("Tool should be a PKInkingTool")
+            return
+        }
+        XCTAssertEqual(blueInkTool.color, blueMedium.color)
+        XCTAssertEqual(blueInkTool.width, blueMedium.width)
+        let eraser = PKEraserTool(PKEraserTool.EraserType.vector)
+        canvas.select(tool: eraser)
+        XCTAssertTrue(canvas.tool is PKEraserTool)
+        guard let sampleEraser = canvas.tool as? PKEraserTool else {
+            XCTFail("Tool should be a PKEraserTool")
+            return
+        }
+        XCTAssertEqual(eraser.eraserType, sampleEraser.eraserType)
+    }
+
+    func testRandomiseInkTool() {
+        canvas.randomiseInkTool()
+        let tool = canvas.tool
+        XCTAssertTrue(tool is PKInkingTool || tool is PKEraserTool)
+        // Test if random tool is from palette. If it can be selected, then it is in.
+        canvas.select(tool: tool)
+        if tool is PKInkingTool {
+            guard let randomTool = tool as? PKInkingTool else {
+                XCTFail("Tool should be a PKInkingTool")
+                return
+            }
+            guard let currentTool = canvas.tool as? PKInkingTool else {
+                XCTFail("Tool should be a PKInkingTool")
+                return
+            }
+            XCTAssertEqual(currentTool.color, randomTool.color)
+            XCTAssertEqual(currentTool.width, randomTool.width)
+        }
+        if tool is PKEraserTool {
+            guard let randomTool = tool as? PKEraserTool else {
+                XCTFail("Tool should be a PKEraserTool")
+                return
+            }
+            guard let currentTool = canvas.tool as? PKEraserTool else {
+                XCTFail("Tool should be a PKInkingTool")
+                return
+            }
+            XCTAssertEqual(randomTool.eraserType, currentTool.eraserType)
+        }
+    }
+}
+
+extension BerryCanvasTest {
+    // Helper methods
     private func createInkTool(with color: UIColor, stroke: Stroke) -> PKInkingTool {
         let defaultInkType = PKInkingTool.InkType.pen
         print(stroke.rawValue)
