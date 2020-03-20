@@ -9,12 +9,15 @@
 import UIKit
 
 class ExtraStrokePowerup: Powerup {
-    var image = PowerupAssets.extraStrokeUIImage
+    var image = PowerupAssets.extraStrokePowerupUIImage
+
+    var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    init(targets: [CompetitivePlayer], location: CGPoint) {
-        self.targets = targets
+    required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
+        self.owner = owner
+        self.targets = [owner]
         self.location = location
     }
 

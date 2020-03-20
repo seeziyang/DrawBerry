@@ -9,20 +9,23 @@
 import UIKit
 
 class ChangeAlphaPowerup: TogglePowerup {
-    var image = PowerupAssets.changeAlphaUIImage
-    var duration: Double
-    var targets: [CompetitivePlayer]
-    var location: CGPoint
+    var image = PowerupAssets.changeAlphaPowerupUIImage
 
-    init(targets: [CompetitivePlayer], location: CGPoint) {
-        self.targets = targets
+    var owner: CompetitivePlayer
+    var targets: [CompetitivePlayer]
+
+    var location: CGPoint
+    var duration = 1.0
+
+    required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
+        self.owner = owner
+        self.targets = players.filter { $0 != owner }
         self.location = location
-        self.duration = 1.0
     }
 
     func activate() {
         for target in targets {
-            target.canvasDrawing.alpha = 0.2
+            target.canvasDrawing.alpha = 0.3
         }
     }
 
