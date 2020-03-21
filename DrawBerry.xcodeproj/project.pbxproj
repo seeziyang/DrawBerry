@@ -13,6 +13,8 @@
 		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
+		1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3920F72425BF1D00847E72 /* GameRoomTests.swift */; };
+		1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3920F92425BF6700847E72 /* RoomPlayerTests.swift */; };
 		1A3A9F7D2423C35200C417AC /* ClassicGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A9F7C2423C35200C417AC /* ClassicGameDelegate.swift */; };
 		1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3ACB8524227948007FA27C /* VotingViewController.swift */; };
 		1A3F399A2421C0FB0084859F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F39992421C0FB0084859F /* Player.swift */; };
@@ -23,6 +25,9 @@
 		1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
 		1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */; };
 		1A4C5F252422619500937244 /* ClassicGameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* ClassicGameNetworkAdapter.swift */; };
+		1A6C69202425C196005E6D45 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
+		1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */; };
+		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		3749D39D2425ABD400CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		3749D39E2425DFF400CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
@@ -113,6 +118,8 @@
 		1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayer.swift; sourceTree = "<group>"; };
 		1A000EDA24222AF4007FDB32 /* ClassicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGame.swift; sourceTree = "<group>"; };
 		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1A3920F72425BF1D00847E72 /* GameRoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomTests.swift; sourceTree = "<group>"; };
+		1A3920F92425BF6700847E72 /* RoomPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPlayerTests.swift; sourceTree = "<group>"; };
 		1A3A9F7C2423C35200C417AC /* ClassicGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameDelegate.swift; sourceTree = "<group>"; };
 		1A3ACB8524227948007FA27C /* VotingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
 		1A3F39992421C0FB0084859F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -123,6 +130,8 @@
 		1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNetworkAdapter.swift; sourceTree = "<group>"; };
 		1A4C5F242422619500937244 /* ClassicGameNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameNetworkAdapter.swift; sourceTree = "<group>"; };
+		1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayerTests.swift; sourceTree = "<group>"; };
+		1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameTests.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +216,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A3920F32425BC3100847E72 /* CompetitiveGame */ = {
+			isa = PBXGroup;
+			children = (
+				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
+			);
+			path = CompetitiveGame;
+			sourceTree = "<group>";
+		};
+		1A3920F42425BE9700847E72 /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A3920F62425BEDB00847E72 /* GameRoomTests */,
+				1A6C69212425C7F8005E6D45 /* ClassicGameTests */,
+			);
+			path = ModelTests;
+			sourceTree = "<group>";
+		};
+		1A3920F52425BEB400847E72 /* HelperTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EECC1D5241DE416002331EA /* StringHelperTest.swift */,
+			);
+			path = HelperTests;
+			sourceTree = "<group>";
+		};
+		1A3920F62425BEDB00847E72 /* GameRoomTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A3920F92425BF6700847E72 /* RoomPlayerTests.swift */,
+				1A3920F72425BF1D00847E72 /* GameRoomTests.swift */,
+			);
+			path = GameRoomTests;
+			sourceTree = "<group>";
+		};
 		1A3ACB872422794F007FA27C /* ClassicGame */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +297,7 @@
 			children = (
 				3E2BDC87241A6224001D8E8A /* UserAuthentication */,
 				1A3ACB872422794F007FA27C /* ClassicGame */,
-				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
+				1A3920F32425BC3100847E72 /* CompetitiveGame */,
 				379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
 			);
@@ -286,6 +329,15 @@
 				3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1A6C69212425C7F8005E6D45 /* ClassicGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */,
+				1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */,
+			);
+			path = ClassicGameTests;
 			sourceTree = "<group>";
 		};
 		37CE06502418809D0085BE4A /* Model */ = {
@@ -417,8 +469,9 @@
 		FCEC3BFB2417941700F0DE03 /* DrawBerryTests */ = {
 			isa = PBXGroup;
 			children = (
+				1A3920F42425BE9700847E72 /* ModelTests */,
+				1A3920F52425BEB400847E72 /* HelperTests */,
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
-				3EECC1D5241DE416002331EA /* StringHelperTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,
 			);
 			path = DrawBerryTests;
@@ -748,7 +801,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */,
 				3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */,
+				1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */,
+				1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */,
+				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
 				FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
