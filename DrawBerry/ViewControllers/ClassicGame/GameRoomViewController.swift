@@ -36,7 +36,7 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     private func leaveGameRoom() {
-        // TODO: Exit game room
+        room.leaveRoom()
 
         dismiss(animated: true, completion: nil)
     }

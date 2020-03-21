@@ -65,6 +65,11 @@ class RoomNetworkAdapter {
             .child(NetworkHelper.getLoggedInUserID()).child("isRoomMaster").setValue(false)
     }
 
+    func leaveRoom(roomCode: String) {
+        db.child("activeRooms").child(roomCode).child("players")
+            .child(NetworkHelper.getLoggedInUserID()).removeValue()
+    }
+
     func startGame(roomCode: String) {
         db.child("activeRooms").child(roomCode).child("hasStarted").setValue(true)
     }
