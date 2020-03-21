@@ -49,9 +49,20 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
         powerupManager.rollForPowerup(for: competitiveGame.players)
 
+        checkForPlayersDoneWithDrawing()
         checkForPlayerStrokeOutOfBounds()
         checkNumberOfStrokesUsed()
         checkPowerupActivations()
+    }
+
+    /// Checks to see if all players are done with drawing
+    private func checkForPlayersDoneWithDrawing() {
+        for player in competitiveGame.players where
+            player.canvasDrawing.numberOfStrokes < CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
+                return
+        }
+
+        timeLeft = min(timeLeft, 3)
     }
 
     /// Checks to see if each player's stroke is within their canvas bounds
