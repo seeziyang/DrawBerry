@@ -10,6 +10,15 @@ import XCTest
 @testable import DrawBerry
 
 class BerryCanvasUITest: SnapshotTestCase {
+    override func setUp() {
+        super.setUp()
+        // Instructions:
+        // 1) Set record more to true here to collect all screenshots first
+        // 2) Set record mode to false/comment out the line below to start testing
+        
+        //recordMode = true
+    }
+
     func testDraw() {
         let app = initialiseAppMoveToClassicCanvas()
 

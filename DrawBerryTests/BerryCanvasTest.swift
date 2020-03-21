@@ -15,7 +15,8 @@ class BerryCanvasTest: XCTestCase {
 
     override func setUp() {
         continueAfterFailure = false
-        canvas = BerryCanvas(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 500, height: 500)))
+        canvas = BerryCanvas.createCanvas(
+            within: CGRect(origin: CGPoint.zero, size: CGSize(width: 500, height: 500))) as? BerryCanvas
         canvas.delegate = self
         super.setUp()
     }
