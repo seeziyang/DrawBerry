@@ -55,7 +55,7 @@ class RoomNetworkAdapter {
                     return
                 }
 
-                let isNotFull = numPlayers <= GameRoom.maxPlayers
+                let isNotFull = numPlayers < GameRoom.maxPlayers
                 completionHandler(isNotFull ? .enterable : .full)
             })
     }
