@@ -31,20 +31,25 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
         playersTableView.reloadData()
     }
 
+    func gameHasStarted() {
+        segueToGameVC()
+    }
+
     private func leaveGameRoom() {
-        // TODO: Exit game room
+        room.leaveRoom()
 
         dismiss(animated: true, completion: nil)
     }
 
     private func startGame() {
+        // TODO: make only roomMaster can startGame?
+
         if !room.canStart {
             // TODO: show some UIPrompt indicating minPlayer amount not reached
             return
         }
 
-        // TODO: trigger game start in GameRoom (and db)
-
+        room.startGame()
         segueToGameVC()
     }
 

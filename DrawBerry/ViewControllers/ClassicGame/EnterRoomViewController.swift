@@ -22,6 +22,7 @@ class EnterRoomViewController: UIViewController {
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
         roomNetworkAdapter = RoomNetworkAdapter()
+        print("network connected")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,6 +75,8 @@ class EnterRoomViewController: UIViewController {
                     self?.showErrorMessage(Message.roomDoesNotExist)
                 case .full:
                     self?.showErrorMessage(Message.roomFull)
+                case .started:
+                    self?.showErrorMessage(Message.roomStarted)
                 }
             })
     }
