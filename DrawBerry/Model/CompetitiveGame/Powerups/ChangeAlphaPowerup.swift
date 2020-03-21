@@ -9,6 +9,9 @@
 import UIKit
 
 class ChangeAlphaPowerup: TogglePowerup {
+    static let ALPHA_VALUE: CGFloat = 0.3
+    static let DEFAULT_VALUE: CGFloat = 1.0
+
     var image = PowerupAssets.changeAlphaPowerupUIImage
 
     var owner: CompetitivePlayer
@@ -25,13 +28,13 @@ class ChangeAlphaPowerup: TogglePowerup {
 
     func activate() {
         for target in targets {
-            target.canvasDrawing.alpha = 0.3
+            target.canvasDrawing.alpha = ChangeAlphaPowerup.ALPHA_VALUE
         }
     }
 
     func deactivate() {
         for target in targets {
-            target.canvasDrawing.alpha = 1
+            target.canvasDrawing.alpha = ChangeAlphaPowerup.DEFAULT_VALUE
         }
     }
 }
