@@ -35,5 +35,4 @@ class CompetitivePlayerTests: XCTestCase {
 
         XCTAssertNotEqual(firstPlayer, secondPlayer, "Players with different names are equal")
     }
-
 }
