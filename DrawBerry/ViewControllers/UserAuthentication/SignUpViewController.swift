@@ -12,6 +12,7 @@ import Firebase
 // TODO: do smthg about username
 class SignUpViewController: UIViewController {
 
+    @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -23,7 +24,14 @@ class SignUpViewController: UIViewController {
         initializeElements()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Authentication.delegate = self
+    }
+
     func initializeElements() {
+        background.image = Constants.signUpBackground
+        background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
     }
 
@@ -74,23 +82,7 @@ class SignUpViewController: UIViewController {
             return
         }
 
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-
-            if error != nil {
-                // TODO show more descriptive error based on error code
-                self.showErrorMessage(Message.signUpError)
-                return
-            }
-
-            guard let userID = result?.user.uid, let email = result?.user.email else {
-                self.showErrorMessage(Message.signUpError)
-                return
-            }
-
-            NetworkHelper.addUserToDB(userID: userID, email: email)
-
-            self.goToHomeScreen()
-        }
+        Authentication.signUp(email: email, password: password)
     }
 
     @IBAction private func goBackToLoginScreen(_ sender: UIButton) {
@@ -99,9 +91,19 @@ class SignUpViewController: UIViewController {
 
     private func goToHomeScreen() {
         let homeViewController = storyboard?.instantiateViewController(identifier: "HomeVC") as? HomeViewController
-
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
 
+}
+
+extension SignUpViewController: AuthenticationUpdateDelegate {
+
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToHomeScreen()
+        } else {
+            showErrorMessage(Message.signUpError)
+        }
+    }
 }

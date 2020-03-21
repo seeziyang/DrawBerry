@@ -14,20 +14,25 @@ class LoginViewController: UIViewController {
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var background: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         initializeElements()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        Authentication.delegate = self
         if Auth.auth().currentUser != nil {
             goToHomeScreen()
         }
     }
 
     func initializeElements() {
+        background.image = Constants.loginBackground
+        background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
         emailTextField.text = "admin@drawberry.com"
         passwordTextField.text = "admin123"
@@ -64,7 +69,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction private func handleLoginButtonTapped(_ sender: UIButton) {
-        // Checks input text-fields
+
+        // Checks validity of user input
         if let errorMessage = validateTextFields() {
             showErrorMessage(errorMessage)
             return
@@ -75,13 +81,7 @@ class LoginViewController: UIViewController {
             return
         }
 
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
-            if error != nil {
-                self.showErrorMessage(Message.signInError)
-            } else {
-                self.goToHomeScreen()
-            }
-        }
+        Authentication.login(email: email, password: password)
     }
 
     func goToHomeScreen() {
@@ -91,4 +91,15 @@ class LoginViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
 
+}
+
+extension LoginViewController: AuthenticationUpdateDelegate {
+
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToHomeScreen()
+        } else {
+            showErrorMessage(Message.signInError)
+        }
+    }
 }

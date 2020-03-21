@@ -1,5 +1,5 @@
 //
-//  Helper.swift
+//  StringHelper.swift
 //  DrawBerry
 //
 //  Created by Calvin Chen on 11/3/20.
