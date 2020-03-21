@@ -6,11 +6,11 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-import XCTest
 import Firebase
+import FBSnapshotTestCase
 @testable import DrawBerry
 
-class ClassicGameUITest: SnapshotTestCase {
+class ClassicGameUITest: FBSnapshotTestCase {
     static var adapter: RoomNetworkAdapter!
     override static func setUp() {
         FirebaseApp.configure()

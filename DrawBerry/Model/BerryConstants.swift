@@ -23,10 +23,10 @@ struct BerryConstants {
     static let unselectedOpacity: CGFloat = 0.3
 
     static let UIColorToAsset = [
-        berryBlack: UIImage(named: "black"),
-        berryGrey: UIImage(named: "grey"),
-        berryBlue: UIImage(named: "blue"),
-        berryRed: UIImage(named: "red")
+        berryBlack: #imageLiteral(resourceName: "black"),
+        berryGrey: #imageLiteral(resourceName: "grey"),
+        berryBlue: #imageLiteral(resourceName: "blue"),
+        berryRed: #imageLiteral(resourceName: "red")
     ]
 
     static let strokeToAsset = [
@@ -41,21 +41,21 @@ struct BerryConstants {
         Stroke.thin: thinIconSelected
     ]
 
-    static let paperBackgroundImage = UIImage(named: "paper-brown")
-    static let deleteIcon = UIImage(named: "delete")
-    static let eraserIcon = UIImage(named: "eraser")
+    static let paperBackgroundImage = #imageLiteral(resourceName: "paper-brown")
+    static let deleteIcon = #imageLiteral(resourceName: "delete")
+    static let eraserIcon = #imageLiteral(resourceName: "eraser")
 
-    static let berryBlack = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
-    static let berryGrey = UIColor(red: 164 / 255, green: 164 / 255, blue: 164 / 255, alpha: 1)
-    static let berryBlue = UIColor(red: 10 / 255, green: 128 / 255, blue: 146 / 255, alpha: 1)
-    static let berryRed = UIColor(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
-    static let berryGreen = UIColor(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
+    static let berryBlack = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    static let berryGrey = #colorLiteral(red: 164 / 255, green: 164 / 255, blue: 164 / 255, alpha: 1)
+    static let berryBlue = #colorLiteral(red: 10 / 255, green: 128 / 255, blue: 146 / 255, alpha: 1)
+    static let berryRed = #colorLiteral(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
+    static let berryGreen = #colorLiteral(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
 
-    static let thickIcon = UIImage(named: "thick")
-    static let mediumIcon = UIImage(named: "medium")
-    static let thinIcon = UIImage(named: "thin")
+    static let thickIcon = #imageLiteral(resourceName: "thick")
+    static let mediumIcon = #imageLiteral(resourceName: "medium")
+    static let thinIcon = #imageLiteral(resourceName: "thin")
 
-    static let thickIconSelected = UIImage(named: "thick-selected")
-    static let mediumIconSelected = UIImage(named: "medium-selected")
-    static let thinIconSelected = UIImage(named: "thin-selected")
+    static let thickIconSelected = #imageLiteral(resourceName: "thick-selected")
+    static let mediumIconSelected = #imageLiteral(resourceName: "medium-selected")
+    static let thinIconSelected = #imageLiteral(resourceName: "thin-selected")
 }
