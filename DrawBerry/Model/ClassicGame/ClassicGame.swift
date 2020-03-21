@@ -24,9 +24,13 @@ class ClassicGame {
         currentRound == ClassicGame.maxRounds
     }
 
-    init(from room: GameRoom) {
+    convenience init(from room: GameRoom) {
+        self.init(from: room, networkAdapter: ClassicGameNetworkAdapter(roomCode: room.roomCode))
+    }
+
+    init(from room: GameRoom, networkAdapter: ClassicGameNetworkAdapter) {
         self.roomCode = room.roomCode
-        self.networkAdapter = ClassicGameNetworkAdapter(roomCode: self.roomCode)
+        self.networkAdapter = networkAdapter
         self.players = room.players.map { ClassicPlayer(from: $0) }
         let userUID = NetworkHelper.getLoggedInUserID()
         self.userIndex = self.players.firstIndex(where: { $0.uid == userUID }) ?? 0
@@ -35,6 +39,7 @@ class ClassicGame {
 
     func moveToNextRound() {
         currentRound += 1
+        // TODO: update db
     }
 
     func addUsersDrawing(image: UIImage) {
