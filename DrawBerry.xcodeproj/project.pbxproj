@@ -25,7 +25,6 @@
 		1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
 		1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */; };
 		1A4C5F252422619500937244 /* ClassicGameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* ClassicGameNetworkAdapter.swift */; };
-		1A6C69202425C196005E6D45 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */; };
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
@@ -44,7 +43,18 @@
 		3749D3AB2425F0B200CE798F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3A92425F00500CE798F /* UIImageExtension.swift */; };
 		3749D3AD2425F14A00CE798F /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */; };
 		3749D3AE2425F1D100CE798F /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */; };
-		379EE014242210E8005257E1 /* BerryCanvasTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* BerryCanvasTest.swift */; };
+		3749D3B0242608D400CE798F /* BerryCanvasTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3AF242608D400CE798F /* BerryCanvasTest.swift */; };
+		3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
+		3749D3B22426092C00CE798F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
+		3749D3B32426092E00CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
+		3749D3B42426093000CE798F /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
+		3749D3B52426093300CE798F /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE021242455AC005257E1 /* Stroke.swift */; };
+		3749D3B62426093500CE798F /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
+		3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06512418809D0085BE4A /* BerryCanvas.swift */; };
+		3749D3B82426098E00CE798F /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
+		3749D3B92426099000CE798F /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
+		3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
+		379EE014242210E8005257E1 /* BerryCanvasUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* BerryCanvasUITest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
 		379EE0202424556E005257E1 /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
@@ -139,7 +149,8 @@
 		3749D3A72425ED1300CE798F /* SnapshotTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTestCase.swift; sourceTree = "<group>"; };
 		3749D3A92425F00500CE798F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
-		379EE013242210E8005257E1 /* BerryCanvasTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasTest.swift; sourceTree = "<group>"; };
+		3749D3AF242608D400CE798F /* BerryCanvasTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasTest.swift; sourceTree = "<group>"; };
+		379EE013242210E8005257E1 /* BerryCanvasUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasUITest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
 		379EE01F2424556E005257E1 /* StrokeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeView.swift; sourceTree = "<group>"; };
@@ -472,6 +483,7 @@
 				1A3920F42425BE9700847E72 /* ModelTests */,
 				1A3920F52425BEB400847E72 /* HelperTests */,
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
+				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,
 			);
 			path = DrawBerryTests;
@@ -481,7 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEC3C072417941700F0DE03 /* DrawBerryUITests.swift */,
-				379EE013242210E8005257E1 /* BerryCanvasTest.swift */,
+				379EE013242210E8005257E1 /* BerryCanvasUITest.swift */,
 				3749D3A72425ED1300CE798F /* SnapshotTestCase.swift */,
 				FCEC3C092417941700F0DE03 /* Info.plist */,
 			);
@@ -803,9 +815,20 @@
 			files = (
 				1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */,
 				3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */,
+				3749D3B62426093500CE798F /* PaletteObserver.swift in Sources */,
+				3749D3B42426093000CE798F /* BerryPalette.swift in Sources */,
+				3749D3B0242608D400CE798F /* BerryCanvasTest.swift in Sources */,
 				1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */,
 				1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */,
+				3749D3B22426092C00CE798F /* Canvas.swift in Sources */,
+				3749D3B52426093300CE798F /* Stroke.swift in Sources */,
+				3749D3B82426098E00CE798F /* InkView.swift in Sources */,
+				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
+				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
+				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
+				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
+				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
 				FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -832,7 +855,7 @@
 				3749D3AB2425F0B200CE798F /* UIImageExtension.swift in Sources */,
 				379EE02424249144005257E1 /* CanvasDelegate.swift in Sources */,
 				3749D3AE2425F1D100CE798F /* UIImageViewExtension.swift in Sources */,
-				379EE014242210E8005257E1 /* BerryCanvasTest.swift in Sources */,
+				379EE014242210E8005257E1 /* BerryCanvasUITest.swift in Sources */,
 				379EE02824249170005257E1 /* PaletteObserver.swift in Sources */,
 				3749D3A12425E38200CE798F /* RoomPlayer.swift in Sources */,
 				3749D3A42425E3A900CE798F /* Player.swift in Sources */,
