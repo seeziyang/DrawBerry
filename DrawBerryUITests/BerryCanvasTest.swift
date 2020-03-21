@@ -10,7 +10,7 @@ import XCTest
 import PencilKit
 @testable import DrawBerry
 
-class BerryCanvasTest: XCTestCase {
+class BerryCanvasTest: SnapshotTestCase {
     var canvas: BerryCanvas!
     // Defined for the convinience of testing.
 
@@ -123,11 +123,41 @@ class BerryCanvasTest: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         app.buttons["Classic"].tap()
-        app.textFields["Room Code"].tap()
+        let roomCodeTextField = app.textFields["Room Code"]
+        roomCodeTextField.tap()
+        roomCodeTextField.typeText("testroom")
         app.buttons["Join"].tap()
         app.navigationBars["Players"].buttons["Start"].tap()
-        app.scrollViews.children(matching: .other).element(boundBy: 0).swipeRight()
-        XCTAssertTrue(canvas.history.count == 1)
+        sleep(1)
+        // Take screenshot of empty canvas first
+        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
+            XCTFail("Unable to remove status bar")
+            return
+        }
+        FBSnapshotVerifyView(imageView)
+
+        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
+        canvasScrollView.swipeRight()
+        sleep(2)
+        app.children(matching: .window).element(boundBy: 0)
+            .children(matching: .other).element
+            .children(matching: .other).element
+            .children(matching: .other).element
+            .children(matching: .other).element.buttons["delete"].tap()
+
+        guard let undoView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
+            XCTFail("Unable to remove status bar")
+            return
+        }
+        FBSnapshotVerifyView(undoView)
+    }
+}
+
+extension XCUIElement {
+    func setText(text: String, application: XCUIApplication) {
+        UIPasteboard.general.string = text
+        doubleTap()
+        application.menuItems["Paste"].tap()
     }
 }
 
@@ -202,3 +232,4 @@ extension BerryCanvasTest: CanvasDelegate {
         canvas.numberOfStrokes = 0
     }
 }
+

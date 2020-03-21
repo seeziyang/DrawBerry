@@ -12,6 +12,9 @@ target 'DrawBerry' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
 
+  # Pod for UI Testing
+  pod 'iOSSnapshotTestCase'
+
   target 'DrawBerryTests' do
     inherit! :search_paths
     # Pods for testing

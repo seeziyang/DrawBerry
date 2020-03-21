@@ -20,6 +20,7 @@ class EnterRoomViewController: UIViewController {
 
         errorLabel.alpha = 0
         roomNetworkAdapter = RoomNetworkAdapter()
+        print("network connected")
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
