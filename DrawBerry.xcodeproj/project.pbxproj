@@ -53,6 +53,7 @@
 		3749D3B92426099000CE798F /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
 		3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
 		3749D3BB242614F800CE798F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
+		3749D3BE2426565D00CE798F /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3BD2426565D00CE798F /* StringHelperTest.swift */; };
 		379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* ClassicGameUITest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
@@ -97,7 +98,6 @@
 		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */; };
 		FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */; };
-		FCA298592426161300AE1A83 /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298582426161300AE1A83 /* StringHelperTest.swift */; };
 		FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* CompetitivePlayer.swift */; };
 		FCA2985C2426195500AE1A83 /* CompetitiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488981241C7A8B00375140 /* CompetitiveGame.swift */; };
@@ -164,6 +164,7 @@
 		3749D3A92425F00500CE798F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		3749D3AF242608D400CE798F /* BerryCanvasTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasTest.swift; sourceTree = "<group>"; };
+		3749D3BD2426565D00CE798F /* StringHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringHelperTest.swift; path = DrawBerryTests/StringHelperTest.swift; sourceTree = SOURCE_ROOT; };
 		379EE013242210E8005257E1 /* ClassicGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameUITest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +202,6 @@
 		FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkSplotchPowerup.swift; sourceTree = "<group>"; };
 		FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManagerTests.swift; sourceTree = "<group>"; };
 		FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayerTests.swift; sourceTree = "<group>"; };
-		FCA298582426161300AE1A83 /* StringHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -259,10 +259,10 @@
 		1A3920F42425BE9700847E72 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				3749D3BD2426565D00CE798F /* StringHelperTest.swift */,
 				FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */,
 				1A3920F62425BEDB00847E72 /* GameRoomTests */,
 				1A6C69212425C7F8005E6D45 /* ClassicGameTests */,
-        FCA298582426161300AE1A83 /* StringHelperTest.swift */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -509,7 +509,6 @@
 			isa = PBXGroup;
 			children = (
 				1A3920F42425BE9700847E72 /* ModelTests */,
-				1A3920F52425BEB400847E72 /* HelperTests */,
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
@@ -867,9 +866,9 @@
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
+				3749D3BE2426565D00CE798F /* StringHelperTest.swift in Sources */,
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
-				FCA298592426161300AE1A83 /* StringHelperTest.swift in Sources */,
 				FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */,
 				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
 				FCA298692426196A00AE1A83 /* Player.swift in Sources */,
