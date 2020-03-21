@@ -118,8 +118,11 @@ class BerryCanvasTest: SnapshotTestCase {
         }
     }
 
-    // failing for now, trying to do UI test
     func testDraw() {
+        
+    }
+
+    func testUndo() {
         let app = XCUIApplication()
         app.launch()
         app.buttons["Classic"].tap()
@@ -128,7 +131,7 @@ class BerryCanvasTest: SnapshotTestCase {
         roomCodeTextField.typeText("testroom")
         app.buttons["Join"].tap()
         app.navigationBars["Players"].buttons["Start"].tap()
-        sleep(1)
+        sleep(3)
         // Take screenshot of empty canvas first
         guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
             XCTFail("Unable to remove status bar")
