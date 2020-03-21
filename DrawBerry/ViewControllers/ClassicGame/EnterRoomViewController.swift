@@ -72,6 +72,8 @@ class EnterRoomViewController: UIViewController {
                     self?.showErrorMessage(Message.roomDoesNotExist)
                 case .full:
                     self?.showErrorMessage(Message.roomFull)
+                case .started:
+                    self?.showErrorMessage(Message.roomStarted)
                 }
             })
     }

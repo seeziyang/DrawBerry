@@ -15,7 +15,16 @@ class GameRoom {
     weak var delegate: GameRoomDelegate?
     let roomNetworkAdapter: RoomNetworkAdapter
     let roomCode: String
-    private(set) var players: [RoomPlayer]
+    private(set) var players: [RoomPlayer] // synced with database
+
+    var status: GameRoomStatus {
+        if players.count < GameRoom.maxPlayers {
+            return .enterable
+        } else {
+            return .full
+        }
+    }
+
     var canStart: Bool {
         players.count >= GameRoom.minStartablePlayers && players.count <= GameRoom.maxPlayers
     }
@@ -33,5 +42,24 @@ class GameRoom {
             self?.players = players
             self?.delegate?.playersDidUpdate()
         })
+
+        roomNetworkAdapter.observeGameStart(roomCode: roomCode, listener: { [weak self] hasStarted in
+            if hasStarted {
+                self?.delegate?.gameHasStarted()
+            }
+        })
+    }
+
+    func startGame() {
+        roomNetworkAdapter.startGame(roomCode: roomCode)
+    }
+
+    func leaveRoom() {
+        let isLastPlayer = players.count == 1
+        if isLastPlayer {
+            roomNetworkAdapter.deleteRoom(roomCode: roomCode)
+        } else {
+            roomNetworkAdapter.leaveRoom(roomCode: roomCode)
+        }
     }
 }

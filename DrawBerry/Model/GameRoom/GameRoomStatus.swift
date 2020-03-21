@@ -10,4 +10,5 @@ enum GameRoomStatus {
     case enterable
     case doesNotExist
     case full
+    case started
 }

@@ -8,4 +8,6 @@
 
 protocol GameRoomDelegate: AnyObject {
     func playersDidUpdate()
+
+    func gameHasStarted()
 }
