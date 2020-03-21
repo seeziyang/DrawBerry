@@ -19,8 +19,11 @@ class PowerupManagerTests: XCTestCase {
         players = []
 
         for i in 0..<4 {
-            let canvas = BerryCanvas()
-            canvas.frame = CGRect(x: 100, y: 100, width: 500, height: 500)
+            let frame = CGRect(x: 100, y: 100, width: 500, height: 500)
+            guard let canvas = BerryCanvas.createCanvas(within: frame) else {
+                XCTFail("Failed to create canvas")
+                break
+            }
 
             let player = CompetitivePlayer(name: "Player \(i)", canvasDrawing: canvas)
             players.append(player)
