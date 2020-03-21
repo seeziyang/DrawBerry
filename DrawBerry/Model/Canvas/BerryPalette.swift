@@ -9,7 +9,7 @@
 import UIKit
 import PencilKit
 
-class BerryPalette: UIView {
+class BerryPalette: UIView, Palette {
     private var observer: PaletteObserver?
     private var selectedColor: UIColor? {
         didSet {
