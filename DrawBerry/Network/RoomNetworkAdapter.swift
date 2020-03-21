@@ -19,7 +19,9 @@ class RoomNetworkAdapter {
 
     deinit {
         if let observingRoomCode = observingRoomCode {
-            db.child("activeRooms").child(observingRoomCode).child("player").removeAllObservers()
+            let dbPathRef = db.child("activeRooms").child(observingRoomCode)
+            dbPathRef.child("player").removeAllObservers()
+            dbPathRef.child("hasStarted").removeAllObservers()
         }
     }
 
@@ -34,23 +36,37 @@ class RoomNetworkAdapter {
         })
     }
 
-    // TODO: check if game room started
     func checkRoomEnterable(roomCode: String, completionHandler: @escaping (GameRoomStatus) -> Void) {
-        db.child("activeRooms").child(roomCode).child("players")
+        db.child("activeRooms").child(roomCode)
             .observeSingleEvent(of: .value, with: { snapshot in
-                guard let playersValue = snapshot.value as? [String: [String: Bool]] else {
+                guard let roomValue = snapshot.value as? [String: AnyObject] else {
                     completionHandler(.doesNotExist) // room does not exists
                     return
                 }
 
-                let isNotFull = playersValue.count <= GameRoom.maxPlayers
+                if roomValue["hasStarted"] as? Bool ?? false {
+                    completionHandler(.started)
+                    return
+                }
+
+                guard let numPlayers = roomValue["players"]?.count else {
+                    // Databse error, should not happen
+                    completionHandler(.doesNotExist)
+                    return
+                }
+
+                let isNotFull = numPlayers <= GameRoom.maxPlayers
                 completionHandler(isNotFull ? .enterable : .full)
             })
     }
 
     func joinRoom(roomCode: String) {
         db.child("activeRooms").child(roomCode).child("players")
-            .child(NetworkHelper.getLoggedInUserID()).setValue(["isRoomMaster": false])
+            .child(NetworkHelper.getLoggedInUserID()).child("isRoomMaster").setValue(false)
+    }
+
+    func startGame(roomCode: String) {
+        db.child("activeRooms").child(roomCode).child("hasStarted").setValue(true)
     }
 
     // TODO: add activeRoom room deletion from db when room/game ends
@@ -70,6 +86,17 @@ class RoomNetworkAdapter {
                 }
 
                 listener(players)
+            })
+    }
+
+    func observeGameStart(roomCode: String, listener: @escaping (Bool) -> Void) {
+        db.child("activeRooms").child(roomCode).child("hasStarted")
+            .observe(.value, with: { snapshot in
+                guard let hasStartedValue = snapshot.value as? Bool else {
+                    return
+                }
+
+                listener(hasStartedValue)
             })
     }
 }

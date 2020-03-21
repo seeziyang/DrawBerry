@@ -24,4 +24,5 @@ enum Message {
     static let roomDoesNotExist = "Unable to join as room does not exist"
     static let roomFull = "Unable to join as room is full"
     static let roomCodeTaken = "Room Code already taken, please use another one!"
+    static let roomStarted = "Room has already started on its game!"
 }

@@ -16,6 +16,15 @@ class GameRoom {
     let roomNetworkAdapter: RoomNetworkAdapter
     let roomCode: String
     private(set) var players: [RoomPlayer]
+
+    var status: GameRoomStatus {
+        if players.count < GameRoom.maxPlayers {
+            return .enterable
+        } else {
+            return .full
+        }
+    }
+
     var canStart: Bool {
         players.count >= GameRoom.minStartablePlayers && players.count <= GameRoom.maxPlayers
     }
@@ -33,5 +42,13 @@ class GameRoom {
             self?.players = players
             self?.delegate?.playersDidUpdate()
         })
+
+        roomNetworkAdapter.observeGameStart(roomCode: roomCode, listener: { [weak self] hasStarted in
+            self?.delegate?.gameHasStarted()
+        })
+    }
+
+    func startGame() {
+        roomNetworkAdapter.startGame(roomCode: roomCode)
     }
 }

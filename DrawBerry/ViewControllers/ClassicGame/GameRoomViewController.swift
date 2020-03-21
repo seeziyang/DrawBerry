@@ -31,6 +31,10 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
         playersTableView.reloadData()
     }
 
+    func gameHasStarted() {
+        segueToGameVC()
+    }
+
     private func leaveGameRoom() {
         // TODO: Exit game room
 
@@ -43,8 +47,7 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
             return
         }
 
-        // TODO: trigger game start in GameRoom (and db)
-
+        room.startGame()
         segueToGameVC()
     }
 

@@ -15,6 +15,7 @@ class GameRoomTests: XCTestCase {
 
         XCTAssertEqual(gameRoom.roomCode, "123abc", "GameRoom's roomCode is not constructed properly")
         XCTAssertTrue(gameRoom.players.isEmpty, "GameRoom's players is not constructed properly")
+        XCTAssertEqual(gameRoom.status, .enterable, "GameRoom's status is not correct")
         XCTAssertFalse(gameRoom.canStart, "GameRoom's canStart is not correct")
     }
 }
