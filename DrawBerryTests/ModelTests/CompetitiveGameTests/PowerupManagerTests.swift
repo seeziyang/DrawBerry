@@ -10,6 +10,7 @@ import XCTest
 @testable import DrawBerry
 
 class PowerupManagerTests: XCTestCase {
+    /*
     var powerupManager: PowerupManager!
     var players: [CompetitivePlayer]!
 
@@ -67,5 +68,5 @@ class PowerupManagerTests: XCTestCase {
             }
             powerupManager.applyPowerup(powerup)
         }
-    }
+    }*/
 }
