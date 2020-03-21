@@ -37,7 +37,7 @@ class ClassicPlayer: Player {
         }
 
         let index = round - 1
-        if index >= drawingImages.count && index < 0 {
+        if index >= drawingImages.count || index < 0 {
             return nil
         } else {
             return drawingImages[index]
