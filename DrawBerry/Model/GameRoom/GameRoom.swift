@@ -55,6 +55,11 @@ class GameRoom {
     }
 
     func leaveRoom() {
-        roomNetworkAdapter.leaveRoom(roomCode: roomCode)
+        let isLastPlayer = players.count == 1
+        if isLastPlayer {
+            roomNetworkAdapter.deleteRoom(roomCode: roomCode)
+        } else {
+            roomNetworkAdapter.leaveRoom(roomCode: roomCode)
+        }
     }
 }

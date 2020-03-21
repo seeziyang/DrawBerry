@@ -42,6 +42,8 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     private func startGame() {
+        // TODO: make only roomMaster can startGame?
+
         if !room.canStart {
             // TODO: show some UIPrompt indicating minPlayer amount not reached
             return

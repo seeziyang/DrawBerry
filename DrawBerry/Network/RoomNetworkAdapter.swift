@@ -68,6 +68,12 @@ class RoomNetworkAdapter {
     func leaveRoom(roomCode: String) {
         db.child("activeRooms").child(roomCode).child("players")
             .child(NetworkHelper.getLoggedInUserID()).removeValue()
+
+        // TODO: handover roomMaster if is roomMaster
+    }
+
+    func deleteRoom(roomCode: String) {
+        db.child("activeRooms").child(roomCode).removeValue()
     }
 
     func startGame(roomCode: String) {
@@ -75,8 +81,6 @@ class RoomNetworkAdapter {
     }
 
     // TODO: add activeRoom room deletion from db when room/game ends
-
-    // TODO: delete player from active room if he leaves
 
     func observeRoomPlayers(roomCode: String, listener: @escaping ([RoomPlayer]) -> Void) {
         db.child("activeRooms").child(roomCode).child("players")
