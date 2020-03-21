@@ -82,6 +82,7 @@
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
 		B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
+		FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */; };
 		FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */; };
 		FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */; };
 		FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
@@ -93,6 +94,8 @@
 		FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */; };
 		FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */; };
 		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
+		FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */; };
+		FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */; };
 		FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC7F3E82421CA690096F934 /* CompetitiveView.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
@@ -171,6 +174,7 @@
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.release.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.release.xcconfig"; sourceTree = "<group>"; };
+		FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGameTests.swift; sourceTree = "<group>"; };
 		FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupAssets.swift; sourceTree = "<group>"; };
 		FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupView.swift; sourceTree = "<group>"; };
 		FC48897F241C79FD00375140 /* CompetitivePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayer.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 		FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraStrokePowerup.swift; sourceTree = "<group>"; };
 		FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAlphaPowerup.swift; sourceTree = "<group>"; };
 		FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkSplotchPowerup.swift; sourceTree = "<group>"; };
+		FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManagerTests.swift; sourceTree = "<group>"; };
+		FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayerTests.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 		1A3920F42425BE9700847E72 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */,
 				1A3920F62425BEDB00847E72 /* GameRoomTests */,
 				1A6C69212425C7F8005E6D45 /* ClassicGameTests */,
 			);
@@ -412,6 +419,16 @@
 				14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */,
+				FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */,
+				FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */,
+			);
+			path = CompetitiveGameTests;
 			sourceTree = "<group>";
 		};
 		FC48897C241C79D900375140 /* CompetitiveGame */ = {
@@ -818,12 +835,15 @@
 				3749D3B62426093500CE798F /* PaletteObserver.swift in Sources */,
 				3749D3B42426093000CE798F /* BerryPalette.swift in Sources */,
 				3749D3B0242608D400CE798F /* BerryCanvasTest.swift in Sources */,
+				FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */,
 				1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */,
+				FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */,
 				1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */,
 				3749D3B22426092C00CE798F /* Canvas.swift in Sources */,
 				3749D3B52426093300CE798F /* Stroke.swift in Sources */,
 				3749D3B82426098E00CE798F /* InkView.swift in Sources */,
 				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
+				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,

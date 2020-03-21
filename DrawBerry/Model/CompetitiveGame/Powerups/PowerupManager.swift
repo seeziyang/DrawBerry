@@ -25,11 +25,9 @@ struct PowerupManager {
             let random = Double.random(in: 0...1)
 
             if random <= PowerupManager.POWERUP_PROBABILITY {
-
-                guard let randomPowerupType = PowerupManager.ALL_POWERUPS.randomElement() else {
+                guard let powerup = generateRandomPowerup(owner: player, players: players) else {
                     return
                 }
-                let powerup = generateRandomPowerup(powerupType: randomPowerupType, owner: player, players: players)
 
                 allAvailablePowerups.append(powerup)
                 powerupsToAdd.append(powerup)
@@ -38,12 +36,14 @@ struct PowerupManager {
     }
 
     /// Generates a random powerup from the list of powerups.
-    func generateRandomPowerup(powerupType: Powerup.Type, owner: CompetitivePlayer,
-                               players: [CompetitivePlayer]) -> Powerup {
-        powerupType.init(owner: owner, players: players, location: getRandomLocation(for: owner))
+    func generateRandomPowerup(owner: CompetitivePlayer, players: [CompetitivePlayer]) -> Powerup? {
+        guard let randomPowerupType = PowerupManager.ALL_POWERUPS.randomElement() else {
+            return nil
+        }
+        return randomPowerupType.init(owner: owner, players: players, location: getRandomLocation(for: owner))
     }
 
-    private func getRandomLocation(for player: CompetitivePlayer) -> CGPoint {
+    func getRandomLocation(for player: CompetitivePlayer) -> CGPoint {
         let playerFrame = player.canvasDrawing.frame
         let maxX = playerFrame.width - CGFloat(PowerupManager.POWERUP_RADIUS * 2)
         let maxY = playerFrame.height - CGFloat(PowerupManager.POWERUP_RADIUS * 2) - 50
