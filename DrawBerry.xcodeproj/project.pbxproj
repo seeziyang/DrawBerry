@@ -44,7 +44,6 @@
 		3749D3AE2425F1D100CE798F /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */; };
 		3749D3B0242608D400CE798F /* BerryCanvasTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3AF242608D400CE798F /* BerryCanvasTest.swift */; };
 		3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
-		3749D3B22426092C00CE798F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		3749D3B32426092E00CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		3749D3B42426093000CE798F /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
 		3749D3B52426093300CE798F /* Stroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE021242455AC005257E1 /* Stroke.swift */; };
@@ -77,7 +76,6 @@
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
 		3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */; };
 		3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E212425FF210065C426 /* AuthenticationTests.swift */; };
-		3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EECC1D5241DE416002331EA /* StringHelperTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
 		3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F9241907FB00136234 /* HomeViewController.swift */; };
@@ -99,6 +97,17 @@
 		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */; };
 		FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */; };
+		FCA298592426161300AE1A83 /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298582426161300AE1A83 /* StringHelperTest.swift */; };
+		FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
+		FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* CompetitivePlayer.swift */; };
+		FCA2985C2426195500AE1A83 /* CompetitiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488981241C7A8B00375140 /* CompetitiveGame.swift */; };
+		FCA298632426196400AE1A83 /* Powerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3C241E0A10004D50EF /* Powerup.swift */; };
+		FCA298642426196400AE1A83 /* PowerupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */; };
+		FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */; };
+		FCA298662426196400AE1A83 /* ChangeAlphaPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */; };
+		FCA298672426196400AE1A83 /* PowerupAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */; };
+		FCA298682426196400AE1A83 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
+		FCA298692426196A00AE1A83 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F39992421C0FB0084859F /* Player.swift */; };
 		FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC7F3E82421CA690096F934 /* CompetitiveView.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
@@ -171,7 +180,6 @@
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUpdateDelegate.swift; sourceTree = "<group>"; };
 		3EA22E212425FF210065C426 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
-		3EECC1D5241DE416002331EA /* StringHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3EF004F9241907FB00136234 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +201,7 @@
 		FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkSplotchPowerup.swift; sourceTree = "<group>"; };
 		FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManagerTests.swift; sourceTree = "<group>"; };
 		FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayerTests.swift; sourceTree = "<group>"; };
+		FCA298582426161300AE1A83 /* StringHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -253,15 +262,9 @@
 				FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */,
 				1A3920F62425BEDB00847E72 /* GameRoomTests */,
 				1A6C69212425C7F8005E6D45 /* ClassicGameTests */,
+        FCA298582426161300AE1A83 /* StringHelperTest.swift */,
 			);
 			path = ModelTests;
-			sourceTree = "<group>";
-		};
-		1A3920F52425BEB400847E72 /* HelperTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HelperTests;
 			sourceTree = "<group>";
 		};
 		1A3920F62425BEDB00847E72 /* GameRoomTests */ = {
@@ -509,7 +512,6 @@
 				1A3920F52425BEB400847E72 /* HelperTests */,
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
-				3EECC1D5241DE416002331EA /* StringHelperTest.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,
 			);
@@ -842,9 +844,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */,
 				1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */,
-				3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */,
+				FCA298632426196400AE1A83 /* Powerup.swift in Sources */,
+				FCA298642426196400AE1A83 /* PowerupManager.swift in Sources */,
 				3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */,
+				FCA2985C2426195500AE1A83 /* CompetitiveGame.swift in Sources */,
 				3749D3B62426093500CE798F /* PaletteObserver.swift in Sources */,
 				3749D3B42426093000CE798F /* BerryPalette.swift in Sources */,
 				3749D3B0242608D400CE798F /* BerryCanvasTest.swift in Sources */,
@@ -852,16 +857,22 @@
 				1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */,
 				FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */,
 				1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */,
-				3749D3B22426092C00CE798F /* Canvas.swift in Sources */,
+				FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */,
 				3749D3B52426093300CE798F /* Stroke.swift in Sources */,
+				FCA298672426196400AE1A83 /* PowerupAssets.swift in Sources */,
+				FCA298682426196400AE1A83 /* InkSplotchPowerup.swift in Sources */,
 				3749D3B82426098E00CE798F /* InkView.swift in Sources */,
+				FCA298662426196400AE1A83 /* ChangeAlphaPowerup.swift in Sources */,
 				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
+				FCA298592426161300AE1A83 /* StringHelperTest.swift in Sources */,
+				FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */,
 				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
+				FCA298692426196A00AE1A83 /* Player.swift in Sources */,
 				FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
