@@ -14,8 +14,12 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Authentication.delegate = self
         initializeElements()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Authentication.delegate = self
     }
 
     func initializeElements() {
