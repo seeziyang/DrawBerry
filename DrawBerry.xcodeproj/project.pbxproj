@@ -43,7 +43,10 @@
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
 		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
 		37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
+		3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DB2425BBB7001BAA2F /* Constants.swift */; };
+		3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DD2425C51E001BAA2F /* Authentication.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
+		3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */; };
 		3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EECC1D5241DE416002331EA /* StringHelperTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
@@ -122,7 +125,10 @@
 		37CE065B241E19850085BE4A /* BerryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryConstants.swift; sourceTree = "<group>"; };
 		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
 		37CE0661241FC1120085BE4A /* CanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegate.swift; sourceTree = "<group>"; };
+		3E2837DB2425BBB7001BAA2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E2837DD2425C51E001BAA2F /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUpdateDelegate.swift; sourceTree = "<group>"; };
 		3EECC1D5241DE416002331EA /* StringHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -284,6 +290,8 @@
 			children = (
 				3EF004F5241906A300136234 /* LoginViewController.swift */,
 				3EF004F72419071F00136234 /* SignUpViewController.swift */,
+				3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */,
+				3E2837DD2425C51E001BAA2F /* Authentication.swift */,
 			);
 			path = UserAuthentication;
 			sourceTree = "<group>";
@@ -302,6 +310,7 @@
 			children = (
 				3EF004FB2419149A00136234 /* StringHelper.swift */,
 				3E2BDC85241A59C0001D8E8A /* Message.swift */,
+				3E2837DB2425BBB7001BAA2F /* Constants.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -680,6 +689,7 @@
 				1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
 				379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */,
+				3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */,
 				1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */,
 				FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
@@ -695,10 +705,12 @@
 				1A3F399A2421C0FB0084859F /* Player.swift in Sources */,
 				37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */,
 				1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */,
+				3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
 				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
 				1A4C5F252422619500937244 /* ClassicGameNetworkAdapter.swift in Sources */,
+				3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */,

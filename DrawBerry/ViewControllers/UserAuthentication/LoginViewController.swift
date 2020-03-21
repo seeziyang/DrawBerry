@@ -9,14 +9,16 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, AuthenticationUpdateDelegate {
 
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var background: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        Authentication.delegate = self
         initializeElements()
     }
 
@@ -28,6 +30,8 @@ class LoginViewController: UIViewController {
     }
 
     func initializeElements() {
+        background.image = Constants.roomBackground
+        background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
         emailTextField.text = "admin@drawberry.com"
         passwordTextField.text = "admin123"
@@ -63,8 +67,17 @@ class LoginViewController: UIViewController {
         return nil
     }
 
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToHomeScreen()
+        } else {
+            showErrorMessage(Message.signInError)
+        }
+    }
+
     @IBAction private func handleLoginButtonTapped(_ sender: UIButton) {
-        // Checks input text-fields
+
+        // Checks validity of user input
         if let errorMessage = validateTextFields() {
             showErrorMessage(errorMessage)
             return
@@ -75,13 +88,7 @@ class LoginViewController: UIViewController {
             return
         }
 
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
-            if error != nil {
-                self.showErrorMessage(Message.signInError)
-            } else {
-                self.goToHomeScreen()
-            }
-        }
+        Authentication.login(email: email, password: password)
     }
 
     func goToHomeScreen() {

@@ -9,14 +9,28 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AuthenticationUpdateDelegate {
+    @IBOutlet private weak var background: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        Authentication.delegate = self
+        initializeElements()
+    }
+
+    func initializeElements() {
+        background.image = Constants.mainMenuBackground
+        background.alpha = Constants.backgroundAlpha
+    }
+
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToLoginScreen()
+        }
     }
 
     @IBAction private func handleLogOutButtonTapped(_ sender: UIButton) {
-        try? Auth.auth().signOut()
-        goToLoginScreen()
+        Authentication.signOut()
     }
 
     func goToLoginScreen() {

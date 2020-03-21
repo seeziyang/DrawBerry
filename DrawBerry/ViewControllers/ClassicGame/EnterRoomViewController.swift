@@ -12,12 +12,14 @@ import Firebase
 class EnterRoomViewController: UIViewController {
     var roomNetworkAdapter: RoomNetworkAdapter!
 
+    @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var roomCodeField: UITextField!
     @IBOutlet private weak var errorLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        background.image = Constants.roomBackground
+        background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
         roomNetworkAdapter = RoomNetworkAdapter()
     }
