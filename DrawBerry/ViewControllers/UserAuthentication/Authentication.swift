@@ -8,20 +8,21 @@
 
 import Firebase
 
+/// The `Authentication` class acts as a Facade which communicates with Firebase for user authentication matters.
 class Authentication {
     private static let auth = Auth.auth()
     static weak var delegate: AuthenticationUpdateDelegate?
 
+    /// Login an existing user with an email address and password.
     static func login(email: String, password: String) {
         auth.signIn(withEmail: email, password: password) { _, error in
-            if error == nil {
-                delegate?.handleAuthenticationUpdate(status: true)
-            } else {
-                delegate?.handleAuthenticationUpdate(status: false)
-            }
+            let loginStatus = (error == nil)
+
+            delegate?.handleAuthenticationUpdate(status: loginStatus)
         }
     }
 
+    /// Sign up a new user with an email address and password.
     static func signUp(email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
 
@@ -41,6 +42,7 @@ class Authentication {
         }
     }
 
+    /// Signs out the current user.
     static func signOut() {
         try? Auth.auth().signOut()
         delegate?.handleAuthenticationUpdate(status: true)

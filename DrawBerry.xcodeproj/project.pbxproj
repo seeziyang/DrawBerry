@@ -47,6 +47,7 @@
 		3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DD2425C51E001BAA2F /* Authentication.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
 		3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */; };
+		3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E212425FF210065C426 /* AuthenticationTests.swift */; };
 		3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EECC1D5241DE416002331EA /* StringHelperTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
@@ -129,6 +130,7 @@
 		3E2837DD2425C51E001BAA2F /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUpdateDelegate.swift; sourceTree = "<group>"; };
+		3EA22E212425FF210065C426 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		3EECC1D5241DE416002331EA /* StringHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
+				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
 				3EECC1D5241DE416002331EA /* StringHelperTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,
 			);
@@ -735,6 +738,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EECC1D6241DE416002331EA /* StringHelperTest.swift in Sources */,
+				3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */,
 				FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 // TODO: do smthg about username
-class SignUpViewController: UIViewController, AuthenticationUpdateDelegate {
+class SignUpViewController: UIViewController {
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var usernameTextField: UITextField!
@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController, AuthenticationUpdateDelegate {
     }
 
     func initializeElements() {
-        background.image = Constants.roomBackground
+        background.image = Constants.signUpBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
     }
@@ -65,14 +65,6 @@ class SignUpViewController: UIViewController, AuthenticationUpdateDelegate {
         errorLabel.alpha = 1
     }
 
-    func handleAuthenticationUpdate(status: Bool) {
-        if status {
-            goToHomeScreen()
-        } else {
-            showErrorMessage(Message.signUpError)
-        }
-    }
-
     @IBAction private func handleSignUpButtonTapped(_ sender: UIButton) {
 
         // Checks validity of user input
@@ -99,4 +91,15 @@ class SignUpViewController: UIViewController, AuthenticationUpdateDelegate {
         view.window?.makeKeyAndVisible()
     }
 
+}
+
+extension SignUpViewController: AuthenticationUpdateDelegate {
+
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToHomeScreen()
+        } else {
+            showErrorMessage(Message.signUpError)
+        }
+    }
 }

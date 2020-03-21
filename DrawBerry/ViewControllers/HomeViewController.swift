@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController, AuthenticationUpdateDelegate {
+class HomeViewController: UIViewController {
     @IBOutlet private weak var background: UIImageView!
 
     override func viewDidLoad() {
@@ -23,12 +23,6 @@ class HomeViewController: UIViewController, AuthenticationUpdateDelegate {
         background.alpha = Constants.backgroundAlpha
     }
 
-    func handleAuthenticationUpdate(status: Bool) {
-        if status {
-            goToLoginScreen()
-        }
-    }
-
     @IBAction private func handleLogOutButtonTapped(_ sender: UIButton) {
         Authentication.signOut()
     }
@@ -39,5 +33,13 @@ class HomeViewController: UIViewController, AuthenticationUpdateDelegate {
         view.window?.rootViewController = loginViewController
         view.window?.makeKeyAndVisible()
     }
+}
 
+extension HomeViewController: AuthenticationUpdateDelegate {
+
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToLoginScreen()
+        }
+    }
 }

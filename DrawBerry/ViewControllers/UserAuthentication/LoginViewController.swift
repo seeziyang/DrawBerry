@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController, AuthenticationUpdateDelegate {
+class LoginViewController: UIViewController {
 
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController, AuthenticationUpdateDelegate {
     }
 
     func initializeElements() {
-        background.image = Constants.roomBackground
+        background.image = Constants.loginBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
         emailTextField.text = "admin@drawberry.com"
@@ -67,14 +67,6 @@ class LoginViewController: UIViewController, AuthenticationUpdateDelegate {
         return nil
     }
 
-    func handleAuthenticationUpdate(status: Bool) {
-        if status {
-            goToHomeScreen()
-        } else {
-            showErrorMessage(Message.signInError)
-        }
-    }
-
     @IBAction private func handleLoginButtonTapped(_ sender: UIButton) {
 
         // Checks validity of user input
@@ -98,4 +90,15 @@ class LoginViewController: UIViewController, AuthenticationUpdateDelegate {
         view.window?.makeKeyAndVisible()
     }
 
+}
+
+extension LoginViewController: AuthenticationUpdateDelegate {
+
+    func handleAuthenticationUpdate(status: Bool) {
+        if status {
+            goToHomeScreen()
+        } else {
+            showErrorMessage(Message.signInError)
+        }
+    }
 }
