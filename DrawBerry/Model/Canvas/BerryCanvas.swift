@@ -23,7 +23,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
     }
 
     private var drawingCanvas: PKCanvasView
-    private let palette: BerryPalette
+    private let palette: Palette
     private var clearButton: UIButton
 
     var currentCoordinate: CGPoint? {
@@ -83,7 +83,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         return BerryCanvas(frame: bounds)
     }
 
-    /// Sets the `PKTool` of the canvas to the given tool if the `PKTool` exists in the `BerryPalette`.
+    /// Sets the `PKTool` of the canvas to the given tool if the `PKTool` exists in the `Palette`.
     func select(tool: PKTool) {
         if !palette.contains(tool: tool) {
             return
@@ -143,7 +143,9 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         let background = BerryCanvas.createBackground(within: frame)
         addSubview(background)
         addSubview(drawingCanvas)
-        addSubview(palette)
+        if let paletteView = palette as? UIView {
+            addSubview(paletteView)
+        }
         addSubview(clearButton)
     }
 

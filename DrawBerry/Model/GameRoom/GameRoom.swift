@@ -10,7 +10,7 @@ import Firebase
 
 class GameRoom {
     static let maxPlayers = 8
-    static let minStartablePlayers = 0 // for testing, change to 3 for game
+    static let minStartablePlayers = 1 // for testing, change to 3 for game
 
     weak var delegate: GameRoomDelegate?
     let roomNetworkAdapter: RoomNetworkAdapter
@@ -20,8 +20,12 @@ class GameRoom {
         players.count >= GameRoom.minStartablePlayers && players.count <= GameRoom.maxPlayers
     }
 
-    init(roomCode: String) {
-        self.roomNetworkAdapter = RoomNetworkAdapter()
+    convenience init(roomCode: String) {
+        self.init(roomCode: roomCode, roomNetworkAdapter: RoomNetworkAdapter())
+    }
+
+    init(roomCode: String, roomNetworkAdapter: RoomNetworkAdapter) {
+        self.roomNetworkAdapter = roomNetworkAdapter
         self.roomCode = roomCode
         self.players = []
 
