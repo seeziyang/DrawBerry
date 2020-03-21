@@ -100,7 +100,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
     }
 
-    override init(frame: CGRect) {
+    private override init(frame: CGRect) {
         palette = BerryCanvas.createPalette(within: frame)
         drawingCanvas = BerryCanvas.createCanvasView(within: frame)
         clearButton = BerryCanvas.createClearButton(within: frame)
