@@ -59,6 +59,7 @@
 		3749D3C6242661A400CE798F /* SignUpViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C5242661A400CE798F /* SignUpViewUITest.swift */; };
 		3749D3C8242665EB00CE798F /* CompetitiveGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */; };
 		3749D3CA242797AA00CE798F /* BerryPaletteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */; };
+		3749D3CC2427A13700CE798F /* EnterRoomViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3CB2427A13700CE798F /* EnterRoomViewUITest.swift */; };
 		379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* ClassicGameUITest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
@@ -173,6 +174,7 @@
 		3749D3C5242661A400CE798F /* SignUpViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewUITest.swift; sourceTree = "<group>"; };
 		3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGameUITest.swift; sourceTree = "<group>"; };
 		3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPaletteTest.swift; sourceTree = "<group>"; };
+		3749D3CB2427A13700CE798F /* EnterRoomViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewUITest.swift; sourceTree = "<group>"; };
 		379EE013242210E8005257E1 /* ClassicGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameUITest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				379EE013242210E8005257E1 /* ClassicGameUITest.swift */,
 				3749D3C324265B9000CE798F /* DrawBerryUITest.swift */,
 				3749D3BF242658A300CE798F /* LoginViewUITest.swift */,
+				3749D3CB2427A13700CE798F /* EnterRoomViewUITest.swift */,
 				3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */,
 				3749D3C5242661A400CE798F /* SignUpViewUITest.swift */,
 				FCEC3C092417941700F0DE03 /* Info.plist */,
@@ -912,6 +915,7 @@
 				379EE02824249170005257E1 /* PaletteObserver.swift in Sources */,
 				3749D3A12425E38200CE798F /* RoomPlayer.swift in Sources */,
 				3749D3A42425E3A900CE798F /* Player.swift in Sources */,
+				3749D3CC2427A13700CE798F /* EnterRoomViewUITest.swift in Sources */,
 				379EE02A24249185005257E1 /* InkView.swift in Sources */,
 				3749D3C8242665EB00CE798F /* CompetitiveGameUITest.swift in Sources */,
 			);
