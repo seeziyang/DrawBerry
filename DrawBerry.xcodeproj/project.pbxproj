@@ -58,6 +58,7 @@
 		3749D3C424265B9000CE798F /* DrawBerryUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C324265B9000CE798F /* DrawBerryUITest.swift */; };
 		3749D3C6242661A400CE798F /* SignUpViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C5242661A400CE798F /* SignUpViewUITest.swift */; };
 		3749D3C8242665EB00CE798F /* CompetitiveGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */; };
+		3749D3CA242797AA00CE798F /* BerryPaletteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */; };
 		379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* ClassicGameUITest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
@@ -119,7 +120,6 @@
 		FCEC3BED2417941600F0DE03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCEC3BEB2417941600F0DE03 /* Main.storyboard */; };
 		FCEC3BEF2417941700F0DE03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCEC3BEE2417941700F0DE03 /* Assets.xcassets */; };
 		FCEC3BF22417941700F0DE03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCEC3BF02417941700F0DE03 /* LaunchScreen.storyboard */; };
-		FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +172,7 @@
 		3749D3C324265B9000CE798F /* DrawBerryUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBerryUITest.swift; sourceTree = "<group>"; };
 		3749D3C5242661A400CE798F /* SignUpViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewUITest.swift; sourceTree = "<group>"; };
 		3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGameUITest.swift; sourceTree = "<group>"; };
+		3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPaletteTest.swift; sourceTree = "<group>"; };
 		379EE013242210E8005257E1 /* ClassicGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameUITest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
@@ -219,7 +220,6 @@
 		FCEC3BF12417941700F0DE03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FCEC3BF32417941700F0DE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCEC3BF82417941700F0DE03 /* DrawBerryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawBerryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBerryTests.swift; sourceTree = "<group>"; };
 		FCEC3BFE2417941700F0DE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCEC3C032417941700F0DE03 /* DrawBerryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawBerryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3C092417941700F0DE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -515,9 +515,9 @@
 			isa = PBXGroup;
 			children = (
 				1A3920F42425BE9700847E72 /* ModelTests */,
-				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
+				3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,
 			);
 			path = DrawBerryTests;
@@ -879,9 +879,9 @@
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
 				FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */,
+				3749D3CA242797AA00CE798F /* BerryPaletteTest.swift in Sources */,
 				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
 				FCA298692426196A00AE1A83 /* Player.swift in Sources */,
-				FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
