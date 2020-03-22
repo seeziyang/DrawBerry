@@ -166,7 +166,7 @@ class BerryPalette: UIView, Palette {
             let strokeRect = getStrokeViewRect(
                 within: self.bounds, rightNeighbourOrigin: rightNeighbourOrigin)
             let strokeView = StrokeView(frame: strokeRect, stroke: stroke)
-            strokeView.image = BerryConstants.strokeToAsset[stroke] as? UIImage
+            strokeView.image = BerryConstants.strokeToAsset[stroke]
             bindTapAction(to: strokeView)
             strokeViews.append(strokeView)
             addSubview(strokeView)
@@ -180,7 +180,7 @@ class BerryPalette: UIView, Palette {
             let inkRect = getInkViewRect(within: self.frame, horizontalDisplacement: xDisp)
             let inkView = InkView(frame: inkRect, color: ink)
             xDisp += inkView.bounds.width + BerryConstants.palettePadding
-            inkView.image = BerryConstants.UIColorToAsset[ink] as? UIImage
+            inkView.image = BerryConstants.UIColorToAsset[ink]
             bindTapAction(to: inkView)
             inkViews.append(inkView)
             addSubview(inkView)
@@ -305,8 +305,8 @@ class BerryPalette: UIView, Palette {
         }
         strokeViews.forEach {
             $0.image = $0.stroke == selected
-                ? BerryConstants.selectedStrokeToAsset[$0.stroke] as? UIImage
-                : BerryConstants.strokeToAsset[$0.stroke] as? UIImage
+                ? BerryConstants.selectedStrokeToAsset[$0.stroke]
+                : BerryConstants.strokeToAsset[$0.stroke]
         }
     }
 

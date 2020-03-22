@@ -38,7 +38,6 @@
 		3749D3A42425E3A900CE798F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F39992421C0FB0084859F /* Player.swift */; };
 		3749D3A52425E3AD00CE798F /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		3749D3A62425E7A800CE798F /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
-		3749D3A82425ED1300CE798F /* SnapshotTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3A72425ED1300CE798F /* SnapshotTestCase.swift */; };
 		3749D3AA2425F00500CE798F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3A92425F00500CE798F /* UIImageExtension.swift */; };
 		3749D3AB2425F0B200CE798F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3A92425F00500CE798F /* UIImageExtension.swift */; };
 		3749D3AD2425F14A00CE798F /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */; };
@@ -54,6 +53,11 @@
 		3749D3B92426099000CE798F /* StrokeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01F2424556E005257E1 /* StrokeView.swift */; };
 		3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
 		3749D3BB242614F800CE798F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
+		3749D3BE2426565D00CE798F /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3BD2426565D00CE798F /* StringHelperTest.swift */; };
+		3749D3C0242658A300CE798F /* LoginViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3BF242658A300CE798F /* LoginViewUITest.swift */; };
+		3749D3C424265B9000CE798F /* DrawBerryUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C324265B9000CE798F /* DrawBerryUITest.swift */; };
+		3749D3C6242661A400CE798F /* SignUpViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C5242661A400CE798F /* SignUpViewUITest.swift */; };
+		3749D3C8242665EB00CE798F /* CompetitiveGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */; };
 		379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* ClassicGameUITest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
@@ -98,7 +102,6 @@
 		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */; };
 		FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */; };
-		FCA298592426161300AE1A83 /* StringHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298582426161300AE1A83 /* StringHelperTest.swift */; };
 		FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* CompetitivePlayer.swift */; };
 		FCA2985C2426195500AE1A83 /* CompetitiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488981241C7A8B00375140 /* CompetitiveGame.swift */; };
@@ -117,7 +120,6 @@
 		FCEC3BEF2417941700F0DE03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCEC3BEE2417941700F0DE03 /* Assets.xcassets */; };
 		FCEC3BF22417941700F0DE03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCEC3BF02417941700F0DE03 /* LaunchScreen.storyboard */; };
 		FCEC3BFD2417941700F0DE03 /* DrawBerryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */; };
-		FCEC3C082417941700F0DE03 /* DrawBerryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3C072417941700F0DE03 /* DrawBerryUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,10 +164,14 @@
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3749D39C2425ABD400CE798F /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
-		3749D3A72425ED1300CE798F /* SnapshotTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTestCase.swift; sourceTree = "<group>"; };
 		3749D3A92425F00500CE798F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		3749D3AF242608D400CE798F /* BerryCanvasTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryCanvasTest.swift; sourceTree = "<group>"; };
+		3749D3BD2426565D00CE798F /* StringHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringHelperTest.swift; path = DrawBerryTests/StringHelperTest.swift; sourceTree = SOURCE_ROOT; };
+		3749D3BF242658A300CE798F /* LoginViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUITest.swift; sourceTree = "<group>"; };
+		3749D3C324265B9000CE798F /* DrawBerryUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBerryUITest.swift; sourceTree = "<group>"; };
+		3749D3C5242661A400CE798F /* SignUpViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewUITest.swift; sourceTree = "<group>"; };
+		3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGameUITest.swift; sourceTree = "<group>"; };
 		379EE013242210E8005257E1 /* ClassicGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameUITest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +209,6 @@
 		FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkSplotchPowerup.swift; sourceTree = "<group>"; };
 		FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManagerTests.swift; sourceTree = "<group>"; };
 		FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayerTests.swift; sourceTree = "<group>"; };
-		FCA298582426161300AE1A83 /* StringHelperTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelperTest.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -217,7 +222,6 @@
 		FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBerryTests.swift; sourceTree = "<group>"; };
 		FCEC3BFE2417941700F0DE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCEC3C032417941700F0DE03 /* DrawBerryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawBerryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCEC3C072417941700F0DE03 /* DrawBerryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawBerryUITests.swift; sourceTree = "<group>"; };
 		FCEC3C092417941700F0DE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry_DrawBerryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -261,19 +265,12 @@
 		1A3920F42425BE9700847E72 /* ModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				3749D3BD2426565D00CE798F /* StringHelperTest.swift */,
 				FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */,
 				1A3920F62425BEDB00847E72 /* GameRoomTests */,
 				1A6C69212425C7F8005E6D45 /* ClassicGameTests */,
 			);
 			path = ModelTests;
-			sourceTree = "<group>";
-		};
-		1A3920F52425BEB400847E72 /* HelperTests */ = {
-			isa = PBXGroup;
-			children = (
-				FCA298582426161300AE1A83 /* StringHelperTest.swift */,
-			);
-			path = HelperTests;
 			sourceTree = "<group>";
 		};
 		1A3920F62425BEDB00847E72 /* GameRoomTests */ = {
@@ -518,7 +515,6 @@
 			isa = PBXGroup;
 			children = (
 				1A3920F42425BE9700847E72 /* ModelTests */,
-				1A3920F52425BEB400847E72 /* HelperTests */,
 				FCEC3BFC2417941700F0DE03 /* DrawBerryTests.swift */,
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
@@ -530,9 +526,11 @@
 		FCEC3C062417941700F0DE03 /* DrawBerryUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FCEC3C072417941700F0DE03 /* DrawBerryUITests.swift */,
 				379EE013242210E8005257E1 /* ClassicGameUITest.swift */,
-				3749D3A72425ED1300CE798F /* SnapshotTestCase.swift */,
+				3749D3C324265B9000CE798F /* DrawBerryUITest.swift */,
+				3749D3BF242658A300CE798F /* LoginViewUITest.swift */,
+				3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */,
+				3749D3C5242661A400CE798F /* SignUpViewUITest.swift */,
 				FCEC3C092417941700F0DE03 /* Info.plist */,
 			);
 			path = DrawBerryUITests;
@@ -877,9 +875,9 @@
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
+				3749D3BE2426565D00CE798F /* StringHelperTest.swift in Sources */,
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
-				FCA298592426161300AE1A83 /* StringHelperTest.swift in Sources */,
 				FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */,
 				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
 				FCA298692426196A00AE1A83 /* Player.swift in Sources */,
@@ -895,12 +893,12 @@
 				379EE0232424908E005257E1 /* BerryCanvas.swift in Sources */,
 				3749D39F2425E2F100CE798F /* RoomNetworkAdapter.swift in Sources */,
 				379EE02B24249187005257E1 /* StrokeView.swift in Sources */,
+				3749D3C0242658A300CE798F /* LoginViewUITest.swift in Sources */,
 				3749D3A52425E3AD00CE798F /* GameRoomDelegate.swift in Sources */,
-				3749D3A82425ED1300CE798F /* SnapshotTestCase.swift in Sources */,
 				379EE02624249152005257E1 /* Stroke.swift in Sources */,
 				3749D39E2425DFF400CE798F /* Palette.swift in Sources */,
+				3749D3C6242661A400CE798F /* SignUpViewUITest.swift in Sources */,
 				3749D3A62425E7A800CE798F /* CanvasDelegateViewController.swift in Sources */,
-				FCEC3C082417941700F0DE03 /* DrawBerryUITests.swift in Sources */,
 				3749D3A02425E38000CE798F /* GameRoomStatus.swift in Sources */,
 				379EE02524249150005257E1 /* BerryPalette.swift in Sources */,
 				379EE02724249158005257E1 /* BerryConstants.swift in Sources */,
@@ -910,10 +908,12 @@
 				379EE02424249144005257E1 /* CanvasDelegate.swift in Sources */,
 				3749D3AE2425F1D100CE798F /* UIImageViewExtension.swift in Sources */,
 				379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */,
+				3749D3C424265B9000CE798F /* DrawBerryUITest.swift in Sources */,
 				379EE02824249170005257E1 /* PaletteObserver.swift in Sources */,
 				3749D3A12425E38200CE798F /* RoomPlayer.swift in Sources */,
 				3749D3A42425E3A900CE798F /* Player.swift in Sources */,
 				379EE02A24249185005257E1 /* InkView.swift in Sources */,
+				3749D3C8242665EB00CE798F /* CompetitiveGameUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

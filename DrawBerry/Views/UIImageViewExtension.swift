@@ -1,5 +1,5 @@
 //
-//  UIViewExtension.swift
+//  UIImageView+Extension.swift
 //  DrawBerry
 //
 //  Created by Hol Yin Ho on 21/3/20.

@@ -6,12 +6,31 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-import XCTest
+import Firebase
+import FBSnapshotTestCase
 @testable import DrawBerry
 
-class ClassicGameUITest: SnapshotTestCase {
+class ClassicGameUITest: DrawBerryUITest {
+    static var adapter: RoomNetworkAdapter!
+    override static func setUp() {
+        FirebaseApp.configure()
+        adapter = RoomNetworkAdapter()
+    }
+
     override func setUp() {
         super.setUp()
+        ClassicGameUITest.adapter.deleteRoom(roomCode: "testroom")
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        ClassicGameUITest.adapter.deleteRoom(roomCode: "testroom")
+    }
+
+    func testClassicGameUILayout() {
+        let app = initialiseAppMoveToClassicCanvas()
+
+        verifyAppCurrentScreen(app: app)
     }
 
     func testDraw() {
@@ -20,33 +39,20 @@ class ClassicGameUITest: SnapshotTestCase {
         let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
         canvasScrollView.swipeRight()
         sleep(2)
-
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView, identifier: nil, perPixelTolerance: 0.001, overallTolerance: 0.001)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
 
         let palette = getPalette(from: app)
         palette.buttons["delete"].tap()
         canvasScrollView.swipeRight()
         sleep(1)
-        guard let secondStrokeView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(secondStrokeView, identifier: nil, perPixelTolerance: 0.001, overallTolerance: 0.001)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
     }
 
     func testUndo() {
         let app = initialiseAppMoveToClassicCanvas()
 
-        // Take screenshot of empty canvas first
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        // verify empty canvas first
+        verifyAppCurrentScreen(app: app)
 
         let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
         canvasScrollView.swipeRight()
@@ -54,11 +60,7 @@ class ClassicGameUITest: SnapshotTestCase {
         let palette = getPalette(from: app)
         palette.buttons["delete"].tap()
 
-        guard let undoView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(undoView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testSelectBlackInk() {
@@ -66,11 +68,7 @@ class ClassicGameUITest: SnapshotTestCase {
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 0).tap()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testSelectBlueInk() {
@@ -78,11 +76,7 @@ class ClassicGameUITest: SnapshotTestCase {
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 1).tap()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testSelectRedInk() {
@@ -92,11 +86,7 @@ class ClassicGameUITest: SnapshotTestCase {
         palette.children(matching: .image).element(boundBy: 5).tap()
         palette.children(matching: .image).element(boundBy: 2).tap()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testTapEraser() {
@@ -108,11 +98,7 @@ class ClassicGameUITest: SnapshotTestCase {
 
         palette.children(matching: .image).element(boundBy: 6).tap() // Eraser button, all icons should fade
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testSelectThinStroke() {
@@ -122,11 +108,7 @@ class ClassicGameUITest: SnapshotTestCase {
         palette.children(matching: .image).element(boundBy: 1).tap()
         palette.children(matching: .image).element(boundBy: 3).tap()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testSelectMediumStroke() {
@@ -136,11 +118,7 @@ class ClassicGameUITest: SnapshotTestCase {
         palette.children(matching: .image).element(boundBy: 2).tap()
         palette.children(matching: .image).element(boundBy: 4).tap()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testSelectThickStroke() {
@@ -148,11 +126,7 @@ class ClassicGameUITest: SnapshotTestCase {
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 5).tap()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testDrawBlueInk() {
@@ -162,11 +136,7 @@ class ClassicGameUITest: SnapshotTestCase {
         let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
         canvasScrollView.swipeRight()
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView, identifier: nil, perPixelTolerance: 0.001, overallTolerance: 0.001)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
     }
 
     func testTapEraserThenThickStroke() {
@@ -179,11 +149,7 @@ class ClassicGameUITest: SnapshotTestCase {
         palette.children(matching: .image).element(boundBy: 6).tap() // Eraser button, all icons should fade
         palette.children(matching: .image).element(boundBy: 5).tap() // Should default select black ink
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testTapEraserThenBlueInk() {
@@ -196,19 +162,21 @@ class ClassicGameUITest: SnapshotTestCase {
         palette.children(matching: .image).element(boundBy: 6).tap() // Eraser button, all icons should fade
         palette.children(matching: .image).element(boundBy: 1).tap() // Should default select thin stroke
 
-        guard let imageView = UIImageView(image: app.screenshot().image).withoutStatusBar else {
-            XCTFail("Unable to remove status bar")
-            return
-        }
-        FBSnapshotVerifyView(imageView)
+        verifyAppCurrentScreen(app: app)
     }
 }
 
 extension XCUIElement {
-    func setText(text: String, application: XCUIApplication) {
-        UIPasteboard.general.string = text
-        doubleTap()
-        application.menuItems["Paste"].tap()
+    func clearText() {
+        guard let stringValue = self.value as? String else {
+            return
+        }
+
+        var deleteString = String()
+        for _ in stringValue {
+            deleteString += XCUIKeyboardKey.delete.rawValue
+        }
+        typeText(deleteString)
     }
 }
 
@@ -217,14 +185,36 @@ extension ClassicGameUITest {
     private func initialiseAppMoveToClassicCanvas() -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()
+        if isLoginPage(app: app) {
+            attemptLogin(app: app)
+        }
         app.buttons["Classic"].tap()
         let roomCodeTextField = app.textFields["Room Code"]
         roomCodeTextField.tap()
         roomCodeTextField.typeText("testroom")
-        app.buttons["Join"].tap()
+        let createButton = app.buttons["Create"]
+        createButton.tap()
         app.navigationBars["Players"].buttons["Start"].tap()
         sleep(3)
         return app
+    }
+
+    private func attemptLogin(app: XCUIElement) {
+        let emailTextField = app.textFields["Email"]
+        emailTextField.tap()
+        emailTextField.clearText()
+        app.textFields["Email"].typeText("admin@drawberry.com")
+
+        let passwordSecureTextField = app.secureTextFields["password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.clearText()
+        passwordSecureTextField.typeText("admin123")
+
+        app.buttons["login"].tap()
+    }
+
+    private func isLoginPage(app: XCUIElement) -> Bool {
+        return app.buttons["Login"].exists
     }
 
     private func getPalette(from app: XCUIApplication) -> XCUIElement {
@@ -234,4 +224,5 @@ extension ClassicGameUITest {
             .children(matching: .other).element
             .children(matching: .other).element
     }
+
 }
