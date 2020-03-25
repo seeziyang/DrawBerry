@@ -13,7 +13,7 @@ class ClassicGame {
 
     weak var delegate: ClassicGameDelegate?
     let networkAdapter: ClassicGameNetworkAdapter
-    let roomCode: String
+    let roomCode: RoomCode
     let players: [ClassicPlayer]
     private let userIndex: Int // players contains user too
     var user: ClassicPlayer {

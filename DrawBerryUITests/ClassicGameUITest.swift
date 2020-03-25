@@ -19,12 +19,12 @@ class ClassicGameUITest: DrawBerryUITest {
 
     override func setUp() {
         super.setUp()
-        ClassicGameUITest.adapter.deleteRoom(roomCode: "testroom")
+        ClassicGameUITest.adapter.deleteRoom(roomCode: RoomCode(value: "testroom", type: GameRoomType.ClassicRoom))
     }
 
     override func tearDown() {
         super.tearDown()
-        ClassicGameUITest.adapter.deleteRoom(roomCode: "testroom")
+        ClassicGameUITest.adapter.deleteRoom(roomCode: RoomCode(value: "testroom", type: GameRoomType.ClassicRoom))
     }
 
     func testClassicGameUILayout() {

@@ -404,7 +404,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="9X0-Aq-ddT">
-                                <rect key="frame" x="300" y="602" width="168" height="190"/>
+                                <rect key="frame" x="300" y="602" width="168" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGS-wv-MOV">
                                         <rect key="frame" x="0.0" y="0.0" width="168" height="80"/>
@@ -427,9 +427,19 @@
                                             <segue destination="hsU-YQ-DKO" kind="show" id="tCy-1e-rRB"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-ax-xy3">
+                                        <rect key="frame" x="0.0" y="220" width="168" height="80"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Cooperative"/>
+                                        <connections>
+                                            <segue destination="Woz-8x-yfj" kind="show" id="Zd9-dv-jGU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Qeg-qU-QVj" firstAttribute="height" secondItem="qGS-wv-MOV" secondAttribute="height" id="LtB-SB-9hQ"/>
+                                    <constraint firstItem="e0Y-ax-xy3" firstAttribute="height" secondItem="Qeg-qU-QVj" secondAttribute="height" id="fA1-kU-wyb"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0X-Aq-3wY">
@@ -595,6 +605,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHn-qo-geZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1636" y="778"/>
+        </scene>
+        <!--Waiting View Controller-->
+        <scene sceneID="7m1-os-5O2">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Woz-8x-yfj" customClass="WaitingViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5KN-QR-qKZ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bSU-XJ-IO2"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kyh-tJ-N1d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XYN-Xo-Bvh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1635" y="1536"/>
         </scene>
     </scenes>
     <resources>

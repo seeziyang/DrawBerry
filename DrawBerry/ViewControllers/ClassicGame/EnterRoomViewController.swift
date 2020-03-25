@@ -27,7 +27,8 @@ class EnterRoomViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let roomVC = segue.destination as? GameRoomViewController,
-            let roomCode = roomCodeField.text {
+            let roomCodeValue = roomCodeField.text {
+            let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
             roomVC.room = GameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
         }
@@ -50,15 +51,16 @@ class EnterRoomViewController: UIViewController {
         createRoom()
     }
 
-    private func isRoomCodeValid(_ roomCode: String) -> Bool {
-        !roomCode.isEmpty
+    private func isRoomCodeValid(_ roomCode: RoomCode) -> Bool {
+        !roomCode.value.isEmpty
     }
 
     private func joinRoom() {
-        guard let roomCode = roomCodeField.text else {
+        guard let roomCodeValue = roomCodeField.text else {
             showErrorMessage(Message.emptyTextField)
             return
         }
+        let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
 
         if !isRoomCodeValid(roomCode) {
             showErrorMessage(Message.whitespaceOnlyTextField)
@@ -82,11 +84,11 @@ class EnterRoomViewController: UIViewController {
     }
 
     private func createRoom() {
-        guard let roomCode = StringHelper.trim(string: roomCodeField.text) else {
+        guard let roomCodeValue = StringHelper.trim(string: roomCodeField.text) else {
             showErrorMessage(Message.emptyTextField)
             return
         }
-
+        let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
         if !isRoomCodeValid(roomCode) {
             showErrorMessage(Message.whitespaceOnlyTextField)
             return

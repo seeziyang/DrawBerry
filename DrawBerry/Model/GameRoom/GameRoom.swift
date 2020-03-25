@@ -14,7 +14,7 @@ class GameRoom {
 
     weak var delegate: GameRoomDelegate?
     let roomNetworkAdapter: RoomNetworkAdapter
-    let roomCode: String
+    let roomCode: RoomCode
     private(set) var players: [RoomPlayer] // synced with database
 
     var status: GameRoomStatus {
@@ -29,11 +29,11 @@ class GameRoom {
         players.count >= GameRoom.minStartablePlayers && players.count <= GameRoom.maxPlayers
     }
 
-    convenience init(roomCode: String) {
+    convenience init(roomCode: RoomCode) {
         self.init(roomCode: roomCode, roomNetworkAdapter: RoomNetworkAdapter())
     }
 
-    init(roomCode: String, roomNetworkAdapter: RoomNetworkAdapter) {
+    init(roomCode: RoomCode, roomNetworkAdapter: RoomNetworkAdapter) {
         self.roomNetworkAdapter = roomNetworkAdapter
         self.roomCode = roomCode
         self.players = []
