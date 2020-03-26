@@ -12,7 +12,7 @@ class CooperativeGame {
     let networkAdapter: CooperativeGameNetworkAdapter
     let roomCode: RoomCode
     let players: [CooperativePlayer]
-    private let userIndex: Int // players contains user too
+    let userIndex: Int // players contains user too
     var user: CooperativePlayer {
         players[userIndex]
     }
@@ -22,6 +22,9 @@ class CooperativeGame {
     }
     var roundCompleted: Bool {
         currentRound > userIndex.toOneBasedIndex()
+    }
+    var isFirstPlayer: Bool {
+        userIndex == 0
     }
 
     convenience init(from room: GameRoom) {
@@ -49,7 +52,6 @@ class CooperativeGame {
 
     func waitForPreviousPlayerToFinish() {
         if userIndex == 0 {
-            delegate?.navigateToDrawingPage()
             return
         }
         let previousPlayer = players[userIndex - 1]

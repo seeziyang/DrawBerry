@@ -462,7 +462,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="cuu-G9-htT" id="GSA-QT-bja"/>
+                                    <outlet property="dataSource" destination="Hmh-pE-tgE" id="XFJ-NP-JSH"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -499,10 +499,48 @@
                         <viewLayoutGuide key="safeArea" id="q03-Cb-Mfg"/>
                     </view>
                     <navigationItem key="navigationItem" id="j9S-1S-qWb"/>
+                    <connections>
+                        <segue destination="uml-mB-lHS" kind="show" identifier="segueToDrawing" id="yAH-0R-CAL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjx-yK-kpc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3238" y="696"/>
+        </scene>
+        <!--Drawing View Controller-->
+        <scene sceneID="H6h-lM-nsR">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="uml-mB-lHS" customClass="DrawingViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GHQ-Jj-yL5">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="MOE-75-a14"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UsK-BD-5XC"/>
+                    <connections>
+                        <segue destination="sNf-n3-s6Q" kind="show" identifier="segueToViewing" id="udu-LZ-T2s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7lf-5r-XPE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4085" y="696"/>
+        </scene>
+        <!--Viewing View Controller-->
+        <scene sceneID="zrL-yg-KMX">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="sNf-n3-s6Q" customClass="ViewingViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z4v-UF-lcB">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fIr-we-jHN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sry-Yb-jvo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EjH-9j-evY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4949" y="696"/>
         </scene>
         <!--Classic Game Room View Controller-->
         <scene sceneID="THO-bA-Aan">

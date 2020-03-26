@@ -18,13 +18,13 @@ class DrawingViewController: CanvasDelegateViewController {
         // Do any additional setup after loading the view.
         addCanvasToView()
         addDoneButtonToView()
+        createMask()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let waitingVC = segue.destination as? WaitingViewController {
             waitingVC.cooperativeGame = cooperativeGame
             waitingVC.cooperativeGame.delegate = waitingVC
-            //waitingVC.cooperativeGame.observePlayersDrawing()
         }
     }
 
@@ -61,5 +61,32 @@ class DrawingViewController: CanvasDelegateViewController {
     private func finishRound() {
         cooperativeGame.addUsersDrawing(image: canvas.drawingImage)
         performSegue(withIdentifier: "segueToViewing", sender: self)
+    }
+
+    private func createMask() {
+        let canvasHeight = canvas.bounds.height - BerryConstants.paletteHeight
+        let canvasWidth = canvas.bounds.width
+
+        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
+        let drawingSpaceOrigin = CGPoint(x: 0, y: CGFloat(cooperativeGame.userIndex) * drawingSpaceHeight)
+        let firstMask = UIView(frame: CGRect(x: 0, y: 0, width: canvasWidth, height: drawingSpaceOrigin.y))
+        firstMask.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        firstMask.alpha = 0.5
+
+        let secondMask = UIView(frame:
+            CGRect(
+                x: 0,
+                y: drawingSpaceOrigin.y + drawingSpaceHeight,
+                width: canvasWidth,
+                height: canvasHeight - firstMask.bounds.height - drawingSpaceHeight)
+        )
+        secondMask.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        secondMask.alpha = 0.5
+        firstMask.layer.borderWidth = 10
+        firstMask.layer.borderColor = UIColor.red.cgColor
+        secondMask.layer.borderWidth = 10
+        secondMask.layer.borderColor = UIColor.red.cgColor
+        self.view.addSubview(firstMask)
+        self.view.addSubview(secondMask)
     }
 }

@@ -16,7 +16,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let waitingVC = segue.destination as? WaitingViewController {
             waitingVC.cooperativeGame = CooperativeGame(from: room)
-            waitingVC.cooperativeGame.waitForPreviousPlayerToFinish()
+            waitingVC.cooperativeGame.delegate = waitingVC
         }
     }
 

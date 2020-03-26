@@ -35,6 +35,4 @@ class ViewingViewController: UIViewController {
             drawingVC.cooperativeGame = cooperativeGame
         }
     }
-
 }
-

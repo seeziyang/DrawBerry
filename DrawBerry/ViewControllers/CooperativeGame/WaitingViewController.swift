@@ -16,6 +16,17 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
         super.viewDidLoad()
         addCanvasToView()
         displayMessage()
+        startGame()
+    }
+
+    private func startGame() {
+        if cooperativeGame.isFirstPlayer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.navigateToDrawingPage()
+            }
+            return
+        }
+        cooperativeGame.waitForPreviousPlayerToFinish()
     }
 
     private func addCanvasToView() {
@@ -29,7 +40,7 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
 
     private func displayMessage() {
         let message = UILabel(frame: self.view.frame)
-        message.text = "Stare at your friend"
+        message.text = cooperativeGame.isFirstPlayer ? "You're up! Get Ready!" : "Stare at your friend."
         message.textAlignment = .center
         message.font = UIFont(name: "Noteworthy", size: 80)
         self.view.addSubview(message)
