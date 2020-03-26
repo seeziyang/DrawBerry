@@ -181,7 +181,7 @@ extension BerryCanvasTest: CanvasDelegate {
 
     /// Undo the drawing to the previous state one stroke before.
     func undo(on canvas: Canvas) -> PKDrawing {
-        return popHistory(from: canvas)
+        popHistory(from: canvas)
     }
 
     func clear(canvas: Canvas) {

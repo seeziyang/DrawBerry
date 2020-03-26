@@ -8,11 +8,14 @@
 
 import UIKit
 
-protocol Powerup: AnyObject {
-    var image: UIImage? { get }
+protocol Powerup {
+    var image: UIImage { get }
+
     var owner: CompetitivePlayer { get }
     var targets: [CompetitivePlayer] { get }
     var location: CGPoint { get }
+
+    var description: String { get }
 
     func activate()
 

@@ -15,6 +15,8 @@ class ExtraStrokePowerup: Powerup {
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
+    var description = "Extra Stroke!"
+
     required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner
         self.targets = [owner]
@@ -22,8 +24,8 @@ class ExtraStrokePowerup: Powerup {
     }
 
     func activate() {
-        for target in targets {
-            target.extraStrokes += 1
+        targets.forEach {
+            $0.extraStrokes += 1
         }
     }
 }

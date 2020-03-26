@@ -15,6 +15,8 @@ class InkSplotchPowerup: Powerup {
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
+    var description = "Ink Splotch!"
+
     required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner
         self.targets = players.filter { $0 != owner }

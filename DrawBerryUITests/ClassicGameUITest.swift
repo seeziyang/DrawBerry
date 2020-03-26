@@ -214,11 +214,11 @@ extension ClassicGameUITest {
     }
 
     private func isLoginPage(app: XCUIElement) -> Bool {
-        return app.buttons["Login"].exists
+        app.buttons["Login"].exists
     }
 
     private func getPalette(from app: XCUIApplication) -> XCUIElement {
-        return app.children(matching: .window).element(boundBy: 0)
+        app.children(matching: .window).element(boundBy: 0)
             .children(matching: .other).element
             .children(matching: .other).element
             .children(matching: .other).element

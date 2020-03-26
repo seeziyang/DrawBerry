@@ -10,18 +10,22 @@ import UIKit
 
 class CompetitiveView: UIView {
     private var timeLeftLabel = UITextView()
+    var statusViewLabel = UITextView()
+
     private var powerupViews = Set<PowerupView>()
 
     func setupViews() {
         setupTimeLeftText()
+        setupStatusView()
     }
 
     private func setupTimeLeftText() {
         let width = 200, height = 200, size = 120, resultFont = "MarkerFelt-Thin"
 
-        timeLeftLabel = UITextView(
-            frame: CGRect(x: bounds.midX - CGFloat(width / 2), y: bounds.midY - CGFloat(height / 2),
-                          width: CGFloat(width), height: CGFloat(height)), textContainer: nil)
+        timeLeftLabel = UITextView(frame: CGRect(x: bounds.midX - CGFloat(width / 2),
+                                                 y: bounds.midY - CGFloat(height / 2),
+                                                 width: CGFloat(width), height: CGFloat(height)),
+                                   textContainer: nil)
         timeLeftLabel.font = UIFont(name: resultFont, size: CGFloat(size))
         timeLeftLabel.textAlignment = NSTextAlignment.center
         timeLeftLabel.text = String(CompetitiveGame.TIME_PER_ROUND)
@@ -32,18 +36,44 @@ class CompetitiveView: UIView {
         addSubview(timeLeftLabel)
     }
 
+    private func setupStatusView() {
+        let width = 800, height = 200, size = 50, resultFont = "MarkerFelt-Thin"
+
+        statusViewLabel = UITextView(frame: CGRect(x: bounds.midX - CGFloat(width / 2), y: 25,
+                                                   width: CGFloat(width), height: CGFloat(height)),
+                                     textContainer: nil)
+        statusViewLabel.font = UIFont(name: resultFont, size: CGFloat(size))
+        statusViewLabel.textAlignment = NSTextAlignment.center
+        statusViewLabel.text = "asdfghjkl"
+        statusViewLabel.backgroundColor = UIColor.clear
+        statusViewLabel.isUserInteractionEnabled = false
+        statusViewLabel.alpha = 0.0
+
+        addSubview(statusViewLabel)
+    }
+
+    func animateStatus(with text: String) {
+        statusViewLabel.text = text
+        statusViewLabel.alpha = 0.6
+        statusViewLabel.setNeedsDisplay()
+
+        UITextView.animate(withDuration: 1.0) {
+            self.statusViewLabel.alpha = 0.0
+        }
+    }
+
     func updateTimeLeftText(to text: String) {
         timeLeftLabel.text = text
         timeLeftLabel.setNeedsDisplay()
     }
 
     func addPowerupToView(_ powerup: Powerup) {
-            let powerupImage = PowerupView(image: powerup.image, coordinates: powerup.location)
-            powerupImage.frame = CGRect(x: powerup.location.x, y: powerup.location.y,
-                                        width: PowerupManager.POWERUP_RADIUS * 2,
-                                        height: PowerupManager.POWERUP_RADIUS * 2)
-            powerupViews.insert(powerupImage)
-            addSubview(powerupImage)
+        let powerupImage = PowerupView(image: powerup.image, coordinates: powerup.location)
+        powerupImage.frame = CGRect(x: powerup.location.x, y: powerup.location.y,
+                                    width: PowerupManager.POWERUP_RADIUS * 2,
+                                    height: PowerupManager.POWERUP_RADIUS * 2)
+        powerupViews.insert(powerupImage)
+        addSubview(powerupImage)
     }
 
     func removePowerupFromView(_ powerup: Powerup) {

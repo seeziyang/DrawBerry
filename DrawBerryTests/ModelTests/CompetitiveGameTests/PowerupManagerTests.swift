@@ -30,25 +30,23 @@ class PowerupManagerTests: XCTestCase {
         }
     }
 
-    func testChangeAlphaPowerup() {
+    func testHideDrawingPowerup() {
         let selectedPlayer = players[0]
-        let powerup = ChangeAlphaPowerup(owner: selectedPlayer, players: players,
-                                         location: powerupManager.getRandomLocation(for: selectedPlayer))
+        let powerup = HideDrawingPowerup(owner: selectedPlayer, players: players,
+                                         location: CGPoint.randomLocation(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
         for player in players where player != selectedPlayer {
-            XCTAssertEqual(player.canvasDrawing.alpha, ChangeAlphaPowerup.ALPHA_VALUE, accuracy: 1e-6,
-                           "Player's alpha value was not changed")
+            XCTAssertTrue(player.canvasDrawing.isHidden, "Target's drawing was not hidden")
         }
 
-        XCTAssertEqual(selectedPlayer.canvasDrawing.alpha, ChangeAlphaPowerup.DEFAULT_VALUE, accuracy: 1e-6,
-                       "Selected player's alpha value was changed")
+        XCTAssertFalse(selectedPlayer.canvasDrawing.isHidden, "Owner's drawing was hidden")
     }
 
     func testExtraStrokePowerup() {
         let selectedPlayer = players[1]
         let powerup = ExtraStrokePowerup(owner: selectedPlayer, players: players,
-                                         location: powerupManager.getRandomLocation(for: selectedPlayer))
+                                         location: CGPoint.randomLocation(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
         for player in players where player != selectedPlayer {
@@ -58,14 +56,18 @@ class PowerupManagerTests: XCTestCase {
         XCTAssertEqual(selectedPlayer.extraStrokes, 1, "Selected player's extra stroke was not incremented")
     }
 
-    func testStressPowerup() {
-        for _ in 0...10_000 {
-            guard let randomPlayer = players.randomElement(),
-                let powerup = powerupManager.generateRandomPowerup(owner: randomPlayer, players: players) else {
-                XCTFail("Failed to create powerup")
-                break
-            }
-            powerupManager.applyPowerup(powerup)
+    func testInkSplotchPowerup() {
+        let selectedPlayer = players[2]
+        let powerup = InkSplotchPowerup(owner: selectedPlayer, players: players,
+                                        location: CGPoint.randomLocation(for: selectedPlayer))
+        powerupManager.applyPowerup(powerup)
+
+        for player in players {
+            print(player.canvasDrawing.subviews.count)
+        }
+        for player in players where player != selectedPlayer {
+            XCTAssertEqual(player.canvasDrawing.subviews.count,
+                           selectedPlayer.canvasDrawing.subviews.count + 1, "Ink splotch was not added to targets")
         }
     }
 }

@@ -8,14 +8,15 @@
 
 import UIKit
 
-class ChangeAlphaPowerup: TogglePowerup {
-    static let ALPHA_VALUE: CGFloat = 0.3
-    static let DEFAULT_VALUE: CGFloat = 1.0
+class HideDrawingPowerup: TogglePowerup {
+    static let DELTA_VALUE: CGFloat = 0.7
 
     var image = PowerupAssets.changeAlphaPowerupUIImage
 
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
+
+    var description = "Hidden Drawing!"
 
     var location: CGPoint
     var duration = 1.0
@@ -27,14 +28,19 @@ class ChangeAlphaPowerup: TogglePowerup {
     }
 
     func activate() {
-        for target in targets {
-            target.canvasDrawing.alpha = ChangeAlphaPowerup.ALPHA_VALUE
+        targets.forEach {
+            $0.canvasDrawing.isHidden = true
+        }
+
+        _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { timer in
+            self.deactivate()
+            timer.invalidate()
         }
     }
 
     func deactivate() {
-        for target in targets {
-            target.canvasDrawing.alpha = ChangeAlphaPowerup.DEFAULT_VALUE
+        targets.forEach {
+            $0.canvasDrawing.isHidden = false
         }
     }
 }
