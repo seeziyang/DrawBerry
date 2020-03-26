@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EnterRoomViewController: UIViewController {
+class EnterClassicRoomViewController: UIViewController {
     var roomNetworkAdapter: RoomNetworkAdapter!
 
     @IBOutlet private weak var background: UIImageView!
@@ -26,7 +26,7 @@ class EnterRoomViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let roomVC = segue.destination as? GameRoomViewController,
+        if let roomVC = segue.destination as? ClassicGameRoomViewController,
             let roomCodeValue = roomCodeField.text {
             let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
             roomVC.room = GameRoom(roomCode: roomCode)
@@ -106,6 +106,6 @@ class EnterRoomViewController: UIViewController {
     }
 
     private func segueToRoomVC() {
-        performSegue(withIdentifier: "segueToRoom", sender: self)
+        performSegue(withIdentifier: "segueToClassicRoom", sender: self)
     }
 }

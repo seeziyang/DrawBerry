@@ -1,21 +1,20 @@
 //
-//  WaitingViewController.swift
+//  ViewingViewController.swift
 //  DrawBerry
 //
-//  Created by Hol Yin Ho on 25/3/20.
+//  Created by Hol Yin Ho on 26/3/20.
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class WaitingViewController: UIViewController, CooperativeGameDelegate {
+class ViewingViewController: UIViewController {
     var cooperativeGame: CooperativeGame!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addCanvasToView()
-        displayMessage()
     }
 
     private func addCanvasToView() {
@@ -27,16 +26,8 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
         self.view.addSubview(canvasBackground)
     }
 
-    private func displayMessage() {
-        let message = UILabel(frame: self.view.frame)
-        message.text = "Stare at your friend"
-        message.textAlignment = .center
-        message.font = UIFont(name: "Noteworthy", size: 80)
-        self.view.addSubview(message)
-    }
-
-    func navigateToDrawingPage() {
-        performSegue(withIdentifier: "segueToDrawing", sender: self)
+    func navigateToEndPage() {
+        performSegue(withIdentifier: "segueToEnd", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,3 +37,4 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
     }
 
 }
+

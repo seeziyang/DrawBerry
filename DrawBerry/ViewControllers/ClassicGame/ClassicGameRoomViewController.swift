@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameRoomViewController: UIViewController, GameRoomDelegate {
+class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
 
     @IBOutlet private weak var playersTableView: UITableView!
@@ -58,13 +58,13 @@ class GameRoomViewController: UIViewController, GameRoomDelegate {
     }
 }
 
-extension GameRoomViewController: UITableViewDataSource {
+extension ClassicGameRoomViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         room.players.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = playersTableView.dequeueReusableCell(withIdentifier: "playerCell", for: indexPath)
+        let cell = playersTableView.dequeueReusableCell(withIdentifier: "classicPlayerCell", for: indexPath)
         cell.textLabel?.text = room.players[indexPath.row].name
         return cell
     }
