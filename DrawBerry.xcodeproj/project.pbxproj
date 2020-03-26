@@ -113,6 +113,8 @@
 		FCA298682426196400AE1A83 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCA298692426196A00AE1A83 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F39992421C0FB0084859F /* Player.swift */; };
 		FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC7F3E82421CA690096F934 /* CompetitiveView.swift */; };
+		FCC995F1242C7F6E00808550 /* InvulnerabilityPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */; };
+		FCC995F2242C8A9000808550 /* InvulnerabilityPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
 		FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE92417941600F0DE03 /* ClassicViewController.swift */; };
@@ -210,6 +212,7 @@
 		FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManagerTests.swift; sourceTree = "<group>"; };
 		FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayerTests.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
+		FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvulnerabilityPowerup.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -467,6 +470,7 @@
 				FC59CA45241E18C9004D50EF /* HideDrawingPowerup.swift */,
 				FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */,
 				FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */,
+				FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */,
 			);
 			path = Powerups;
 			sourceTree = "<group>";
@@ -802,6 +806,7 @@
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
 				1A3A9F7D2423C35200C417AC /* ClassicGameDelegate.swift in Sources */,
 				1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */,
+				FCC995F1242C7F6E00808550 /* InvulnerabilityPowerup.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
 				379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */,
 				3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */,
@@ -865,6 +870,7 @@
 				1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */,
 				FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */,
 				1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */,
+				FCC995F2242C8A9000808550 /* InvulnerabilityPowerup.swift in Sources */,
 				FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */,
 				3749D3B52426093300CE798F /* Stroke.swift in Sources */,
 				FCA298672426196400AE1A83 /* PowerupAssets.swift in Sources */,

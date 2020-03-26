@@ -62,12 +62,23 @@ class PowerupManagerTests: XCTestCase {
                                         location: CGPoint.randomLocation(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
-        for player in players {
-            print(player.canvasDrawing.subviews.count)
-        }
         for player in players where player != selectedPlayer {
             XCTAssertEqual(player.canvasDrawing.subviews.count,
                            selectedPlayer.canvasDrawing.subviews.count + 1, "Ink splotch was not added to targets")
         }
+    }
+
+    func testInvulnerabilityPowerup() {
+        let selectedPlayer = players[3]
+        let powerup = InvulnerabilityPowerup(owner: selectedPlayer, players: players,
+                                             location: CGPoint.randomLocation(for: selectedPlayer))
+        powerupManager.applyPowerup(powerup)
+
+        for player in players where player != selectedPlayer {
+            XCTAssertFalse(player.isInvulnerable, "Other players were invulnerable")
+        }
+
+        XCTAssertTrue(selectedPlayer.isInvulnerable, "Owner was not invulnerable")
+        XCTAssertNil(selectedPlayer.canvasProxy, "Owner's canvas proxy is not nil")
     }
 }

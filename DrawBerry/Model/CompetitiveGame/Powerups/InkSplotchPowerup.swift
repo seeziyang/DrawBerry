@@ -34,8 +34,8 @@ class InkSplotchPowerup: Powerup {
                                       y: .random(in: 0...target.canvasDrawing.bounds.maxY - randomHeight),
                                       width: randomWidth, height: randomHeight)
 
-            target.canvasDrawing.addSubview(inkSplotch)
-            target.canvasDrawing.bringSubviewToFront(inkSplotch)
+            target.canvasProxy?.addSubview(inkSplotch)
+            target.canvasProxy?.bringSubviewToFront(inkSplotch)
         }
     }
 }

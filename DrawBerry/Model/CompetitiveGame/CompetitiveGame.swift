@@ -10,7 +10,7 @@ struct CompetitiveGame {
     static let MAX_ROUNDS = 5
     static let STROKES_PER_PLAYER = 1
     static let TIME_PER_ROUND = 45
-    static let TIME_AFTER_POWERUPS_SPAWN = 0
+    static let TIME_AFTER_POWERUPS_SPAWN = 10
 
     var players = [CompetitivePlayer]()
 

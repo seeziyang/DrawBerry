@@ -12,7 +12,7 @@ struct PowerupManager {
     static let POWERUP_PROBABILITY = 0.000_5
     static let POWERUP_RADIUS: CGFloat = 20
     static let ALL_POWERUPS: [Powerup.Type] = [HideDrawingPowerup.self, ExtraStrokePowerup.self,
-                                               InkSplotchPowerup.self]
+                                               InkSplotchPowerup.self, InvulnerabilityPowerup.self]
 
     var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()

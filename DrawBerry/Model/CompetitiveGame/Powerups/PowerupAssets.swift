@@ -13,4 +13,5 @@ struct PowerupAssets {
     static let extraStrokePowerupUIImage = #imageLiteral(resourceName: "powerup-extrastroke")
     static let inksplotchPowerupUIImage = #imageLiteral(resourceName: "powerup-inksplotch")
     static let inkSplotchUIImage = #imageLiteral(resourceName: "ink-splotch")
+    static let invulnerabilityPowerupUIImage = #imageLiteral(resourceName: "powerup-invulnerability")
 }
