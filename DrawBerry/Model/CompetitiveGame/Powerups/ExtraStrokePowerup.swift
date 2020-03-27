@@ -14,6 +14,7 @@ class ExtraStrokePowerup: Powerup {
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
     var location: CGPoint
+    var duration = 0.0
 
     var description = "Extra Stroke!"
 
@@ -27,5 +28,8 @@ class ExtraStrokePowerup: Powerup {
         targets.forEach {
             $0.extraStrokes += 1
         }
+    }
+
+    func deactivate() {
     }
 }

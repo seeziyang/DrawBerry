@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HideDrawingPowerup: TogglePowerup {
+class HideDrawingPowerup: Powerup {
     static let DELTA_VALUE: CGFloat = 0.7
 
     var image = PowerupAssets.hideDrawingPowerupUIImage

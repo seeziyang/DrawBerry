@@ -14,6 +14,7 @@ class InkSplotchPowerup: Powerup {
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
     var location: CGPoint
+    var duration = 0.0
 
     var description = "Ink Splotch!"
 
@@ -37,5 +38,8 @@ class InkSplotchPowerup: Powerup {
             target.canvasProxy?.addSubview(inkSplotch)
             target.canvasProxy?.bringSubviewToFront(inkSplotch)
         }
+    }
+
+    func deactivate() {
     }
 }
