@@ -9,9 +9,10 @@
 import UIKit
 
 struct PowerupAssets {
-    static let hideDrawingPowerupUIImage = #imageLiteral(resourceName: "powerup-changealpha")
+    static let hideDrawingPowerupUIImage = #imageLiteral(resourceName: "powerup-hidedrawing")
     static let extraStrokePowerupUIImage = #imageLiteral(resourceName: "powerup-extrastroke")
     static let inksplotchPowerupUIImage = #imageLiteral(resourceName: "powerup-inksplotch")
     static let inkSplotchUIImage = #imageLiteral(resourceName: "ink-splotch")
     static let invulnerabilityPowerupUIImage = #imageLiteral(resourceName: "powerup-invulnerability")
+    static let earthquakePowerupUIImage = #imageLiteral(resourceName: "powerup-repeatinghide")
 }

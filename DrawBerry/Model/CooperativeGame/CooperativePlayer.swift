@@ -29,7 +29,6 @@ class CooperativePlayer: Player {
     }
 
     func getDrawingImage() -> UIImage? {
-        return drawingImage
+        drawingImage
     }
 }
-

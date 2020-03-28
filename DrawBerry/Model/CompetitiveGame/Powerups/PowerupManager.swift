@@ -12,7 +12,8 @@ struct PowerupManager {
     static let POWERUP_PROBABILITY = 0.000_5
     static let POWERUP_RADIUS: CGFloat = 20
     static let ALL_POWERUPS: [Powerup.Type] = [HideDrawingPowerup.self, ExtraStrokePowerup.self,
-                                               InkSplotchPowerup.self, InvulnerabilityPowerup.self]
+                                               InkSplotchPowerup.self, InvulnerabilityPowerup.self,
+                                               EarthquakePowerup.self]
 
     var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()
@@ -43,7 +44,7 @@ struct PowerupManager {
         return randomPowerupType.init(owner: owner, players: players, location: CGPoint.randomLocation(for: owner))
     }
 
-    /// Applies the selected powerup. Activates a timer to deactivate the applied powerup if it is a `TogglePowerup`.
+    /// Applies the selected powerup.
     mutating func applyPowerup(_ powerup: Powerup) {
         powerup.activate()
 

@@ -1,5 +1,5 @@
 //
-//  TestTogglePowerup.swift
+//  HideDrawingPowerup.swift
 //  DrawBerry
 //
 //  Created by Jon Chua on 15/3/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HideDrawingPowerup: Powerup {
+class HideDrawingPowerup: TogglePowerup {
     static let DELTA_VALUE: CGFloat = 0.7
 
     var image = PowerupAssets.hideDrawingPowerupUIImage

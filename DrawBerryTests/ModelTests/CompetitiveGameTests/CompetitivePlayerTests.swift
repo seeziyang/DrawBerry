@@ -18,6 +18,7 @@ class CompetitivePlayerTests: XCTestCase {
         canvas = BerryCanvas.createCanvas(
             within: CGRect(origin: CGPoint.zero, size: CGSize(width: 500, height: 500)))
     }
+
     func testConstruct() {
         let playerName = "player"
         let player = CompetitivePlayer(name: playerName, canvasDrawing: canvas)

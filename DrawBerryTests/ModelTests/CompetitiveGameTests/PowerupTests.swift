@@ -1,5 +1,5 @@
 //
-//  PowerupManagerTests.swift
+//  PowerupTests.swift
 //  DrawBerryTests
 //
 //  Created by Jon Chua on 21/3/20.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import DrawBerry
 
-class PowerupManagerTests: XCTestCase {
+class PowerupTests: XCTestCase {
     var powerupManager: PowerupManager!
     var players: [CompetitivePlayer]!
 
@@ -41,6 +41,13 @@ class PowerupManagerTests: XCTestCase {
         }
 
         XCTAssertFalse(selectedPlayer.canvasDrawing.isHidden, "Owner's drawing was hidden")
+
+        powerup.deactivate()
+
+        for player in players {
+            XCTAssertFalse(player.canvasDrawing.isHidden,
+                           "Player's drawing was not unhidden after powerup deactivation")
+        }
     }
 
     func testExtraStrokePowerup() {
@@ -80,5 +87,12 @@ class PowerupManagerTests: XCTestCase {
 
         XCTAssertTrue(selectedPlayer.isInvulnerable, "Owner was not invulnerable")
         XCTAssertNil(selectedPlayer.canvasProxy, "Owner's canvas proxy is not nil")
+
+        powerup.deactivate()
+
+        for player in players {
+            XCTAssertFalse(player.isInvulnerable, "Players were invulnerable after powerup deactivation")
+            XCTAssertNotNil(selectedPlayer.canvasProxy, "Player's canvas proxy is nil after powerup deactivation")
+        }
     }
 }

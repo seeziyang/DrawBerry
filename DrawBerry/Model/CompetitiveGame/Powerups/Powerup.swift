@@ -14,7 +14,6 @@ protocol Powerup {
     var owner: CompetitivePlayer { get }
     var targets: [CompetitivePlayer] { get }
     var location: CGPoint { get }
-    var duration: Double { get }
 
     var description: String { get }
 
@@ -22,4 +21,12 @@ protocol Powerup {
     func deactivate()
 
     init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint)
+}
+
+protocol TogglePowerup: Powerup {
+    var duration: Double { get }
+}
+
+protocol RepeatingTogglePowerup: Powerup {
+    var timesToRepeat: Int { get }
 }

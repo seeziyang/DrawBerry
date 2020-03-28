@@ -37,7 +37,7 @@ class CompetitiveView: UIView {
     }
 
     private func setupStatusView() {
-        let width = 800, height = 200, size = 50, resultFont = "MarkerFelt-Thin"
+        let width = 800, height = 200, size = 40, resultFont = "MarkerFelt-Thin"
 
         statusViewLabel = UITextView(frame: CGRect(x: bounds.midX - CGFloat(width / 2), y: 25,
                                                    width: CGFloat(width), height: CGFloat(height)),
