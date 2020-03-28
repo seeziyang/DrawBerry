@@ -11,9 +11,10 @@ import XCTest
 
 class GameRoomTests: XCTestCase {
     func testConstruct() {
-        let gameRoom = GameRoom(roomCode: "123abc", roomNetworkAdapter: RoomNetworkAdapterStub())
+        let roomCode = RoomCode(value: "123abc", type: GameRoomType.ClassicRoom)
+        let gameRoom = GameRoom(roomCode: roomCode, roomNetworkAdapter: RoomNetworkAdapterStub())
 
-        XCTAssertEqual(gameRoom.roomCode, "123abc", "GameRoom's roomCode is not constructed properly")
+        XCTAssertEqual(gameRoom.roomCode, roomCode, "GameRoom's roomCode is not constructed properly")
         XCTAssertTrue(gameRoom.players.isEmpty, "GameRoom's players is not constructed properly")
         XCTAssertEqual(gameRoom.status, .enterable, "GameRoom's status is not correct")
         XCTAssertFalse(gameRoom.canStart, "GameRoom's canStart is not correct")
@@ -21,19 +22,19 @@ class GameRoomTests: XCTestCase {
 }
 
 class RoomNetworkAdapterStub: RoomNetworkAdapter {
-    override func createRoom(roomCode: String) {
+    override func createRoom(roomCode: RoomCode) {
     }
 
-    override func checkRoomExists(roomCode: String, completionHandler: @escaping (Bool) -> Void) {
+    override func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
     }
 
-    override func checkRoomEnterable(roomCode: String,
+    override func checkRoomEnterable(roomCode: RoomCode,
                                      completionHandler: @escaping (GameRoomStatus) -> Void) {
     }
 
-    override func joinRoom(roomCode: String) {
+    override func joinRoom(roomCode: RoomCode) {
     }
 
-    override func observeRoomPlayers(roomCode: String, listener: @escaping ([RoomPlayer]) -> Void) {
+    override func observeRoomPlayers(roomCode: RoomCode, listener: @escaping ([RoomPlayer]) -> Void) {
     }
 }

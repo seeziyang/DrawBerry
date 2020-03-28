@@ -91,7 +91,7 @@ class BerryPalette: UIView, Palette {
     }
 
     func add(stroke: Stroke) {
-        if strokeExists(stroke: stroke) {
+        if strokeExists(thickness: stroke.rawValue) {
             return
         }
         strokes.append(stroke)
@@ -133,7 +133,7 @@ class BerryPalette: UIView, Palette {
             guard let sampleInk = tool as? PKInkingTool else {
                 return false
             }
-            return colorExists(color: sampleInk.color) && Stroke.strokeExists(thickness: sampleInk.width)
+            return colorExists(color: sampleInk.color) && strokeExists(thickness: sampleInk.width)
         }
         return false
     }
@@ -316,8 +316,8 @@ class BerryPalette: UIView, Palette {
     }
 
     /// Returns true if the given `UIColor` exists in the  `BerryPalette`.
-    private func strokeExists(stroke: Stroke) -> Bool {
-        strokes.filter { stroke == $0 }.count >= 1
+    private func strokeExists(thickness: CGFloat) -> Bool {
+        strokes.filter { thickness == $0.rawValue }.count >= 1
     }
 
     /// Creates a `PKInkingTool` that corresponds to the given `UIColor`.
