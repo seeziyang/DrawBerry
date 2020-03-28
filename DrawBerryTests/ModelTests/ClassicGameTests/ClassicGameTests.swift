@@ -10,21 +10,25 @@ import XCTest
 @testable import DrawBerry
 
 class ClassicGameTests: XCTestCase {
-    var classicGame = ClassicGame(from: GameRoom(roomCode: "abc123"),
-                                  networkAdapter: ClassicGameNetworkAdapterStub(roomCode: "abc123"))
+    static let roomCode = RoomCode(value: "abc123", type: GameRoomType.ClassicRoom)
+    var classicGame = ClassicGame(
+        from: GameRoom(roomCode: ClassicGameTests.roomCode),
+        networkAdapter: ClassicGameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
 
     override func setUp() {
         super.setUp()
 
-        classicGame = ClassicGame(from: GameRoom(roomCode: "abc123"),
-                                  networkAdapter: ClassicGameNetworkAdapterStub(roomCode: "abc123"))
+        classicGame = ClassicGame(
+            from: GameRoom(roomCode: ClassicGameTests.roomCode),
+            networkAdapter: ClassicGameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
     }
 
     func testConstruct() {
-        let classicGame = ClassicGame(from: GameRoom(roomCode: "abc123"),
-                                      networkAdapter: ClassicGameNetworkAdapterStub(roomCode: "abc123"))
+        let classicGame = ClassicGame(
+            from: GameRoom(roomCode: ClassicGameTests.roomCode),
+            networkAdapter: ClassicGameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
 
-        XCTAssertEqual(classicGame.roomCode, "abc123",
+        XCTAssertEqual(classicGame.roomCode, ClassicGameTests.roomCode,
                        "ClassicGame's roomCode is not constructed properly")
         XCTAssertTrue(classicGame.players.isEmpty,
                       "ClassicGame's players is not constructed properly")
