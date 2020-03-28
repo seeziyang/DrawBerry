@@ -15,7 +15,11 @@ class GameRoom {
     weak var delegate: GameRoomDelegate?
     let roomNetworkAdapter: RoomNetworkAdapter
     let roomCode: RoomCode
-    private(set) var players: [RoomPlayer] // synced with database
+    private(set) var players: [RoomPlayer] { // synced with database
+        didSet {
+            players.sort()
+        }
+    }
 
     var status: GameRoomStatus {
         if players.count < GameRoom.maxPlayers {

@@ -17,8 +17,8 @@ class DrawingViewController: CanvasDelegateViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addCanvasToView()
-        addDoneButtonToView()
         createMask()
+        addDoneButtonToView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

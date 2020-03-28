@@ -11,7 +11,11 @@ class CooperativeGame {
     weak var delegate: CooperativeGameDelegate?
     let networkAdapter: CooperativeGameNetworkAdapter
     let roomCode: RoomCode
-    let players: [CooperativePlayer]
+    private(set) var players: [CooperativePlayer] {
+        didSet {
+            players.sort()
+        }
+    }
     let userIndex: Int // players contains user too
     var user: CooperativePlayer {
         players[userIndex]
@@ -34,7 +38,11 @@ class CooperativeGame {
     init(from room: GameRoom, networkAdapter: CooperativeGameNetworkAdapter) {
         self.roomCode = room.roomCode
         self.networkAdapter = networkAdapter
-        self.players = room.players.map { CooperativePlayer(from: $0) }
+        let sortedRoomPlayers = room.players.sorted()
+        self.players = []
+        for i in 0..<sortedRoomPlayers.count {
+            self.players.append(CooperativePlayer(from: sortedRoomPlayers[i], index: i))
+        }
         let userUID = NetworkHelper.getLoggedInUserID()
         self.userIndex = self.players.firstIndex(where: { $0.uid == userUID }) ?? 0
         self.currentRound = 1

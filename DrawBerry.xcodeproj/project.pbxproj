@@ -55,6 +55,7 @@
 		372CA59A242C67EB000E1E71 /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA599242C67EB000E1E71 /* EndViewController.swift */; };
 		372CA59C242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA59B242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift */; };
 		372CA59E242C6B07000E1E71 /* CooperativeGameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA59D242C6B07000E1E71 /* CooperativeGameRoomViewController.swift */; };
+		372CA5A2242D8B37000E1E71 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
 		3749D39D2425ABD400CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		3749D39E2425DFF400CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		3749D39F2425E2F100CE798F /* RoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */; };
@@ -116,7 +117,6 @@
 		3EF004FC2419149A00136234 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004FB2419149A00136234 /* StringHelper.swift */; };
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
-		B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
 		FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */; };
 		FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */; };
 		FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */; };
@@ -273,7 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5BF19E44604DE25EE903483 /* Pods_DrawBerry.framework in Frameworks */,
+				372CA5A2242D8B37000E1E71 /* Pods_DrawBerry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,7 +1172,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W76H98A34A;
+				DEVELOPMENT_TEAM = 4YRGJRHD4K;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DrawBerry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1192,7 +1192,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W76H98A34A;
+				DEVELOPMENT_TEAM = 4YRGJRHD4K;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DrawBerry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
