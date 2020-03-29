@@ -109,16 +109,15 @@ class CompetitiveViewController: CanvasDelegateViewController {
                 let distance = sqrt(dx * dx + dy * dy)
 
                 if distance <= PowerupManager.POWERUP_RADIUS && player == powerup.owner {
-                    applyPowerupAndDrawDescriptionOnView(powerup)
+                    powerupManager.applyPowerup(powerup)
+                    drawDescriptionOnView(powerup)
                 }
             }
         }
     }
 
-    /// Applies the specified powerup and draws the powerup description on powerup targets.
-    private func applyPowerupAndDrawDescriptionOnView(_ powerup: Powerup) {
-        powerupManager.applyPowerup(powerup)
-
+    /// Draws the specified powerup description on the powerup's targets.
+    private func drawDescriptionOnView(_ powerup: Powerup) {
         for target in powerup.targets {
             if powerup.owner != target && target.isInvulnerable {
                 let newDescription = powerup.description + "\nYou're invulnerable!"

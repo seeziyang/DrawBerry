@@ -15,6 +15,7 @@ class HideDrawingPowerup: TogglePowerup {
 
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
+    var targetCanvases = [Canvas]()
 
     var description = "Hidden Drawing!"
 
@@ -28,9 +29,8 @@ class HideDrawingPowerup: TogglePowerup {
     }
 
     func activate() {
-        targets.forEach {
-            $0.canvasProxy?.isHidden = true
-        }
+        targetCanvases = targets.compactMap { $0.canvasProxy }
+        targetCanvases.forEach { $0.isHidden = true }
 
         _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { timer in
             self.deactivate()
@@ -39,8 +39,6 @@ class HideDrawingPowerup: TogglePowerup {
     }
 
     func deactivate() {
-        targets.forEach {
-            $0.canvasProxy?.isHidden = false
-        }
+        targetCanvases.forEach { $0.isHidden = false }
     }
 }
