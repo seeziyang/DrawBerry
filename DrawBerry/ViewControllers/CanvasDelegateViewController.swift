@@ -14,6 +14,12 @@ class CanvasDelegateViewController: UIViewController, CanvasDelegate {
             recognizer.isEnabled = false
             return
         }
+        let position = recognizer.location(in: recognizer.view)
+        if !canvas.isWithinDrawableLimit(position: position) {
+            canvas.isAbleToDraw = false
+            canvas.isAbleToDraw = true
+            return
+        }
         if recognizer.state == .ended {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.syncStroke(to: canvas)

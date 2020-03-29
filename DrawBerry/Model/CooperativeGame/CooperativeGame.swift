@@ -9,8 +9,10 @@ import UIKit
 
 class CooperativeGame {
     weak var delegate: CooperativeGameDelegate?
+    weak var viewingDelegate: CooperativeGameViewingDelegate?
     let networkAdapter: CooperativeGameNetworkAdapter
     let roomCode: RoomCode
+    var allDrawings: [UIImage] = []
     private(set) var players: [CooperativePlayer] {
         didSet {
             players.sort()
@@ -22,10 +24,7 @@ class CooperativeGame {
     }
     private(set) var currentRound: Int
     var isLastPlayer: Bool {
-        currentRound == userIndex.toOneBasedIndex()
-    }
-    var roundCompleted: Bool {
-        currentRound > userIndex.toOneBasedIndex()
+        userIndex == players.count - 1
     }
     var isFirstPlayer: Bool {
         userIndex == 0
@@ -35,7 +34,7 @@ class CooperativeGame {
         self.init(from: room, networkAdapter: CooperativeGameNetworkAdapter(roomCode: room.roomCode))
     }
 
-    init(from room: GameRoom, networkAdapter: CooperativeGameNetworkAdapter) {
+    private init(from room: GameRoom, networkAdapter: CooperativeGameNetworkAdapter) {
         self.roomCode = room.roomCode
         self.networkAdapter = networkAdapter
         let sortedRoomPlayers = room.players.sorted()
@@ -58,23 +57,49 @@ class CooperativeGame {
         networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
     }
 
-    func waitForPreviousPlayerToFinish() {
-        if userIndex == 0 {
+    func waitForPreviousPlayersToFinish() {
+        if isFirstPlayer {
             return
         }
-        let previousPlayer = players[userIndex - 1]
+        let previousPlayers = players.filter { $0.index < userIndex }
+        previousPlayers.forEach { downloadDrawing(of: $0) }
+    }
+
+    func downloadSubsequentDrawings() {
+        let futurePlayers = players.filter { $0.index >= userIndex }
+        futurePlayers.forEach { downloadDrawing(of: $0) }
+    }
+
+    func downloadDrawing(of player: CooperativePlayer) {
         networkAdapter.waitAndDownloadPlayerDrawing(
-            playerUID: previousPlayer.uid, forRound: currentRound, completionHandler: { [weak self] image in
-                previousPlayer.addDrawing(image: image)
-                self?.delegate?.navigateToDrawingPage()
+            playerUID: player.uid, forRound: currentRound, completionHandler: { [weak self] image in
+                self?.allDrawings.append(image)
+                self?.navigateIfUserIsNextPlayer(currentPlayer: player)
+                self?.viewingDelegate?.updateDrawings()
+                self?.navigateIfPlayerIsLast(currentPlayer: player)
             }
         )
+    }
+
+    func navigateIfUserIsNextPlayer(currentPlayer: CooperativePlayer) {
+        if currentPlayer.index + 1 == userIndex {
+            self.delegate?.changeMessageToGetReady()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.delegate?.navigateToDrawingPage()
+            }
+        }
+    }
+
+    func navigateIfPlayerIsLast(currentPlayer: CooperativePlayer) {
+        if currentPlayer.index + 1 == players.count {
+            self.viewingDelegate?.navigateToEndPage()
+        }
     }
 }
 
 extension Int {
     // TODO put in separate file
     func toOneBasedIndex() -> Int {
-        return self + 1
+        self + 1
     }
 }

@@ -537,10 +537,32 @@
                         <viewLayoutGuide key="safeArea" id="fIr-we-jHN"/>
                     </view>
                     <navigationItem key="navigationItem" id="sry-Yb-jvo"/>
+                    <connections>
+                        <segue destination="lnz-oS-m4x" kind="show" identifier="segueToEnd" id="Ujx-8I-en9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EjH-9j-evY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4949" y="696"/>
+        </scene>
+        <!--End View Controller-->
+        <scene sceneID="l5m-YT-cd0">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="lnz-oS-m4x" customClass="EndViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U8m-do-GRj">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="vnb-Hw-YL2"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VGa-22-vTG"/>
+                    <connections>
+                        <segue destination="TxN-r9-amb" kind="show" identifier="segueToMainMenu" id="Gg7-CT-DLI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRG-we-ZV4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5718" y="696"/>
         </scene>
         <!--Classic Game Room View Controller-->
         <scene sceneID="THO-bA-Aan">
@@ -826,4 +848,7 @@
         <image name="background" width="4000" height="3000"/>
         <image name="drawberry-logo" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gg7-CT-DLI"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -56,6 +56,7 @@
 		372CA59C242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA59B242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift */; };
 		372CA59E242C6B07000E1E71 /* CooperativeGameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA59D242C6B07000E1E71 /* CooperativeGameRoomViewController.swift */; };
 		372CA5A2242D8B37000E1E71 /* Pods_DrawBerry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */; };
+		372CA5A624308046000E1E71 /* CooperativeGameViewingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA5A524308046000E1E71 /* CooperativeGameViewingDelegate.swift */; };
 		3749D39D2425ABD400CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		3749D39E2425DFF400CE798F /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D39C2425ABD400CE798F /* Palette.swift */; };
 		3749D39F2425E2F100CE798F /* RoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */; };
@@ -204,6 +205,7 @@
 		372CA599242C67EB000E1E71 /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		372CA59B242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterCooperativeRoomViewController.swift; sourceTree = "<group>"; };
 		372CA59D242C6B07000E1E71 /* CooperativeGameRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameRoomViewController.swift; sourceTree = "<group>"; };
+		372CA5A524308046000E1E71 /* CooperativeGameViewingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameViewingDelegate.swift; sourceTree = "<group>"; };
 		3749D39C2425ABD400CE798F /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		3749D3A92425F00500CE798F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 			children = (
 				372CA58C242C36B2000E1E71 /* CooperativeGame.swift */,
 				372CA591242C3B22000E1E71 /* CooperativeGameDelegate.swift */,
+				372CA5A524308046000E1E71 /* CooperativeGameViewingDelegate.swift */,
 				372CA593242C3BC3000E1E71 /* CooperativePlayer.swift */,
 			);
 			path = CooperativeGame;
@@ -912,6 +915,7 @@
 				FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */,
 				FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */,
 				372CA598242C67B0000E1E71 /* ViewingViewController.swift in Sources */,
+				372CA5A624308046000E1E71 /* CooperativeGameViewingDelegate.swift in Sources */,
 				1A432BD6241FB30A0097A14F /* GameRoom.swift in Sources */,
 				1A432BD8241FB6240097A14F /* ClassicGameRoomViewController.swift in Sources */,
 				3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */,
@@ -1171,8 +1175,9 @@
 			baseConfigurationReference = 3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4YRGJRHD4K;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DrawBerry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1181,6 +1186,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drawberry.DrawBerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1191,8 +1197,9 @@
 			baseConfigurationReference = 86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4YRGJRHD4K;
+				DEVELOPMENT_TEAM = W76H98A34A;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DrawBerry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1201,6 +1208,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.drawberry.DrawBerry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

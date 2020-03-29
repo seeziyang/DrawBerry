@@ -22,6 +22,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         drawingCanvas.tool
     }
 
+    var drawableArea: CGRect?
     private var drawingCanvas: PKCanvasView
     private let palette: Palette
     private var clearButton: UIButton
@@ -226,5 +227,15 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
     ) -> Bool {
         true
+    }
+
+    func isWithinDrawableLimit(position: CGPoint) -> Bool {
+        guard let area = drawableArea else {
+            return true
+        }
+        return position.x >= area.origin.x
+            && position.x <= area.origin.x + area.width
+            && position.y >= area.origin.y
+            && position.y <= area.origin.y + area.height
     }
 }
