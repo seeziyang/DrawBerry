@@ -36,7 +36,7 @@ extension LoginViewUITest {
     }
 
     private func isMenuPage(app: XCUIApplication) -> Bool {
-        return app.buttons["Classic"].exists
+        app.buttons["Classic"].exists
     }
 
     private func attemptLogout(app: XCUIApplication) {

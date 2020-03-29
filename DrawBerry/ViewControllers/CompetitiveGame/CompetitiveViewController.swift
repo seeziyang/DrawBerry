@@ -47,7 +47,9 @@ class CompetitiveViewController: CanvasDelegateViewController {
             return
         }
 
-        powerupManager.rollForPowerup(for: competitiveGame.players)
+        if timeLeft <= CompetitiveGame.TIME_PER_ROUND - CompetitiveGame.TIME_AFTER_POWERUPS_SPAWN {
+            powerupManager.rollForPowerup(for: competitiveGame.players)
+        }
 
         checkForPlayersDoneWithDrawing()
         checkForPlayerStrokeOutOfBounds()
@@ -108,7 +110,20 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
                 if distance <= PowerupManager.POWERUP_RADIUS && player == powerup.owner {
                     powerupManager.applyPowerup(powerup)
+                    drawDescriptionOnView(powerup)
                 }
+            }
+        }
+    }
+
+    /// Draws the specified powerup description on the powerup's targets.
+    private func drawDescriptionOnView(_ powerup: Powerup) {
+        for target in powerup.targets {
+            if powerup.owner != target && target.isInvulnerable {
+                let newDescription = powerup.description + "\nYou're invulnerable!"
+                competitiveViews[target]?.animateStatus(with: newDescription)
+            } else {
+                competitiveViews[target]?.animateStatus(with: powerup.description)
             }
         }
     }
@@ -121,7 +136,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
         }
     }
 
-    // Maybe we should create a helper class to populate canvases in the view
+    /// Adds the canvases for the four players to the competitive game.
     private func addCanvasesToView() {
         assert(competitiveGame.players.count == 4, "Player count should be 4")
 

@@ -67,6 +67,6 @@ class CooperativeGame {
 extension Int {
     // TODO put in separate file
     func toOneBasedIndex() -> Int {
-        return self + 1
+        self + 1
     }
 }

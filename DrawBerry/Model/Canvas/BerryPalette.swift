@@ -365,6 +365,6 @@ class BerryPalette: UIView, Palette {
 
 extension UIView {
     func getOriginWithRespectToSuperview() -> CGPoint {
-        return CGPoint( x: self.center.x - (self.bounds.width / 2), y: self.center.y - (self.bounds.height / 2))
+        CGPoint( x: self.center.x - (self.bounds.width / 2), y: self.center.y - (self.bounds.height / 2))
     }
 }

@@ -120,6 +120,8 @@
 		FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */; };
 		FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */; };
 		FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */; };
+		FC404616242F876B003A38A6 /* EarthquakePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC404615242F876B003A38A6 /* EarthquakePowerup.swift */; };
+		FC404617242F876B003A38A6 /* EarthquakePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC404615242F876B003A38A6 /* EarthquakePowerup.swift */; };
 		FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0657241B1E240085BE4A /* BerryPalette.swift */; };
 		FC488980241C79FD00375140 /* CompetitivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* CompetitivePlayer.swift */; };
 		FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC488981241C7A8B00375140 /* CompetitiveGame.swift */; };
@@ -127,9 +129,9 @@
 		FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3C241E0A10004D50EF /* Powerup.swift */; };
 		FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */; };
 		FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */; };
-		FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */; };
+		FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* HideDrawingPowerup.swift */; };
 		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
-		FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */; };
+		FCA298552425FA2C00AE1A83 /* PowerupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupTests.swift */; };
 		FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */; };
 		FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE06522418809D0085BE4A /* Canvas.swift */; };
 		FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC48897F241C79FD00375140 /* CompetitivePlayer.swift */; };
@@ -137,11 +139,13 @@
 		FCA298632426196400AE1A83 /* Powerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3C241E0A10004D50EF /* Powerup.swift */; };
 		FCA298642426196400AE1A83 /* PowerupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */; };
 		FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */; };
-		FCA298662426196400AE1A83 /* ChangeAlphaPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */; };
+		FCA298662426196400AE1A83 /* HideDrawingPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* HideDrawingPowerup.swift */; };
 		FCA298672426196400AE1A83 /* PowerupAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */; };
 		FCA298682426196400AE1A83 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCA298692426196A00AE1A83 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F39992421C0FB0084859F /* Player.swift */; };
 		FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC7F3E82421CA690096F934 /* CompetitiveView.swift */; };
+		FCC995F1242C7F6E00808550 /* InvulnerabilityPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */; };
+		FCC995F2242C8A9000808550 /* InvulnerabilityPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */; };
 		FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE52417941600F0DE03 /* AppDelegate.swift */; };
 		FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */; };
 		FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC3BE92417941600F0DE03 /* ClassicViewController.swift */; };
@@ -242,17 +246,19 @@
 		FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGameTests.swift; sourceTree = "<group>"; };
 		FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupAssets.swift; sourceTree = "<group>"; };
 		FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupView.swift; sourceTree = "<group>"; };
+		FC404615242F876B003A38A6 /* EarthquakePowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakePowerup.swift; sourceTree = "<group>"; };
 		FC48897F241C79FD00375140 /* CompetitivePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayer.swift; sourceTree = "<group>"; };
 		FC488981241C7A8B00375140 /* CompetitiveGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGame.swift; sourceTree = "<group>"; };
 		FC488987241C7C4D00375140 /* CompetitiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveViewController.swift; sourceTree = "<group>"; };
 		FC59CA3C241E0A10004D50EF /* Powerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Powerup.swift; sourceTree = "<group>"; };
 		FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManager.swift; sourceTree = "<group>"; };
 		FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraStrokePowerup.swift; sourceTree = "<group>"; };
-		FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAlphaPowerup.swift; sourceTree = "<group>"; };
+		FC59CA45241E18C9004D50EF /* HideDrawingPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideDrawingPowerup.swift; sourceTree = "<group>"; };
 		FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkSplotchPowerup.swift; sourceTree = "<group>"; };
-		FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupManagerTests.swift; sourceTree = "<group>"; };
+		FCA298542425FA2C00AE1A83 /* PowerupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupTests.swift; sourceTree = "<group>"; };
 		FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitivePlayerTests.swift; sourceTree = "<group>"; };
 		FCC7F3E82421CA690096F934 /* CompetitiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveView.swift; sourceTree = "<group>"; };
+		FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvulnerabilityPowerup.swift; sourceTree = "<group>"; };
 		FCEC3BE22417941600F0DE03 /* DrawBerry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawBerry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEC3BE52417941600F0DE03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCEC3BE72417941600F0DE03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -513,7 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */,
-				FCA298542425FA2C00AE1A83 /* PowerupManagerTests.swift */,
+				FCA298542425FA2C00AE1A83 /* PowerupTests.swift */,
 				FCA298562425FA5100AE1A83 /* CompetitivePlayerTests.swift */,
 			);
 			path = CompetitiveGameTests;
@@ -535,9 +541,11 @@
 				FC59CA3C241E0A10004D50EF /* Powerup.swift */,
 				FC59CA3F241E0BDF004D50EF /* PowerupManager.swift */,
 				FC59CA41241E10EC004D50EF /* ExtraStrokePowerup.swift */,
-				FC59CA45241E18C9004D50EF /* ChangeAlphaPowerup.swift */,
+				FC59CA45241E18C9004D50EF /* HideDrawingPowerup.swift */,
 				FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */,
 				FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */,
+				FCC995F0242C7F6E00808550 /* InvulnerabilityPowerup.swift */,
+				FC404615242F876B003A38A6 /* EarthquakePowerup.swift */,
 			);
 			path = Powerups;
 			sourceTree = "<group>";
@@ -677,7 +685,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = DrawBerry;
 				TargetAttributes = {
 					FCEC3BE12417941600F0DE03 = {
@@ -875,11 +883,12 @@
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
 				1A3A9F7D2423C35200C417AC /* ClassicGameDelegate.swift in Sources */,
 				1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */,
+				FCC995F1242C7F6E00808550 /* InvulnerabilityPowerup.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
 				379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */,
 				3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */,
 				1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */,
-				FC59CA46241E18C9004D50EF /* ChangeAlphaPowerup.swift in Sources */,
+				FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
 				372CA59A242C67EB000E1E71 /* EndViewController.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
@@ -929,6 +938,7 @@
 				1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 				1A432BDA241FBA540097A14F /* EnterClassicRoomViewController.swift in Sources */,
+				FC404616242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,9 +962,10 @@
 				1A3920FA2425BF6700847E72 /* RoomPlayerTests.swift in Sources */,
 				372CA580242BC142000E1E71 /* ClassicGameDelegate.swift in Sources */,
 				372CA586242BC286000E1E71 /* GameRoomType.swift in Sources */,
-				FCA298552425FA2C00AE1A83 /* PowerupManagerTests.swift in Sources */,
+				FCA298552425FA2C00AE1A83 /* PowerupTests.swift in Sources */,
 				372CA582242BC14D000E1E71 /* RoomPlayer.swift in Sources */,
 				1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */,
+				FCC995F2242C8A9000808550 /* InvulnerabilityPowerup.swift in Sources */,
 				FCA2985B2426195000AE1A83 /* CompetitivePlayer.swift in Sources */,
 				372CA589242BC2EC000E1E71 /* GameRoomDelegate.swift in Sources */,
 				372CA57A242BC033000E1E71 /* GameRoom.swift in Sources */,
@@ -966,10 +977,11 @@
 				372CA581242BC147000E1E71 /* GameRoomStatus.swift in Sources */,
 				372CA588242BC2DE000E1E71 /* ClassicGameNetworkAdapter.swift in Sources */,
 				372CA57E242BC13E000E1E71 /* ClassicPlayer.swift in Sources */,
-				FCA298662426196400AE1A83 /* ChangeAlphaPowerup.swift in Sources */,
+				FCA298662426196400AE1A83 /* HideDrawingPowerup.swift in Sources */,
 				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
+				FC404617242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
 				372CA585242BC241000E1E71 /* NetworkHelper.swift in Sources */,
 				3749D3BE2426565D00CE798F /* StringHelperTest.swift in Sources */,

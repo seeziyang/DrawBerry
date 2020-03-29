@@ -47,6 +47,6 @@ extension EnterRoomViewUITest {
     }
 
     private func isLoginPage(app: XCUIElement) -> Bool {
-        return app.buttons["Login"].exists
+        app.buttons["Login"].exists
     }
 }

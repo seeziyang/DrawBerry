@@ -61,7 +61,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
 extension CooperativeGameRoomViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return room.players.count
+        room.players.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
