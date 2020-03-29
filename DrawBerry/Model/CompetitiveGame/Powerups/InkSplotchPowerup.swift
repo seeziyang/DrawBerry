@@ -15,6 +15,8 @@ class InkSplotchPowerup: Powerup {
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
+    var description = "Ink Splotch!"
+
     required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner
         self.targets = players.filter { $0 != owner }
@@ -32,8 +34,11 @@ class InkSplotchPowerup: Powerup {
                                       y: .random(in: 0...target.canvasDrawing.bounds.maxY - randomHeight),
                                       width: randomWidth, height: randomHeight)
 
-            target.canvasDrawing.addSubview(inkSplotch)
-            target.canvasDrawing.bringSubviewToFront(inkSplotch)
+            target.canvasProxy?.addSubview(inkSplotch)
+            target.canvasProxy?.bringSubviewToFront(inkSplotch)
         }
+    }
+
+    func deactivate() {
     }
 }

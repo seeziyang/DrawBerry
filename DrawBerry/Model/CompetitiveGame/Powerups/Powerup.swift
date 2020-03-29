@@ -8,19 +8,25 @@
 
 import UIKit
 
-protocol Powerup: AnyObject {
-    var image: UIImage? { get }
+protocol Powerup {
+    var image: UIImage { get }
+
     var owner: CompetitivePlayer { get }
     var targets: [CompetitivePlayer] { get }
     var location: CGPoint { get }
 
+    var description: String { get }
+
     func activate()
+    func deactivate()
 
     init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint)
 }
 
 protocol TogglePowerup: Powerup {
     var duration: Double { get }
+}
 
-    func deactivate()
+protocol RepeatingTogglePowerup: Powerup {
+    var timesToRepeat: Int { get }
 }

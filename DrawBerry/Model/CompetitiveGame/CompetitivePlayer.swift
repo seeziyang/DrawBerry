@@ -6,6 +6,8 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
+import UIKit
+
 class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
     init(name: String, canvasDrawing: Canvas) {
         self.name = name
@@ -14,7 +16,11 @@ class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
 
     var name: String
     var canvasDrawing: Canvas
+    var canvasProxy: Canvas? {
+        isInvulnerable ? nil : canvasDrawing
+    }
 
+    var isInvulnerable = false
     var extraStrokes = 0
 
     var description: String {
