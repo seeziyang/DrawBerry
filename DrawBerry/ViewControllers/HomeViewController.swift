@@ -11,10 +11,15 @@ import Firebase
 
 class HomeViewController: UIViewController {
     @IBOutlet private weak var background: UIImageView!
+    @IBOutlet private weak var profileImageView: UIImageView!
+
+    private var imagePicker: UIImagePickerController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
+        setupImagePicker()
+        UserProfileNetworkAdapter.downloadProfileImage(delegate: self, playerUID: NetworkHelper.getLoggedInUserID())
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -22,9 +27,28 @@ class HomeViewController: UIViewController {
         Authentication.delegate = self
     }
 
+    /// Hides the status bar at the top
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     func initializeElements() {
+        profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.height
+        profileImageView.clipsToBounds = true
+
         background.image = Constants.mainMenuBackground
         background.alpha = Constants.backgroundAlpha
+    }
+
+    func setupImagePicker() {
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+    }
+
+    @IBAction private func handleProfilePictureTapped(_ sender: UITapGestureRecognizer) {
+        present(imagePicker, animated: true, completion: nil)
     }
 
     @IBAction private func handleLogOutButtonTapped(_ sender: UIButton) {
@@ -39,6 +63,18 @@ class HomeViewController: UIViewController {
     }
 }
 
+extension HomeViewController: UserProfileNetworkDelegate {
+    func loadProfileImage(image: UIImage?) {
+        // TODO: Get image from database
+        if let image = image {
+            profileImageView.image = image
+        } else {
+            profileImageView.image = Constants.defaultProfilePicture
+        }
+    }
+
+}
+
 extension HomeViewController: AuthenticationUpdateDelegate {
 
     func handleAuthenticationUpdate(status: Bool) {
@@ -46,4 +82,25 @@ extension HomeViewController: AuthenticationUpdateDelegate {
             goToLoginScreen()
         }
     }
+}
+
+/// Extension for image picker
+extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            profileImageView.image = image
+            UserProfileNetworkAdapter.uploadProfileImage(image)
+        }
+
+        picker.dismiss(animated: true, completion: nil)
+
+    }
+
 }
