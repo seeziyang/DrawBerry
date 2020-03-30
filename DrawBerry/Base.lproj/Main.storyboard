@@ -623,6 +623,7 @@
                     <navigationItem key="navigationItem" id="A3K-k2-ONo"/>
                     <connections>
                         <outlet property="playersTableView" destination="A9o-bN-1r2" id="zmt-Bk-X1F"/>
+                        <outlet property="startButton" destination="JDg-Za-XE2" id="m8a-we-n6A"/>
                         <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToClassicGame" id="epa-EW-RcE"/>
                     </connections>
                 </viewController>

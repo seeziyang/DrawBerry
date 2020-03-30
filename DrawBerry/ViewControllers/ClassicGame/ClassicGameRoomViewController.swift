@@ -12,6 +12,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
 
     @IBOutlet private weak var playersTableView: UITableView!
+    @IBOutlet private weak var startButton: UIBarButtonItem!
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let classicVC = segue.destination as? ClassicViewController {
@@ -27,8 +28,18 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         startGame()
     }
 
+    func configureStartButton() {
+        if let currentUser = room.user {
+            if !currentUser.isRoomMaster {
+                startButton.isEnabled = false
+                startButton.tintColor = UIColor.clear
+            }
+        }
+    }
+
     func playersDidUpdate() {
         playersTableView.reloadData()
+        configureStartButton()
     }
 
     func gameHasStarted() {
