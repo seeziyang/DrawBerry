@@ -17,14 +17,15 @@ class DrawingViewController: CanvasDelegateViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addCanvasToView()
-        addDoneButtonToView()
+        addPreviousDrawings()
         createMask()
+        addDoneButtonToView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let waitingVC = segue.destination as? WaitingViewController {
-            waitingVC.cooperativeGame = cooperativeGame
-            waitingVC.cooperativeGame.delegate = waitingVC
+        if let viewingVC = segue.destination as? ViewingViewController {
+            viewingVC.cooperativeGame = cooperativeGame
+            viewingVC.cooperativeGame.viewingDelegate = viewingVC
         }
     }
 
@@ -39,7 +40,7 @@ class DrawingViewController: CanvasDelegateViewController {
         canvas.isClearButtonEnabled = true
         canvas.isUndoButtonEnabled = true
         canvas.delegate = self
-        self.view.addSubview(canvas)
+        view.addSubview(canvas)
         self.canvas = canvas
     }
 
@@ -51,7 +52,7 @@ class DrawingViewController: CanvasDelegateViewController {
         button.setTitle("Done", for: .normal)
         button.addTarget(self, action: #selector(doneOnTap(sender:)), for: .touchUpInside)
 
-        self.view.addSubview(button)
+        view.addSubview(button)
     }
 
     @objc private func doneOnTap(sender: UIButton) {
@@ -63,15 +64,41 @@ class DrawingViewController: CanvasDelegateViewController {
         performSegue(withIdentifier: "segueToViewing", sender: self)
     }
 
+    private func addPreviousDrawings() {
+        let canvasHeight = canvas.bounds.height - BerryConstants.paletteHeight
+        let canvasWidth = canvas.bounds.width
+        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
+        var verticalDisp: CGFloat = 0
+        cooperativeGame.allDrawings.forEach {
+            let imageView = UIImageView(
+                frame: CGRect(x: 0, y: verticalDisp, width: canvasWidth, height: drawingSpaceHeight)
+            )
+            imageView.image = $0
+            view.addSubview(imageView)
+            verticalDisp += drawingSpaceHeight
+        }
+    }
+
     private func createMask() {
         let canvasHeight = canvas.bounds.height - BerryConstants.paletteHeight
         let canvasWidth = canvas.bounds.width
 
         let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
         let drawingSpaceOrigin = CGPoint(x: 0, y: CGFloat(cooperativeGame.userIndex) * drawingSpaceHeight)
+        canvas.drawableArea = CGRect(
+            x: drawingSpaceOrigin.x,
+            y: drawingSpaceOrigin.y,
+            width: canvasWidth,
+            height: drawingSpaceHeight
+        )
         let firstMask = UIView(frame: CGRect(x: 0, y: 0, width: canvasWidth, height: drawingSpaceOrigin.y))
         firstMask.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         firstMask.alpha = 0.5
+
+        let firstMaskOpaque =
+            UIView(frame: CGRect(x: 0, y: 0, width: canvasWidth, height: drawingSpaceOrigin.y - 50))
+        firstMaskOpaque.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        firstMaskOpaque.alpha = 0.5
 
         let secondMask = UIView(frame:
             CGRect(
@@ -82,11 +109,8 @@ class DrawingViewController: CanvasDelegateViewController {
         )
         secondMask.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         secondMask.alpha = 0.5
-        firstMask.layer.borderWidth = 10
-        firstMask.layer.borderColor = UIColor.red.cgColor
-        secondMask.layer.borderWidth = 10
-        secondMask.layer.borderColor = UIColor.red.cgColor
-        self.view.addSubview(firstMask)
-        self.view.addSubview(secondMask)
+        view.addSubview(firstMaskOpaque)
+        view.addSubview(firstMask)
+        view.addSubview(secondMask)
     }
 }

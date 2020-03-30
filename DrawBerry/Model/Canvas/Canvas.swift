@@ -29,11 +29,15 @@ protocol Canvas: UIView {
 
     var currentCoordinate: CGPoint? { get }
 
+    var drawableArea: CGRect? { get set }
+
     func undo()
 
     func select(tool: PKTool)
 
     func randomiseInkTool()
+
+    func isWithinDrawableLimit(position: CGPoint) -> Bool
 }
 
 extension Canvas {

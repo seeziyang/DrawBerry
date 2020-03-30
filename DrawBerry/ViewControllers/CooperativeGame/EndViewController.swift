@@ -15,6 +15,7 @@ class EndViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addCanvasToView()
+        populateDrawings()
     }
 
     private func addCanvasToView() {
@@ -26,4 +27,18 @@ class EndViewController: UIViewController {
         self.view.addSubview(canvasBackground)
     }
 
+    private func populateDrawings() {
+        let canvasHeight = self.view.bounds.height - BerryConstants.paletteHeight
+        let canvasWidth = self.view.bounds.width
+        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
+        var verticalDisp: CGFloat = 0
+        cooperativeGame.allDrawings.forEach {
+            let imageView = UIImageView(
+                frame: CGRect(x: 0, y: verticalDisp, width: canvasWidth, height: drawingSpaceHeight)
+            )
+            imageView.image = $0
+            self.view.addSubview(imageView)
+            verticalDisp += drawingSpaceHeight
+        }
+    }
 }
