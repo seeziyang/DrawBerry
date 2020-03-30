@@ -542,16 +542,113 @@
             </objects>
             <point key="canvasLocation" x="4949" y="696"/>
         </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="YYg-7r-3wM">
+            <objects>
+                <viewController id="uMC-2e-j9F" customClass="UserProfileViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4nK-Yi-d2A">
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iot-r1-mEX">
+                                <rect key="frame" x="0.0" y="330" width="712" height="654"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N7W-EB-2tC">
+                                    <size key="itemSize" width="391" height="344"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="ZoJ-6P-z4c" customClass="ImageCollectionViewCell" customModule="DrawBerry" customModuleProvider="target">
+                                        <rect key="frame" x="160.5" y="0.0" width="391" height="344"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yS7-GJ-l21">
+                                            <rect key="frame" x="0.0" y="0.0" width="391" height="344"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="yon-73-iTg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="391" height="344"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="yon-73-iTg" secondAttribute="trailing" id="MZD-0O-7XY"/>
+                                                <constraint firstItem="yon-73-iTg" firstAttribute="top" secondItem="yS7-GJ-l21" secondAttribute="top" id="Pvr-gG-wOh"/>
+                                                <constraint firstItem="yon-73-iTg" firstAttribute="leading" secondItem="yS7-GJ-l21" secondAttribute="leading" id="uQ5-1i-tar"/>
+                                                <constraint firstAttribute="bottom" secondItem="yon-73-iTg" secondAttribute="bottom" id="w1x-s1-Yje"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="391" height="344"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="yon-73-iTg" id="De4-Va-eAI"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaQ-jq-KKR">
+                                <rect key="frame" x="0.0" y="0.0" width="712" height="330"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOo-ji-nSv">
+                                        <rect key="frame" x="200" y="100" width="312" height="130"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c42-U7-8k8">
+                                        <rect key="frame" x="43" y="23" width="87" height="57"/>
+                                        <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="backToRoom:" destination="uMC-2e-j9F" eventType="touchUpInside" id="x17-c6-Jjl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="sOo-ji-nSv" firstAttribute="leading" secondItem="EaQ-jq-KKR" secondAttribute="leading" constant="200" id="FM7-FR-kBP"/>
+                                    <constraint firstAttribute="bottom" secondItem="c42-U7-8k8" secondAttribute="bottom" constant="250" id="Q9d-6R-IqU"/>
+                                    <constraint firstItem="c42-U7-8k8" firstAttribute="leading" secondItem="EaQ-jq-KKR" secondAttribute="leading" constant="43" id="QkR-ir-G2d"/>
+                                    <constraint firstItem="sOo-ji-nSv" firstAttribute="centerY" secondItem="EaQ-jq-KKR" secondAttribute="centerY" id="ZCx-4A-RmE"/>
+                                    <constraint firstAttribute="trailing" secondItem="c42-U7-8k8" secondAttribute="trailing" constant="582" id="bBn-fc-4PG"/>
+                                    <constraint firstItem="c42-U7-8k8" firstAttribute="top" secondItem="EaQ-jq-KKR" secondAttribute="top" constant="23" id="ggm-ba-8rj"/>
+                                    <constraint firstAttribute="bottom" secondItem="sOo-ji-nSv" secondAttribute="bottom" constant="100" id="mLZ-cr-mHo"/>
+                                    <constraint firstItem="sOo-ji-nSv" firstAttribute="top" secondItem="EaQ-jq-KKR" secondAttribute="top" constant="100" id="q6c-dl-UaZ"/>
+                                    <constraint firstItem="sOo-ji-nSv" firstAttribute="centerX" secondItem="EaQ-jq-KKR" secondAttribute="centerX" id="wUJ-DE-ben"/>
+                                    <constraint firstAttribute="trailing" secondItem="sOo-ji-nSv" secondAttribute="trailing" constant="200" id="y1N-Zf-WRJ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="q2T-f2-f9S" firstAttribute="bottom" secondItem="iot-r1-mEX" secondAttribute="bottom" id="2OH-41-D9e"/>
+                            <constraint firstItem="iot-r1-mEX" firstAttribute="leading" secondItem="q2T-f2-f9S" secondAttribute="leading" id="5Oe-nE-1OE"/>
+                            <constraint firstItem="iot-r1-mEX" firstAttribute="trailing" secondItem="q2T-f2-f9S" secondAttribute="trailing" id="5SV-ag-VEX"/>
+                            <constraint firstItem="EaQ-jq-KKR" firstAttribute="leading" secondItem="q2T-f2-f9S" secondAttribute="leading" id="FOE-kf-3eh"/>
+                            <constraint firstItem="q2T-f2-f9S" firstAttribute="trailing" secondItem="EaQ-jq-KKR" secondAttribute="trailing" id="Joe-BD-7Qp"/>
+                            <constraint firstItem="iot-r1-mEX" firstAttribute="top" secondItem="EaQ-jq-KKR" secondAttribute="bottom" id="dhC-Vx-xz5"/>
+                            <constraint firstItem="EaQ-jq-KKR" firstAttribute="top" secondItem="q2T-f2-f9S" secondAttribute="top" id="ee5-ir-sFs"/>
+                            <constraint firstItem="iot-r1-mEX" firstAttribute="top" secondItem="q2T-f2-f9S" secondAttribute="top" constant="330" id="pnL-FW-WoG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q2T-f2-f9S"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3zQ-OW-xRf"/>
+                    <connections>
+                        <outlet property="imageCollectionView" destination="iot-r1-mEX" id="D0W-CE-6zH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C1v-Pe-h94" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2445.3125" y="-622.265625"/>
+        </scene>
         <!--Classic Game Room View Controller-->
         <scene sceneID="THO-bA-Aan">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="cuu-G9-htT" customClass="ClassicGameRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="cuu-G9-htT" customClass="ClassicGameRoomViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5zX-Tv-BhM">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kv-Vt-qgr">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="712" height="56"/>
                                 <items>
                                     <navigationItem title="Players" id="Jrn-PS-9DF">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="Ppp-ix-iH0">
@@ -568,7 +665,7 @@
                                 </items>
                             </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RYb-n3-WfJ">
-                                <rect key="frame" x="0.0" y="50" width="768" height="974"/>
+                                <rect key="frame" x="0.0" y="56" width="712" height="928"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bnz-rv-Vwr">
                                     <size key="itemSize" width="391" height="344"/>
@@ -578,13 +675,13 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playerCell" id="2A4-nl-OsH" customClass="PlayerCollectionViewCell" customModule="DrawBerry" customModuleProvider="target">
-                                        <rect key="frame" x="188.5" y="0.0" width="391" height="344"/>
+                                        <rect key="frame" x="160.5" y="0.0" width="391" height="344"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NaW-rW-1df">
                                             <rect key="frame" x="0.0" y="0.0" width="391" height="344"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Gsm-dy-NbA">
+                                                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Gsm-dy-NbA">
                                                     <rect key="frame" x="0.0" y="0.0" width="391" height="294"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwz-mc-Tl8">
@@ -617,6 +714,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Cwz-mc-Tl8" secondAttribute="bottom" id="xkc-BB-gE6"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <gestureRecognizers/>
                                         <size key="customSize" width="391" height="344"/>
                                         <connections>
                                             <outlet property="profileImageView" destination="Gsm-dy-NbA" id="RPN-rR-TTo"/>
@@ -627,6 +725,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="R4z-ns-TkY" firstAttribute="bottom" secondItem="RYb-n3-WfJ" secondAttribute="bottom" id="9sw-je-sbR"/>
                             <constraint firstItem="RYb-n3-WfJ" firstAttribute="trailing" secondItem="R4z-ns-TkY" secondAttribute="trailing" id="CDB-A9-gae"/>
@@ -637,14 +736,23 @@
                             <constraint firstItem="R4z-ns-TkY" firstAttribute="trailing" secondItem="1kv-Vt-qgr" secondAttribute="trailing" id="zeF-LJ-zMo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R4z-ns-TkY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gbl-Wh-f5e" appends="YES" id="QrY-Ft-ekd"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="A3K-k2-ONo"/>
                     <connections>
                         <outlet property="playersCollectionView" destination="RYb-n3-WfJ" id="1bI-jT-3ko"/>
                         <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToClassicGame" id="epa-EW-RcE"/>
+                        <segue destination="uMC-2e-j9F" kind="show" identifier="segueToPlayerProfile" id="TXh-cz-zfd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxX-MX-JnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gbl-Wh-f5e">
+                    <connections>
+                        <action selector="handleSingleTap:" destination="cuu-G9-htT" id="eLO-aw-y4E"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2448.4375" y="32.8125"/>
         </scene>
@@ -730,6 +838,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvO-W1-NZc">
                                         <rect key="frame" x="0.0" y="50" width="179" height="179"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wvO-W1-NZc" secondAttribute="height" multiplier="1:1" id="7DX-L8-quO"/>
                                         </constraints>
@@ -755,6 +864,9 @@
                                     <constraint firstItem="wvO-W1-NZc" firstAttribute="top" secondItem="WRv-GC-dyW" secondAttribute="top" constant="50" id="aEN-dI-ezi"/>
                                     <constraint firstAttribute="trailing" secondItem="wvO-W1-NZc" secondAttribute="trailing" id="idl-Ie-2Zz"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="RsH-9v-iUB" appends="YES" id="Gej-GZ-dZ1"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -791,6 +903,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXX-1H-sKE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="RsH-9v-iUB">
+                    <connections>
+                        <action selector="handleProfilePictureTapped:" destination="TxN-r9-amb" id="83I-an-qZp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="826.5625" y="495.11718749999994"/>
         </scene>

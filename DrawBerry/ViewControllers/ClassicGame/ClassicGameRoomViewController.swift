@@ -154,8 +154,10 @@ extension ClassicGameRoomViewController {
 
     // TODO:
     private func openUserProfile(at index: Int) {
-        let alert = UIAlertController(title: "Profile", message: "Opened user profile", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true)
+        print("opened \(index)")
+        performSegue(withIdentifier: "segueToPlayerProfile", sender: self)
+//        let alert = UIAlertController(title: "Profile", message: "Opened user profile", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//        present(alert, animated: true)
     }
 }
