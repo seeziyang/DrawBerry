@@ -20,6 +20,11 @@ class GameRoom {
             players.sort()
         }
     }
+    var user: RoomPlayer? {
+        let userUID = NetworkHelper.getLoggedInUserID()
+        let userIndex = self.players.firstIndex(where: { $0.uid == userUID }) ?? 0
+        return players.isEmpty ? nil : players[userIndex]
+    }
 
     var status: GameRoomStatus {
         if players.count < GameRoom.maxPlayers {

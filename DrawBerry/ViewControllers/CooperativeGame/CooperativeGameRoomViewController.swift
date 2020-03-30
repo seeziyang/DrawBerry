@@ -14,6 +14,15 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     @IBOutlet private weak var playersTableView: UITableView!
     @IBOutlet private weak var startButton: UIBarButtonItem!
 
+    func configureStartButton() {
+        if let currentUser = room.user {
+            if !currentUser.isRoomMaster {
+                startButton.isEnabled = false
+                startButton.tintColor = UIColor.clear
+            }
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let waitingVC = segue.destination as? WaitingViewController {
             waitingVC.cooperativeGame = CooperativeGame(from: room)
@@ -31,6 +40,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     func playersDidUpdate() {
         playersTableView.reloadData()
+        configureStartButton()
     }
 
     func gameHasStarted() {

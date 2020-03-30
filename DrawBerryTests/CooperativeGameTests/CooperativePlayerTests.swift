@@ -46,8 +46,10 @@ class CooperativePlayerTests: XCTestCase {
     func testCompare() {
         let largerCooperativePlayer = CooperativePlayer(name: "alice", uid: "r1w2e3", isRoomMaster: false, index: 1)
         let smallerCooperativePlayer = CooperativePlayer(name: "charles", uid: "p1w2e3", isRoomMaster: false, index: 2)
+        let sameUIDDifferentDetails = CooperativePlayer(name: "bobo", uid: "q1w2e3", isRoomMaster: false, index: 2)
         XCTAssertTrue(cooperativePlayer < largerCooperativePlayer)
         XCTAssertTrue(smallerCooperativePlayer < cooperativePlayer)
         XCTAssertTrue(smallerCooperativePlayer < largerCooperativePlayer)
+        XCTAssertEqual(cooperativePlayer, sameUIDDifferentDetails)
     }
 }
