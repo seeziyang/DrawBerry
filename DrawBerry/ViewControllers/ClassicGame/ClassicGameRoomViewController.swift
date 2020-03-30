@@ -10,6 +10,7 @@ import UIKit
 
 class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
+    private var currentViewingPlayerID: String?
 
     @IBOutlet private weak var playersCollectionView: UICollectionView!
 
@@ -30,6 +31,15 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = ClassicGame(from: room)
+        }
+
+        if segue.destination is UserProfileViewController {
+            let target = segue.destination as? UserProfileViewController
+            guard let id = currentViewingPlayerID else {
+                return
+            }
+
+            target?.setUserID(id: id)
         }
     }
 
@@ -149,15 +159,12 @@ extension ClassicGameRoomViewController {
         guard indexPath.row < room.players.count else {
             return
         }
+        currentViewingPlayerID = room.players[indexPath.row].uid
         openUserProfile(at: indexPath.row)
     }
 
     // TODO:
     private func openUserProfile(at index: Int) {
-        print("opened \(index)")
         performSegue(withIdentifier: "segueToPlayerProfile", sender: self)
-//        let alert = UIAlertController(title: "Profile", message: "Opened user profile", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//        present(alert, animated: true)
     }
 }

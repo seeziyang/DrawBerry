@@ -12,14 +12,26 @@ class UserProfileViewController: UIViewController {
 
     @IBOutlet private weak var imageCollectionView: UICollectionView!
 
+    private var userID: String?
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let itemsPerRow: CGFloat = 5
+    private let maxImagesInGallery = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
     }
+
+    func reloadData() {
+        imageCollectionView.reloadData()
+    }
+
+    func setUserID(id: String) {
+        userID = id
+        UserProfileNetworkAdapter.getListOfImages(delegate: self, playerUID: id)
+    }
+
     @IBAction private func backToRoom(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -27,14 +39,14 @@ class UserProfileViewController: UIViewController {
 
 extension UserProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return maxImagesInGallery
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = getReusableCell(for: indexPath)
 
-        //let player = room.players[indexPath.row]
+        UserProfileNetworkAdapter.downloadImage(delegate: cell, index: indexPath.row)
 
         return cell
     }
@@ -44,7 +56,6 @@ extension UserProfileViewController: UICollectionViewDataSource {
             withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell else {
                 fatalError("Unable to get reusable cell.")
         }
-        //cell.setUsername("Empty Slot")
         cell.backgroundColor = .yellow
         return cell
     }

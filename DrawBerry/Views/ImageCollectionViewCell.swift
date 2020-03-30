@@ -7,11 +7,14 @@
 //
 import UIKit
 
-class ImageCollectionViewCell: UICollectionViewCell {
+class ImageCollectionViewCell: UICollectionViewCell, UserProfileNetworkDelegate {
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var imageView: UIImageView!
 
-    func setImage(image: UIImage) {
+    func loadImage(image: UIImage?) {
+        guard let image = image else {
+            return
+        }
 
         let size = frame.size
         let renderer = UIGraphicsImageRenderer(size: size)
@@ -20,5 +23,4 @@ class ImageCollectionViewCell: UICollectionViewCell {
         }
         imageView.image = resizedImage
     }
-
 }

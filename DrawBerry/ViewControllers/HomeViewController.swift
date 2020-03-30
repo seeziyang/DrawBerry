@@ -64,8 +64,7 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: UserProfileNetworkDelegate {
-    func loadProfileImage(image: UIImage?) {
-        // TODO: Get image from database
+    func loadImage(image: UIImage?) {
         if let image = image {
             profileImageView.image = image
         } else {
@@ -97,6 +96,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageView.image = image
             UserProfileNetworkAdapter.uploadProfileImage(image)
+            UserProfileNetworkAdapter.uploadImageToFavourites(image)
         }
 
         picker.dismiss(animated: true, completion: nil)

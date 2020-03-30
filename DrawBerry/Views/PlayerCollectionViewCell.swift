@@ -35,7 +35,7 @@ class PlayerCollectionViewCell: UICollectionViewCell {
 
 extension PlayerCollectionViewCell: UserProfileNetworkDelegate {
 
-    func loadProfileImage(image: UIImage?) {
+    func loadImage(image: UIImage?) {
         guard let image = image else {
             setDefaultImage()
             return

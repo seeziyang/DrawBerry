@@ -9,5 +9,5 @@
 import UIKit
 
 protocol UserProfileNetworkDelegate: AnyObject {
-    func loadProfileImage(image: UIImage?)
+    func loadImage(image: UIImage?)
 }

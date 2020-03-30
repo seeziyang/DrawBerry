@@ -69,7 +69,7 @@
                                             <segue destination="BYZ-38-t0r" kind="presentation" id="ruz-Fj-dc2"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Et-fA-MqW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Et-fA-MqW">
                                         <rect key="frame" x="0.0" y="360" width="400" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="aD6-Yw-OXi"/>
