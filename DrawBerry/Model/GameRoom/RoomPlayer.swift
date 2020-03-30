@@ -19,3 +19,14 @@ class RoomPlayer: Player {
         self.isRoomMaster = isRoomMaster
     }
 }
+
+extension RoomPlayer: Comparable {
+    static func < (lhs: RoomPlayer, rhs: RoomPlayer) -> Bool {
+        lhs.uid < rhs.uid
+    }
+
+    static func == (lhs: RoomPlayer, rhs: RoomPlayer) -> Bool {
+        lhs.uid == rhs.uid
+    }
+
+}

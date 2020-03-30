@@ -9,12 +9,38 @@
 import UIKit
 import Firebase
 
-class ViewingViewController: UIViewController {
+class ViewingViewController: UIViewController, CooperativeGameViewingDelegate {
+    private var drawings: [UIImageView] = []
+
     var cooperativeGame: CooperativeGame!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addCanvasToView()
+        populateDrawings()
+        cooperativeGame.downloadSubsequentDrawings()
+    }
+
+    func updateDrawings() {
+        drawings.forEach { $0.removeFromSuperview() }
+        drawings = []
+        populateDrawings()
+    }
+
+    private func populateDrawings() {
+        let canvasHeight = self.view.bounds.height - BerryConstants.paletteHeight
+        let canvasWidth = self.view.bounds.width
+        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
+        var verticalDisp: CGFloat = 0
+        cooperativeGame.allDrawings.forEach {
+            let imageView = UIImageView(
+                frame: CGRect(x: 0, y: verticalDisp, width: canvasWidth, height: drawingSpaceHeight)
+            )
+            imageView.image = $0
+            drawings.append(imageView)
+            view.addSubview(imageView)
+            verticalDisp += drawingSpaceHeight
+        }
     }
 
     private func addCanvasToView() {
@@ -23,7 +49,7 @@ class ViewingViewController: UIViewController {
         let origin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
         let canvasBackground = UIImageView(frame: CGRect(origin: origin, size: defaultSize))
         canvasBackground.image = BerryConstants.paperBackgroundImage
-        self.view.addSubview(canvasBackground)
+        view.addSubview(canvasBackground)
     }
 
     func navigateToEndPage() {
@@ -31,8 +57,8 @@ class ViewingViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let drawingVC = segue.destination as? DrawingViewController {
-            drawingVC.cooperativeGame = cooperativeGame
+        if let endVC = segue.destination as? EndViewController {
+            endVC.cooperativeGame = cooperativeGame
         }
     }
 }

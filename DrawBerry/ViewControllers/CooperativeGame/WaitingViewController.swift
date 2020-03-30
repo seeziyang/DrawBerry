@@ -11,6 +11,7 @@ import Firebase
 
 class WaitingViewController: UIViewController, CooperativeGameDelegate {
     var cooperativeGame: CooperativeGame!
+    var messageLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,7 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
             }
             return
         }
-        cooperativeGame.waitForPreviousPlayerToFinish()
+        cooperativeGame.waitForPreviousPlayersToFinish()
     }
 
     private func addCanvasToView() {
@@ -35,15 +36,20 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
         let origin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
         let canvasBackground = UIImageView(frame: CGRect(origin: origin, size: defaultSize))
         canvasBackground.image = BerryConstants.paperBackgroundImage
-        self.view.addSubview(canvasBackground)
+        view.addSubview(canvasBackground)
+    }
+
+    func changeMessageToGetReady() {
+        messageLabel.text = Message.getReadyMessage
     }
 
     private func displayMessage() {
         let message = UILabel(frame: self.view.frame)
-        message.text = cooperativeGame.isFirstPlayer ? "You're up! Get Ready!" : "Stare at your friend."
+        message.text = cooperativeGame.isFirstPlayer ? Message.getReadyMessage : Message.waitingMessage
         message.textAlignment = .center
         message.font = UIFont(name: "Noteworthy", size: 80)
-        self.view.addSubview(message)
+        messageLabel = message
+        view.addSubview(message)
     }
 
     func navigateToDrawingPage() {
