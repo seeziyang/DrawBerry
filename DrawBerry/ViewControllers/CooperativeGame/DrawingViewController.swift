@@ -9,9 +9,12 @@
 import UIKit
 import PencilKit
 
-class DrawingViewController: CanvasDelegateViewController {
+class DrawingViewController: CooperativeGameViewController {
     var cooperativeGame: CooperativeGame!
     var canvas: Canvas!
+    var drawingSpaceHeight: CGFloat {
+        canvasHeight / CGFloat(cooperativeGame.players.count)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +68,6 @@ class DrawingViewController: CanvasDelegateViewController {
     }
 
     private func addPreviousDrawings() {
-        let canvasHeight = canvas.bounds.height - BerryConstants.paletteHeight
-        let canvasWidth = canvas.bounds.width
-        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
         var verticalDisp: CGFloat = 0
         cooperativeGame.allDrawings.forEach {
             let imageView = UIImageView(
@@ -80,10 +80,6 @@ class DrawingViewController: CanvasDelegateViewController {
     }
 
     private func createMask() {
-        let canvasHeight = canvas.bounds.height - BerryConstants.paletteHeight
-        let canvasWidth = canvas.bounds.width
-
-        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
         let drawingSpaceOrigin = CGPoint(x: 0, y: CGFloat(cooperativeGame.userIndex) * drawingSpaceHeight)
         canvas.drawableArea = CGRect(
             x: drawingSpaceOrigin.x,

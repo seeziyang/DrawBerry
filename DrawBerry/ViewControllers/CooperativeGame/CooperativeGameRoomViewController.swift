@@ -12,6 +12,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
 
     @IBOutlet private weak var playersTableView: UITableView!
+    @IBOutlet private weak var startButton: UIBarButtonItem!
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let waitingVC = segue.destination as? WaitingViewController {

@@ -481,6 +481,7 @@
                     <navigationItem key="navigationItem" id="Z9G-Lf-f1A"/>
                     <connections>
                         <outlet property="playersTableView" destination="5Nv-tk-KnT" id="CMe-Bg-Y4n"/>
+                        <outlet property="startButton" destination="JI3-iw-NvF" id="Rdu-eU-fba"/>
                         <segue destination="27I-Q5-ZWl" kind="show" identifier="segueToCooperativeGame" id="yOx-SV-Vc5"/>
                     </connections>
                 </viewController>
@@ -849,6 +850,6 @@
         <image name="drawberry-logo" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gg7-CT-DLI"/>
+        <segue reference="yOx-SV-Vc5"/>
     </inferredMetricsTieBreakers>
 </document>

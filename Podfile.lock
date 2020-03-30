@@ -1,24 +1,24 @@
 PODS:
-  - Firebase/Analytics (6.18.0):
+  - Firebase/Analytics (6.19.0):
     - Firebase/Core
-  - Firebase/Auth (6.18.0):
+  - Firebase/Auth (6.19.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.3)
-  - Firebase/Core (6.18.0):
+  - Firebase/Core (6.19.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.3.0)
-  - Firebase/CoreOnly (6.18.0):
-    - FirebaseCore (= 6.6.3)
-  - Firebase/Database (6.18.0):
+    - FirebaseAnalytics (= 6.3.1)
+  - Firebase/CoreOnly (6.19.0):
+    - FirebaseCore (= 6.6.4)
+  - Firebase/Database (6.19.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.1.4)
-  - Firebase/Storage (6.18.0):
+  - Firebase/Storage (6.19.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 3.5.0)
-  - FirebaseAnalytics (6.3.0):
+    - FirebaseStorage (~> 3.6.0)
+  - FirebaseAnalytics (6.3.1):
     - FirebaseCore (~> 6.6)
     - FirebaseInstallations (~> 1.1)
-    - GoogleAppMeasurement (= 6.3.0)
+    - GoogleAppMeasurement (= 6.3.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
@@ -30,15 +30,15 @@ PODS:
     - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
     - GoogleUtilities/Environment (~> 6.5)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseAuthInterop (1.0.0)
-  - FirebaseCore (6.6.3):
+  - FirebaseAuthInterop (1.1.0)
+  - FirebaseCore (6.6.4):
     - FirebaseCoreDiagnostics (~> 1.2)
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.2.1):
+  - FirebaseCoreDiagnostics (1.2.2):
     - FirebaseCoreDiagnosticsInterop (~> 1.2)
-    - GoogleDataTransportCCTSupport (~> 1.3)
+    - GoogleDataTransportCCTSupport (~> 2.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 0.3.901)
@@ -51,19 +51,19 @@ PODS:
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.5)
     - PromisesObjC (~> 1.2)
-  - FirebaseStorage (3.5.0):
-    - FirebaseAuthInterop (~> 1.0)
-    - FirebaseCore (~> 6.0)
+  - FirebaseStorage (3.6.0):
+    - FirebaseAuthInterop (~> 1.1)
+    - FirebaseCore (~> 6.6)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleAppMeasurement (6.3.0):
+  - GoogleAppMeasurement (6.3.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (= 0.3.9011)
-  - GoogleDataTransport (4.0.1)
-  - GoogleDataTransportCCTSupport (1.4.1):
-    - GoogleDataTransport (~> 4.0)
+  - GoogleDataTransport (5.0.0)
+  - GoogleDataTransportCCTSupport (2.0.0):
+    - GoogleDataTransport (~> 5.0)
     - nanopb (~> 0.3.901)
   - GoogleUtilities/AppDelegateSwizzler (6.5.1):
     - GoogleUtilities/Environment
@@ -127,19 +127,19 @@ SPEC REPOS:
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Firebase: 0490eca762a72e4f1582319539153897f1508dee
-  FirebaseAnalytics: 058d71e714a1a6804d9e0f25e3bb18e377a51579
+  Firebase: d55ddb0e0bb3207166cddc028647833d8a1b5b6f
+  FirebaseAnalytics: 572e467f3d977825266e8ccd52674aa3e6f47eac
   FirebaseAuth: 5ce2b03a3d7fe56b7a6e4c5ec7ff1522890b1d6f
-  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
-  FirebaseCore: 78276943ad85e616dfa54dafa6c89512987d9d60
-  FirebaseCoreDiagnostics: 2109d10c35e8289b1ee6cabf44d9ffb055620194
+  FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
+  FirebaseCore: ed0a24c758a57c2b88c5efa8e6a8195e868af589
+  FirebaseCoreDiagnostics: e9b4cd8ba60dee0f2d13347332e4b7898cca5b61
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
-  FirebaseStorage: 6c5263796af3b1be82ed173598aade47535fe125
-  GoogleAppMeasurement: 39ecba10918b21c83877d392246157f65db351cf
-  GoogleDataTransport: 653963cf5be60fb59cf051e070f0836fdc305f81
-  GoogleDataTransportCCTSupport: 84e4d4bbab642f2e9d83ee65d78aca2b5527d314
+  FirebaseStorage: b43ee271294227e1a3225544b073f3b49b427f46
+  GoogleAppMeasurement: c29d405ff76e18551b5d158eaba6753fda8c7542
+  GoogleDataTransport: a857c6a002d201b524dd4bc2ed7e7355ed07e785
+  GoogleDataTransportCCTSupport: 32f75fbe904c82772fcbb6b6bd4525bfb6f2a862
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
@@ -147,6 +147,6 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
 
-PODFILE CHECKSUM: feb079426c2290d2dd6789268a4eb8498da80d35
+PODFILE CHECKSUM: 1035f91153d4029952c7134cd79213f88109a2b6
 
 COCOAPODS: 1.9.0

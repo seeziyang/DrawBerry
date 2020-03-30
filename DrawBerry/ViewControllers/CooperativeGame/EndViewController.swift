@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EndViewController: UIViewController {
+class EndViewController: CooperativeGameViewController {
     var cooperativeGame: CooperativeGame!
 
     override func viewDidLoad() {

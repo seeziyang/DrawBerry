@@ -20,6 +20,7 @@ target 'DrawBerry' do
   target 'DrawBerryUITests' do
     # Pods for testing
     # Pod for UI Testing
+    use_frameworks!
     pod 'iOSSnapshotTestCase'
   end
 
