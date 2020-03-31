@@ -22,6 +22,7 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
         let minIPadWidth: CGFloat = 768
         // 2 for iPad, 1 for iPhone
         itemsPerRow = view.bounds.maxX >= minIPadWidth ? 2 : 1
+        overrideUserInterfaceStyle = .light
     }
 
     func drawingsDidUpdate() {
