@@ -95,6 +95,9 @@
 		3749D3CA242797AA00CE798F /* BerryPaletteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */; };
 		3749D3CC2427A13700CE798F /* EnterRoomViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3749D3CB2427A13700CE798F /* EnterRoomViewUITest.swift */; };
 		3787ACF82430E26B0064A1F6 /* CooperativeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787ACF72430E26B0064A1F6 /* CooperativeGameViewController.swift */; };
+		3789191B2432E1680042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
+		3789191C2432E22F0042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
+		3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
 		379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE013242210E8005257E1 /* ClassicGameUITest.swift */; };
 		379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01B24230283005257E1 /* PaletteObserver.swift */; };
 		379EE01E24230909005257E1 /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
@@ -230,6 +233,7 @@
 		3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryPaletteTest.swift; sourceTree = "<group>"; };
 		3749D3CB2427A13700CE798F /* EnterRoomViewUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewUITest.swift; sourceTree = "<group>"; };
 		3787ACF72430E26B0064A1F6 /* CooperativeGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameViewController.swift; sourceTree = "<group>"; };
+		3789191A2432E1680042B705 /* ComparablePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparablePlayer.swift; sourceTree = "<group>"; };
 		379EE013242210E8005257E1 /* ClassicGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameUITest.swift; sourceTree = "<group>"; };
 		379EE01B24230283005257E1 /* PaletteObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteObserver.swift; sourceTree = "<group>"; };
 		379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegateViewController.swift; sourceTree = "<group>"; };
@@ -476,6 +480,7 @@
 				1A5252B4241FAF0300E7F68C /* Canvas */,
 				FC48897C241C79D900375140 /* CompetitiveGame */,
 				1A3F39992421C0FB0084859F /* Player.swift */,
+				3789191A2432E1680042B705 /* ComparablePlayer.swift */,
 				37CE065B241E19850085BE4A /* BerryConstants.swift */,
 				372CA590242C3AE6000E1E71 /* CooperativeGame */,
 			);
@@ -952,6 +957,7 @@
 				372CA592242C3B22000E1E71 /* CooperativeGameDelegate.swift in Sources */,
 				FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */,
 				372CA59C242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift in Sources */,
+				3789191B2432E1680042B705 /* ComparablePlayer.swift in Sources */,
 				1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */,
 				372CA59E242C6B07000E1E71 /* CooperativeGameRoomViewController.swift in Sources */,
 				FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */,
@@ -1010,6 +1016,7 @@
 				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
+				3789191C2432E22F0042B705 /* ComparablePlayer.swift in Sources */,
 				FC404617242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
 				372CA585242BC241000E1E71 /* NetworkHelper.swift in Sources */,
@@ -1039,6 +1046,7 @@
 				3749D39E2425DFF400CE798F /* Palette.swift in Sources */,
 				3749D3C6242661A400CE798F /* SignUpViewUITest.swift in Sources */,
 				3749D3A62425E7A800CE798F /* CanvasDelegateViewController.swift in Sources */,
+				3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */,
 				3749D3A02425E38000CE798F /* GameRoomStatus.swift in Sources */,
 				379EE02524249150005257E1 /* BerryPalette.swift in Sources */,
 				379EE02724249158005257E1 /* BerryConstants.swift in Sources */,
