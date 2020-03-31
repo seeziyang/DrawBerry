@@ -8,6 +8,12 @@
 import PencilKit
 
 class CanvasDelegateViewController: UIViewController, CanvasDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
+    }
+
     func handleDraw(recognizer: UIGestureRecognizer, canvas: Canvas) {
         if !canvas.isAbleToDraw {
             recognizer.state = .ended

@@ -31,6 +31,7 @@ class EnterCooperativeRoomViewController: UIViewController {
             let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.CooperativeRoom)
             roomVC.room = GameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
+            roomVC.configureStartButton()
         }
     }
 

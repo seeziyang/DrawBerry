@@ -12,7 +12,7 @@ class ClassicGame {
     static let maxRounds = 5
 
     weak var delegate: ClassicGameDelegate?
-    let networkAdapter: ClassicGameNetworkAdapter
+    let networkAdapter: GameNetworkAdapter
     let roomCode: RoomCode
     let players: [ClassicPlayer]
     private let userIndex: Int // players contains user too
@@ -25,10 +25,10 @@ class ClassicGame {
     }
 
     convenience init(from room: GameRoom) {
-        self.init(from: room, networkAdapter: ClassicGameNetworkAdapter(roomCode: room.roomCode))
+        self.init(from: room, networkAdapter: GameNetworkAdapter(roomCode: room.roomCode))
     }
 
-    init(from room: GameRoom, networkAdapter: ClassicGameNetworkAdapter) {
+    init(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
         self.roomCode = room.roomCode
         self.networkAdapter = networkAdapter
         self.players = room.players.map { ClassicPlayer(from: $0) }

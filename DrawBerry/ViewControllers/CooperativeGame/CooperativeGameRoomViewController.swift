@@ -11,6 +11,7 @@ import UIKit
 class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBOutlet private weak var playersCollectionView: UICollectionView!
+    @IBOutlet private weak var startButton: UIBarButtonItem!
 
     var room: GameRoom!
     private var currentViewingPlayerID: String?
@@ -21,6 +22,16 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+
+
+    func configureStartButton() {
+        if let currentUser = room.user {
+            if !currentUser.isRoomMaster {
+                startButton.isEnabled = false
+                startButton.tintColor = UIColor.clear
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -55,6 +66,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     func playersDidUpdate() {
         playersCollectionView.reloadData()
+        configureStartButton()
     }
 
     func gameHasStarted() {

@@ -10,7 +10,7 @@ import UIKit
 class CooperativeGame {
     weak var delegate: CooperativeGameDelegate?
     weak var viewingDelegate: CooperativeGameViewingDelegate?
-    let networkAdapter: CooperativeGameNetworkAdapter
+    let networkAdapter: GameNetworkAdapter
     let roomCode: RoomCode
     var allDrawings: [UIImage] = []
     private(set) var players: [CooperativePlayer] {
@@ -23,18 +23,15 @@ class CooperativeGame {
         players[userIndex]
     }
     private(set) var currentRound: Int
-    var isLastPlayer: Bool {
-        userIndex == players.count - 1
-    }
     var isFirstPlayer: Bool {
         userIndex == 0
     }
 
     convenience init(from room: GameRoom) {
-        self.init(from: room, networkAdapter: CooperativeGameNetworkAdapter(roomCode: room.roomCode))
+        self.init(from: room, networkAdapter: GameNetworkAdapter(roomCode: room.roomCode))
     }
 
-    private init(from room: GameRoom, networkAdapter: CooperativeGameNetworkAdapter) {
+    init(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
         self.roomCode = room.roomCode
         self.networkAdapter = networkAdapter
         let sortedRoomPlayers = room.players.sorted()
@@ -94,12 +91,5 @@ class CooperativeGame {
         if currentPlayer.index + 1 == players.count {
             self.viewingDelegate?.navigateToEndPage()
         }
-    }
-}
-
-extension Int {
-    // TODO put in separate file
-    func toOneBasedIndex() -> Int {
-        self + 1
     }
 }

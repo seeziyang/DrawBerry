@@ -17,4 +17,15 @@ class RoomPlayerTests: XCTestCase {
         XCTAssertEqual(roomPlayer.uid, "123abc", "RoomPlayer's uid is not constructed properly")
         XCTAssertTrue(roomPlayer.isRoomMaster, "RoommPlayer's isRoomMaster is not constructed properly")
     }
+
+    func testCompare() {
+        let roomPlayer = RoomPlayer(name: "bob", uid: "q1w2e3", isRoomMaster: true)
+        let largerRoomPlayer = RoomPlayer(name: "alice", uid: "r1w2e3")
+        let smallerRoomPlayer = RoomPlayer(name: "charles", uid: "p1w2e3")
+        let sameUIDDifferentDetails = RoomPlayer(name: "bobo", uid: "q1w2e3")
+        XCTAssertTrue(roomPlayer < largerRoomPlayer)
+        XCTAssertTrue(smallerRoomPlayer < roomPlayer)
+        XCTAssertTrue(smallerRoomPlayer < largerRoomPlayer)
+        XCTAssertEqual(roomPlayer, sameUIDDifferentDetails)
+    }
 }

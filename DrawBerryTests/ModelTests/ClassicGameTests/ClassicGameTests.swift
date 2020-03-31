@@ -13,20 +13,20 @@ class ClassicGameTests: XCTestCase {
     static let roomCode = RoomCode(value: "abc123", type: GameRoomType.ClassicRoom)
     var classicGame = ClassicGame(
         from: GameRoom(roomCode: ClassicGameTests.roomCode),
-        networkAdapter: ClassicGameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
+        networkAdapter: GameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
 
     override func setUp() {
         super.setUp()
 
         classicGame = ClassicGame(
             from: GameRoom(roomCode: ClassicGameTests.roomCode),
-            networkAdapter: ClassicGameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
+            networkAdapter: GameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
     }
 
 //    func testConstruct() {
 //        let classicGame = ClassicGame(
 //            from: GameRoom(roomCode: ClassicGameTests.roomCode),
-//            networkAdapter: ClassicGameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
+//            networkAdapter: GameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
 //
 //        XCTAssertEqual(classicGame.roomCode, ClassicGameTests.roomCode,
 //                       "ClassicGame's roomCode is not constructed properly")
@@ -43,13 +43,4 @@ class ClassicGameTests: XCTestCase {
 //        classicGame.moveToNextRound()
 //        XCTAssertEqual(classicGame.currentRound, 3, "ClassicGame's moveToNextRound is not correct")
 //    }
-}
-
-class ClassicGameNetworkAdapterStub: ClassicGameNetworkAdapter {
-    override func uploadUserDrawing(image: UIImage, forRound round: Int) {
-    }
-
-    override func waitAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
-                                               completionHandler: @escaping (UIImage) -> Void) {
-    }
 }

@@ -8,25 +8,15 @@
 
 import Foundation
 
-class RoomPlayer: Player {
-    let name: String
-    let uid: String
+class RoomPlayer: ComparablePlayer {
     var isRoomMaster: Bool
 
     init(name: String, uid: String, isRoomMaster: Bool) {
-        self.name = name
-        self.uid = uid
         self.isRoomMaster = isRoomMaster
-    }
-}
-
-extension RoomPlayer: Comparable {
-    static func < (lhs: RoomPlayer, rhs: RoomPlayer) -> Bool {
-        lhs.uid < rhs.uid
+        super.init(name: name, uid: uid)
     }
 
-    static func == (lhs: RoomPlayer, rhs: RoomPlayer) -> Bool {
-        lhs.uid == rhs.uid
+    override convenience init(name: String, uid: String) {
+        self.init(name: name, uid: uid, isRoomMaster: false)
     }
-
 }

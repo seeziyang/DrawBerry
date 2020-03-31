@@ -12,6 +12,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
     private var currentViewingPlayerID: String?
 
+    @IBOutlet private weak var startButton: UIBarButtonItem!
     @IBOutlet private weak var playersCollectionView: UICollectionView!
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
@@ -51,7 +52,17 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         startGame()
     }
 
+    func configureStartButton() {
+        if let currentUser = room.user {
+            if !currentUser.isRoomMaster {
+                startButton.isEnabled = false
+                startButton.tintColor = UIColor.clear
+            }
+        }
+    }
+
     func playersDidUpdate() {
+        configureStartButton()
         playersCollectionView.reloadData()
     }
 

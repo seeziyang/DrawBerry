@@ -9,8 +9,11 @@
 import UIKit
 import Firebase
 
-class ViewingViewController: UIViewController, CooperativeGameViewingDelegate {
+class ViewingViewController: CooperativeGameViewController, CooperativeGameViewingDelegate {
     private var drawings: [UIImageView] = []
+    var drawingSpaceHeight: CGFloat {
+        canvasHeight / CGFloat(cooperativeGame.players.count)
+    }
 
     var cooperativeGame: CooperativeGame!
 
@@ -19,6 +22,7 @@ class ViewingViewController: UIViewController, CooperativeGameViewingDelegate {
         addCanvasToView()
         populateDrawings()
         cooperativeGame.downloadSubsequentDrawings()
+        overrideUserInterfaceStyle = .light
     }
 
     func updateDrawings() {
@@ -28,19 +32,30 @@ class ViewingViewController: UIViewController, CooperativeGameViewingDelegate {
     }
 
     private func populateDrawings() {
-        let canvasHeight = self.view.bounds.height - BerryConstants.paletteHeight
-        let canvasWidth = self.view.bounds.width
-        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
-        var verticalDisp: CGFloat = 0
         cooperativeGame.allDrawings.forEach {
-            let imageView = UIImageView(
-                frame: CGRect(x: 0, y: verticalDisp, width: canvasWidth, height: drawingSpaceHeight)
-            )
-            imageView.image = $0
+            let yDisp = (drawings.last?.bounds.origin.y ?? -drawingSpaceHeight) + drawingSpaceHeight
+            let frame = CGRect(x: 0, y: yDisp, width: canvasWidth, height: drawingSpaceHeight)
+            let imageView = createImageView(of: $0, in: frame)
             drawings.append(imageView)
             view.addSubview(imageView)
-            verticalDisp += drawingSpaceHeight
         }
+    }
+
+    private func updateNextDrawing() {
+        guard let lastDrawing = cooperativeGame.allDrawings.last else {
+            return
+        }
+        let yDisp = (drawings.last?.bounds.origin.y ?? 0) + drawingSpaceHeight
+        let frame = CGRect(x: 0, y: yDisp, width: canvasWidth, height: canvasHeight)
+        let imageView = createImageView(of: lastDrawing, in: frame)
+        drawings.append(imageView)
+        view.addSubview(imageView)
+    }
+
+    private func createImageView(of image: UIImage, in frame: CGRect) -> UIImageView {
+        let imageView = UIImageView(frame: frame)
+        imageView.image = image
+        return imageView
     }
 
     private func addCanvasToView() {
