@@ -526,12 +526,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Z9G-Lf-f1A"/>
                     <connections>
-<<<<<<< HEAD
-                        <outlet property="playersTableView" destination="5Nv-tk-KnT" id="CMe-Bg-Y4n"/>
-                        <outlet property="startButton" destination="JI3-iw-NvF" id="Rdu-eU-fba"/>
-=======
                         <outlet property="playersCollectionView" destination="bUj-f5-ikZ" id="lvb-Pv-bXi"/>
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
+                        <outlet property="startButton" destination="JI3-iw-NvF" id="Rdu-eU-fba"/>
                         <segue destination="27I-Q5-ZWl" kind="show" identifier="segueToCooperativeGame" id="yOx-SV-Vc5"/>
                         <segue destination="uMC-2e-j9F" kind="presentation" identifier="segueCoopToPlayerProfile" id="9o1-fk-ENI"/>
                     </connections>
@@ -698,6 +694,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1v-Pe-h94" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2445.3125" y="-622.265625"/>
+        </scene>
         <!--End View Controller-->
         <scene sceneID="l5m-YT-cd0">
             <objects>
@@ -820,12 +817,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="A3K-k2-ONo"/>
                     <connections>
-<<<<<<< HEAD
-                        <outlet property="playersTableView" destination="A9o-bN-1r2" id="zmt-Bk-X1F"/>
-                        <outlet property="startButton" destination="JDg-Za-XE2" id="m8a-we-n6A"/>
-=======
                         <outlet property="playersCollectionView" destination="RYb-n3-WfJ" id="1bI-jT-3ko"/>
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
+                        <outlet property="startButton" destination="JDg-Za-XE2" id="m8a-we-n6A"/>
                         <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToClassicGame" id="epa-EW-RcE"/>
                         <segue destination="uMC-2e-j9F" kind="presentation" identifier="segueClassicToPlayerProfile" id="TXh-cz-zfd"/>
                     </connections>
@@ -1104,10 +1097,7 @@
         <image name="drawberry-logo" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
         <segue reference="yOx-SV-Vc5"/>
-=======
         <segue reference="TXh-cz-zfd"/>
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
     </inferredMetricsTieBreakers>
 </document>
