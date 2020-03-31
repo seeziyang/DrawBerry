@@ -15,6 +15,9 @@ enum Constants {
     static let mainMenuBackground = background
     static let roomBackground = background
     static let logo = #imageLiteral(resourceName: "drawberry-logo")
+    static let defaultProfilePicture = #imageLiteral(resourceName: "grey")
 
     static let backgroundAlpha = CGFloat(0.7)
+
+    static let profilePictureFileName = "profile.jpeg"
 }
