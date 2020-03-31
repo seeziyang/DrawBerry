@@ -84,4 +84,38 @@ class GameNetworkAdapter {
             dbPathRef.removeAllObservers() // remove observer after downloading image
         })
     }
+
+    func userVoteFor(playerUID: String, forRound round: Int,
+                     updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
+        let userID = NetworkHelper.getLoggedInUserID()
+
+        let dbGamePlayersPathRef = db.child("activeRooms").child(roomCode.type.rawValue)
+            .child(roomCode.value).child("players")
+
+        dbGamePlayersPathRef.child(userID).child("rounds").child(String(round))
+            .child("votedFor").setValue(playerUID)
+
+        dbGamePlayersPathRef.child(playerUID).child("points").setValue(updatedPlayerPoints)
+
+        if let updatedUserPoints = updatedUserPoints {
+            dbGamePlayersPathRef.child(userID).child("points").setValue(updatedUserPoints)
+        }
+    }
+
+    func observePlayerVote(playerUID: String, forRound round: Int,
+                           completionHandler: @escaping (String) -> Void) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
+            .child(playerUID).child("rounds").child(String(round)).child("votedFor")
+
+        dbPathRef.observe(.value, with: { snapshot in
+            guard let votedForPlayerUID = snapshot.value as? String else {
+                return
+            }
+
+            completionHandler(votedForPlayerUID)
+
+            dbPathRef.removeAllObservers()
+        })
+    }
 }

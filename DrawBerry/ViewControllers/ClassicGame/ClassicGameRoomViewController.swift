@@ -20,7 +20,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
-        return true
+        true
     }
 
     override func viewDidLoad() {
@@ -95,7 +95,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
 extension ClassicGameRoomViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return GameRoom.maxPlayers
+        GameRoom.maxPlayers
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -146,13 +146,13 @@ extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+        sectionInsets
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+        sectionInsets.left
     }
 }
 

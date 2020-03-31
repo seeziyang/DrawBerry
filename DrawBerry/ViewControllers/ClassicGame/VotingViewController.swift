@@ -27,8 +27,32 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     func drawingsDidUpdate() {
         votingImagesCollectionView.reloadData()
-        // TODO: reload specific player's image only?
         // TODO: show spinning wheel or some loading indicator if player havent upload
+    }
+
+    @objc private func handleDrawingTap(_ sender: UITapGestureRecognizer) {
+        if classicGame.hasAllPlayersDrawnForCurrentRound() {
+            guard let cell = sender.view as? UICollectionViewCell else {
+                return
+            }
+
+            guard let indexPath = votingImagesCollectionView.indexPath(for: cell) else {
+                return
+            }
+
+            let player = classicGame.players[indexPath.row]
+
+            if player === classicGame.user {
+                // TODO: show msg saying user cannot vote for themself
+                return
+            }
+
+            classicGame.userVoteFor(player: classicGame.players[indexPath.row])
+            // TODO move to next screen
+
+        } else {
+            // TODO: show msg saying not all players have drawn
+        }
     }
 }
 
@@ -49,7 +73,16 @@ extension VotingViewController: UICollectionViewDataSource {
 
         cell.addSubview(imageView)
         cell.backgroundColor = .systemYellow // TODO: remove
+
+        addTapGesture(cell: cell)
+
         return cell
+    }
+
+    private func addTapGesture(cell: UICollectionViewCell) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(handleDrawingTap(_:)))
+        cell.addGestureRecognizer(tapGestureRecognizer)
     }
 }
 

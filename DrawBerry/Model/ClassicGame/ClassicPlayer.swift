@@ -14,6 +14,7 @@ class ClassicPlayer: Player {
     var isRoomMaster: Bool
     var points: Int
     private var drawingImages: [UIImage]
+    private var votedPlayers: [ClassicPlayer]
 
     init(name: String, uid: String, isRoomMaster: Bool) {
         self.name = name
@@ -21,6 +22,7 @@ class ClassicPlayer: Player {
         self.isRoomMaster = isRoomMaster
         self.points = 0
         self.drawingImages = []
+        self.votedPlayers = []
     }
 
     convenience init(from roomPlayer: RoomPlayer) {
@@ -32,15 +34,33 @@ class ClassicPlayer: Player {
     }
 
     func getDrawingImage(ofRound round: Int) -> UIImage? {
-        if drawingImages.isEmpty {
+        guard hasDrawing(ofRound: round) else {
             return nil
         }
 
         let index = round - 1
-        if index >= drawingImages.count || index < 0 {
-            return nil
-        } else {
-            return drawingImages[index]
+        return drawingImages[index]
+    }
+
+    func hasDrawing(ofRound round: Int) -> Bool {
+        if drawingImages.isEmpty {
+            return false
         }
+
+        let index = round - 1
+        return index >= 0 && index < drawingImages.count
+    }
+
+    func voteFor(player: ClassicPlayer) {
+        votedPlayers.append(player)
+    }
+
+    func getVotedPlayer(inRound round: Int) -> ClassicPlayer? {
+        let index = round - 1
+        if index < 0 || index >= votedPlayers.count {
+            return nil
+        }
+
+        return votedPlayers[index]
     }
 }
