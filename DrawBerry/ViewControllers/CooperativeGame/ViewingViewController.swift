@@ -22,6 +22,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
         addCanvasToView()
         populateDrawings()
         cooperativeGame.downloadSubsequentDrawings()
+        overrideUserInterfaceStyle = .light
     }
 
     func updateDrawings() {

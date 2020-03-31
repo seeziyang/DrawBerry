@@ -12,10 +12,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
     private var currentViewingPlayerID: String?
 
-<<<<<<< HEAD
-    @IBOutlet private weak var playersTableView: UITableView!
     @IBOutlet private weak var startButton: UIBarButtonItem!
-=======
     @IBOutlet private weak var playersCollectionView: UICollectionView!
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
@@ -31,7 +28,6 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         playersCollectionView.dataSource = self
         super.viewDidLoad()
     }
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let classicVC = segue.destination as? ClassicViewController {
@@ -66,12 +62,8 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     func playersDidUpdate() {
-<<<<<<< HEAD
-        playersTableView.reloadData()
         configureStartButton()
-=======
         playersCollectionView.reloadData()
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
     }
 
     func gameHasStarted() {

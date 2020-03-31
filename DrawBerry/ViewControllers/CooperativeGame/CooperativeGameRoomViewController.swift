@@ -11,6 +11,7 @@ import UIKit
 class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBOutlet private weak var playersCollectionView: UICollectionView!
+    @IBOutlet private weak var startButton: UIBarButtonItem!
 
     var room: GameRoom!
     private var currentViewingPlayerID: String?
@@ -23,9 +24,6 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
         return true
     }
 
-<<<<<<< HEAD
-    @IBOutlet private weak var playersTableView: UITableView!
-    @IBOutlet private weak var startButton: UIBarButtonItem!
 
     func configureStartButton() {
         if let currentUser = room.user {
@@ -34,12 +32,12 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
                 startButton.tintColor = UIColor.clear
             }
         }
-=======
+    }
+
     override func viewDidLoad() {
         playersCollectionView.delegate = self
         playersCollectionView.dataSource = self
         super.viewDidLoad()
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,12 +65,8 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     func playersDidUpdate() {
-<<<<<<< HEAD
-        playersTableView.reloadData()
-        configureStartButton()
-=======
         playersCollectionView.reloadData()
->>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
+        configureStartButton()
     }
 
     func gameHasStarted() {
