@@ -18,16 +18,24 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
 
         let minIPadWidth: CGFloat = 768
         // 2 for iPad, 1 for iPhone
         itemsPerRow = view.bounds.maxX >= minIPadWidth ? 2 : 1
-        overrideUserInterfaceStyle = .light
     }
 
     func drawingsDidUpdate() {
         votingImagesCollectionView.reloadData()
         // TODO: show spinning wheel or some loading indicator if player havent upload
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let voteResultsVC = segue.destination as? VoteResultsViewController {
+            voteResultsVC.classicGame = classicGame
+            voteResultsVC.classicGame.delegate = voteResultsVC
+            voteResultsVC.classicGame.observePlayerVotes()
+        }
     }
 
     @objc private func handleDrawingTap(_ sender: UITapGestureRecognizer) {
@@ -47,12 +55,20 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
                 return
             }
 
-            classicGame.userVoteFor(player: classicGame.players[indexPath.row])
-            // TODO move to next screen
-
+            voteForPlayerDrawing(player: player)
         } else {
             // TODO: show msg saying not all players have drawn
         }
+    }
+
+    private func voteForPlayerDrawing(player: ClassicPlayer) {
+        classicGame.userVoteFor(player: player)
+        segueToVoteResultsVC()
+
+    }
+
+    private func segueToVoteResultsVC() {
+        performSegue(withIdentifier: "segueToVoteResults", sender: self)
     }
 }
 

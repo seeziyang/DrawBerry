@@ -133,7 +133,8 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
 // Code for layout adapted from https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
