@@ -23,6 +23,11 @@ class UserProfileViewController: UIViewController {
         imageCollectionView.dataSource = self
     }
 
+    /// Hides the status bar at the top
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     func reloadData() {
         imageCollectionView.reloadData()
     }

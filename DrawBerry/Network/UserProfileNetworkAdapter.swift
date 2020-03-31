@@ -41,7 +41,7 @@ class UserProfileNetworkAdapter {
 
         let userID = NetworkHelper.getLoggedInUserID()
         let fileExtension = ".jpeg"
-        let fileName = StringHelper.randomString(length: 20)
+        let fileName = StringHelper.getCurrentDateTime()
 
         let cloudPathRef = cloud.child("users").child(userID).child("gallery").child(fileName + fileExtension)
 

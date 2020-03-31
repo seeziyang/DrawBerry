@@ -40,4 +40,9 @@ enum StringHelper {
       return String((0..<length).map { _ in characters.randomElement()! })
     }
 
+    static func getCurrentDateTime() -> String {
+        let currentDateTime = Date()
+        return currentDateTime.description
+    }
+
 }

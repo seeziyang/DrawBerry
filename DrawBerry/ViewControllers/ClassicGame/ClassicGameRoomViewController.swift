@@ -165,6 +165,6 @@ extension ClassicGameRoomViewController {
 
     // TODO:
     private func openUserProfile(at index: Int) {
-        performSegue(withIdentifier: "segueToPlayerProfile", sender: self)
+        performSegue(withIdentifier: "segueClassicToPlayerProfile", sender: self)
     }
 }
