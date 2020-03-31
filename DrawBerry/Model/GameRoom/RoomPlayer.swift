@@ -15,4 +15,8 @@ class RoomPlayer: ComparablePlayer {
         self.isRoomMaster = isRoomMaster
         super.init(name: name, uid: uid)
     }
+
+    override convenience init(name: String, uid: String) {
+        self.init(name: name, uid: uid, isRoomMaster: false)
+    }
 }

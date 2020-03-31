@@ -34,4 +34,15 @@ enum StringHelper {
         return !emailTest.evaluate(with: email)
     }
 
+    /// Generates a random string
+    static func randomString(length: Int) -> String {
+      let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"
+      return String((0..<length).map { _ in characters.randomElement()! })
+    }
+
+    static func getCurrentDateTime() -> String {
+        let currentDateTime = Date()
+        return currentDateTime.description
+    }
+
 }

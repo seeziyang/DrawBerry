@@ -10,13 +10,41 @@ import UIKit
 
 class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: GameRoom!
+    private var currentViewingPlayerID: String?
 
+<<<<<<< HEAD
     @IBOutlet private weak var playersTableView: UITableView!
     @IBOutlet private weak var startButton: UIBarButtonItem!
+=======
+    @IBOutlet private weak var playersCollectionView: UICollectionView!
+
+    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
+    private let itemsPerRow: CGFloat = 2
+
+    /// Hides the status bar at the top
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
+    override func viewDidLoad() {
+        playersCollectionView.delegate = self
+        playersCollectionView.dataSource = self
+        super.viewDidLoad()
+    }
+>>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = ClassicGame(from: room)
+        }
+
+        if segue.destination is UserProfileViewController {
+            let target = segue.destination as? UserProfileViewController
+            guard let id = currentViewingPlayerID else {
+                return
+            }
+
+            target?.setUserID(id: id)
         }
     }
 
@@ -38,8 +66,12 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     func playersDidUpdate() {
+<<<<<<< HEAD
         playersTableView.reloadData()
         configureStartButton()
+=======
+        playersCollectionView.reloadData()
+>>>>>>> cf36381f6f4861d9da0e1f7d5ea021d00bdce07c
     }
 
     func gameHasStarted() {
@@ -69,15 +101,89 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 }
 
-extension ClassicGameRoomViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        room.players.count
+extension ClassicGameRoomViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return GameRoom.maxPlayers
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = playersTableView.dequeueReusableCell(withIdentifier: "classicPlayerCell", for: indexPath)
-        cell.textLabel?.text = room.players[indexPath.row].name
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = getReusableCell(for: indexPath)
+
+        guard indexPath.row < room.players.count else {
+            return cell
+        }
+
+        let player = room.players[indexPath.row]
+
+        // Truncate uid for testing
+        let username = String(player.name.prefix(10))
+
+        UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
+
+        cell.setUsername(username)
+
         return cell
     }
 
+    private func getReusableCell(for indexPath: IndexPath) -> PlayerCollectionViewCell {
+        guard let cell = playersCollectionView.dequeueReusableCell(
+            withReuseIdentifier: "playerCell", for: indexPath) as? PlayerCollectionViewCell else {
+                fatalError("Unable to get reusable cell.")
+        }
+        cell.setCircularShape()
+        cell.setDefaultImage()
+        cell.setUsername("Empty Slot")
+        return cell
+    }
+}
+
+// Code for layout adapted from https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
+extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = playersCollectionView.bounds.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+}
+
+/// Handles gestures for `GameRoomViewController`
+extension ClassicGameRoomViewController {
+
+    /// Loads the user profile when single tap is detected on a specific cell.
+    @IBAction private func handleSingleTap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: playersCollectionView)
+        guard let indexPath = playersCollectionView.indexPathForItem(at: location) else {
+            return
+        }
+
+        // Disable gestures on empty slots
+        guard indexPath.row < room.players.count else {
+            return
+        }
+        currentViewingPlayerID = room.players[indexPath.row].uid
+        openUserProfile(at: indexPath.row)
+    }
+
+    // TODO:
+    private func openUserProfile(at index: Int) {
+        performSegue(withIdentifier: "segueClassicToPlayerProfile", sender: self)
+    }
 }

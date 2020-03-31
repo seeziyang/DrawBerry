@@ -23,9 +23,6 @@ class CooperativeGame {
         players[userIndex]
     }
     private(set) var currentRound: Int
-    var isLastPlayer: Bool {
-        userIndex == players.count - 1
-    }
     var isFirstPlayer: Bool {
         userIndex == 0
     }

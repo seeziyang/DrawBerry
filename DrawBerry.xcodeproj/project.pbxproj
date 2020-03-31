@@ -119,6 +119,11 @@
 		3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DB2425BBB7001BAA2F /* Constants.swift */; };
 		3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DD2425C51E001BAA2F /* Authentication.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
+		3E64DA742430F5AF00C1473A /* UserProfileNetworkDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E64DA722430F5AF00C1473A /* UserProfileNetworkDelegate.swift */; };
+		3E64DA752430F5AF00C1473A /* UserProfileNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E64DA732430F5AF00C1473A /* UserProfileNetworkAdapter.swift */; };
+		3E64DA772430F5BE00C1473A /* PlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */; };
+		3E975D532431D0E400AE61E3 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */; };
+		3E975D552431D16C00AE61E3 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */; };
 		3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */; };
 		3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E212425FF210065C426 /* AuthenticationTests.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
@@ -248,6 +253,11 @@
 		3E2837DB2425BBB7001BAA2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E2837DD2425C51E001BAA2F /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3E64DA722430F5AF00C1473A /* UserProfileNetworkDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNetworkDelegate.swift; sourceTree = "<group>"; };
+		3E64DA732430F5AF00C1473A /* UserProfileNetworkAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNetworkAdapter.swift; sourceTree = "<group>"; };
+		3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
+		3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUpdateDelegate.swift; sourceTree = "<group>"; };
 		3EA22E212425FF210065C426 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +396,8 @@
 				1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */,
 				1A432BDE241FC6AC0097A14F /* RoomNetworkAdapter.swift */,
 				1A4C5F242422619500937244 /* GameNetworkAdapter.swift */,
+				3E64DA732430F5AF00C1473A /* UserProfileNetworkAdapter.swift */,
+				3E64DA722430F5AF00C1473A /* UserProfileNetworkDelegate.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -399,6 +411,7 @@
 				1A3920F32425BC3100847E72 /* CompetitiveGame */,
 				379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
+				3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -426,6 +439,8 @@
 				FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */,
 				3749D3A92425F00500CE798F /* UIImageExtension.swift */,
 				3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */,
+				3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */,
+				3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -909,7 +924,9 @@
 				379EE022242455AC005257E1 /* Stroke.swift in Sources */,
 				FC4271BB241E81DE00AF8A3A /* BerryPalette.swift in Sources */,
 				3EF004F6241906A300136234 /* LoginViewController.swift in Sources */,
+				3E975D552431D16C00AE61E3 /* UserProfileViewController.swift in Sources */,
 				1A3A9F7D2423C35200C417AC /* ClassicGameDelegate.swift in Sources */,
+				3E64DA752430F5AF00C1473A /* UserProfileNetworkAdapter.swift in Sources */,
 				1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */,
 				FCC995F1242C7F6E00808550 /* InvulnerabilityPowerup.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
@@ -936,6 +953,7 @@
 				3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */,
 				372CA596242C427D000E1E71 /* DrawingViewController.swift in Sources */,
 				3749D3AA2425F00500CE798F /* UIImageExtension.swift in Sources */,
+				3E64DA742430F5AF00C1473A /* UserProfileNetworkDelegate.swift in Sources */,
 				3749D39D2425ABD400CE798F /* Palette.swift in Sources */,
 				372CA58D242C36B2000E1E71 /* CooperativeGame.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */,
@@ -951,6 +969,7 @@
 				372CA598242C67B0000E1E71 /* ViewingViewController.swift in Sources */,
 				372CA5A624308046000E1E71 /* CooperativeGameViewingDelegate.swift in Sources */,
 				1A432BD6241FB30A0097A14F /* GameRoom.swift in Sources */,
+				3E975D532431D0E400AE61E3 /* ImageCollectionViewCell.swift in Sources */,
 				1A432BD8241FB6240097A14F /* ClassicGameRoomViewController.swift in Sources */,
 				3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */,
 				372CA576242BBC90000E1E71 /* RoomCode.swift in Sources */,
@@ -969,6 +988,7 @@
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 				1A432BDA241FBA540097A14F /* EnterClassicRoomViewController.swift in Sources */,
 				FC404616242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,
+				3E64DA772430F5BE00C1473A /* PlayerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

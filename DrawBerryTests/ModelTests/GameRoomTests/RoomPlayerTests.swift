@@ -20,9 +20,9 @@ class RoomPlayerTests: XCTestCase {
 
     func testCompare() {
         let roomPlayer = RoomPlayer(name: "bob", uid: "q1w2e3", isRoomMaster: true)
-        let largerRoomPlayer = RoomPlayer(name: "alice", uid: "r1w2e3", isRoomMaster: false)
-        let smallerRoomPlayer = RoomPlayer(name: "charles", uid: "p1w2e3", isRoomMaster: false)
-        let sameUIDDifferentDetails = RoomPlayer(name: "bobo", uid: "q1w2e3", isRoomMaster: false)
+        let largerRoomPlayer = RoomPlayer(name: "alice", uid: "r1w2e3")
+        let smallerRoomPlayer = RoomPlayer(name: "charles", uid: "p1w2e3")
+        let sameUIDDifferentDetails = RoomPlayer(name: "bobo", uid: "q1w2e3")
         XCTAssertTrue(roomPlayer < largerRoomPlayer)
         XCTAssertTrue(smallerRoomPlayer < roomPlayer)
         XCTAssertTrue(smallerRoomPlayer < largerRoomPlayer)
