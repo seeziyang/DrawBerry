@@ -8,4 +8,6 @@
 
 protocol CooperativeGameDelegate: AnyObject {
     func navigateToDrawingPage()
+
+    func changeMessageToGetReady()
 }

@@ -25,4 +25,8 @@ enum Message {
     static let roomFull = "Unable to join as room is full"
     static let roomCodeTaken = "Room Code already taken, please use another one!"
     static let roomStarted = "Room has already started on its game!"
+
+    // Cooperative Mode
+    static let getReadyMessage = "You're up! Get Ready!"
+    static let waitingMessage = "Stare at your friend."
 }
