@@ -12,6 +12,8 @@ protocol ClassicGameDelegate: AnyObject {
     func votesDidUpdate()
 
     func segueToNextRound()
+
+    func segueToGameEnd()
 }
 
 extension ClassicGameDelegate {
@@ -22,5 +24,8 @@ extension ClassicGameDelegate {
     }
 
     func segueToNextRound() {
+    }
+
+    func segueToGameEnd() {
     }
 }

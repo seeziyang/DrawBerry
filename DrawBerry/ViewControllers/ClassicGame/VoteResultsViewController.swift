@@ -28,6 +28,8 @@ class VoteResultsViewController: UIViewController, ClassicGameDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = classicGame
+        } else if let gameEndVC = segue.destination as? ClassicGameEndViewController {
+            gameEndVC.classicGame = classicGame
         }
     }
 
@@ -37,6 +39,10 @@ class VoteResultsViewController: UIViewController, ClassicGameDelegate {
 
     func segueToNextRound() {
         performSegue(withIdentifier: "segueToNextRound", sender: self)
+    }
+
+    func segueToGameEnd() {
+        performSegue(withIdentifier: "segueToGameEnd", sender: self)
     }
 }
 

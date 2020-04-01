@@ -9,7 +9,7 @@
 import UIKit
 
 class ClassicGame {
-    static let maxRounds = 5
+//    static let maxRounds = 5
 
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
@@ -21,6 +21,7 @@ class ClassicGame {
     let players: [ClassicPlayer]
     let user: ClassicPlayer // players array contains user too
 
+    private let maxRounds: Int
     private(set) var currentRound: Int
     private var roundMasterIndex: Int
     // round master is the player who chooses the topic for the current round
@@ -28,7 +29,7 @@ class ClassicGame {
         players[roundMasterIndex]
     }
     var isLastRound: Bool {
-        currentRound == ClassicGame.maxRounds
+        currentRound == maxRounds
     }
 
     convenience init(from room: GameRoom) {
@@ -42,8 +43,19 @@ class ClassicGame {
         self.players = players
         self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
             ?? players[0]
+        self.maxRounds = ClassicGame.calculateMaxRounds(numPlayers: players.count)
         self.currentRound = 1
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
+    }
+
+    static func calculateMaxRounds(numPlayers: Int) -> Int {
+        if numPlayers <= 3 {
+            return numPlayers * 3
+        } else if numPlayers <= 5 {
+            return numPlayers * 2
+        } else {
+            return numPlayers
+        }
     }
 
     func addUsersDrawing(image: UIImage) {
@@ -108,15 +120,23 @@ class ClassicGame {
                     self?.delegate?.votesDidUpdate()
 
                     if self?.hasAllPlayersDrawnForCurrentRound() ?? false {
-                        self?.moveToNextRound()
+                        self?.endRound()
                     }
                 }
             )
         }
     }
 
+    private func endRound() {
+        if isLastRound {
+            endGame()
+        } else {
+            moveToNextRound()
+        }
+    }
+
     private func moveToNextRound() {
-        Timer.scheduledTimer(withTimeInterval: 10.00, repeats: false, block: { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
             self?.currentRound += 1
             self?.moveRoundMasterIndex()
 
@@ -126,5 +146,11 @@ class ClassicGame {
 
     private func moveRoundMasterIndex() {
         roundMasterIndex = (roundMasterIndex + 1) % players.count
+    }
+
+    private func endGame() {
+        Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
+            self?.delegate?.segueToGameEnd()
+        })
     }
 }
