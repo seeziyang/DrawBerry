@@ -28,8 +28,12 @@ class RoomNetworkAdapter {
     }
 
     func createRoom(roomCode: RoomCode) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
         db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(NetworkHelper.getLoggedInUserID()).setValue(["isRoomMaster": true])
+            .child(userID).setValue(["isRoomMaster": true])
     }
 
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
@@ -64,13 +68,21 @@ class RoomNetworkAdapter {
     }
 
     func joinRoom(roomCode: RoomCode) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
         db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(NetworkHelper.getLoggedInUserID()).child("isRoomMaster").setValue(false)
+            .child(userID).child("isRoomMaster").setValue(false)
     }
 
     func leaveRoom(roomCode: RoomCode) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
         db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(NetworkHelper.getLoggedInUserID()).removeValue()
+            .child(userID).removeValue()
 
         // TODO: handover roomMaster if is roomMaster
     }

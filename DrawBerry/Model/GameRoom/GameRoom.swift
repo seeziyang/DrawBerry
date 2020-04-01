@@ -24,8 +24,8 @@ class GameRoom {
         if players.isEmpty {
             return nil
         }
-        let userUID = NetworkHelper.getLoggedInUserID()
-        let userIndex = self.players.firstIndex(where: { $0.uid == userUID }) ?? 0
+        let userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+            ?? 0
         return players[userIndex]
     }
 

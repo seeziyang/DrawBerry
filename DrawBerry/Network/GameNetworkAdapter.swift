@@ -23,11 +23,10 @@ class GameNetworkAdapter {
     // TODO: delete room from active room (in both db and cloud) when game room ends
 
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
-        guard let imageData = image.pngData() else {
-            return
+        guard let imageData = image.pngData(),
+            let userID = NetworkHelper.getLoggedInUserID() else {
+                return
         }
-
-        let userID = NetworkHelper.getLoggedInUserID()
 
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue).child(roomCode.value).child("players")
@@ -87,7 +86,9 @@ class GameNetworkAdapter {
 
     func userVoteFor(playerUID: String, forRound round: Int,
                      updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
-        let userID = NetworkHelper.getLoggedInUserID()
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
 
         let dbGamePlayersPathRef = db.child("activeRooms").child(roomCode.type.rawValue)
             .child(roomCode.value).child("players")

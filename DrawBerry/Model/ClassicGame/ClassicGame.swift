@@ -40,8 +40,8 @@ class ClassicGame {
         self.networkAdapter = networkAdapter
         let players = room.players.map { ClassicPlayer(from: $0) }
         self.players = players
-        let userUID = NetworkHelper.getLoggedInUserID()
-        self.user = players.first(where: { $0.uid == userUID }) ?? players[0]
+        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+            ?? players[0]
         self.currentRound = 1
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
