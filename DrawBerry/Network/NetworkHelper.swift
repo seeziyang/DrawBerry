@@ -18,11 +18,12 @@ class NetworkHelper {
         Auth.auth().currentUser?.displayName
     }
 
-    static func addUserToDB(userID: String, email: String) {
+    static func addUserToDB(userID: String, email: String, username: String) {
         let db: DatabaseReference = Database.database().reference()
 
         db.child("users").child(userID).setValue([
-            "email": email
+            "email": email,
+            "username": username
         ])
     }
 }

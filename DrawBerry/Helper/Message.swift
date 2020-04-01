@@ -19,6 +19,7 @@ enum Message {
     with at least 8 characters, containing an alphabet and a number.
     """
     static let passwordsDoNotMatch = "Passwords do not match!"
+    static let usernameLengthTooLong = "Length of username should not be greater than 10 characters"
 
     // Classic Room
     static let roomDoesNotExist = "Unable to join as room does not exist"

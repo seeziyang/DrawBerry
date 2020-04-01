@@ -23,7 +23,7 @@ class Authentication {
     }
 
     /// Sign up a new user with an email address and password.
-    static func signUp(email: String, password: String) {
+    static func signUp(username: String, email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
 
             if error != nil {
@@ -37,7 +37,7 @@ class Authentication {
                 return
             }
 
-            NetworkHelper.addUserToDB(userID: userID, email: email)
+            NetworkHelper.addUserToDB(userID: userID, email: email, username: username)
             delegate?.handleAuthenticationUpdate(status: true)
         }
     }
