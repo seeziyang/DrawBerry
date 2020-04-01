@@ -116,7 +116,7 @@ class ClassicGame {
     }
 
     private func moveToNextRound() {
-        Timer.scheduledTimer(withTimeInterval: 5.00, repeats: false, block: { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 10.00, repeats: false, block: { [weak self] _ in
             self?.currentRound += 1
             self?.moveRoundMasterIndex()
 
