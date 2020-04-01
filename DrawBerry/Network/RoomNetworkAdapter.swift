@@ -92,18 +92,46 @@ class RoomNetworkAdapter {
                        "isRoomMaster": false])
     }
 
-    func leaveRoom(roomCode: RoomCode) {
+    func leaveRoom(roomCode: RoomCode, isRoomMaster: Bool) {
         guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
         }
 
-        db.child("activeRooms")
+        let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
-            .child(roomCode.value).child("players")
+            .child(roomCode.value)
+            .child("players")
             .child(userID)
-            .removeValue()
 
-        // TODO: handover roomMaster if is roomMaster
+        if isRoomMaster {
+            dbPathRef.removeValue(completionBlock: { [weak self] _, _ in
+                self?.handoverRoomMaster(roomCode: roomCode)
+            })
+        } else {
+            dbPathRef.removeValue()
+        }
+
+    }
+
+    private func handoverRoomMaster(roomCode: RoomCode) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+
+        dbPathRef.observeSingleEvent(of: .value, with: { snapshot in
+            guard let players = snapshot.value as? [String: Any] else {
+                return
+            }
+
+            guard let firstOtherPlayerUID = players.first?.key else {
+                return
+            }
+
+            dbPathRef.child(firstOtherPlayerUID)
+                .child("isRoomMaster")
+                .setValue(true)
+        })
     }
 
     func deleteRoom(roomCode: RoomCode) {
@@ -120,8 +148,6 @@ class RoomNetworkAdapter {
             .child("hasStarted")
             .setValue(true)
     }
-
-    // TODO: add activeRoom room deletion from db when room/game ends
 
     func observeRoomPlayers(roomCode: RoomCode, listener: @escaping ([RoomPlayer]) -> Void) {
         db.child("activeRooms")

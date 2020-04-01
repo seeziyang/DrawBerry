@@ -150,6 +150,9 @@ class ClassicGame {
 
     private func endGame() {
         Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
+            self?.networkAdapter.endGame(isRoomMaster: self?.user.isRoomMaster ?? false,
+                                         numRounds: self?.currentRound ?? 0)
+
             self?.delegate?.segueToGameEnd()
         })
     }

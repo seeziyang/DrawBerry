@@ -56,7 +56,10 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         if let currentUser = room.user {
             if !currentUser.isRoomMaster {
                 startButton.isEnabled = false
-                startButton.tintColor = UIColor.clear
+                startButton.tintColor = .clear
+            } else {
+                startButton.isEnabled = true
+                startButton.tintColor = .systemBlue
             }
         }
     }
@@ -77,8 +80,6 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     private func startGame() {
-        // TODO: make only roomMaster can startGame?
-
         if !room.canStart {
             // TODO: show some UIPrompt indicating minPlayer amount not reached
             return

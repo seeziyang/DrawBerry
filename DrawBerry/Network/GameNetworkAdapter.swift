@@ -20,8 +20,6 @@ class GameNetworkAdapter {
         self.cloud = Storage.storage().reference()
     }
 
-    // TODO: delete room from active room (in both db and cloud) when game room ends
-
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
         guard let imageData = image.pngData(),
             let userID = NetworkHelper.getLoggedInUserID() else {
@@ -147,5 +145,30 @@ class GameNetworkAdapter {
 
             dbPathRef.removeAllObservers()
         })
+    }
+
+    func endGame(isRoomMaster: Bool, numRounds: Int) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else{
+            return
+        }
+
+        // room master deletes active room from db
+        if isRoomMaster {
+            db.child("activeRooms")
+                .child(roomCode.type.rawValue)
+                .child(roomCode.value)
+                .removeValue()
+        }
+
+        let cloudPathRef = cloud.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+
+        // delete drawing for each round from storage
+        for round in 0..<numRounds {
+            cloudPathRef.child("\(round).png").delete()
+        }
     }
 }

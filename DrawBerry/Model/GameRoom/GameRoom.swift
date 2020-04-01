@@ -21,12 +21,7 @@ class GameRoom {
         }
     }
     var user: RoomPlayer? {
-        if players.isEmpty {
-            return nil
-        }
-        let userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? 0
-        return players[userIndex]
+        players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
     }
 
     var status: GameRoomStatus {
@@ -71,7 +66,7 @@ class GameRoom {
         if isLastPlayer {
             roomNetworkAdapter.deleteRoom(roomCode: roomCode)
         } else {
-            roomNetworkAdapter.leaveRoom(roomCode: roomCode)
+            roomNetworkAdapter.leaveRoom(roomCode: roomCode, isRoomMaster: user?.isRoomMaster ?? false)
         }
     }
 }
