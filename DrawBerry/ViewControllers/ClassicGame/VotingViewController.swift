@@ -109,7 +109,7 @@ extension VotingViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        let heightPerItem = widthPerItem * 1.5
+        let heightPerItem = widthPerItem * Constants.votingCellHeightRatio
 
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
