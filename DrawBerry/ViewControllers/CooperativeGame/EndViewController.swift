@@ -16,6 +16,7 @@ class EndViewController: CooperativeGameViewController {
         super.viewDidLoad()
         addCanvasToView()
         populateDrawings()
+        addMenuButtonWithDelay()
     }
 
     private func addCanvasToView() {
@@ -28,17 +29,36 @@ class EndViewController: CooperativeGameViewController {
     }
 
     private func populateDrawings() {
-        let canvasHeight = self.view.bounds.height - BerryConstants.paletteHeight
-        let canvasWidth = self.view.bounds.width
-        let drawingSpaceHeight = canvasHeight / CGFloat(cooperativeGame.players.count)
-        var verticalDisp: CGFloat = 0
         cooperativeGame.allDrawings.forEach {
-            let imageView = UIImageView(
-                frame: CGRect(x: 0, y: verticalDisp, width: canvasWidth, height: drawingSpaceHeight)
-            )
+            let imageView = UIImageView(frame: self.view.frame)
             imageView.image = $0
+            imageView.contentMode = .scaleAspectFit
             self.view.addSubview(imageView)
-            verticalDisp += drawingSpaceHeight
         }
+    }
+
+    private func addMenuButtonWithDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.addMenuButtonToView()
+        }
+    }
+
+    private func addMenuButtonToView() {
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.maxY - 250,
+                              width: 100, height: 50)
+        button.backgroundColor = .systemYellow
+        button.setTitle("Main Menu", for: .normal)
+        button.addTarget(self, action: #selector(backOnTap(sender:)), for: .touchUpInside)
+
+        view.addSubview(button)
+    }
+
+    @objc private func backOnTap(sender: UIButton) {
+        navigateToMainMenu()
+    }
+
+    private func navigateToMainMenu() {
+        performSegue(withIdentifier: "segueToMainMenu", sender: self)
     }
 }
