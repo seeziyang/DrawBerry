@@ -29,6 +29,11 @@ class SignUpViewController: UIViewController {
         Authentication.delegate = self
     }
 
+    /// Hides the status bar at the top
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     func initializeElements() {
         background.image = Constants.signUpBackground
         background.alpha = Constants.backgroundAlpha
@@ -46,6 +51,10 @@ class SignUpViewController: UIViewController {
         if username.isEmpty || email.isEmpty ||
         password.isEmpty || passwordConfirmation.isEmpty {
             return Message.whitespaceOnlyTextField
+        }
+
+        if username.count > 10 {
+            return Message.usernameLengthTooLong
         }
 
         // Test regex
@@ -77,12 +86,13 @@ class SignUpViewController: UIViewController {
             return
         }
 
-        guard let email = StringHelper.trim(string: emailTextField.text),
-              let password = StringHelper.trim(string: passwordTextField.text) else {
+        guard let username = StringHelper.trim(string: usernameTextField.text),
+            let email = StringHelper.trim(string: emailTextField.text),
+            let password = StringHelper.trim(string: passwordTextField.text) else {
             return
         }
 
-        Authentication.signUp(email: email, password: password)
+        Authentication.signUp(username: username, email: email, password: password)
     }
 
     @IBAction private func goBackToLoginScreen(_ sender: UIButton) {
@@ -94,7 +104,6 @@ class SignUpViewController: UIViewController {
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
-
 }
 
 extension SignUpViewController: AuthenticationUpdateDelegate {
