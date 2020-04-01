@@ -46,12 +46,6 @@ class ClassicGame {
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
-    func moveToNextRound() {
-        currentRound += 1
-        // TODO: update db
-        // TODO: udpdate roundMasterIndex
-    }
-
     func addUsersDrawing(image: UIImage) {
         user.addDrawing(image: image)
         networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
@@ -72,6 +66,10 @@ class ClassicGame {
 
     func hasAllPlayersDrawnForCurrentRound() -> Bool {
         players.allSatisfy { $0.hasDrawing(ofRound: currentRound) }
+    }
+
+    func hasAllPlayersVotedForCurrentRound() -> Bool {
+        players.allSatisfy { $0.hasVoted(inRound: currentRound) }
     }
 
     func userVoteFor(player: ClassicPlayer) {
@@ -108,8 +106,25 @@ class ClassicGame {
                     }
 
                     self?.delegate?.votesDidUpdate()
+
+                    if self?.hasAllPlayersDrawnForCurrentRound() ?? false {
+                        self?.moveToNextRound()
+                    }
                 }
             )
         }
+    }
+
+    private func moveToNextRound() {
+        Timer.scheduledTimer(withTimeInterval: 5.00, repeats: false, block: { [weak self] _ in
+            self?.currentRound += 1
+            self?.moveRoundMasterIndex()
+
+            self?.delegate?.segueToNextRound()
+        })
+    }
+
+    private func moveRoundMasterIndex() {
+        roundMasterIndex = (roundMasterIndex + 1) % players.count
     }
 }

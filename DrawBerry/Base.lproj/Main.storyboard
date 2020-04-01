@@ -1144,7 +1144,7 @@
                     <navigationItem key="navigationItem" id="htx-aC-6Cb"/>
                     <connections>
                         <outlet property="voteResultsCollectionView" destination="6X2-a1-8eE" id="O6x-8a-BQE"/>
-                        <segue destination="1RG-Zu-Bow" kind="show" id="zXI-Xz-Tkd"/>
+                        <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToNextRound" id="zXI-Xz-Tkd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D08-h1-9qw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

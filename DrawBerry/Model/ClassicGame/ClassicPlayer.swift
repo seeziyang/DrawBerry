@@ -55,12 +55,21 @@ class ClassicPlayer: Player {
         votedPlayers.append(player)
     }
 
-    func getVotedPlayer(inRound round: Int) -> ClassicPlayer? {
+    func hasVoted(inRound round: Int) -> Bool {
+        if votedPlayers.isEmpty {
+            return false
+        }
+
         let index = round - 1
-        if index < 0 || index >= votedPlayers.count {
+        return index >= 0 && index < votedPlayers.count
+    }
+
+    func getVotedPlayer(inRound round: Int) -> ClassicPlayer? {
+        guard hasVoted(inRound: round) else {
             return nil
         }
 
+        let index = round - 1
         return votedPlayers[index]
     }
 }

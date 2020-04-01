@@ -25,8 +25,18 @@ class VoteResultsViewController: UIViewController, ClassicGameDelegate {
         itemsPerRow = view.bounds.maxX >= minIPadWidth ? 2 : 1
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let classicVC = segue.destination as? ClassicViewController {
+            classicVC.classicGame = classicGame
+        }
+    }
+
     func votesDidUpdate() {
         voteResultsCollectionView.reloadData()
+    }
+
+    func segueToNextRound() {
+        performSegue(withIdentifier: "segueToNextRound", sender: self)
     }
 }
 
