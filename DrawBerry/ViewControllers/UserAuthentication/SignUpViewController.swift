@@ -31,7 +31,7 @@ class SignUpViewController: UIViewController {
 
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
-        return true
+        true
     }
 
     func initializeElements() {

@@ -32,10 +32,16 @@ class Authentication {
                 return
             }
 
-            guard let userID = result?.user.uid, let email = result?.user.email else {
-                delegate?.handleAuthenticationUpdate(status: false)
-                return
+            guard let user = result?.user, let userID = result?.user.uid,
+                let email = result?.user.email else {
+                    delegate?.handleAuthenticationUpdate(status: false)
+                    return
             }
+
+            // set user's displayName with username
+            let setDisplayNameRequest = user.createProfileChangeRequest()
+            setDisplayNameRequest.displayName = username
+            setDisplayNameRequest.commitChanges()
 
             NetworkHelper.addUserToDB(userID: userID, email: email, username: username)
             delegate?.handleAuthenticationUpdate(status: true)

@@ -29,11 +29,19 @@ class GameNetworkAdapter {
         }
 
         let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).child("rounds").child(String(round)).child("hasUploadedImage")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+            .child("rounds")
+            .child(String(round))
+            .child("hasUploadedImage")
         let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).child("\(round).png")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+            .child("\(round).png")
 
         cloudPathRef.putData(imageData, metadata: nil, completion: { _, error in
             if let error = error {
@@ -49,8 +57,11 @@ class GameNetworkAdapter {
     private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
                                        completionHandler: @escaping (UIImage) -> Void) {
         let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(playerUID).child("\(round).png")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(playerUID)
+            .child("\(round).png")
 
         cloudPathRef.getData(maxSize: 10 * 1_024 * 1_024, completion: { data, error in
             if let error = error {
@@ -69,8 +80,13 @@ class GameNetworkAdapter {
     func waitAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
                                       completionHandler: @escaping (UIImage) -> Void) {
         let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(playerUID).child("rounds").child(String(round)).child("hasUploadedImage")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(playerUID)
+            .child("rounds")
+            .child(String(round))
+            .child("hasUploadedImage")
 
         dbPathRef.observe(.value, with: { snapshot in
             guard snapshot.value as? Bool ?? false else { // image not uploaded yet
@@ -90,24 +106,37 @@ class GameNetworkAdapter {
             return
         }
 
-        let dbGamePlayersPathRef = db.child("activeRooms").child(roomCode.type.rawValue)
-            .child(roomCode.value).child("players")
+        let dbGamePlayersPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
 
-        dbGamePlayersPathRef.child(userID).child("rounds").child(String(round))
-            .child("votedFor").setValue(playerUID)
+        dbGamePlayersPathRef.child(userID)
+            .child("rounds")
+            .child(String(round))
+            .child("votedFor")
+            .setValue(playerUID)
 
-        dbGamePlayersPathRef.child(playerUID).child("points").setValue(updatedPlayerPoints)
+        dbGamePlayersPathRef.child(playerUID)
+            .child("points")
+            .setValue(updatedPlayerPoints)
 
         if let updatedUserPoints = updatedUserPoints {
-            dbGamePlayersPathRef.child(userID).child("points").setValue(updatedUserPoints)
+            dbGamePlayersPathRef.child(userID)
+                .child("points")
+                .setValue(updatedUserPoints)
         }
     }
 
     func observePlayerVote(playerUID: String, forRound round: Int,
                            completionHandler: @escaping (String) -> Void) {
         let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(playerUID).child("rounds").child(String(round)).child("votedFor")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value).child("players")
+            .child(playerUID)
+            .child("rounds")
+            .child(String(round))
+            .child("votedFor")
 
         dbPathRef.observe(.value, with: { snapshot in
             guard let votedForPlayerUID = snapshot.value as? String else {

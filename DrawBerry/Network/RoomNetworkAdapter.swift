@@ -28,23 +28,33 @@ class RoomNetworkAdapter {
     }
 
     func createRoom(roomCode: RoomCode) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
-            return
+        guard let userID = NetworkHelper.getLoggedInUserID(),
+            let username = NetworkHelper.getLoggedInUserName() else {
+                return
         }
 
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).setValue(["isRoomMaster": true])
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+            .setValue(["username": username,
+                       "isRoomMaster": true])
     }
 
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
-        db.child("activeRooms").child(roomCode.type.rawValue)
-            .child(roomCode.value).observeSingleEvent(of: .value, with: { snapshot in
-            completionHandler(snapshot.exists())
-        })
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .observeSingleEvent(of: .value, with: { snapshot in
+                completionHandler(snapshot.exists())
+            })
     }
 
     func checkRoomEnterable(roomCode: RoomCode, completionHandler: @escaping (GameRoomStatus) -> Void) {
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value)
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
             .observeSingleEvent(of: .value, with: { snapshot in
                 guard let roomValue = snapshot.value as? [String: AnyObject] else {
                     completionHandler(.doesNotExist) // room does not exists
@@ -68,12 +78,18 @@ class RoomNetworkAdapter {
     }
 
     func joinRoom(roomCode: RoomCode) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
-            return
+        guard let userID = NetworkHelper.getLoggedInUserID(),
+            let username = NetworkHelper.getLoggedInUserName() else {
+                return
         }
 
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).child("isRoomMaster").setValue(false)
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+            .setValue(["username": username,
+                       "isRoomMaster": false])
     }
 
     func leaveRoom(roomCode: RoomCode) {
@@ -81,35 +97,46 @@ class RoomNetworkAdapter {
             return
         }
 
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).removeValue()
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value).child("players")
+            .child(userID)
+            .removeValue()
 
         // TODO: handover roomMaster if is roomMaster
     }
 
     func deleteRoom(roomCode: RoomCode) {
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).removeValue()
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .removeValue()
     }
 
     func startGame(roomCode: RoomCode) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .child("hasStarted").setValue(true)
+            .child("hasStarted")
+            .setValue(true)
     }
 
     // TODO: add activeRoom room deletion from db when room/game ends
 
     func observeRoomPlayers(roomCode: RoomCode, listener: @escaping ([RoomPlayer]) -> Void) {
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("players")
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
             .observe(.value, with: { snapshot in
-                guard let playersValue = snapshot.value as? [String: [String: Bool]] else {
+                guard let playersValue = snapshot.value as? [String: [String: Any]] else {
                     return
                 }
 
                 let players = playersValue.map { playerUID, properties in
-                    RoomPlayer(name: playerUID, uid: playerUID,
-                               isRoomMaster: properties["isRoomMaster"] ?? false)
+                    RoomPlayer(name: properties["username"] as? String ?? "Player",
+                               uid: playerUID,
+                               isRoomMaster: properties["isRoomMaster"] as? Bool ?? false)
                 }
 
                 listener(players)
@@ -117,7 +144,10 @@ class RoomNetworkAdapter {
     }
 
     func observeGameStart(roomCode: RoomCode, listener: @escaping (Bool) -> Void) {
-        db.child("activeRooms").child(roomCode.type.rawValue).child(roomCode.value).child("hasStarted")
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("hasStarted")
             .observe(.value, with: { snapshot in
                 guard let hasStartedValue = snapshot.value as? Bool else {
                     return
