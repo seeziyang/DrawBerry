@@ -16,11 +16,10 @@ class UserProfileNetworkAdapter {
     static var storageListResult: StorageListResult?
 
     static func uploadProfileImage(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.3) else {
-            return
+        guard let imageData = image.jpegData(compressionQuality: 0.3),
+            let userID = NetworkHelper.getLoggedInUserID() else {
+                return
         }
-
-        let userID = NetworkHelper.getLoggedInUserID()
 
         let cloudPathRef = cloud.child("users").child(userID).child(Constants.profilePictureFileName)
 
@@ -35,11 +34,11 @@ class UserProfileNetworkAdapter {
 
     // TODO: add function after game ends
     static func uploadImageToFavourites(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.3) else {
-            return
+        guard let imageData = image.jpegData(compressionQuality: 0.3),
+            let userID = NetworkHelper.getLoggedInUserID() else {
+                return
         }
 
-        let userID = NetworkHelper.getLoggedInUserID()
         let fileExtension = ".jpeg"
         let fileName = StringHelper.getCurrentDateTime()
 
@@ -54,8 +53,11 @@ class UserProfileNetworkAdapter {
         })
     }
 
-    static func downloadProfileImage(delegate: UserProfileNetworkDelegate, playerUID: String) {
-
+    static func downloadProfileImage(delegate: UserProfileNetworkDelegate, playerUID: String?) {
+        guard let playerUID = playerUID else {
+            return
+        }
+        
         let cloudPathRef = cloud.child("users").child(playerUID).child(Constants.profilePictureFileName)
 
         cloudPathRef.getData(maxSize: 1 * 1_024 * 1_024, completion: { data, error in

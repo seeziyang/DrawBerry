@@ -20,4 +20,6 @@ enum Constants {
     static let backgroundAlpha = CGFloat(0.7)
 
     static let profilePictureFileName = "profile.jpeg"
+
+    static let votingCellHeightRatio: CGFloat = 1.5
 }

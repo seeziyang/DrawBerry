@@ -27,7 +27,10 @@
 		1A4C5F252422619500937244 /* GameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* GameNetworkAdapter.swift */; };
 		1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */; };
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
+		1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411024337F7E00992F5D /* VoteResultsViewController.swift */; };
+		1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
+		1AD8A4242434A50000C05D40 /* ClassicGameEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */; };
 		371F28C32430F2A7006852EE /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD5241FB30A0097A14F /* GameRoom.swift */; };
 		371F28C42430F375006852EE /* CooperativeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA58C242C36B2000E1E71 /* CooperativeGame.swift */; };
 		371F28C52430F377006852EE /* CooperativeGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA591242C3B22000E1E71 /* CooperativeGameDelegate.swift */; };
@@ -207,7 +210,10 @@
 		1A4C5F242422619500937244 /* GameNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNetworkAdapter.swift; sourceTree = "<group>"; };
 		1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayerTests.swift; sourceTree = "<group>"; };
 		1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameTests.swift; sourceTree = "<group>"; };
+		1A70411024337F7E00992F5D /* VoteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultsViewController.swift; sourceTree = "<group>"; };
+		1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
+		1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameEndViewController.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		283B7AA32B517C3468FBBF24 /* Pods_DrawBerry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DrawBerry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3711CCC12430E8FC00C52B3F /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,6 +369,8 @@
 				1A432BD7241FB6240097A14F /* ClassicGameRoomViewController.swift */,
 				FCEC3BE92417941600F0DE03 /* ClassicViewController.swift */,
 				1A3ACB8524227948007FA27C /* VotingViewController.swift */,
+				1A70411024337F7E00992F5D /* VoteResultsViewController.swift */,
+				1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */,
 			);
 			path = ClassicGame;
 			sourceTree = "<group>";
@@ -441,6 +449,7 @@
 				3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */,
 				3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */,
 				3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */,
+				1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -932,6 +941,7 @@
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
 				379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */,
 				3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */,
+				1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */,
 				1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */,
 				FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
@@ -947,6 +957,7 @@
 				FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */,
 				FC488980241C79FD00375140 /* CompetitivePlayer.swift in Sources */,
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
+				1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */,
 				1A3F399A2421C0FB0084859F /* Player.swift in Sources */,
 				37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */,
 				1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */,
@@ -985,6 +996,7 @@
 				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,
 				3749D3AD2425F14A00CE798F /* UIImageViewExtension.swift in Sources */,
 				1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */,
+				1AD8A4242434A50000C05D40 /* ClassicGameEndViewController.swift in Sources */,
 				FCEC3BE82417941600F0DE03 /* SceneDelegate.swift in Sources */,
 				1A432BDA241FBA540097A14F /* EnterClassicRoomViewController.swift in Sources */,
 				FC404616242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,

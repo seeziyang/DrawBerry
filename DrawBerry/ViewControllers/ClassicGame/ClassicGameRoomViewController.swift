@@ -20,7 +20,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
-        return true
+        true
     }
 
     override func viewDidLoad() {
@@ -56,7 +56,10 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         if let currentUser = room.user {
             if !currentUser.isRoomMaster {
                 startButton.isEnabled = false
-                startButton.tintColor = UIColor.clear
+                startButton.tintColor = .clear
+            } else {
+                startButton.isEnabled = true
+                startButton.tintColor = .systemBlue
             }
         }
     }
@@ -77,8 +80,6 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     private func startGame() {
-        // TODO: make only roomMaster can startGame?
-
         if !room.canStart {
             // TODO: show some UIPrompt indicating minPlayer amount not reached
             return
@@ -95,7 +96,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
 extension ClassicGameRoomViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return GameRoom.maxPlayers
+        GameRoom.maxPlayers
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -133,7 +134,8 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
 // Code for layout adapted from https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
@@ -146,13 +148,13 @@ extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+        sectionInsets
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+        sectionInsets.left
     }
 }
 

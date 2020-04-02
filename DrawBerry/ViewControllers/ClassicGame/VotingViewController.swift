@@ -18,17 +18,57 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
 
         let minIPadWidth: CGFloat = 768
         // 2 for iPad, 1 for iPhone
         itemsPerRow = view.bounds.maxX >= minIPadWidth ? 2 : 1
-        overrideUserInterfaceStyle = .light
     }
 
     func drawingsDidUpdate() {
         votingImagesCollectionView.reloadData()
-        // TODO: reload specific player's image only?
         // TODO: show spinning wheel or some loading indicator if player havent upload
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let voteResultsVC = segue.destination as? VoteResultsViewController {
+            voteResultsVC.classicGame = classicGame
+            voteResultsVC.classicGame.delegate = voteResultsVC
+            voteResultsVC.classicGame.observePlayerVotes()
+        }
+    }
+
+    @objc private func handleDrawingTap(_ sender: UITapGestureRecognizer) {
+        if classicGame.hasAllPlayersDrawnForCurrentRound() {
+            guard let cell = sender.view as? UICollectionViewCell else {
+                return
+            }
+
+            guard let indexPath = votingImagesCollectionView.indexPath(for: cell) else {
+                return
+            }
+
+            let player = classicGame.players[indexPath.row]
+
+            if player === classicGame.user {
+                // TODO: show msg saying user cannot vote for themself
+                return
+            }
+
+            voteForPlayerDrawing(player: player)
+        } else {
+            // TODO: show msg saying not all players have drawn
+        }
+    }
+
+    private func voteForPlayerDrawing(player: ClassicPlayer) {
+        classicGame.userVoteFor(player: player)
+        segueToVoteResultsVC()
+
+    }
+
+    private func segueToVoteResultsVC() {
+        performSegue(withIdentifier: "segueToVoteResults", sender: self)
     }
 }
 
@@ -49,7 +89,16 @@ extension VotingViewController: UICollectionViewDataSource {
 
         cell.addSubview(imageView)
         cell.backgroundColor = .systemYellow // TODO: remove
+
+        addTapGesture(cell: cell)
+
         return cell
+    }
+
+    private func addTapGesture(cell: UICollectionViewCell) {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(handleDrawingTap(_:)))
+        cell.addGestureRecognizer(tapGestureRecognizer)
     }
 }
 
@@ -60,7 +109,7 @@ extension VotingViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        let heightPerItem = widthPerItem * 1.5
+        let heightPerItem = widthPerItem * Constants.votingCellHeightRatio
 
         return CGSize(width: widthPerItem, height: heightPerItem)
     }

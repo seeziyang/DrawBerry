@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4J-Ox-CFn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4J-Ox-CFn">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1052,11 +1052,137 @@
                     <navigationItem key="navigationItem" id="MoF-7t-NFl"/>
                     <connections>
                         <outlet property="votingImagesCollectionView" destination="r8J-hz-9HJ" id="iCd-Rk-wVP"/>
+                        <segue destination="nAF-Ru-4xa" kind="show" identifier="segueToVoteResults" id="VzZ-Mu-Aqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ws-xT-Mdx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4085.9259259259256" y="32.777777777777779"/>
+        </scene>
+        <!--Vote Results View Controller-->
+        <scene sceneID="Nd9-b8-6ln">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="nAF-Ru-4xa" customClass="VoteResultsViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vpy-Z0-m9d">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6X2-a1-8eE">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LIX-qL-chG">
+                                    <size key="itemSize" width="300" height="273"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="voteResultCell" id="DeG-nb-bam" customClass="VoteResultCollectionViewCell" customModule="DrawBerry" customModuleProvider="target">
+                                        <rect key="frame" x="184" y="0.0" width="400" height="600"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CwQ-ub-MA3">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NjO-T9-xik">
+                                                    <rect key="frame" x="50" y="30" width="300" height="460"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gaq-qo-Zfp">
+                                                    <rect key="frame" x="20" y="530" width="200" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="points" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO2-VD-DTd">
+                                                    <rect key="frame" x="180" y="530" width="200" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gO2-VD-DTd" firstAttribute="top" secondItem="NjO-T9-xik" secondAttribute="bottom" constant="40" id="1ha-Cb-7Eh"/>
+                                                <constraint firstItem="NjO-T9-xik" firstAttribute="width" secondItem="CwQ-ub-MA3" secondAttribute="height" multiplier="1:2" id="2t9-jU-zeS"/>
+                                                <constraint firstItem="NjO-T9-xik" firstAttribute="centerX" secondItem="CwQ-ub-MA3" secondAttribute="centerX" id="8wv-DF-3au"/>
+                                                <constraint firstItem="gO2-VD-DTd" firstAttribute="width" secondItem="CwQ-ub-MA3" secondAttribute="width" multiplier="0.5" id="FZ2-dF-HNH"/>
+                                                <constraint firstAttribute="trailing" secondItem="gO2-VD-DTd" secondAttribute="trailing" constant="20" id="J3r-Pm-Z2s"/>
+                                                <constraint firstItem="gO2-VD-DTd" firstAttribute="height" secondItem="CwQ-ub-MA3" secondAttribute="height" multiplier="0.0833333" id="LAp-HB-7D1"/>
+                                                <constraint firstItem="gO2-VD-DTd" firstAttribute="width" secondItem="CwQ-ub-MA3" secondAttribute="height" multiplier="1:3" id="MmT-4x-BvT"/>
+                                                <constraint firstItem="Gaq-qo-Zfp" firstAttribute="width" secondItem="CwQ-ub-MA3" secondAttribute="height" multiplier="1:3" id="P1o-1p-M3X"/>
+                                                <constraint firstItem="Gaq-qo-Zfp" firstAttribute="width" secondItem="CwQ-ub-MA3" secondAttribute="width" multiplier="0.5" id="Tnj-8J-dBo"/>
+                                                <constraint firstItem="NjO-T9-xik" firstAttribute="width" secondItem="CwQ-ub-MA3" secondAttribute="width" multiplier="0.75" id="UCP-gb-iQI"/>
+                                                <constraint firstItem="Gaq-qo-Zfp" firstAttribute="top" secondItem="NjO-T9-xik" secondAttribute="bottom" constant="40" id="X14-wa-B0W"/>
+                                                <constraint firstItem="Gaq-qo-Zfp" firstAttribute="height" secondItem="CwQ-ub-MA3" secondAttribute="height" multiplier="0.0833333" id="gM6-UN-vyI"/>
+                                                <constraint firstItem="NjO-T9-xik" firstAttribute="height" secondItem="CwQ-ub-MA3" secondAttribute="height" multiplier="0.766667" id="hn8-rY-9PF"/>
+                                                <constraint firstItem="NjO-T9-xik" firstAttribute="top" secondItem="CwQ-ub-MA3" secondAttribute="top" constant="30" id="llc-9h-jkU"/>
+                                                <constraint firstItem="Gaq-qo-Zfp" firstAttribute="leading" secondItem="CwQ-ub-MA3" secondAttribute="leading" constant="20" id="omZ-Z7-ibP"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="400" height="600"/>
+                                        <connections>
+                                            <outlet property="drawingImageView" destination="NjO-T9-xik" id="5nV-yl-rYX"/>
+                                            <outlet property="nameLabel" destination="Gaq-qo-Zfp" id="nhl-If-Zmv"/>
+                                            <outlet property="pointsLabel" destination="gO2-VD-DTd" id="3Oa-xV-zhb"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="nAF-Ru-4xa" id="XA7-dX-CzU"/>
+                                    <outlet property="delegate" destination="nAF-Ru-4xa" id="c4m-fW-Sn3"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6X2-a1-8eE" firstAttribute="leading" secondItem="O9a-Em-Fnh" secondAttribute="leading" id="8gY-f9-ECa"/>
+                            <constraint firstItem="6X2-a1-8eE" firstAttribute="top" secondItem="O9a-Em-Fnh" secondAttribute="top" id="GlR-V5-bfc"/>
+                            <constraint firstItem="O9a-Em-Fnh" firstAttribute="bottom" secondItem="6X2-a1-8eE" secondAttribute="bottom" id="PHg-S2-Oqg"/>
+                            <constraint firstItem="O9a-Em-Fnh" firstAttribute="trailing" secondItem="6X2-a1-8eE" secondAttribute="trailing" id="siR-Wb-MCF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O9a-Em-Fnh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="htx-aC-6Cb"/>
+                    <connections>
+                        <outlet property="voteResultsCollectionView" destination="6X2-a1-8eE" id="O6x-8a-BQE"/>
+                        <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToNextRound" id="zXI-Xz-Tkd"/>
+                        <segue destination="0SH-7d-mKs" kind="show" identifier="segueToGameEnd" id="fNE-lK-RPR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D08-h1-9qw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4947.65625" y="32.503660322108345"/>
+        </scene>
+        <!--Classic Game End View Controller-->
+        <scene sceneID="dXy-oN-IeL">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="0SH-7d-mKs" customClass="ClassicGameEndViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wxd-98-S9N">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="game over! show some results here, maybe using the player cells" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frN-BO-A5o">
+                                <rect key="frame" x="136" y="502" width="496" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="frN-BO-A5o" firstAttribute="centerX" secondItem="hc5-JG-nkD" secondAttribute="centerX" id="c6D-Fk-hME"/>
+                            <constraint firstItem="frN-BO-A5o" firstAttribute="centerY" secondItem="hc5-JG-nkD" secondAttribute="centerY" id="vQX-gi-Oua"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hc5-JG-nkD"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tCH-f2-gpu"/>
+                    <connections>
+                        <segue destination="Qam-rv-IYs" kind="unwind" identifier="unwindSegueToHomeVC" unwindAction="unwindToHomeVCWithSegue:" id="ana-Aa-UEA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rKX-Wd-BnJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Qam-rv-IYs" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5717.578125" y="32.942898975109806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="03Q-NG-2HP">
@@ -1092,12 +1218,13 @@
             <point key="canvasLocation" x="1634" y="1525"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ujx-8I-en9"/>
+        <segue reference="epa-EW-RcE"/>
+        <segue reference="TXh-cz-zfd"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="4000" height="3000"/>
         <image name="drawberry-logo" width="512" height="512"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="yOx-SV-Vc5"/>
-        <segue reference="TXh-cz-zfd"/>
-    </inferredMetricsTieBreakers>
 </document>
