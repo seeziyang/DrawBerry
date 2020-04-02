@@ -14,6 +14,8 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBOutlet private weak var startButton: UIBarButtonItem!
     @IBOutlet private weak var playersCollectionView: UICollectionView!
+    @IBOutlet private weak var roomCodeLabel: UINavigationItem!
+    @IBOutlet private weak var isRapidSwitch: UISwitch!
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
     private let itemsPerRow: CGFloat = 2
@@ -24,9 +26,12 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         playersCollectionView.delegate = self
         playersCollectionView.dataSource = self
-        super.viewDidLoad()
+
+        roomCodeLabel.title = room.roomCode.value
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,29 +53,41 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         leaveGameRoom()
     }
 
+    @IBAction private func isRapidSwitchOnToggle(_ sender: UISwitch) {
+        toggleIsRapid()
+    }
+
     @IBAction private func startOnTap(_ sender: UIBarButtonItem) {
         startGame()
     }
 
-    func configureStartButton() {
+    private func configureRoomMasterButtons() {
         if let currentUser = room.user {
             if !currentUser.isRoomMaster {
                 startButton.isEnabled = false
                 startButton.tintColor = .clear
+
+                isRapidSwitch.isEnabled = false
             } else {
                 startButton.isEnabled = true
                 startButton.tintColor = .systemBlue
+
+                isRapidSwitch.isEnabled = true
             }
         }
     }
 
     func playersDidUpdate() {
-        configureStartButton()
+        configureRoomMasterButtons()
         playersCollectionView.reloadData()
     }
 
     func gameHasStarted() {
         segueToGameVC()
+    }
+
+    func isRapidDidUpdate(isRapid: Bool) {
+        isRapidSwitch.setOn(isRapid, animated: true)
     }
 
     private func leaveGameRoom() {
@@ -87,6 +104,10 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
         room.startGame()
         segueToGameVC()
+    }
+
+    private func toggleIsRapid() {
+        room.toggleIsRapid()
     }
 
     private func segueToGameVC() {

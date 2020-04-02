@@ -24,6 +24,7 @@ class RoomNetworkAdapter {
                 .child(observingRoomCode.value)
             dbPathRef.child("player").removeAllObservers()
             dbPathRef.child("hasStarted").removeAllObservers()
+            dbPathRef.child("isRapid").removeAllObservers()
         }
     }
 
@@ -141,6 +142,14 @@ class RoomNetworkAdapter {
             .removeValue()
     }
 
+    func setIsRapid(roomCode: RoomCode, isRapid: Bool) {
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("isRapid")
+            .setValue(isRapid)
+    }
+
     func startGame(roomCode: RoomCode) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -180,6 +189,20 @@ class RoomNetworkAdapter {
                 }
 
                 listener(hasStartedValue)
+            })
+    }
+
+    func observeIsRapidToggle(roomCode: RoomCode, listener: @escaping (Bool) -> Void) {
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("isRapid")
+            .observe(.value, with: { snapshot in
+                guard let isRapidValue = snapshot.value as? Bool else {
+                    return
+                }
+
+                listener(isRapidValue)
             })
     }
 }
