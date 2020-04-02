@@ -37,10 +37,15 @@ class RoomNetworkAdapter {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .child("players")
-            .child(userID)
-            .setValue(["username": username,
-                       "isRoomMaster": true])
+            .setValue([
+                "isRapid": true,
+                "players": [
+                    userID: [
+                        "username": username,
+                        "isRoomMaster": true
+                    ]
+                ]
+            ])
     }
 
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
@@ -150,12 +155,32 @@ class RoomNetworkAdapter {
             .setValue(isRapid)
     }
 
-    func startGame(roomCode: RoomCode) {
-        db.child("activeRooms")
+    func startGame(roomCode: RoomCode, isRapid: Bool) {
+        let dbRoomPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .child("hasStarted")
+
+        dbRoomPathRef.child("hasStarted")
             .setValue(true)
+
+        // add persisting non-rapid games under each player's user info in db
+        if !isRapid {
+            dbRoomPathRef.child("players")
+                .observeSingleEvent(of: .value, with: { snapshot in
+                    guard let players = snapshot.value as? [String: Any] else {
+                        return
+                    }
+
+                    let playersUIDs = players.keys
+                    playersUIDs.forEach { [weak self] playerUID in
+                        self?.db.child("users")
+                            .child(playerUID)
+                            .child("activeNonRapidGames")
+                            .child(roomCode.value)
+                            .setValue(true)
+                    }
+                })
+        }
     }
 
     func observeRoomPlayers(roomCode: RoomCode, listener: @escaping ([RoomPlayer]) -> Void) {
@@ -203,6 +228,60 @@ class RoomNetworkAdapter {
                 }
 
                 listener(isRapidValue)
+            })
+    }
+
+    func getUsersNonRapidGameRoomCodes(completionHandler: @escaping ([RoomCode]) -> Void) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
+        db.child("users")
+            .child(userID)
+            .child("activeNonRapidGames")
+            .observeSingleEvent(of: .value, with: { snapshot in
+                guard let roomCodesDict = snapshot.value as? [String: Bool] else {
+                    return
+                }
+
+                let roomCodes = roomCodesDict.keys.map { RoomCode(value: $0, type: .ClassicRoom) }
+                completionHandler(roomCodes)
+            })
+    }
+
+    func checkIfNonRapidGameIsMyTurn(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .observeSingleEvent(of: .value, with: { snapshot in
+                // [playerUID: [rounds: Any]]
+                guard let playersValues = snapshot.value as? [String: [String: Any]] else {
+                    return
+                }
+
+                // [[round: [hasUploadedImage: Any]]]
+                guard let playerRounds =
+                    playersValues.map { $0.value["rounds"] } as? [[String: [String: Any]]] else {
+                        return
+                }
+
+                let currentRound = playerRounds.map({ $0.count }).max()
+
+                // TODO
+                // need to return the current round number too?
+//                guard let hasAllUploadedImage =
+//                    playersValues.map { $0.value[currentRound] }
+
+//                let isMyTurn = playersValues.allSatisfy {  }
+                // check if each player uploadedImage for the current round already or not
+//                guard let rounds = playersValues.first?.value["rounds"] as? [String: [String: Any]] else {
+//                    return
+//                }
+//
+//                let currentRound = rounds.count
+//                rounds[]
+
             })
     }
 }

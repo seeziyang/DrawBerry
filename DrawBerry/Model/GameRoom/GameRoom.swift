@@ -65,7 +65,7 @@ class GameRoom {
     }
 
     func startGame() {
-        roomNetworkAdapter.startGame(roomCode: roomCode)
+        roomNetworkAdapter.startGame(roomCode: roomCode, isRapid: isRapid)
     }
 
     func leaveRoom() {

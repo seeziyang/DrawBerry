@@ -29,6 +29,6 @@ class ClassicGameEndViewController: UIViewController {
     }
 
     @objc private func okOnTap(sender: UIButton) {
-        performSegue(withIdentifier: "unwindSegueToHomeVC", sender: self)
+        performSegue(withIdentifier: "gameEndUnwindSegueToHomeVC", sender: self)
     }
 }

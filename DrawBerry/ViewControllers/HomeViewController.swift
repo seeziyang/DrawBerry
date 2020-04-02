@@ -29,7 +29,20 @@ class HomeViewController: UIViewController {
 
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
-        return true
+        true
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let enterClassicRoomVC = segue.destination as? EnterClassicRoomViewController {
+            enterClassicRoomVC.roomNetworkAdapter = RoomNetworkAdapter()
+
+            // load user's active Non-Rapid Classic Games
+            enterClassicRoomVC.roomNetworkAdapter
+                .getUsersNonRapidGameRoomCodes(completionHandler: { roomCodes in
+                    enterClassicRoomVC.usersNonRapidGameRoomCodes = roomCodes
+                    enterClassicRoomVC.reloadTableData()
+                })
+        }
     }
 
     func initializeElements() {

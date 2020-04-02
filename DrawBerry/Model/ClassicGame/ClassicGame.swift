@@ -9,14 +9,13 @@
 import UIKit
 
 class ClassicGame {
-//    static let maxRounds = 5
-
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
     weak var delegate: ClassicGameDelegate?
     let networkAdapter: GameNetworkAdapter
     let roomCode: RoomCode
+    let isRapid: Bool
 
     let players: [ClassicPlayer]
     let user: ClassicPlayer // players array contains user too
@@ -38,6 +37,7 @@ class ClassicGame {
 
     init(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
         self.roomCode = room.roomCode
+        self.isRapid = room.isRapid
         self.networkAdapter = networkAdapter
         let players = room.players.map { ClassicPlayer(from: $0) }
         self.players = players

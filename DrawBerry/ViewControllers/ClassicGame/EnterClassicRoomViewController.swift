@@ -11,17 +11,18 @@ import Firebase
 
 class EnterClassicRoomViewController: UIViewController {
     var roomNetworkAdapter: RoomNetworkAdapter!
+    var usersNonRapidGameRoomCodes: [RoomCode]!
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var roomCodeField: UITextField!
     @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var activeNonRapidGamesTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         background.image = Constants.roomBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
-        roomNetworkAdapter = RoomNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -31,6 +32,10 @@ class EnterClassicRoomViewController: UIViewController {
             roomVC.room = GameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
         }
+    }
+
+    func reloadTableData() {
+        activeNonRapidGamesTable.reloadData()
     }
 
     func showErrorMessage(_ message: String) {
@@ -106,5 +111,20 @@ class EnterClassicRoomViewController: UIViewController {
 
     private func segueToRoomVC() {
         performSegue(withIdentifier: "segueToClassicRoom", sender: self)
+    }
+}
+
+extension EnterClassicRoomViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        usersNonRapidGameRoomCodes?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = activeNonRapidGamesTable.dequeueReusableCell(withIdentifier: "roomCodeCell", for: indexPath)
+        let roomCodeValue = usersNonRapidGameRoomCodes[indexPath.row].value
+//        let isWaitingForOtherPlayers = roomNetworkAdapter.
+
+        cell.textLabel?.text = roomCodeValue
+        return cell
     }
 }
