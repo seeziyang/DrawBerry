@@ -1227,4 +1227,8 @@
         <image name="background" width="4000" height="3000"/>
         <image name="drawberry-logo" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gg7-CT-DLI"/>
+        <segue reference="TXh-cz-zfd"/>
+    </inferredMetricsTieBreakers>
 </document>
