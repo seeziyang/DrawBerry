@@ -20,21 +20,26 @@ class GameNetworkAdapter {
         self.cloud = Storage.storage().reference()
     }
 
-    // TODO: delete room from active room (in both db and cloud) when game room ends
-
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
-        guard let imageData = image.pngData() else {
-            return
+        guard let imageData = image.pngData(),
+            let userID = NetworkHelper.getLoggedInUserID() else {
+                return
         }
 
-        let userID = NetworkHelper.getLoggedInUserID()
-
         let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).child("rounds").child(String(round)).child("hasUploadedImage")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+            .child("rounds")
+            .child(String(round))
+            .child("hasUploadedImage")
         let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(userID).child("\(round).png")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+            .child("\(round).png")
 
         cloudPathRef.putData(imageData, metadata: nil, completion: { _, error in
             if let error = error {
@@ -50,8 +55,11 @@ class GameNetworkAdapter {
     private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
                                        completionHandler: @escaping (UIImage) -> Void) {
         let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(playerUID).child("\(round).png")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(playerUID)
+            .child("\(round).png")
 
         cloudPathRef.getData(maxSize: 10 * 1_024 * 1_024, completion: { data, error in
             if let error = error {
@@ -70,8 +78,13 @@ class GameNetworkAdapter {
     func waitAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
                                       completionHandler: @escaping (UIImage) -> Void) {
         let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue).child(roomCode.value).child("players")
-            .child(playerUID).child("rounds").child(String(round)).child("hasUploadedImage")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(playerUID)
+            .child("rounds")
+            .child(String(round))
+            .child("hasUploadedImage")
 
         dbPathRef.observe(.value, with: { snapshot in
             guard snapshot.value as? Bool ?? false else { // image not uploaded yet
@@ -83,5 +96,79 @@ class GameNetworkAdapter {
 
             dbPathRef.removeAllObservers() // remove observer after downloading image
         })
+    }
+
+    func userVoteFor(playerUID: String, forRound round: Int,
+                     updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
+        let dbGamePlayersPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+
+        dbGamePlayersPathRef.child(userID)
+            .child("rounds")
+            .child(String(round))
+            .child("votedFor")
+            .setValue(playerUID)
+
+        dbGamePlayersPathRef.child(playerUID)
+            .child("points")
+            .setValue(updatedPlayerPoints)
+
+        if let updatedUserPoints = updatedUserPoints {
+            dbGamePlayersPathRef.child(userID)
+                .child("points")
+                .setValue(updatedUserPoints)
+        }
+    }
+
+    func observePlayerVote(playerUID: String, forRound round: Int,
+                           completionHandler: @escaping (String) -> Void) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value).child("players")
+            .child(playerUID)
+            .child("rounds")
+            .child(String(round))
+            .child("votedFor")
+
+        dbPathRef.observe(.value, with: { snapshot in
+            guard let votedForPlayerUID = snapshot.value as? String else {
+                return
+            }
+
+            completionHandler(votedForPlayerUID)
+
+            dbPathRef.removeAllObservers()
+        })
+    }
+
+    func endGame(isRoomMaster: Bool, numRounds: Int) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else{
+            return
+        }
+
+        // room master deletes active room from db
+        if isRoomMaster {
+            db.child("activeRooms")
+                .child(roomCode.type.rawValue)
+                .child(roomCode.value)
+                .removeValue()
+        }
+
+        let cloudPathRef = cloud.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(userID)
+
+        // delete drawing for each round from storage
+        for round in 0..<numRounds {
+            cloudPathRef.child("\(round).png").delete()
+        }
     }
 }

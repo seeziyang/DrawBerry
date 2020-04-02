@@ -39,8 +39,8 @@ class CooperativeGame {
         for i in 0..<sortedRoomPlayers.count {
             self.players.append(CooperativePlayer(from: sortedRoomPlayers[i], index: i))
         }
-        let userUID = NetworkHelper.getLoggedInUserID()
-        self.userIndex = self.players.firstIndex(where: { $0.uid == userUID }) ?? 0
+        self.userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+            ?? 0
         self.currentRound = 1
     }
 

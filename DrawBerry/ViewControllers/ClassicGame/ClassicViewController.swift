@@ -55,10 +55,10 @@ class ClassicViewController: CanvasDelegateViewController {
     }
 
     @objc private func doneOnTap(sender: UIButton) {
-        finishRound()
+        finishDrawing()
     }
 
-    private func finishRound() {
+    private func finishDrawing() {
         classicGame.addUsersDrawing(image: canvas.drawingImage)
         performSegue(withIdentifier: "segueToVoting", sender: self)
     }

@@ -9,5 +9,23 @@
 protocol ClassicGameDelegate: AnyObject {
     func drawingsDidUpdate()
 
-    // TOOD: do each player's drawing by index instead of all drawings?
+    func votesDidUpdate()
+
+    func segueToNextRound()
+
+    func segueToGameEnd()
+}
+
+extension ClassicGameDelegate {
+    func drawingsDidUpdate() {
+    }
+
+    func votesDidUpdate() {
+    }
+
+    func segueToNextRound() {
+    }
+
+    func segueToGameEnd() {
+    }
 }

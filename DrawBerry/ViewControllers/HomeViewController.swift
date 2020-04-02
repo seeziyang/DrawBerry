@@ -61,6 +61,9 @@ class HomeViewController: UIViewController {
         view.window?.rootViewController = loginViewController
         view.window?.makeKeyAndVisible()
     }
+
+    @IBAction private func unwindToHomeVC(segue: UIStoryboardSegue) {
+    }
 }
 
 extension HomeViewController: UserProfileNetworkDelegate {

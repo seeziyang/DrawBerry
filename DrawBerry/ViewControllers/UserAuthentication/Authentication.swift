@@ -23,7 +23,7 @@ class Authentication {
     }
 
     /// Sign up a new user with an email address and password.
-    static func signUp(email: String, password: String) {
+    static func signUp(username: String, email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
 
             if error != nil {
@@ -32,12 +32,18 @@ class Authentication {
                 return
             }
 
-            guard let userID = result?.user.uid, let email = result?.user.email else {
-                delegate?.handleAuthenticationUpdate(status: false)
-                return
+            guard let user = result?.user, let userID = result?.user.uid,
+                let email = result?.user.email else {
+                    delegate?.handleAuthenticationUpdate(status: false)
+                    return
             }
 
-            NetworkHelper.addUserToDB(userID: userID, email: email)
+            // set user's displayName with username
+            let setDisplayNameRequest = user.createProfileChangeRequest()
+            setDisplayNameRequest.displayName = username
+            setDisplayNameRequest.commitChanges()
+
+            NetworkHelper.addUserToDB(userID: userID, email: email, username: username)
             delegate?.handleAuthenticationUpdate(status: true)
         }
     }
