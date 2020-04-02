@@ -351,7 +351,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="1xe-Wa-Kei">
-                                <rect key="frame" x="192" y="358" width="384" height="308"/>
+                                <rect key="frame" x="192" y="61" width="384" height="308"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skB-3s-GRi">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
@@ -395,19 +395,37 @@
                                     <constraint firstItem="skB-3s-GRi" firstAttribute="height" secondItem="ETP-eI-oIF" secondAttribute="height" id="n5m-ct-yyT"/>
                                 </constraints>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="06m-Dl-q0d">
+                                <rect key="frame" x="0.0" y="415" width="768" height="609"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aHC-hf-INq">
+                                        <rect key="frame" x="0.0" y="28" width="768" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aHC-hf-INq" id="fa8-9a-Ehq">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="06m-Dl-q0d" firstAttribute="leading" secondItem="a0M-L0-2Nn" secondAttribute="leading" id="DTR-K8-6wk"/>
                             <constraint firstItem="EAs-FP-m7b" firstAttribute="leading" secondItem="a0M-L0-2Nn" secondAttribute="leading" constant="64" id="Epr-aa-XAs"/>
                             <constraint firstItem="ETP-eI-oIF" firstAttribute="width" secondItem="fng-PK-ysl" secondAttribute="width" multiplier="0.5" id="HB0-Es-RYa"/>
                             <constraint firstItem="1xe-Wa-Kei" firstAttribute="centerX" secondItem="fng-PK-ysl" secondAttribute="centerX" id="Og5-tD-SVS"/>
-                            <constraint firstItem="1xe-Wa-Kei" firstAttribute="centerY" secondItem="fng-PK-ysl" secondAttribute="centerY" id="SYi-A6-pvB"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="top" secondItem="a0M-L0-2Nn" secondAttribute="top" id="YBL-No-uym"/>
                             <constraint firstItem="EAs-FP-m7b" firstAttribute="top" secondItem="a0M-L0-2Nn" secondAttribute="top" constant="61" id="cBq-Md-XXW"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="leading" secondItem="a0M-L0-2Nn" secondAttribute="leading" id="cJa-cb-fP7"/>
+                            <constraint firstItem="OrP-SM-1Pq" firstAttribute="top" secondItem="1xe-Wa-Kei" secondAttribute="bottom" constant="-369" id="h5p-8Q-foT"/>
                             <constraint firstItem="LKq-oM-aZV" firstAttribute="width" secondItem="fng-PK-ysl" secondAttribute="width" multiplier="0.5" id="j5H-Qy-048"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="bottom" secondItem="a0M-L0-2Nn" secondAttribute="bottom" id="ltd-6y-Go0"/>
+                            <constraint firstItem="06m-Dl-q0d" firstAttribute="top" secondItem="1xe-Wa-Kei" secondAttribute="bottom" constant="46" id="poi-8b-dLx"/>
+                            <constraint firstItem="a0M-L0-2Nn" firstAttribute="trailing" secondItem="06m-Dl-q0d" secondAttribute="trailing" id="qdK-eh-Lsi"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="trailing" secondItem="a0M-L0-2Nn" secondAttribute="trailing" id="uUz-W3-e2B"/>
+                            <constraint firstItem="a0M-L0-2Nn" firstAttribute="bottom" secondItem="06m-Dl-q0d" secondAttribute="bottom" id="v5p-8n-9dx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="a0M-L0-2Nn"/>
                     </view>
@@ -421,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiT-S3-iPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="696"/>
+            <point key="canvasLocation" x="1633.59375" y="695.5078125"/>
         </scene>
         <!--Cooperative Game Room View Controller-->
         <scene sceneID="sjh-to-kYa">
@@ -1161,7 +1179,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="game over! show some results here, maybe using the player cells" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frN-BO-A5o">
-                                <rect key="frame" x="136" y="502" width="496" height="21"/>
+                                <rect key="frame" x="136" y="501.5" width="496" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1219,7 +1237,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ujx-8I-en9"/>
+        <segue reference="5gB-V3-LmB"/>
         <segue reference="epa-EW-RcE"/>
         <segue reference="TXh-cz-zfd"/>
     </inferredMetricsTieBreakers>
