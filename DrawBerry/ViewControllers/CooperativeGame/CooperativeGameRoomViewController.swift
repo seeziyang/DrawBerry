@@ -24,7 +24,6 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
         return true
     }
 
-
     func configureStartButton() {
         if let currentUser = room.user {
             if !currentUser.isRoomMaster {

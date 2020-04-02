@@ -43,6 +43,6 @@ protocol Canvas: UIView {
 extension Canvas {
     var drawingImage: UIImage {
         // TODO: can increase scale later to account for iphones having smaller screen
-        drawing.image(from: drawing.bounds, scale: 1.0)
+        drawing.image(from: self.bounds, scale: 1.0)
     }
 }

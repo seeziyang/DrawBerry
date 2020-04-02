@@ -33,9 +33,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
 
     private func populateDrawings() {
         cooperativeGame.allDrawings.forEach {
-            let yDisp = (drawings.last?.bounds.origin.y ?? -drawingSpaceHeight) + drawingSpaceHeight
-            let frame = CGRect(x: 0, y: yDisp, width: canvasWidth, height: drawingSpaceHeight)
-            let imageView = createImageView(of: $0, in: frame)
+            let imageView = createImageView(of: $0, in: self.view.frame)
             drawings.append(imageView)
             view.addSubview(imageView)
         }
@@ -45,9 +43,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
         guard let lastDrawing = cooperativeGame.allDrawings.last else {
             return
         }
-        let yDisp = (drawings.last?.bounds.origin.y ?? 0) + drawingSpaceHeight
-        let frame = CGRect(x: 0, y: yDisp, width: canvasWidth, height: canvasHeight)
-        let imageView = createImageView(of: lastDrawing, in: frame)
+        let imageView = createImageView(of: lastDrawing, in: self.view.frame)
         drawings.append(imageView)
         view.addSubview(imageView)
     }
@@ -55,6 +51,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
     private func createImageView(of image: UIImage, in frame: CGRect) -> UIImageView {
         let imageView = UIImageView(frame: frame)
         imageView.image = image
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }
 

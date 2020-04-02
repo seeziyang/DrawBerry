@@ -68,14 +68,10 @@ class DrawingViewController: CooperativeGameViewController {
     }
 
     private func addPreviousDrawings() {
-        var verticalDisp: CGFloat = 0
         cooperativeGame.allDrawings.forEach {
-            let imageView = UIImageView(
-                frame: CGRect(x: 0, y: verticalDisp, width: canvasWidth, height: drawingSpaceHeight)
-            )
+            let imageView = UIImageView(frame: canvas.frame)
             imageView.image = $0
             view.addSubview(imageView)
-            verticalDisp += drawingSpaceHeight
         }
     }
 
@@ -94,7 +90,7 @@ class DrawingViewController: CooperativeGameViewController {
         let firstMaskOpaque =
             UIView(frame: CGRect(x: 0, y: 0, width: canvasWidth, height: drawingSpaceOrigin.y - 50))
         firstMaskOpaque.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
-        firstMaskOpaque.alpha = 0.5
+        firstMaskOpaque.alpha = 1
 
         let secondMask = UIView(frame:
             CGRect(
