@@ -46,7 +46,8 @@ class CompetitiveViewController: CanvasDelegateViewController {
             return
         }
 
-        if timeLeft <= CompetitiveGame.TIME_PER_ROUND - CompetitiveGame.TIME_AFTER_POWERUPS_SPAWN {
+        if timeLeft <= CompetitiveGame.TIME_PER_ROUND - CompetitiveGame.TIME_AFTER_POWERUPS_SPAWN &&
+            timeLeft >= CompetitiveGame.MIN_TIME_POWERUPS_SPAWN {
             powerupManager.rollForPowerup(for: competitiveGame.players)
         }
 
