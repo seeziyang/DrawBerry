@@ -67,12 +67,12 @@ extension CompetitiveGameUITest {
         let emailTextField = app.textFields["Email"]
         emailTextField.tap()
         emailTextField.clearText()
-        app.textFields["Email"].typeText("admin@drawberry.com")
+        app.textFields["Email"].typeText("admin1@drawberry.com")
 
         let passwordSecureTextField = app.secureTextFields["password"]
         passwordSecureTextField.tap()
         passwordSecureTextField.clearText()
-        passwordSecureTextField.typeText("admin123")
+        passwordSecureTextField.typeText("password1")
 
         app.buttons["login"].tap()
     }

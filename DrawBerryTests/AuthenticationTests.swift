@@ -14,6 +14,7 @@ class AuthenticationTests: XCTestCase {
     let invalidEmail = "admin@com"
     let validPassword = "admin123"
     let invalidPassword = "a123"
+    let validUsername = "Admin"
 
     func testLoginSuccess() {
         let expectation = self.expectation(description: "Login")
@@ -46,7 +47,7 @@ class AuthenticationTests: XCTestCase {
         let expectation = self.expectation(description: "Signup")
         let stub = AuthenticationUpdateDelegateStub(expectation: expectation)
         Authentication.delegate = stub
-        Authentication.signUp(email: validEmail, password: validPassword)
+        Authentication.signUp(username: validUsername, email: validEmail, password: validPassword)
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertFalse(stub.result!)
     }
@@ -55,7 +56,7 @@ class AuthenticationTests: XCTestCase {
         let expectation = self.expectation(description: "Signup")
         let stub = AuthenticationUpdateDelegateStub(expectation: expectation)
         Authentication.delegate = stub
-        Authentication.signUp(email: invalidEmail, password: validPassword)
+        Authentication.signUp(username: validUsername, email: invalidEmail, password: validPassword)
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertFalse(stub.result!)
     }
@@ -64,7 +65,7 @@ class AuthenticationTests: XCTestCase {
         let expectation = self.expectation(description: "Signup")
         let stub = AuthenticationUpdateDelegateStub(expectation: expectation)
         Authentication.delegate = stub
-        Authentication.signUp(email: validEmail, password: invalidPassword)
+        Authentication.signUp(username: validUsername, email: validEmail, password: invalidPassword)
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertFalse(stub.result!)
     }

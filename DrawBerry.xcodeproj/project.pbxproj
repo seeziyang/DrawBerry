@@ -119,6 +119,7 @@
 		37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065B241E19850085BE4A /* BerryConstants.swift */; };
 		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
 		37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
+		37D794282436E1DF00D2BE57 /* CooperativeGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */; };
 		3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DB2425BBB7001BAA2F /* Constants.swift */; };
 		3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DD2425C51E001BAA2F /* Authentication.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
@@ -256,6 +257,7 @@
 		37CE065B241E19850085BE4A /* BerryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryConstants.swift; sourceTree = "<group>"; };
 		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
 		37CE0661241FC1120085BE4A /* CanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegate.swift; sourceTree = "<group>"; };
+		37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameUITest.swift; sourceTree = "<group>"; };
 		3E2837DB2425BBB7001BAA2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E2837DD2425C51E001BAA2F /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -663,6 +665,7 @@
 				3749D3CB2427A13700CE798F /* EnterRoomViewUITest.swift */,
 				3749D3C7242665EB00CE798F /* CompetitiveGameUITest.swift */,
 				3749D3C5242661A400CE798F /* SignUpViewUITest.swift */,
+				37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */,
 				FCEC3C092417941700F0DE03 /* Info.plist */,
 			);
 			path = DrawBerryUITests;
@@ -1076,6 +1079,7 @@
 				372CA587242BC287000E1E71 /* GameRoomType.swift in Sources */,
 				379EE02624249152005257E1 /* Stroke.swift in Sources */,
 				3749D39E2425DFF400CE798F /* Palette.swift in Sources */,
+				37D794282436E1DF00D2BE57 /* CooperativeGameUITest.swift in Sources */,
 				3749D3C6242661A400CE798F /* SignUpViewUITest.swift in Sources */,
 				3749D3A62425E7A800CE798F /* CanvasDelegateViewController.swift in Sources */,
 				3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */,
@@ -1253,6 +1257,7 @@
 			baseConfigurationReference = 3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W76H98A34A;
@@ -1275,6 +1280,7 @@
 			baseConfigurationReference = 86834A6C22D04E4C8233B63C /* Pods-DrawBerry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W76H98A34A;
