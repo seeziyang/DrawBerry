@@ -201,11 +201,14 @@ extension ClassicGameUITest {
 
     private func attemptLogin(app: XCUIElement) {
         let emailTextField = app.textFields["Email"]
+        let passwordSecureTextField = app.secureTextFields["password"]
+        emailTextField.tap()
+        emailTextField.clearText()
+        passwordSecureTextField.tap()
         emailTextField.tap()
         emailTextField.clearText()
         app.textFields["Email"].typeText("admin1@drawberry.com")
 
-        let passwordSecureTextField = app.secureTextFields["password"]
         passwordSecureTextField.tap()
         passwordSecureTextField.clearText()
         passwordSecureTextField.typeText("password1")

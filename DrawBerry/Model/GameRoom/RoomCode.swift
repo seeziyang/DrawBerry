@@ -7,15 +7,15 @@
 //
 
 struct RoomCode: Equatable {
-    static func == (lhs: RoomCode, rhs: RoomCode) -> Bool {
-        lhs.value == rhs.value && lhs.type == rhs.type
-    }
-
     let value: String
     let type: GameRoomType
 
     init(value: String, type: GameRoomType) {
         self.value = value
         self.type = type
+    }
+
+    static func == (lhs: RoomCode, rhs: RoomCode) -> Bool {
+        lhs.value == rhs.value && lhs.type == rhs.type
     }
 }

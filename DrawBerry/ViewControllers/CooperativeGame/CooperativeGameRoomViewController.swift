@@ -24,6 +24,8 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
         return true
     }
 
+    /// Enable or Disable the start button, depending on whether
+    /// the user is the room master or not.
     func configureStartButton() {
         if let currentUser = room.user {
             if !currentUser.isRoomMaster {
@@ -63,26 +65,27 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
         startGame()
     }
 
+    /// Reloads the collection view when a player joins or leave the room.
     func playersDidUpdate() {
         playersCollectionView.reloadData()
         configureStartButton()
     }
 
+    /// Navigates to the game view controller.
     func gameHasStarted() {
         segueToGameVC()
     }
 
+    /// Removes the user from the current game room.
     private func leaveGameRoom() {
         room.leaveRoom()
 
         dismiss(animated: true, completion: nil)
     }
 
+    /// Starts the game if the number of players in the room is a valid number.
     private func startGame() {
-        // TODO: make only roomMaster can startGame?
-
         if !room.canStart {
-            // TODO: show some UIPrompt indicating minPlayer amount not reached
             return
         }
 

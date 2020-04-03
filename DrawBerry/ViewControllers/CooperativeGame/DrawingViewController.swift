@@ -32,6 +32,7 @@ class DrawingViewController: CooperativeGameViewController {
         }
     }
 
+    /// Adds the drawing canvas.
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -47,6 +48,7 @@ class DrawingViewController: CooperativeGameViewController {
         self.canvas = canvas
     }
 
+    /// Adds the done button to the view.
     private func addDoneButtonToView() {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.maxY - 250,
@@ -58,15 +60,14 @@ class DrawingViewController: CooperativeGameViewController {
         view.addSubview(button)
     }
 
-    @objc private func doneOnTap(sender: UIButton) {
-        finishRound()
-    }
-
+    /// Finishes the round by uploading the completed drawing and
+    /// navigating to the viewing page.
     private func finishRound() {
         cooperativeGame.addUsersDrawing(image: canvas.drawingImage)
         performSegue(withIdentifier: "segueToViewing", sender: self)
     }
 
+    /// Adds the previous drawings to the canvas.
     private func addPreviousDrawings() {
         cooperativeGame.allDrawings.forEach {
             let imageView = UIImageView(frame: canvas.frame)
@@ -75,6 +76,7 @@ class DrawingViewController: CooperativeGameViewController {
         }
     }
 
+    /// Creates the mask to highlight the drawable areas for the current user.
     private func createMask() {
         let drawingSpaceOrigin = CGPoint(x: 0, y: CGFloat(cooperativeGame.userIndex) * drawingSpaceHeight)
         canvas.drawableArea = CGRect(
@@ -105,4 +107,9 @@ class DrawingViewController: CooperativeGameViewController {
         view.addSubview(firstMask)
         view.addSubview(secondMask)
     }
+
+    @objc private func doneOnTap(sender: UIButton) {
+        finishRound()
+    }
+
 }

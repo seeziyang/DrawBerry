@@ -36,8 +36,8 @@ class CooperativePlayerTests: XCTestCase {
     }
 
     func testAddDrawingAndGetDrawingImage() {
-        cooperativePlayer.addDrawing(image: UIImage())
-        let round1Image = cooperativePlayer.getDrawingImage()
+        cooperativePlayer.drawingImage = UIImage()
+        let round1Image = cooperativePlayer.drawingImage
 
         XCTAssertEqual(round1Image, UIImage(), "CooperativePlayer's addDrawing or getDrawingImage is not correct")
         XCTAssertNotNil(round1Image, "CooperativePlayer's addDrawing or getDrawingImage is not correct")

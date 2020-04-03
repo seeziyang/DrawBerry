@@ -20,6 +20,7 @@ class EndViewController: CooperativeGameViewController {
         endGame()
     }
 
+    /// Adds the background canvas.
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -29,6 +30,7 @@ class EndViewController: CooperativeGameViewController {
         self.view.addSubview(canvasBackground)
     }
 
+    /// Populates the view with the updated drawings.
     private func populateDrawings() {
         cooperativeGame.allDrawings.forEach {
             let imageView = UIImageView(frame: self.view.frame)
@@ -38,16 +40,19 @@ class EndViewController: CooperativeGameViewController {
         }
     }
 
+    /// Adds the button to return to the main menu after a delay.
     private func addMenuButtonWithDelay() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.addMenuButtonToView()
         }
     }
 
+    /// Ends the game in the network.
     private func endGame() {
         cooperativeGame.endGame()
     }
 
+    /// Adds the button to return to the main menu.
     private func addMenuButtonToView() {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.maxY - 250,
@@ -59,11 +64,12 @@ class EndViewController: CooperativeGameViewController {
         view.addSubview(button)
     }
 
-    @objc private func backOnTap(sender: UIButton) {
-        navigateToMainMenu()
-    }
-
+    /// Navigates back to the main menu.
     private func navigateToMainMenu() {
         performSegue(withIdentifier: "segueToMainMenu", sender: self)
+    }
+
+    @objc private func backOnTap(sender: UIButton) {
+        navigateToMainMenu()
     }
 }

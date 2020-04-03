@@ -35,6 +35,7 @@ class EnterCooperativeRoomViewController: UIViewController {
         }
     }
 
+    /// Displays the error message.
     func showErrorMessage(_ message: String) {
         errorLabel.text = message
         errorLabel.alpha = 1
@@ -52,16 +53,18 @@ class EnterCooperativeRoomViewController: UIViewController {
         createRoom()
     }
 
+    /// Checks if the room code is valid.
     private func isRoomCodeValid(_ roomCode: RoomCode) -> Bool {
         !roomCode.value.isEmpty
     }
 
+    /// Joins the `CooperativeRoom` with the specified room code.
     private func joinRoom() {
         guard let roomCodeValue = roomCodeField.text else {
             showErrorMessage(Message.emptyTextField)
             return
         }
-        let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.CooperativeRoom)
+        let roomCode = RoomCode(value: roomCodeValue, type: .CooperativeRoom)
 
         if !isRoomCodeValid(roomCode) {
             showErrorMessage(Message.whitespaceOnlyTextField)
@@ -84,12 +87,13 @@ class EnterCooperativeRoomViewController: UIViewController {
             })
     }
 
+    /// Creates the `CooperativeRoom` with the specified room code.
     private func createRoom() {
         guard let roomCodeValue = StringHelper.trim(string: roomCodeField.text) else {
             showErrorMessage(Message.emptyTextField)
             return
         }
-        let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.CooperativeRoom)
+        let roomCode = RoomCode(value: roomCodeValue, type: .CooperativeRoom)
         if !isRoomCodeValid(roomCode) {
             showErrorMessage(Message.whitespaceOnlyTextField)
             return
