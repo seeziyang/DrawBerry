@@ -160,8 +160,12 @@ class RoomNetworkAdapter {
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
 
-        dbRoomPathRef.child("hasStarted")
+        dbRoomPathRef
+            .child("hasStarted")
             .setValue(true)
+        dbRoomPathRef
+            .child("currRound")
+            .setValue(1)
 
         // add persisting non-rapid games under each player's user info in db
         if !isRapid {
@@ -249,39 +253,71 @@ class RoomNetworkAdapter {
             })
     }
 
-    func checkIfNonRapidGameIsMyTurn(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
+    func checkNonRapidGameTurn(
+        roomCode: RoomCode,
+        completionHandler: @escaping (ActiveRoomTurn, ClassicGame) -> Void
+    ) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
+        // TODO: FIX WRONG TURN result logic
+
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .child("players")
             .observeSingleEvent(of: .value, with: { snapshot in
-                // [playerUID: [rounds: Any]]
-                guard let playersValues = snapshot.value as? [String: [String: Any]] else {
+                guard let roomValues = snapshot.value as? [String: Any] else {
                     return
                 }
 
-                // [[round: [hasUploadedImage: Any]]]
-                guard let playerRounds =
-                    playersValues.map { $0.value["rounds"] } as? [[String: [String: Any]]] else {
+                guard let currRound = roomValues["currRound"] as? Int else {
+                    return
+                }
+
+                // [playerUID: [rounds: Any]]
+                guard let playersDict = roomValues["players"] as? [String: [String: Any]] else {
+                    return
+                }
+
+                var players: [ClassicPlayer] = []
+                playersDict.forEach { playerUID, values in
+                    guard let isRoomMaster = values["isRoomMaster"] as? Bool,
+                        let points = (values["points"] == nil) ? 0 : values["points"] as? Int ,
+                        let name = values["username"] as? String else {
+                            return
+                    }
+
+                    players.append(ClassicPlayer(name: name, uid: playerUID,
+                                                 isRoomMaster: isRoomMaster, points: points))
+                }
+
+                let classicGame = ClassicGame(nonRapidRoomCode: roomCode,
+                                              players: players, currentRound: currRound)
+
+                // [playerUID: [roundNumber: [hasUploadedImage: Any]]]
+                guard let playerRounds = playersDict.mapValues({ $0["rounds"] })
+                    as? [String: [String: [String: Any]]] else {
+                        completionHandler(.notMyTurn, classicGame)
                         return
                 }
 
-                let currentRound = playerRounds.map({ $0.count }).max()
+                let hasUserDrawn =
+                    playerRounds[userID]?["round\(currRound)"]?["hasUploadedImage"] as? Bool ?? false
 
-                // TODO
-                // need to return the current round number too?
-//                guard let hasAllUploadedImage =
-//                    playersValues.map { $0.value[currentRound] }
+                if !hasUserDrawn {
+                    completionHandler(.drawingTurn, classicGame)
+                    return
+                }
 
-//                let isMyTurn = playersValues.allSatisfy {  }
-                // check if each player uploadedImage for the current round already or not
-//                guard let rounds = playersValues.first?.value["rounds"] as? [String: [String: Any]] else {
-//                    return
-//                }
-//
-//                let currentRound = rounds.count
-//                rounds[]
+                let hasAllPlayersDrawn = playerRounds.values
+                    .allSatisfy { $0["round\(currRound)"]?["hasUploadedImage"] as? Bool ?? false }
 
+                if hasAllPlayersDrawn {
+                    completionHandler(.votingTurn, classicGame)
+                } else {
+                    completionHandler(.notMyTurn, classicGame)
+                }
             })
     }
 }

@@ -16,11 +16,11 @@ class ClassicPlayer: Player {
     private var drawingImages: [UIImage]
     private var votedPlayers: [ClassicPlayer]
 
-    init(name: String, uid: String, isRoomMaster: Bool) {
+    init(name: String, uid: String, isRoomMaster: Bool, points: Int = 0) {
         self.name = name
         self.uid = uid
         self.isRoomMaster = isRoomMaster
-        self.points = 0
+        self.points = points
         self.drawingImages = []
         self.votedPlayers = []
     }
@@ -31,6 +31,10 @@ class ClassicPlayer: Player {
 
     func addDrawing(image: UIImage) {
         drawingImages.append(image)
+    }
+
+    func getDrawingImage() -> UIImage? {
+        getDrawingImage(ofRound: 1)
     }
 
     func getDrawingImage(ofRound round: Int) -> UIImage? {

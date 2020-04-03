@@ -342,6 +342,8 @@
                         <outlet property="errorLabel" destination="Owq-Yi-Rtq" id="XxQ-xS-Vz5"/>
                         <outlet property="roomCodeField" destination="0Qa-g5-cEd" id="mj7-pz-PEF"/>
                         <segue destination="cuu-G9-htT" kind="show" identifier="segueToClassicRoom" id="qM3-6L-xtS"/>
+                        <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToDrawingFromEnterRoom" id="hpO-Jd-YQO"/>
+                        <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVotingFromEnterRoom" id="6FN-2v-NBi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaY-f7-xXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -859,7 +861,6 @@
                         <outlet property="startButton" destination="JDg-Za-XE2" id="m8a-we-n6A"/>
                         <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToClassicGame" id="epa-EW-RcE"/>
                         <segue destination="uMC-2e-j9F" kind="presentation" identifier="segueClassicToPlayerProfile" id="TXh-cz-zfd"/>
-                        <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVotingFromRoom" id="I7B-9W-0lX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yxX-MX-JnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1262,8 +1263,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="5gB-V3-LmB"/>
-        <segue reference="I7B-9W-0lX"/>
-        <segue reference="epa-EW-RcE"/>
+        <segue reference="6FN-2v-NBi"/>
+        <segue reference="u8j-1g-kbM"/>
         <segue reference="TXh-cz-zfd"/>
     </inferredMetricsTieBreakers>
     <resources>

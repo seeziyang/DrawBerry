@@ -12,6 +12,7 @@ import Firebase
 class EnterClassicRoomViewController: UIViewController {
     var roomNetworkAdapter: RoomNetworkAdapter!
     var usersNonRapidGameRoomCodes: [RoomCode]!
+    var usersNonRapidGameStatuses: [RoomCode: (turn: ActiveRoomTurn, game: ClassicGame)]!
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var roomCodeField: UITextField!
@@ -23,19 +24,59 @@ class EnterClassicRoomViewController: UIViewController {
         background.image = Constants.roomBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
+
+        loadActiveNonRapidGamesTable()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // TODO: segue appropriately
         if let roomVC = segue.destination as? ClassicGameRoomViewController,
             let roomCodeValue = roomCodeField.text {
-            let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
-            roomVC.room = GameRoom(roomCode: roomCode)
-            roomVC.room.delegate = roomVC
+                let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
+                roomVC.room = GameRoom(roomCode: roomCode)
+                roomVC.room.delegate = roomVC
+        } else if let classicVC = segue.destination as? ClassicViewController,
+            let roomCode = sender as? RoomCode,
+            let classicGame = usersNonRapidGameStatuses[roomCode]?.game {
+                classicVC.classicGame = classicGame
+        } else if let votingVC = segue.destination as? VotingViewController,
+            let roomCode = sender as? RoomCode,
+            let classicGame = usersNonRapidGameStatuses[roomCode]?.game {
+                votingVC.classicGame = classicGame
+                votingVC.classicGame.delegate = votingVC
+                votingVC.classicGame.observePlayersDrawing()
         }
     }
 
-    func reloadTableData() {
-        activeNonRapidGamesTable.reloadData()
+    private func loadActiveNonRapidGamesTable() {
+        roomNetworkAdapter = RoomNetworkAdapter()
+
+        // load user's active Non-Rapid Classic Games
+        roomNetworkAdapter.getUsersNonRapidGameRoomCodes(completionHandler: { [weak self] roomCodes in
+            self?.usersNonRapidGameRoomCodes = roomCodes
+            self?.usersNonRapidGameStatuses = [:]
+
+            self?.activeNonRapidGamesTable.reloadData()
+
+            self?.loadActiveNonRapidGameStatuses()
+        })
+    }
+
+//    func reloadTableData() {
+//        activeNonRapidGamesTable.reloadData()
+//    }
+
+    private func loadActiveNonRapidGameStatuses() {
+        usersNonRapidGameRoomCodes.forEach { roomCode in
+            roomNetworkAdapter.checkNonRapidGameTurn(
+                roomCode: roomCode,
+                completionHandler: { [weak self] activeRoomTurn, classicGame in
+                    self?.usersNonRapidGameStatuses[roomCode] = (activeRoomTurn, classicGame)
+
+                    self?.activeNonRapidGamesTable.reloadData()
+                }
+            )
+        }
     }
 
     func showErrorMessage(_ message: String) {
@@ -120,11 +161,46 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = activeNonRapidGamesTable.dequeueReusableCell(withIdentifier: "roomCodeCell", for: indexPath)
-        let roomCodeValue = usersNonRapidGameRoomCodes[indexPath.row].value
-//        let isWaitingForOtherPlayers = roomNetworkAdapter.
+        let cell = activeNonRapidGamesTable.dequeueReusableCell(withIdentifier: "roomCodeCell",
+                                                                for: indexPath)
+        let roomCode = usersNonRapidGameRoomCodes[indexPath.row]
+        var text = roomCode.value
 
-        cell.textLabel?.text = roomCodeValue
+        if let status = usersNonRapidGameStatuses[roomCode] {
+            text += ", \(status.turn.rawValue)"
+        }
+
+        cell.textLabel?.text = text
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                          action: #selector(handleCellTap(_:)))
+        cell.addGestureRecognizer(tapGestureRecognizer)
+
         return cell
+    }
+
+    @objc private func handleCellTap(_ sender: UITapGestureRecognizer) {
+        guard let cell = sender.view as? UITableViewCell else {
+            return
+        }
+
+        guard let index = activeNonRapidGamesTable.indexPath(for: cell)?.row else {
+            return
+        }
+
+        let roomCode = usersNonRapidGameRoomCodes[index]
+        guard let status = usersNonRapidGameStatuses[roomCode] else {
+            return
+        }
+
+        switch status.turn {
+        case .drawingTurn:
+            performSegue(withIdentifier: "segueToDrawingFromEnterRoom", sender: roomCode)
+        case .votingTurn:
+            performSegue(withIdentifier: "segueToVotingFromEnterRoom", sender: roomCode)
+        case .notMyTurn:
+            // TODO: show some alert?
+            break // TODO: ^
+        }
     }
 }

@@ -32,7 +32,7 @@ class GameNetworkAdapter {
             .child("players")
             .child(userID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("hasUploadedImage")
         let cloudPathRef = cloud.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -83,7 +83,7 @@ class GameNetworkAdapter {
             .child("players")
             .child(playerUID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("hasUploadedImage")
 
         dbPathRef.observe(.value, with: { snapshot in
@@ -104,26 +104,54 @@ class GameNetworkAdapter {
             return
         }
 
-        let dbGamePlayersPathRef = db.child("activeRooms")
+        let dbRoomPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .child("players")
 
-        dbGamePlayersPathRef.child(userID)
+        dbRoomPathRef.child("players")
+            .child(userID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("votedFor")
             .setValue(playerUID)
 
-        dbGamePlayersPathRef.child(playerUID)
+        // update other player's points in db
+        dbRoomPathRef.child("players")
+            .child(playerUID)
             .child("points")
             .setValue(updatedPlayerPoints)
 
+        // update user's points in db
         if let updatedUserPoints = updatedUserPoints {
-            dbGamePlayersPathRef.child(userID)
+            dbRoomPathRef.child("players")
+                .child(userID)
                 .child("points")
                 .setValue(updatedUserPoints)
         }
+
+        // if is last player to vote, update currRound in db to next round
+        dbRoomPathRef.child("players").observeSingleEvent(of: .value, with: { snapshot in
+            // [playerUID: [rounds: Any]]
+            guard let playersValues = snapshot.value as? [String: [String: Any]] else {
+                return
+            }
+
+            // [playerUID: [roundNumber: [votedFor: Any]]]
+            guard let playerRounds = playersValues.mapValues({ $0["rounds"] })
+                as? [String: [String: [String: Any]]] else {
+                    return
+            }
+
+            // does not contain another player that has not voted
+            let isUserLastVoter = !playerRounds.contains(where: { playerUID, rounds in
+                playerUID != userID && rounds["round\(round)"]?["votedFor"] == nil
+            })
+
+            if isUserLastVoter {
+                dbRoomPathRef.child("currRound")
+                    .setValue(round + 1)
+            }
+        })
     }
 
     func observePlayerVote(playerUID: String, forRound round: Int,
@@ -133,7 +161,7 @@ class GameNetworkAdapter {
             .child(roomCode.value).child("players")
             .child(playerUID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("votedFor")
 
         dbPathRef.observe(.value, with: { snapshot in
@@ -148,7 +176,7 @@ class GameNetworkAdapter {
     }
 
     func endGame(isRoomMaster: Bool, numRounds: Int) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else{
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
         }
 

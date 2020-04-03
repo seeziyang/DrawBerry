@@ -48,6 +48,18 @@ class ClassicGame {
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
+    init(nonRapidRoomCode roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
+        self.roomCode = roomCode
+        self.isRapid = false
+        self.networkAdapter = GameNetworkAdapter(roomCode: roomCode)
+        self.players = players
+        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+            ?? players[0]
+        self.maxRounds = .max // non rapid games are currently infinitely long
+        self.currentRound = currentRound
+        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
+    }
+
     static func calculateMaxRounds(numPlayers: Int) -> Int {
         if numPlayers <= 3 {
             return numPlayers * 3
@@ -64,7 +76,11 @@ class ClassicGame {
     }
 
     func observePlayersDrawing() {
-        for player in players where player !== user {
+        for player in players {
+            if isRapid && player === user {
+                continue
+            }
+
             networkAdapter.waitAndDownloadPlayerDrawing(
                 playerUID: player.uid, forRound: currentRound,
                 completionHandler: { [weak self] image in
@@ -77,7 +93,8 @@ class ClassicGame {
     }
 
     func hasAllPlayersDrawnForCurrentRound() -> Bool {
-        players.allSatisfy { $0.hasDrawing(ofRound: currentRound) }
+        let round = isRapid ? currentRound : 1
+        return players.allSatisfy { $0.hasDrawing(ofRound: round) }
     }
 
     func hasAllPlayersVotedForCurrentRound() -> Bool {
@@ -119,7 +136,7 @@ class ClassicGame {
 
                     self?.delegate?.votesDidUpdate()
 
-                    if self?.hasAllPlayersDrawnForCurrentRound() ?? false {
+                    if self?.hasAllPlayersVotedForCurrentRound() ?? false {
                         self?.endRound()
                     }
                 }
