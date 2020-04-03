@@ -119,7 +119,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
     private func drawDescriptionOnView(_ powerup: Powerup) {
         for target in powerup.targets {
             if powerup.owner != target && target.isInvulnerable {
-                let newDescription = powerup.description + "\nYou're invulnerable!"
+                let newDescription = powerup.description + "\n" + Message.playerIsInvulnerable
                 competitiveViews[target]?.animateStatus(with: newDescription)
             } else {
                 competitiveViews[target]?.animateStatus(with: powerup.description)
@@ -218,8 +218,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
     private func showNextButtons() {
         for view in competitiveViews.values {
-            let nextButton = #imageLiteral(resourceName: "next")
-            let nextButtonImageView = UIImageView(image: nextButton)
+            let nextButtonImageView = UIImageView(image: CompetitiveGame.NEXT_BUTTON)
 
             let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapNextButton(_:)))
             nextButtonImageView.addGestureRecognizer(tap)

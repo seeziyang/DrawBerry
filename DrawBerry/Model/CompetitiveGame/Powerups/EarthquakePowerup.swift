@@ -16,7 +16,7 @@ class EarthquakePowerup: RepeatingTogglePowerup {
     var targets: [CompetitivePlayer]
     var targetCanvases = [Canvas]()
 
-    var description = "Earthquake!"
+    var description = Message.earthquakePowerup
 
     var location: CGPoint
     var duration = Double.random(in: 0.045...0.065)

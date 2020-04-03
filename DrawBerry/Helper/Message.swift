@@ -30,4 +30,20 @@ enum Message {
     // Cooperative Mode
     static let getReadyMessage = "You're up! Get Ready!"
     static let waitingMessage = "Stare at your friend."
+
+    // Competitive Mode
+    static let extraStrokePowerup = "Extra Stroke!"
+    static let hiddenDrawingPowerup = "Hidden Drawing!"
+    static let inkSplotchPowerup = "Ink Splotch!"
+    static let invulnerabilityPowerup = "Invulnerable for 5s!"
+    static let earthquakePowerup = "Earthquake!"
+
+    static let playerIsInvulnerable = "You're invulnerable!"
+
+    static let competitiveVotingTime = "Voting time!\n\nVote for who you think drew the best two drawings."
+    static let competitiveVotingResult = "Here are the voting results!"
+
+    static let competitiveVotingUsedAllVotes = "You have already used all your votes!"
+    static let competitiveVotingCannotSelfVote = "You cannot vote for yourself!"
+    static let competitiveVotingAlreadyVoted = "You have already voted for this player!"
 }

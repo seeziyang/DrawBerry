@@ -17,7 +17,7 @@ class HideDrawingPowerup: TogglePowerup {
     var targets: [CompetitivePlayer]
     var targetCanvases = [Canvas]()
 
-    var description = "Hidden Drawing!"
+    var description = Message.hiddenDrawingPowerup
 
     var location: CGPoint
     var duration = 1.0
