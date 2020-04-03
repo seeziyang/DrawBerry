@@ -15,4 +15,11 @@ struct CompetitiveGame {
     var players = [CompetitivePlayer]()
 
     var currentRound = 1
+    var isGameOver: Bool {
+        currentRound > CompetitiveGame.MAX_ROUNDS
+    }
+
+    mutating func nextRound() {
+        currentRound += 1
+    }
 }

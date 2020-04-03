@@ -10,7 +10,7 @@ import UIKit
 
 class CompetitiveViewController: CanvasDelegateViewController {
     private var competitiveViews: [CompetitivePlayer: CompetitiveView] = [:]
-    private var competitiveGame = CompetitiveGame()
+    var competitiveGame = CompetitiveGame()
 
     private var powerupManager = PowerupManager() {
         didSet {
@@ -35,7 +35,6 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupPlayers()
         addCanvasesToView()
         setupTimer()
@@ -130,6 +129,10 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
     /// Adds the four players to the competitive game.
     private func setupPlayers() {
+        if !competitiveGame.players.isEmpty {
+            return
+        }
+
         for i in 1...4 {
             let newPlayer = CompetitivePlayer(name: "Player \(i)", canvasDrawing: BerryCanvas())
             competitiveGame.players.append(newPlayer)
@@ -163,7 +166,10 @@ class CompetitiveViewController: CanvasDelegateViewController {
                 let currentPlayerCompetitiveView = CompetitiveView(frame: rect)
                 competitiveViews[currentPlayer] = currentPlayerCompetitiveView
                 currentPlayerCompetitiveView.isUserInteractionEnabled = false
-                currentPlayerCompetitiveView.setupViews()
+                currentPlayerCompetitiveView.setupViews(name: competitiveGame.players[playerNum].name,
+                                                        currentRound: competitiveGame.currentRound,
+                                                        maxRounds: CompetitiveGame.MAX_ROUNDS,
+                                                        score: competitiveGame.players[playerNum].score)
 
                 if playerNum < 2 {
                     canvas.transform = canvas.transform.rotated(by: CGFloat.pi)
@@ -203,8 +209,45 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
         if timeLeft <= 0 {
             disableAllPlayerDrawings()
+            showNextButtons()
+
             timer?.invalidate()
             timer = nil
+        }
+    }
+
+    private func showNextButtons() {
+        for view in competitiveViews.values {
+            let nextButton = #imageLiteral(resourceName: "next")
+            let nextButtonImageView = UIImageView(image: nextButton)
+
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapNextButton(_:)))
+            nextButtonImageView.addGestureRecognizer(tap)
+            nextButtonImageView.isUserInteractionEnabled = true
+
+            view.addNextButton(nextButtonImageView)
+            view.isUserInteractionEnabled = true
+        }
+    }
+
+    var playersReady = 0
+    @objc func handleTapNextButton(_ sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
+        playersReady += 1
+
+        if playersReady == competitiveGame.players.count {
+            segueToCompetitiveVoting()
+        }
+    }
+
+    private func segueToCompetitiveVoting() {
+        performSegue(withIdentifier: "segueToCompetitiveVoting", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let votingVC = segue.destination as? CompetitiveVotingViewController {
+            votingVC.drawingList = competitiveGame.players.map { $0.canvasDrawing.drawingImage }
+            votingVC.currentGame = competitiveGame
         }
     }
 
@@ -219,5 +262,9 @@ class CompetitiveViewController: CanvasDelegateViewController {
     private func setupDisplayLink() {
         let displayLink = CADisplayLink(target: self, selector: #selector(update))
         displayLink.add(to: .current, forMode: .common)
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        true
     }
 }

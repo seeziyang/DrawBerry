@@ -148,7 +148,7 @@ class GameNetworkAdapter {
     }
 
     func endGame(isRoomMaster: Bool, numRounds: Int) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else{
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
         }
 
