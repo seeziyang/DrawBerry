@@ -42,6 +42,8 @@ enum Message {
 
     static let competitiveVotingTime = "Voting time!\n\nVote for who you think drew the best two drawings."
     static let competitiveVotingResult = "Here are the voting results!"
+    static let competitiveVotingFinalResults = "Final Results:\n\n"
+    static let competitiveVotingCurrentResults = "Current Scoreboard:\n\n"
 
     static let competitiveVotingUsedAllVotes = "You have already used all your votes!"
     static let competitiveVotingCannotSelfVote = "You cannot vote for yourself!"

@@ -216,6 +216,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
         }
     }
 
+    /// Shows the next buttons on players' views.
     private func showNextButtons() {
         for view in competitiveViews.values {
             let nextButtonImageView = UIImageView(image: CompetitiveGame.NEXT_BUTTON)

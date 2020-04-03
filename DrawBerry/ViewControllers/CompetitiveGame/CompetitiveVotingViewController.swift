@@ -68,6 +68,8 @@ class CompetitiveVotingViewController: UIViewController {
         vote(with: players, playerWhoVoted, playerVotedFor)
     }
 
+    /// Assigns a vote from `playerWhoVoted` to the player `playerVotedFor`.
+    /// Gives 2 votes if the player's drawing was voted as the best and 1 vote if voted as the second best drawing.
     private func vote(with players: [CompetitivePlayer], _ playerWhoVoted: CompetitivePlayer,
                       _ playerVotedFor: CompetitivePlayer) {
         guard let playerVotingView = drawingViews[playerWhoVoted] else {
@@ -95,33 +97,56 @@ class CompetitiveVotingViewController: UIViewController {
         checkAllPlayersDoneVoting()
     }
 
+    /// Checks if all players are done with voting, collates votes
+    /// and assigns scores if so.
     private func checkAllPlayersDoneVoting() {
         if currentGame.players.map({ $0.isDoneVoting }).allSatisfy({ $0 == true }) {
-            currentGame.nextRound()
+            collateVotesAndAssignScores()
 
-            if currentGame.isGameOver {
-                // TODO: Rankings screen?
-                performSegue(withIdentifier: "segueToMainMenu", sender: self)
-            } else {
-                collateVotes()
-                currentGame.players.forEach { $0.resetVotes() }
-                showNextButtons()
-            }
+            currentGame.nextRound()
+            currentGame.players.forEach { $0.resetVotes() }
+            showNextButtons()
         }
     }
 
-    private func collateVotes() {
-        let sortedPlayers = currentGame.players.sorted(by: { $0.votesGiven > $1.votesGiven })
+    /// Shows the current scoreboard of players sorted by score.
+    private func showRankingScreen() {
+        let sortedPlayersByScore = currentGame.players.sorted(by: { $0.score > $1.score })
+        var rankingText = sortedPlayersByScore.map { "\($0.name): \($0.score)" }.joined(separator: "\n")
+
+        if currentGame.isGameOver {
+            rankingText = Message.competitiveVotingFinalResults + rankingText
+        } else {
+            rankingText = Message.competitiveVotingCurrentResults + rankingText
+        }
+
+        removeAllDrawings()
+        for view in drawingViews.values {
+            view.showResultText(text: rankingText)
+        }
+    }
+
+    /// Removes all drawings from views.
+    private func removeAllDrawings() {
+        drawingViews.values.forEach { $0.drawings.forEach { $0.removeFromSuperview() } }
+    }
+
+    /// Collates all votes and draws the first and second place medals on the drawings.
+    /// Also awards score to the players according to their rankings
+    /// If two players have the same number of votes, they are both awarded the medal and score.
+    private func collateVotesAndAssignScores() {
+        let sortedPlayersByVotes = currentGame.players.sorted(by: { $0.votesGiven > $1.votesGiven })
+        print(sortedPlayersByVotes.map { $0.votesGiven })
 
         var numberOfPlayersWithSimilarVotes = 0
         for i in 0...1 {
             let currentIndex = i + numberOfPlayersWithSimilarVotes
-            if currentIndex >= sortedPlayers.count {
+            if currentIndex >= sortedPlayersByVotes.count {
                 break
             }
 
-            let numberOfVotes = sortedPlayers[currentIndex].votesGiven
-            let artist = sortedPlayers[currentIndex]
+            let numberOfVotes = sortedPlayersByVotes[currentIndex].votesGiven
+            let artist = sortedPlayersByVotes[currentIndex]
 
             if i == 0 {
                 giveFirstPlaceMedal(to: artist)
@@ -136,8 +161,9 @@ class CompetitiveVotingViewController: UIViewController {
                 numberOfPlayersWithSimilarVotes += 1
                 let nextIndex = i + numberOfPlayersWithSimilarVotes
 
-                if nextIndex < sortedPlayers.count && sortedPlayers[nextIndex].votesGiven == numberOfVotes {
-                    let nextArtist = sortedPlayers[nextIndex]
+                if nextIndex < sortedPlayersByVotes.count &&
+                    sortedPlayersByVotes[nextIndex].votesGiven == numberOfVotes {
+                    let nextArtist = sortedPlayersByVotes[nextIndex]
                     if i == 0 {
                         giveFirstPlaceMedal(to: nextArtist)
                         nextArtist.score += CompetitiveGame.FIRST_PLACE_SCORE
@@ -156,6 +182,7 @@ class CompetitiveVotingViewController: UIViewController {
         updateVotingFinishedText()
     }
 
+    /// Adds a first place medal image to the artist's drawing.
     private func giveFirstPlaceMedal(to artist: CompetitivePlayer) {
         for view in drawingViews.values {
             for drawing in view.drawings where drawing.drawingArtist == artist {
@@ -164,6 +191,7 @@ class CompetitiveVotingViewController: UIViewController {
         }
     }
 
+    /// Adds a second place medal image to the artist's drawing.
     private func giveSecondPlaceMedal(to artist: CompetitivePlayer) {
         for view in drawingViews.values {
             for drawing in view.drawings where drawing.drawingArtist == artist {
@@ -172,6 +200,7 @@ class CompetitiveVotingViewController: UIViewController {
         }
     }
 
+    /// Disables voting for all players.
     private func disableVoting() {
         for view in drawingViews.values {
             for drawing in view.drawings {
@@ -180,10 +209,12 @@ class CompetitiveVotingViewController: UIViewController {
         }
     }
 
+    /// Updates voting text to the finished text once scores after collated and assigned.
     private func updateVotingFinishedText() {
         drawingViews.values.forEach { $0.updateText(to: Message.competitiveVotingResult) }
     }
 
+    /// Shows the next buttons on players' views.
     private func showNextButtons() {
         for view in drawingViews.values {
             let nextButtonImageView = UIImageView(image: CompetitiveGame.NEXT_BUTTON)
@@ -198,12 +229,24 @@ class CompetitiveVotingViewController: UIViewController {
     }
 
     var playersReady = 0
+    var rankingsShown = false
     @objc func handleTapNextButton(_ sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
         playersReady += 1
 
         if playersReady == currentGame.players.count {
-            performSegue(withIdentifier: "segueToNextCompetitiveRound", sender: self)
+            if !rankingsShown {
+                showRankingScreen()
+                rankingsShown = true
+                showNextButtons()
+                playersReady = 0
+            } else {
+                if currentGame.isGameOver {
+                    performSegue(withIdentifier: "segueToMainMenu", sender: self)
+                } else {
+                    performSegue(withIdentifier: "segueToNextCompetitiveRound", sender: self)
+                }
+            }
         }
     }
 

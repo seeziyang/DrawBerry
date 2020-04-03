@@ -14,7 +14,7 @@ class CompetitiveGameUITest: DrawBerryUITest {
         super.setUp()
     }
 
-    func testSignUpViewUILayout() {
+    func testCompetitiveModeUILayout() {
         let app = initialiseAppMoveToCompetitveCanvas()
 
         verifyAppCurrentScreen(app: app)
@@ -48,6 +48,11 @@ class CompetitiveGameUITest: DrawBerryUITest {
             .children(matching: .image).element(boundBy: 0).tap()
 
         verifyAppCurrentScreen(app: app)
+    }
+
+    func testCompetitiveVotingUILayout() {
+        let app = initialiseAppMoveToCompetitveCanvas()
+
     }
 }
 

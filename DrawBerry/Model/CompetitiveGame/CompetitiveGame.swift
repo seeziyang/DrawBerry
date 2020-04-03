@@ -13,6 +13,7 @@ struct CompetitiveGame {
     static let STROKES_PER_PLAYER = 1
     static let TIME_PER_ROUND = 45
     static let TIME_AFTER_POWERUPS_SPAWN = 10
+
     static let FIRST_PLACE_SCORE = 50
     static let SECOND_PLACE_SCORE = 20
 

@@ -17,7 +17,8 @@ class CompetitiveVotingView: UIView {
 
     var votingTextLabel = UITextView()
 
-    init(frame: CGRect, listOfDrawings: [UIImage], listOfPlayers: [CompetitivePlayer], currentPlayer: CompetitivePlayer) {
+    init(frame: CGRect, listOfDrawings: [UIImage],
+         listOfPlayers: [CompetitivePlayer], currentPlayer: CompetitivePlayer) {
         self.listOfDrawings = listOfDrawings
         self.listOfPlayers = listOfPlayers
         self.currentPlayer = currentPlayer
@@ -50,7 +51,8 @@ class CompetitiveVotingView: UIView {
             for x in stride(from: minX, to: maxX, by: (maxX + minX) / 2) {
                 let rect = CGRect(origin: CGPoint(x: x, y: y), size: defaultSize)
 
-                let playerDrawing = DrawingView(player: currentPlayer, drawingArtist: listOfPlayers[playerNum], frame: rect)
+                let playerDrawing = DrawingView(player: currentPlayer,
+                                                drawingArtist: listOfPlayers[playerNum], frame: rect)
                 playerDrawing.image = listOfDrawings[playerNum]
 
                 addSubview(playerDrawing)
@@ -81,6 +83,11 @@ class CompetitiveVotingView: UIView {
     func updateText(to text: String) {
         votingTextLabel.text = text
         votingTextLabel.setNeedsDisplay()
+    }
+
+    func showResultText(text: String) {
+        votingTextLabel.alpha = 0.8
+        votingTextLabel.text = text
     }
 
     func addNextButton(_ button: UIImageView) {
