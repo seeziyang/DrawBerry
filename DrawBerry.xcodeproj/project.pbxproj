@@ -427,6 +427,7 @@
 		1A5252B4241FAF0300E7F68C /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				37CE065B241E19850085BE4A /* BerryConstants.swift */,
 				37CE06522418809D0085BE4A /* Canvas.swift */,
 				3749D39C2425ABD400CE798F /* Palette.swift */,
 				37CE0661241FC1120085BE4A /* CanvasDelegate.swift */,
@@ -505,7 +506,6 @@
 				FC48897C241C79D900375140 /* CompetitiveGame */,
 				1A3F39992421C0FB0084859F /* Player.swift */,
 				3789191A2432E1680042B705 /* ComparablePlayer.swift */,
-				37CE065B241E19850085BE4A /* BerryConstants.swift */,
 				372CA590242C3AE6000E1E71 /* CooperativeGame */,
 			);
 			path = Model;

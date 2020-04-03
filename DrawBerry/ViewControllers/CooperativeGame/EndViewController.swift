@@ -17,6 +17,7 @@ class EndViewController: CooperativeGameViewController {
         addCanvasToView()
         populateDrawings()
         addMenuButtonWithDelay()
+        endGame()
     }
 
     private func addCanvasToView() {
@@ -41,6 +42,10 @@ class EndViewController: CooperativeGameViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.addMenuButtonToView()
         }
+    }
+
+    private func endGame() {
+        cooperativeGame.endGame()
     }
 
     private func addMenuButtonToView() {

@@ -92,4 +92,8 @@ class CooperativeGame {
             self.viewingDelegate?.navigateToEndPage()
         }
     }
+
+    func endGame() {
+        networkAdapter.endGame(isRoomMaster: user.isRoomMaster, numRounds: currentRound)
+    }
 }
