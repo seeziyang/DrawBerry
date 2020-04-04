@@ -35,6 +35,8 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
             voteResultsVC.classicGame = classicGame
             voteResultsVC.classicGame.delegate = voteResultsVC
             voteResultsVC.classicGame.observePlayerVotes()
+        } else if let classicVC = segue.destination as? ClassicViewController {
+            classicVC.classicGame = classicGame
         }
     }
 
@@ -63,12 +65,15 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     private func voteForPlayerDrawing(player: ClassicPlayer) {
         classicGame.userVoteFor(player: player)
-        segueToVoteResultsVC()
-
+        segueToNextScreen()
     }
 
-    private func segueToVoteResultsVC() {
-        performSegue(withIdentifier: "segueToVoteResults", sender: self)
+    private func segueToNextScreen() {
+        if classicGame.isRapid {
+            performSegue(withIdentifier: "segueToVoteResults", sender: self)
+        } else {
+            performSegue(withIdentifier: "segueToDrawing", sender: self)
+        }
     }
 }
 
@@ -83,8 +88,14 @@ extension VotingViewController: UICollectionViewDataSource {
             .dequeueReusableCell(withReuseIdentifier: "votingImageCell", for: indexPath)
 
         let imageView = UIImageView(frame: cell.bounds)
-        imageView.image = classicGame.players[indexPath.row]
-            .getDrawingImage(ofRound: classicGame.currentRound)
+
+        if classicGame.isRapid {
+            imageView.image = classicGame.players[indexPath.row]
+                .getDrawingImage(ofRound: classicGame.currentRound)
+        } else {
+            imageView.image = classicGame.players[indexPath.row].getDrawingImage()
+        }
+
         imageView.contentMode = .scaleAspectFit
 
         cell.addSubview(imageView)
