@@ -10,9 +10,9 @@ import XCTest
 @testable import DrawBerry
 
 class AuthenticationTests: XCTestCase {
-    let validEmail = "admin@drawberry.com"
+    let validEmail = "admin1@drawberry.com"
     let invalidEmail = "admin@com"
-    let validPassword = "admin123"
+    let validPassword = "password1"
     let invalidPassword = "a123"
     let validUsername = "Admin"
 
