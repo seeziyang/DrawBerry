@@ -25,6 +25,7 @@ class EnterClassicRoomViewController: UIViewController {
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
 
+        roomNetworkAdapter = RoomNetworkAdapter()
         loadActiveNonRapidGamesTable()
     }
 
@@ -44,8 +45,6 @@ class EnterClassicRoomViewController: UIViewController {
     }
 
     private func loadActiveNonRapidGamesTable() {
-        roomNetworkAdapter = RoomNetworkAdapter()
-
         // load user's active Non-Rapid Classic Games
         roomNetworkAdapter.getUsersNonRapidGameRoomCodes(completionHandler: { [weak self] roomCodes in
             self?.usersNonRapidGameRoomCodes = roomCodes
