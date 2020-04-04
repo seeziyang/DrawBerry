@@ -11,20 +11,22 @@ import Firebase
 class RoomNetworkAdapter {
 
     let db: DatabaseReference
-    private var observingRoomCode: RoomCode?
+    private var observingRoomCodes: Set<RoomCode>
 
     init() {
         self.db = Database.database().reference()
+        self.observingRoomCodes = []
     }
 
     deinit {
-        if let observingRoomCode = observingRoomCode {
+        for roomCode in observingRoomCodes {
             let dbPathRef = db.child("activeRooms")
-                .child(observingRoomCode.type.rawValue)
-                .child(observingRoomCode.value)
-            dbPathRef.child("player").removeAllObservers()
+                .child(roomCode.type.rawValue)
+                .child(roomCode.value)
+            dbPathRef.child("players").removeAllObservers()
             dbPathRef.child("hasStarted").removeAllObservers()
             dbPathRef.child("isRapid").removeAllObservers()
+            dbPathRef.removeAllObservers()
         }
     }
 
@@ -188,6 +190,8 @@ class RoomNetworkAdapter {
     }
 
     func observeRoomPlayers(roomCode: RoomCode, listener: @escaping ([RoomPlayer]) -> Void) {
+        observingRoomCodes.insert(roomCode)
+
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -208,6 +212,8 @@ class RoomNetworkAdapter {
     }
 
     func observeGameStart(roomCode: RoomCode, listener: @escaping (Bool) -> Void) {
+        observingRoomCodes.insert(roomCode)
+
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -222,6 +228,8 @@ class RoomNetworkAdapter {
     }
 
     func observeIsRapidToggle(roomCode: RoomCode, listener: @escaping (Bool) -> Void) {
+        observingRoomCodes.insert(roomCode)
+
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -253,7 +261,7 @@ class RoomNetworkAdapter {
             })
     }
 
-    func checkNonRapidGameTurn(
+    func observeNonRapidGamesTurn(
         roomCode: RoomCode,
         completionHandler: @escaping (_ isMyTurn: Bool, ClassicGame) -> Void
     ) {
@@ -261,10 +269,12 @@ class RoomNetworkAdapter {
             return
         }
 
+        observingRoomCodes.insert(roomCode)
+
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .observeSingleEvent(of: .value, with: { snapshot in
+            .observe(.value, with: { snapshot in
                 guard let roomValues = snapshot.value as? [String: Any] else {
                     return
                 }

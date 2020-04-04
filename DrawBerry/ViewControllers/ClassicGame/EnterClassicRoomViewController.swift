@@ -60,7 +60,7 @@ class EnterClassicRoomViewController: UIViewController {
 
     private func loadActiveNonRapidGameStatuses() {
         usersNonRapidGameRoomCodes.forEach { roomCode in
-            roomNetworkAdapter.checkNonRapidGameTurn(
+            roomNetworkAdapter.observeNonRapidGamesTurn(
                 roomCode: roomCode,
                 completionHandler: { [weak self] activeRoomTurn, classicGame in
                     self?.usersNonRapidGameStatuses[roomCode] = (activeRoomTurn, classicGame)
@@ -159,6 +159,7 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
         var text = roomCode.value
 
         if let status = usersNonRapidGameStatuses[roomCode] {
+            text += ", Round: \(status.game.currentRound)"
             text += ", \(status.isMyTurn ? "Your turn!" : "Waiting for other players")"
         }
 
