@@ -1161,7 +1161,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="game over! show some results here, maybe using the player cells" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frN-BO-A5o">
-                                <rect key="frame" x="136" y="502" width="496" height="21"/>
+                                <rect key="frame" x="136" y="501.5" width="496" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1212,23 +1212,43 @@
                         <viewLayoutGuide key="safeArea" id="CE8-SM-fV0"/>
                     </view>
                     <navigationItem key="navigationItem" id="u66-hz-AXl"/>
+                    <connections>
+                        <segue destination="Qg4-hA-oBH" kind="presentation" identifier="segueToCompetitiveVoting" modalPresentationStyle="fullScreen" id="W8S-2W-lrH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHn-qo-geZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1634" y="1525"/>
         </scene>
+        <!--Competitive Voting View Controller-->
+        <scene sceneID="mWA-tP-YTd">
+            <objects>
+                <viewController id="Qg4-hA-oBH" customClass="CompetitiveVotingViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="34f-qI-EGI">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2yR-NP-3Pb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2d5-2b-vkb"/>
+                    <connections>
+                        <segue destination="hsU-YQ-DKO" kind="presentation" identifier="segueToNextCompetitiveRound" id="CkB-sN-2w7"/>
+                        <segue destination="TxN-r9-amb" kind="presentation" identifier="segueToMainMenu" id="lzf-gF-2yn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iyb-Xa-Gad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2366" y="1525"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ujx-8I-en9"/>
+        <segue reference="CkB-sN-2w7"/>
         <segue reference="epa-EW-RcE"/>
+        <segue reference="lzf-gF-2yn"/>
         <segue reference="TXh-cz-zfd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="4000" height="3000"/>
         <image name="drawberry-logo" width="512" height="512"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Gg7-CT-DLI"/>
-        <segue reference="TXh-cz-zfd"/>
-    </inferredMetricsTieBreakers>
 </document>

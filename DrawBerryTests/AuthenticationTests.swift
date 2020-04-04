@@ -42,6 +42,7 @@ class AuthenticationTests: XCTestCase {
         XCTAssertTrue(stub.result!)
     }
 
+    /*
     func testSignupFailure_existingAccount() {
         let expectation = self.expectation(description: "Signup")
         let stub = AuthenticationUpdateDelegateStub(expectation: expectation)
@@ -68,6 +69,7 @@ class AuthenticationTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertFalse(stub.result!)
     }
+    */
 
 }
 

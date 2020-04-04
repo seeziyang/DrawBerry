@@ -21,7 +21,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
-        return true
+        true
     }
 
     func configureStartButton() {
@@ -97,7 +97,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
 extension CooperativeGameRoomViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return GameRoom.maxPlayers
+        GameRoom.maxPlayers
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -148,13 +148,13 @@ extension CooperativeGameRoomViewController: UICollectionViewDelegateFlowLayout 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+        sectionInsets
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+        sectionInsets.left
     }
 }
 

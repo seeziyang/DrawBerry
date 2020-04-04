@@ -15,7 +15,7 @@ class ExtraStrokePowerup: Powerup {
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    var description = "Extra Stroke!"
+    var description = Message.extraStrokePowerup
 
     required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner

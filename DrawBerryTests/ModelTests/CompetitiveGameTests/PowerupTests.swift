@@ -95,4 +95,37 @@ class PowerupTests: XCTestCase {
             XCTAssertNotNil(selectedPlayer.canvasProxy, "Player's canvas proxy is nil after powerup deactivation")
         }
     }
+
+    func testHideDrawingWhileInvulnerable() {
+        let selectedPlayer = players[0]
+        let otherPlayer = players[1]
+        let invulnerabilityPowerup = InvulnerabilityPowerup(owner: selectedPlayer, players: players,
+                                                            location: CGPoint.randomLocation(for: selectedPlayer))
+        powerupManager.applyPowerup(invulnerabilityPowerup)
+
+        let hideDrawingPowerup = HideDrawingPowerup(owner: otherPlayer, players: players,
+                                                    location: CGPoint.randomLocation(for: otherPlayer))
+        powerupManager.applyPowerup(hideDrawingPowerup)
+
+        XCTAssertNil(selectedPlayer.canvasProxy, "Invulnerable player's canvas proxy not nil")
+        XCTAssertFalse(selectedPlayer.canvasDrawing.isHidden, "Invulnerable player's drawing was hidden")
+    }
+
+    func testInkSplotchWhileInvulnerable() {
+        let selectedPlayer = players[1]
+        let initialSubviewsCount = selectedPlayer.canvasDrawing.subviews.count
+
+        let otherPlayer = players[2]
+        let invulnerabilityPowerup = InvulnerabilityPowerup(owner: selectedPlayer, players: players,
+                                                            location: CGPoint.randomLocation(for: selectedPlayer))
+        powerupManager.applyPowerup(invulnerabilityPowerup)
+
+        let inkSplotchPowerup = InkSplotchPowerup(owner: otherPlayer, players: players,
+                                                  location: CGPoint.randomLocation(for: otherPlayer))
+        powerupManager.applyPowerup(inkSplotchPowerup)
+
+        XCTAssertNil(selectedPlayer.canvasProxy, "Invulnerable player's canvas proxy not nil")
+        XCTAssertEqual(initialSubviewsCount, selectedPlayer.canvasDrawing.subviews.count,
+                       "Invulnerable player affected by ink splotch powerup")
+    }
 }
