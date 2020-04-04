@@ -57,7 +57,7 @@ class UserProfileNetworkAdapter {
         guard let playerUID = playerUID else {
             return
         }
-        
+
         let cloudPathRef = cloud.child("users").child(playerUID).child(Constants.profilePictureFileName)
 
         cloudPathRef.getData(maxSize: 1 * 1_024 * 1_024, completion: { data, error in

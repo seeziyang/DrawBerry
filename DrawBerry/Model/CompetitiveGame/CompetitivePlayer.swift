@@ -23,6 +23,17 @@ class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
     var isInvulnerable = false
     var extraStrokes = 0
 
+    var score = 0
+
+    static var NUMBER_OF_VOTES_TO_GIVE = 2
+    var votesLeft = CompetitivePlayer.NUMBER_OF_VOTES_TO_GIVE
+    var votesGiven = 0
+    var hasVotedFor = Set<CompetitivePlayer>()
+
+    var isDoneVoting: Bool {
+        votesLeft <= 0
+    }
+
     var description: String {
         "(\(name))"
     }
@@ -33,5 +44,11 @@ class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
+    }
+
+    func resetVotes() {
+        votesLeft = CompetitivePlayer.NUMBER_OF_VOTES_TO_GIVE
+        votesGiven = 0
+        hasVotedFor.removeAll()
     }
 }

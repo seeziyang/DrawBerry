@@ -15,7 +15,7 @@ class InkSplotchPowerup: Powerup {
     var targets: [CompetitivePlayer]
     var location: CGPoint
 
-    var description = "Ink Splotch!"
+    var description = Message.inkSplotchPowerup
 
     required init(owner: CompetitivePlayer, players: [CompetitivePlayer], location: CGPoint) {
         self.owner = owner

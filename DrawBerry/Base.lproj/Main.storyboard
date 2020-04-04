@@ -1254,16 +1254,41 @@
                         <viewLayoutGuide key="safeArea" id="CE8-SM-fV0"/>
                     </view>
                     <navigationItem key="navigationItem" id="u66-hz-AXl"/>
+                    <connections>
+                        <segue destination="Qg4-hA-oBH" kind="presentation" identifier="segueToCompetitiveVoting" modalPresentationStyle="fullScreen" id="W8S-2W-lrH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHn-qo-geZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1634" y="1525"/>
         </scene>
+        <!--Competitive Voting View Controller-->
+        <scene sceneID="mWA-tP-YTd">
+            <objects>
+                <viewController id="Qg4-hA-oBH" customClass="CompetitiveVotingViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="34f-qI-EGI">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2yR-NP-3Pb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2d5-2b-vkb"/>
+                    <connections>
+                        <segue destination="hsU-YQ-DKO" kind="presentation" identifier="segueToNextCompetitiveRound" id="CkB-sN-2w7"/>
+                        <segue destination="TxN-r9-amb" kind="presentation" identifier="segueToMainMenu" id="lzf-gF-2yn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iyb-Xa-Gad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2366" y="1525"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="5gB-V3-LmB"/>
         <segue reference="6FN-2v-NBi"/>
+        <segue reference="CkB-sN-2w7"/>
         <segue reference="epa-EW-RcE"/>
+        <segue reference="lzf-gF-2yn"/>
         <segue reference="TXh-cz-zfd"/>
     </inferredMetricsTieBreakers>
     <resources>
