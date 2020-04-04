@@ -100,7 +100,7 @@ class CompetitiveVotingViewController: UIViewController {
     /// Checks if all players are done with voting, collates votes
     /// and assigns scores if so.
     private func checkAllPlayersDoneVoting() {
-        if currentGame.players.map({ $0.isDoneVoting }).allSatisfy({ $0 == true }) {
+        if currentGame.players.map({ $0.isDoneVoting }).allSatisfy({ $0 }) {
             collateVotesAndAssignScores()
 
             currentGame.nextRound()
@@ -136,7 +136,6 @@ class CompetitiveVotingViewController: UIViewController {
     /// If two players have the same number of votes, they are both awarded the medal and score.
     private func collateVotesAndAssignScores() {
         let sortedPlayersByVotes = currentGame.players.sorted(by: { $0.votesGiven > $1.votesGiven })
-        print(sortedPlayersByVotes.map { $0.votesGiven })
 
         var numberOfPlayersWithSimilarVotes = 0
         for i in 0...1 {
