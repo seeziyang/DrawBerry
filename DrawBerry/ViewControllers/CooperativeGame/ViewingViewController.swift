@@ -25,12 +25,14 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
         overrideUserInterfaceStyle = .light
     }
 
+    /// Updates the drawings live according to the drawings uploaded to the database.
     func updateDrawings() {
         drawings.forEach { $0.removeFromSuperview() }
         drawings = []
         populateDrawings()
     }
 
+    /// Populates the view with the updated drawings.
     private func populateDrawings() {
         cooperativeGame.allDrawings.forEach {
             let imageView = createImageView(of: $0, in: self.view.frame)
@@ -39,15 +41,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
         }
     }
 
-    private func updateNextDrawing() {
-        guard let lastDrawing = cooperativeGame.allDrawings.last else {
-            return
-        }
-        let imageView = createImageView(of: lastDrawing, in: self.view.frame)
-        drawings.append(imageView)
-        view.addSubview(imageView)
-    }
-
+    /// Creates an image view within a given frame from a given `UIImage`.
     private func createImageView(of image: UIImage, in frame: CGRect) -> UIImageView {
         let imageView = UIImageView(frame: frame)
         imageView.image = image
@@ -55,6 +49,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
         return imageView
     }
 
+    /// Adds the background canvas.
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -64,6 +59,7 @@ class ViewingViewController: CooperativeGameViewController, CooperativeGameViewi
         view.addSubview(canvasBackground)
     }
 
+    /// Navigates to the end page when the last player has completed the drawing.
     func navigateToEndPage() {
         performSegue(withIdentifier: "segueToEnd", sender: self)
     }

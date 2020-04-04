@@ -9,19 +9,19 @@
 import FBSnapshotTestCase
 @testable import DrawBerry
 
-class EnterRoomViewUITest: DrawBerryUITest {
+class EnterClassicRoomViewUITest: DrawBerryUITest {
     override func setUp() {
         super.setUp()
     }
 
-    func testEnterRoomViewUILayout() {
+    func testEnterClassicRoomViewUILayout() {
         let app = initialiseAppToEnterRoomScreen()
 
         verifyAppCurrentScreen(app: app)
     }
 }
 
-extension EnterRoomViewUITest {
+extension EnterClassicRoomViewUITest {
     private func initialiseAppToEnterRoomScreen() -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()
@@ -29,19 +29,28 @@ extension EnterRoomViewUITest {
             attemptLogin(app: app)
         }
         app.buttons["Classic"].tap()
+        sleep(1)
         return app
     }
 
     private func attemptLogin(app: XCUIElement) {
         let emailTextField = app.textFields["Email"]
+        let passwordSecureTextField = app.secureTextFields["password"]
+
         emailTextField.tap()
         emailTextField.clearText()
-        app.textFields["Email"].typeText("admin@drawberry.com")
-
-        let passwordSecureTextField = app.secureTextFields["password"]
         passwordSecureTextField.tap()
         passwordSecureTextField.clearText()
-        passwordSecureTextField.typeText("admin123")
+        emailTextField.tap()
+        emailTextField.clearText()
+        passwordSecureTextField.tap()
+        passwordSecureTextField.clearText()
+
+        emailTextField.tap()
+        emailTextField.typeText("admin1@drawberry.com")
+
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("password1")
 
         app.buttons["login"].tap()
     }

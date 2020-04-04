@@ -20,6 +20,7 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
         startGame()
     }
 
+    /// Initialise the game and navigate to drawing canvas when user turn is reached.
     private func startGame() {
         if cooperativeGame.isFirstPlayer {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -27,9 +28,10 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
             }
             return
         }
-        cooperativeGame.waitForPreviousPlayersToFinish()
+        cooperativeGame.downloadPreviousDrawings()
     }
 
+    /// Adds the background canvas.
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -39,10 +41,12 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
         view.addSubview(canvasBackground)
     }
 
+    /// Displays the ready message when the user's turn is about to begin.
     func changeMessageToGetReady() {
         messageLabel.text = Message.getReadyMessage
     }
 
+    /// Display message according to the user's turn.
     private func displayMessage() {
         let message = UILabel(frame: self.view.frame)
         message.text = cooperativeGame.isFirstPlayer ? Message.getReadyMessage : Message.waitingMessage
@@ -52,6 +56,7 @@ class WaitingViewController: UIViewController, CooperativeGameDelegate {
         view.addSubview(message)
     }
 
+    /// Navigates to the drawing page when it is the user's turn.
     func navigateToDrawingPage() {
         performSegue(withIdentifier: "segueToDrawing", sender: self)
     }

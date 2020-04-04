@@ -11,7 +11,7 @@ import UIKit
 class CooperativePlayer: ComparablePlayer {
     var index: Int
     var isRoomMaster: Bool
-    private var drawingImage: UIImage?
+    var drawingImage: UIImage?
 
     init(name: String, uid: String, isRoomMaster: Bool, index: Int) {
         self.isRoomMaster = isRoomMaster
@@ -26,13 +26,5 @@ class CooperativePlayer: ComparablePlayer {
             isRoomMaster: roomPlayer.isRoomMaster,
             index: index
         )
-    }
-
-    func addDrawing(image: UIImage) {
-        drawingImage = image
-    }
-
-    func getDrawingImage() -> UIImage? {
-        drawingImage
     }
 }

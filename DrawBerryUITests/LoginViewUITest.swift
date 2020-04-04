@@ -32,6 +32,10 @@ extension LoginViewUITest {
         app.textFields["Email"].clearText()
         app.secureTextFields["password"].tap()
         app.secureTextFields["password"].clearText()
+        app.textFields["Email"].tap()
+        app.textFields["Email"].clearText()
+        app.secureTextFields["password"].tap()
+        app.secureTextFields["password"].clearText()
         return app
     }
 
