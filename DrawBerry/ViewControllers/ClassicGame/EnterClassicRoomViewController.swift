@@ -29,7 +29,6 @@ class EnterClassicRoomViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // TODO: segue appropriately
         if let roomVC = segue.destination as? ClassicGameRoomViewController,
             let roomCodeValue = roomCodeField.text {
                 let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
