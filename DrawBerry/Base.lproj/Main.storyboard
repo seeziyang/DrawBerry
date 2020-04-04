@@ -244,7 +244,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-7k-t7V">
-                                <rect key="frame" x="192" y="358" width="384" height="308"/>
+                                <rect key="frame" x="192" y="61" width="384" height="308"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Room Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Qa-g5-cEd">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="50"/>
@@ -298,6 +298,23 @@
                                     <action selector="backOnTap:" destination="Hnz-Vf-gJ2" eventType="touchUpInside" id="jTn-qF-2oA"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="blA-6J-M2K">
+                                <rect key="frame" x="-4" y="409" width="772" height="615"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="roomCodeCell" id="bsv-qW-sI2">
+                                        <rect key="frame" x="0.0" y="28" width="772" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bsv-qW-sI2" id="83O-Sb-Rpp">
+                                            <rect key="frame" x="0.0" y="0.0" width="772" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Hnz-Vf-gJ2" id="vrt-lS-0M1"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -308,23 +325,29 @@
                             <constraint firstItem="Nc4-uc-Ab2" firstAttribute="top" secondItem="WC8-j0-3iZ" secondAttribute="top" constant="61" id="LQf-ih-0ai"/>
                             <constraint firstItem="MdW-AQ-rxh" firstAttribute="width" secondItem="Rte-z2-TPt" secondAttribute="width" multiplier="0.5" id="M2H-J8-RAB"/>
                             <constraint firstItem="Taj-lf-U7f" firstAttribute="bottom" secondItem="WC8-j0-3iZ" secondAttribute="bottom" id="PwT-gF-pbF"/>
+                            <constraint firstItem="WC8-j0-3iZ" firstAttribute="trailing" secondItem="blA-6J-M2K" secondAttribute="trailing" id="WCa-xd-lTw"/>
                             <constraint firstItem="Taj-lf-U7f" firstAttribute="trailing" secondItem="WC8-j0-3iZ" secondAttribute="trailing" id="auc-J5-wBm"/>
+                            <constraint firstItem="WC8-j0-3iZ" firstAttribute="bottom" secondItem="blA-6J-M2K" secondAttribute="bottom" id="cYX-Rf-UeN"/>
+                            <constraint firstItem="Vqa-7k-t7V" firstAttribute="top" secondItem="WC8-j0-3iZ" secondAttribute="top" constant="61" id="fGa-ut-2u1"/>
+                            <constraint firstItem="blA-6J-M2K" firstAttribute="top" secondItem="Vqa-7k-t7V" secondAttribute="bottom" constant="40" id="he8-kz-sNJ"/>
                             <constraint firstItem="sz2-KC-ChA" firstAttribute="width" secondItem="Rte-z2-TPt" secondAttribute="width" multiplier="0.5" id="tsv-NS-vif"/>
-                            <constraint firstItem="Vqa-7k-t7V" firstAttribute="centerY" secondItem="WC8-j0-3iZ" secondAttribute="centerY" id="xFS-I1-ZXL"/>
+                            <constraint firstItem="WC8-j0-3iZ" firstAttribute="leading" secondItem="blA-6J-M2K" secondAttribute="leading" constant="4" id="xwM-qn-neV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WC8-j0-3iZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="gZn-Y0-cpx"/>
                     <connections>
+                        <outlet property="activeNonRapidGamesTable" destination="blA-6J-M2K" id="hMm-ye-XWB"/>
                         <outlet property="background" destination="Taj-lf-U7f" id="uhN-ZW-nB0"/>
                         <outlet property="errorLabel" destination="Owq-Yi-Rtq" id="XxQ-xS-Vz5"/>
                         <outlet property="roomCodeField" destination="0Qa-g5-cEd" id="mj7-pz-PEF"/>
                         <segue destination="cuu-G9-htT" kind="show" identifier="segueToClassicRoom" id="qM3-6L-xtS"/>
+                        <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVotingFromEnterRoom" id="6FN-2v-NBi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaY-f7-xXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1635.5555555555554" y="32.777777777777779"/>
+            <point key="canvasLocation" x="1635.15625" y="32.2265625"/>
         </scene>
         <!--Enter Cooperative Room View Controller-->
         <scene sceneID="4AA-35-pO7">
@@ -401,13 +424,13 @@
                             <constraint firstItem="EAs-FP-m7b" firstAttribute="leading" secondItem="a0M-L0-2Nn" secondAttribute="leading" constant="64" id="Epr-aa-XAs"/>
                             <constraint firstItem="ETP-eI-oIF" firstAttribute="width" secondItem="fng-PK-ysl" secondAttribute="width" multiplier="0.5" id="HB0-Es-RYa"/>
                             <constraint firstItem="1xe-Wa-Kei" firstAttribute="centerX" secondItem="fng-PK-ysl" secondAttribute="centerX" id="Og5-tD-SVS"/>
-                            <constraint firstItem="1xe-Wa-Kei" firstAttribute="centerY" secondItem="fng-PK-ysl" secondAttribute="centerY" id="SYi-A6-pvB"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="top" secondItem="a0M-L0-2Nn" secondAttribute="top" id="YBL-No-uym"/>
                             <constraint firstItem="EAs-FP-m7b" firstAttribute="top" secondItem="a0M-L0-2Nn" secondAttribute="top" constant="61" id="cBq-Md-XXW"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="leading" secondItem="a0M-L0-2Nn" secondAttribute="leading" id="cJa-cb-fP7"/>
                             <constraint firstItem="LKq-oM-aZV" firstAttribute="width" secondItem="fng-PK-ysl" secondAttribute="width" multiplier="0.5" id="j5H-Qy-048"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="bottom" secondItem="a0M-L0-2Nn" secondAttribute="bottom" id="ltd-6y-Go0"/>
                             <constraint firstItem="OrP-SM-1Pq" firstAttribute="trailing" secondItem="a0M-L0-2Nn" secondAttribute="trailing" id="uUz-W3-e2B"/>
+                            <constraint firstItem="1xe-Wa-Kei" firstAttribute="centerY" secondItem="a0M-L0-2Nn" secondAttribute="centerY" id="wRr-t5-MmQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="a0M-L0-2Nn"/>
                     </view>
@@ -421,7 +444,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiT-S3-iPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="696"/>
+            <point key="canvasLocation" x="1633.59375" y="695.5078125"/>
         </scene>
         <!--Cooperative Game Room View Controller-->
         <scene sceneID="sjh-to-kYa">
@@ -725,17 +748,31 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1kv-Vt-qgr">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                 <items>
-                                    <navigationItem title="Players" id="Jrn-PS-9DF">
+                                    <navigationItem title="Room Code" id="Jrn-PS-9DF">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="Ppp-ix-iH0">
                                             <connections>
                                                 <action selector="backOnTap:" destination="cuu-G9-htT" id="5g1-zv-wZ9"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Start" id="JDg-Za-XE2">
-                                            <connections>
-                                                <action selector="startOnTap:" destination="cuu-G9-htT" id="l55-1g-Y6j"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Start" id="JDg-Za-XE2">
+                                                <connections>
+                                                    <action selector="startOnTap:" destination="cuu-G9-htT" id="l55-1g-Y6j"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="J5s-cR-RFl">
+                                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="56U-Ep-rEz">
+                                                    <rect key="frame" x="651" y="9.5" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="isRapidSwitchOnToggle:" destination="cuu-G9-htT" eventType="valueChanged" id="G35-S8-X5z"/>
+                                                    </connections>
+                                                </switch>
+                                            </barButtonItem>
+                                            <barButtonItem title="Rapid" id="cdU-I3-Aa9">
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -817,7 +854,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="A3K-k2-ONo"/>
                     <connections>
+                        <outlet property="isRapidSwitch" destination="56U-Ep-rEz" id="xsP-jc-GaT"/>
                         <outlet property="playersCollectionView" destination="RYb-n3-WfJ" id="1bI-jT-3ko"/>
+                        <outlet property="roomCodeLabel" destination="Jrn-PS-9DF" id="8kH-bQ-e4c"/>
                         <outlet property="startButton" destination="JDg-Za-XE2" id="m8a-we-n6A"/>
                         <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToClassicGame" id="epa-EW-RcE"/>
                         <segue destination="uMC-2e-j9F" kind="presentation" identifier="segueClassicToPlayerProfile" id="TXh-cz-zfd"/>
@@ -1000,9 +1039,11 @@
                     <navigationItem key="navigationItem" id="DTn-PK-Kgs"/>
                     <connections>
                         <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVoting" id="Uzk-c9-9Y5"/>
+                        <segue destination="evc-Ih-NW2" kind="unwind" identifier="classicUnwindSegueToHomeVC" unwindAction="unwindToHomeVCWithSegue:" id="AHu-Kv-L8G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNe-2z-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="evc-Ih-NW2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3239" y="33"/>
         </scene>
@@ -1053,6 +1094,7 @@
                     <connections>
                         <outlet property="votingImagesCollectionView" destination="r8J-hz-9HJ" id="iCd-Rk-wVP"/>
                         <segue destination="nAF-Ru-4xa" kind="show" identifier="segueToVoteResults" id="VzZ-Mu-Aqr"/>
+                        <segue destination="1RG-Zu-Bow" kind="show" identifier="segueToDrawing" id="u8j-1g-kbM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ws-xT-Mdx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1176,7 +1218,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tCH-f2-gpu"/>
                     <connections>
-                        <segue destination="Qam-rv-IYs" kind="unwind" identifier="unwindSegueToHomeVC" unwindAction="unwindToHomeVCWithSegue:" id="ana-Aa-UEA"/>
+                        <segue destination="Qam-rv-IYs" kind="unwind" identifier="gameEndUnwindSegueToHomeVC" unwindAction="unwindToHomeVCWithSegue:" id="ana-Aa-UEA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKX-Wd-BnJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1242,6 +1284,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="5gB-V3-LmB"/>
+        <segue reference="6FN-2v-NBi"/>
         <segue reference="CkB-sN-2w7"/>
         <segue reference="epa-EW-RcE"/>
         <segue reference="lzf-gF-2yn"/>

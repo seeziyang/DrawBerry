@@ -10,4 +10,11 @@ protocol GameRoomDelegate: AnyObject {
     func playersDidUpdate()
 
     func gameHasStarted()
+
+    func isRapidDidUpdate(isRapid: Bool)
+}
+
+extension GameRoomDelegate {
+    func isRapidDidUpdate(isRapid: Bool) {
+    }
 }

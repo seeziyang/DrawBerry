@@ -6,7 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-struct RoomCode: Equatable {
+struct RoomCode: Hashable {
     static func == (lhs: RoomCode, rhs: RoomCode) -> Bool {
         lhs.value == rhs.value && lhs.type == rhs.type
     }

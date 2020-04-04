@@ -32,7 +32,7 @@ class GameNetworkAdapter {
             .child("players")
             .child(userID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("hasUploadedImage")
         let cloudPathRef = cloud.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -50,6 +50,38 @@ class GameNetworkAdapter {
 
             dbPathRef.setValue(true)
         })
+
+        let dbRoomPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+
+        // if is last player to draw, update currRound in db to next round
+        dbRoomPathRef.child("players")
+            .observeSingleEvent(of: .value, with: { snapshot in
+                // [playerUID: [rounds: Any]]
+                guard var otherPlayersValues = snapshot.value as? [String: [String: Any]] else {
+                    return
+                }
+
+                otherPlayersValues[userID] = nil // remove user from dictionary
+
+                // [playerUID: [roundNumber: [hasUploadedImage: Any]]]
+                guard let otherPlayerRounds = otherPlayersValues.mapValues({ $0["rounds"] })
+                    as? [String: [String: [String: Any]]] else {
+                        // not everyone else has drawn in first round yet
+                        return
+                }
+
+                // does not contain another player that has not drawn
+                let isUserLastDrawer = !otherPlayerRounds.contains(where: { _, rounds in
+                    rounds["round\(round)"]?["hasUploadedImage"] == nil
+                })
+
+                if isUserLastDrawer {
+                    dbRoomPathRef.child("currRound")
+                        .setValue(round + 1)
+                }
+            })
     }
 
     private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
@@ -83,7 +115,7 @@ class GameNetworkAdapter {
             .child("players")
             .child(playerUID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("hasUploadedImage")
 
         dbPathRef.observe(.value, with: { snapshot in
@@ -104,23 +136,27 @@ class GameNetworkAdapter {
             return
         }
 
-        let dbGamePlayersPathRef = db.child("activeRooms")
+        let dbRoomPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
-            .child("players")
 
-        dbGamePlayersPathRef.child(userID)
+        dbRoomPathRef.child("players")
+            .child(userID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("votedFor")
             .setValue(playerUID)
 
-        dbGamePlayersPathRef.child(playerUID)
+        // update other player's points in db
+        dbRoomPathRef.child("players")
+            .child(playerUID)
             .child("points")
             .setValue(updatedPlayerPoints)
 
+        // update user's points in db
         if let updatedUserPoints = updatedUserPoints {
-            dbGamePlayersPathRef.child(userID)
+            dbRoomPathRef.child("players")
+                .child(userID)
                 .child("points")
                 .setValue(updatedUserPoints)
         }
@@ -133,7 +169,7 @@ class GameNetworkAdapter {
             .child(roomCode.value).child("players")
             .child(playerUID)
             .child("rounds")
-            .child(String(round))
+            .child("round\(round)")
             .child("votedFor")
 
         dbPathRef.observe(.value, with: { snapshot in
