@@ -12,7 +12,7 @@ import Firebase
 class EnterClassicRoomViewController: UIViewController {
     var roomNetworkAdapter: RoomNetworkAdapter!
     var usersNonRapidGameRoomCodes: [RoomCode]!
-    var usersNonRapidGameStatuses: [RoomCode: (turn: ActiveRoomTurn, game: ClassicGame)]!
+    var usersNonRapidGameStatuses: [RoomCode: (isMyTurn: Bool, game: ClassicGame)]!
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var roomCodeField: UITextField!
@@ -35,10 +35,6 @@ class EnterClassicRoomViewController: UIViewController {
                 let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
                 roomVC.room = GameRoom(roomCode: roomCode)
                 roomVC.room.delegate = roomVC
-        } else if let classicVC = segue.destination as? ClassicViewController,
-            let roomCode = sender as? RoomCode,
-            let classicGame = usersNonRapidGameStatuses[roomCode]?.game {
-                classicVC.classicGame = classicGame
         } else if let votingVC = segue.destination as? VotingViewController,
             let roomCode = sender as? RoomCode,
             let classicGame = usersNonRapidGameStatuses[roomCode]?.game {
@@ -61,10 +57,6 @@ class EnterClassicRoomViewController: UIViewController {
             self?.loadActiveNonRapidGameStatuses()
         })
     }
-
-//    func reloadTableData() {
-//        activeNonRapidGamesTable.reloadData()
-//    }
 
     private func loadActiveNonRapidGameStatuses() {
         usersNonRapidGameRoomCodes.forEach { roomCode in
@@ -167,7 +159,7 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
         var text = roomCode.value
 
         if let status = usersNonRapidGameStatuses[roomCode] {
-            text += ", \(status.turn.rawValue)"
+            text += ", \(status.isMyTurn ? "Your turn!" : "Waiting for other players")"
         }
 
         cell.textLabel?.text = text
@@ -193,14 +185,10 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
             return
         }
 
-        switch status.turn {
-        case .drawingTurn:
-            performSegue(withIdentifier: "segueToDrawingFromEnterRoom", sender: roomCode)
-        case .votingTurn:
+        if status.isMyTurn {
             performSegue(withIdentifier: "segueToVotingFromEnterRoom", sender: roomCode)
-        case .notMyTurn:
-            // TODO: show some alert?
-            break // TODO: ^
+        } else {
+            // TODO: Show some alert?
         }
     }
 }

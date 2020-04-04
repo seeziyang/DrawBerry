@@ -32,20 +32,6 @@ class HomeViewController: UIViewController {
         true
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let enterClassicRoomVC = segue.destination as? EnterClassicRoomViewController {
-//            enterClassicRoomVC.roomNetworkAdapter = RoomNetworkAdapter()
-//
-//            // load user's active Non-Rapid Classic Games
-//            enterClassicRoomVC.roomNetworkAdapter
-//                .getUsersNonRapidGameRoomCodes(completionHandler: { roomCodes in
-//                    enterClassicRoomVC.usersNonRapidGameRoomCodes = roomCodes
-//                    enterClassicRoomVC.usersNonRapidGameStatuses = [:]
-//                    enterClassicRoomVC.reloadTableData()
-//                })
-        }
-    }
-
     func initializeElements() {
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.height
         profileImageView.clipsToBounds = true

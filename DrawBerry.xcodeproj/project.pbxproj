@@ -10,7 +10,6 @@
 		1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED62422208C007FDB32 /* GameRoomStatus.swift */; };
 		1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */; };
 		1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000EDA24222AF4007FDB32 /* ClassicGame.swift */; };
-		1A0B5F7C24378A1C00333542 /* ActiveRoomTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0B5F7B24378A1C00333542 /* ActiveRoomTurn.swift */; };
 		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
@@ -196,7 +195,6 @@
 		1A000ED62422208C007FDB32 /* GameRoomStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomStatus.swift; sourceTree = "<group>"; };
 		1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayer.swift; sourceTree = "<group>"; };
 		1A000EDA24222AF4007FDB32 /* ClassicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGame.swift; sourceTree = "<group>"; };
-		1A0B5F7B24378A1C00333542 /* ActiveRoomTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRoomTurn.swift; sourceTree = "<group>"; };
 		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A3920F72425BF1D00847E72 /* GameRoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomTests.swift; sourceTree = "<group>"; };
 		1A3920F92425BF6700847E72 /* RoomPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPlayerTests.swift; sourceTree = "<group>"; };
@@ -395,7 +393,6 @@
 				1A432BD5241FB30A0097A14F /* GameRoom.swift */,
 				372CA573242BA995000E1E71 /* GameRoomType.swift */,
 				1A000ED62422208C007FDB32 /* GameRoomStatus.swift */,
-				1A0B5F7B24378A1C00333542 /* ActiveRoomTurn.swift */,
 				1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */,
 			);
 			path = GameRoom;
@@ -958,7 +955,6 @@
 				3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */,
 				37CE06532418809D0085BE4A /* BerryCanvas.swift in Sources */,
 				FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */,
-				1A0B5F7C24378A1C00333542 /* ActiveRoomTurn.swift in Sources */,
 				FC488980241C79FD00375140 /* CompetitivePlayer.swift in Sources */,
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
 				1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */,

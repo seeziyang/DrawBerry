@@ -50,6 +50,38 @@ class GameNetworkAdapter {
 
             dbPathRef.setValue(true)
         })
+
+        let dbRoomPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+
+        // if is last player to draw, update currRound in db to next round
+        dbRoomPathRef.child("players")
+            .observeSingleEvent(of: .value, with: { snapshot in
+                // [playerUID: [rounds: Any]]
+                guard var otherPlayersValues = snapshot.value as? [String: [String: Any]] else {
+                    return
+                }
+
+                otherPlayersValues[userID] = nil // remove user from dictionary
+
+                // [playerUID: [roundNumber: [hasUploadedImage: Any]]]
+                guard let otherPlayerRounds = otherPlayersValues.mapValues({ $0["rounds"] })
+                    as? [String: [String: [String: Any]]] else {
+                        // not everyone else has drawn in first round yet
+                        return
+                }
+
+                // does not contain another player that has not drawn
+                let isUserLastDrawer = !otherPlayerRounds.contains(where: { _, rounds in
+                    rounds["round\(round)"]?["hasUploadedImage"] == nil
+                })
+
+                if isUserLastDrawer {
+                    dbRoomPathRef.child("currRound")
+                        .setValue(round + 1)
+                }
+            })
     }
 
     private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
@@ -128,30 +160,6 @@ class GameNetworkAdapter {
                 .child("points")
                 .setValue(updatedUserPoints)
         }
-
-        // if is last player to vote, update currRound in db to next round
-        dbRoomPathRef.child("players").observeSingleEvent(of: .value, with: { snapshot in
-            // [playerUID: [rounds: Any]]
-            guard let playersValues = snapshot.value as? [String: [String: Any]] else {
-                return
-            }
-
-            // [playerUID: [roundNumber: [votedFor: Any]]]
-            guard let playerRounds = playersValues.mapValues({ $0["rounds"] })
-                as? [String: [String: [String: Any]]] else {
-                    return
-            }
-
-            // does not contain another player that has not voted
-            let isUserLastVoter = !playerRounds.contains(where: { playerUID, rounds in
-                playerUID != userID && rounds["round\(round)"]?["votedFor"] == nil
-            })
-
-            if isUserLastVoter {
-                dbRoomPathRef.child("currRound")
-                    .setValue(round + 1)
-            }
-        })
     }
 
     func observePlayerVote(playerUID: String, forRound round: Int,

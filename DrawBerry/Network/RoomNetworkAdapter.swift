@@ -255,13 +255,11 @@ class RoomNetworkAdapter {
 
     func checkNonRapidGameTurn(
         roomCode: RoomCode,
-        completionHandler: @escaping (ActiveRoomTurn, ClassicGame) -> Void
+        completionHandler: @escaping (_ isMyTurn: Bool, ClassicGame) -> Void
     ) {
         guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
         }
-
-        // TODO: FIX WRONG TURN result logic
 
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -295,29 +293,14 @@ class RoomNetworkAdapter {
                 let classicGame = ClassicGame(nonRapidRoomCode: roomCode,
                                               players: players, currentRound: currRound)
 
-                // [playerUID: [roundNumber: [hasUploadedImage: Any]]]
-                guard let playerRounds = playersDict.mapValues({ $0["rounds"] })
-                    as? [String: [String: [String: Any]]] else {
-                        completionHandler(.notMyTurn, classicGame)
-                        return
-                }
-
-                let hasUserDrawn =
-                    playerRounds[userID]?["round\(currRound)"]?["hasUploadedImage"] as? Bool ?? false
-
-                if !hasUserDrawn {
-                    completionHandler(.drawingTurn, classicGame)
+                // [round1: [hasUploadedImage: Any]]
+                guard let userRounds = playersDict[userID]?["rounds"] as? [String: [String: Any]] else {
+                    completionHandler(true, classicGame)
                     return
                 }
 
-                let hasAllPlayersDrawn = playerRounds.values
-                    .allSatisfy { $0["round\(currRound)"]?["hasUploadedImage"] as? Bool ?? false }
-
-                if hasAllPlayersDrawn {
-                    completionHandler(.votingTurn, classicGame)
-                } else {
-                    completionHandler(.notMyTurn, classicGame)
-                }
+                let hasUserDrawn = userRounds["round\(currRound)"]?["hasUploadedImage"] as? Bool ?? false
+                completionHandler(!hasUserDrawn, classicGame)
             })
     }
 }

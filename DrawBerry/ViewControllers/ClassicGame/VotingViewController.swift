@@ -66,7 +66,6 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
     private func voteForPlayerDrawing(player: ClassicPlayer) {
         classicGame.userVoteFor(player: player)
         segueToNextScreen()
-
     }
 
     private func segueToNextScreen() {
