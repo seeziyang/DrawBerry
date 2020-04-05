@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class EnterCooperativeRoomViewController: UIViewController {
-    var roomNetworkAdapter: RoomNetworkAdapter!
+    var enterRoomNetworkAdapter: EnterRoomNetworkAdapter!
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet private weak var roomCodeField: UITextField!
@@ -21,7 +21,7 @@ class EnterCooperativeRoomViewController: UIViewController {
         background.image = Constants.roomBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
-        roomNetworkAdapter = RoomNetworkAdapter()
+        enterRoomNetworkAdapter = EnterRoomNetworkAdapter()
         print("network connected")
     }
 
@@ -71,11 +71,11 @@ class EnterCooperativeRoomViewController: UIViewController {
             return
         }
 
-        roomNetworkAdapter
+        enterRoomNetworkAdapter
             .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
                 switch roomStatus {
                 case .enterable:
-                    self?.roomNetworkAdapter.joinRoom(roomCode: roomCode)
+                    self?.enterRoomNetworkAdapter.joinRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 case .doesNotExist:
                     self?.showErrorMessage(Message.roomDoesNotExist)
@@ -99,10 +99,10 @@ class EnterCooperativeRoomViewController: UIViewController {
             return
         }
 
-        roomNetworkAdapter
+        enterRoomNetworkAdapter
             .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
                 if !roomExists {
-                    self?.roomNetworkAdapter.createRoom(roomCode: roomCode)
+                    self?.enterRoomNetworkAdapter.createRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 } else {
                     self?.showErrorMessage(Message.roomCodeTaken)

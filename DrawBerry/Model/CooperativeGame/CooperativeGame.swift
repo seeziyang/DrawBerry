@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class CooperativeGame {
+class CooperativeGame: Game {
     weak var delegate: CooperativeGameDelegate?
     weak var viewingDelegate: CooperativeGameViewingDelegate?
     let networkAdapter: GameNetworkAdapter
