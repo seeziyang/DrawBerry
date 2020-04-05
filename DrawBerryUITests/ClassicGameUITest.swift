@@ -140,6 +140,20 @@ class ClassicGameUITest: DrawBerryUITest {
         verifyAppCurrentScreen(app: app, tolerance: 0.001)
     }
 
+    func testDrawRedInk_thickStroke_blueInk_mediumStroke() {
+        let app = initialiseAppMoveToClassicCanvas()
+        let palette = getPalette(from: app)
+        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
+        palette.children(matching: .image).element(boundBy: 2).tap()
+        palette.children(matching: .image).element(boundBy: 5).tap()
+        canvasScrollView.swipeRight()
+        palette.children(matching: .image).element(boundBy: 1).tap()
+        palette.children(matching: .image).element(boundBy: 4).tap()
+        canvasScrollView.swipeDown()
+
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
+
     func testTapEraserThenThickStroke() {
         let app = initialiseAppMoveToClassicCanvas()
         let palette = getPalette(from: app)
