@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClassicGame {
+class ClassicGame: Game {
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
@@ -39,7 +39,7 @@ class ClassicGame {
         self.roomCode = room.roomCode
         self.isRapid = room.isRapid
         self.networkAdapter = networkAdapter
-        let players = room.players.map { ClassicPlayer(from: $0) }
+        let players = room.players.map { ClassicPlayer(from: $0) }.sorted()
         self.players = players
         self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
             ?? players[0]
@@ -49,12 +49,13 @@ class ClassicGame {
     }
 
     init(nonRapidRoomCode roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
+        let sortedPlayers = players.sorted()
         self.roomCode = roomCode
         self.isRapid = false
         self.networkAdapter = GameNetworkAdapter(roomCode: roomCode)
-        self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? players[0]
+        self.players = sortedPlayers
+        self.user = sortedPlayers.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+            ?? sortedPlayers[0]
         self.maxRounds = .max // non rapid games are currently infinitely long
         self.currentRound = currentRound
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0

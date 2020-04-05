@@ -12,19 +12,20 @@ import FBSnapshotTestCase
 
 class ClassicGameUITest: DrawBerryUITest {
     static var adapter: RoomNetworkAdapter!
+    static let testRoomCode = RoomCode(value: "testroom", type: .ClassicRoom)
     override static func setUp() {
         FirebaseApp.configure()
-        adapter = RoomNetworkAdapter()
+        adapter = RoomNetworkAdapter(roomCode: testRoomCode)
     }
 
     override func setUp() {
         super.setUp()
-        ClassicGameUITest.adapter.deleteRoom(roomCode: RoomCode(value: "testroom", type: GameRoomType.ClassicRoom))
+        ClassicGameUITest.adapter.deleteRoom()
     }
 
     override func tearDown() {
         super.tearDown()
-        ClassicGameUITest.adapter.deleteRoom(roomCode: RoomCode(value: "testroom", type: GameRoomType.ClassicRoom))
+        ClassicGameUITest.adapter.deleteRoom()
     }
 
     func testClassicGameUILayout() {
@@ -194,7 +195,7 @@ extension ClassicGameUITest {
         roomCodeTextField.typeText("testroom")
         let createButton = app.buttons["Create"]
         createButton.tap()
-        app.navigationBars["Players"].buttons["Start"].tap()
+        app.navigationBars["testroom"].buttons["Start"].tap()
         sleep(3)
         return app
     }

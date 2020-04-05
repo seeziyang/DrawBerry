@@ -760,9 +760,10 @@
                                                     <action selector="startOnTap:" destination="cuu-G9-htT" id="l55-1g-Y6j"/>
                                                 </connections>
                                             </barButtonItem>
+                                            <barButtonItem title=" " id="gbS-2r-0Rb"/>
                                             <barButtonItem style="plain" id="J5s-cR-RFl">
                                                 <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="56U-Ep-rEz">
-                                                    <rect key="frame" x="651" y="9.5" width="51" height="31"/>
+                                                    <rect key="frame" x="635.5" y="9.5" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="isRapidSwitchOnToggle:" destination="cuu-G9-htT" eventType="valueChanged" id="G35-S8-X5z"/>
@@ -1284,9 +1285,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5gB-V3-LmB"/>
-        <segue reference="6FN-2v-NBi"/>
         <segue reference="CkB-sN-2w7"/>
+        <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
         <segue reference="lzf-gF-2yn"/>
         <segue reference="TXh-cz-zfd"/>
