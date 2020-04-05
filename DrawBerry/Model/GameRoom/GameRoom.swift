@@ -15,6 +15,7 @@ class GameRoom {
     weak var delegate: GameRoomDelegate?
     let roomNetworkAdapter: RoomNetworkAdapter
     let roomCode: RoomCode
+    private(set) var isRapid: Bool
     private(set) var players: [RoomPlayer] { // synced with database
         didSet {
             players.sort()
@@ -44,6 +45,7 @@ class GameRoom {
         self.roomNetworkAdapter = roomNetworkAdapter
         self.roomCode = roomCode
         self.players = []
+        self.isRapid = true
 
         roomNetworkAdapter.observeRoomPlayers(roomCode: roomCode, listener: { [weak self] players in
             self?.players = players
@@ -55,10 +57,15 @@ class GameRoom {
                 self?.delegate?.gameHasStarted()
             }
         })
+
+        roomNetworkAdapter.observeIsRapidToggle(roomCode: roomCode, listener: { [weak self] isRapid in
+            self?.isRapid = isRapid
+            self?.delegate?.isRapidDidUpdate(isRapid: isRapid)
+        })
     }
 
     func startGame() {
-        roomNetworkAdapter.startGame(roomCode: roomCode)
+        roomNetworkAdapter.startGame(roomCode: roomCode, isRapid: isRapid)
     }
 
     func leaveRoom() {
@@ -68,5 +75,10 @@ class GameRoom {
         } else {
             roomNetworkAdapter.leaveRoom(roomCode: roomCode, isRoomMaster: user?.isRoomMaster ?? false)
         }
+    }
+
+    func toggleIsRapid() {
+        isRapid.toggle()
+        roomNetworkAdapter.setIsRapid(roomCode: roomCode, isRapid: isRapid)
     }
 }

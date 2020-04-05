@@ -10,13 +10,15 @@ import UIKit
 
 class CompetitiveView: UIView {
     private var timeLeftLabel = UITextView()
-    var statusViewLabel = UITextView()
+    private var statusViewLabel = UITextView()
+    private var infoViewLabel = UITextView()
 
     private var powerupViews = Set<PowerupView>()
 
-    func setupViews() {
+    func setupViews(name: String, currentRound: Int, maxRounds: Int, score: Int) {
         setupTimeLeftText()
         setupStatusView()
+        setupPlayerInfoView(name, currentRound, maxRounds, score)
     }
 
     private func setupTimeLeftText() {
@@ -39,17 +41,32 @@ class CompetitiveView: UIView {
     private func setupStatusView() {
         let width = 800, height = 200, size = 40, resultFont = "MarkerFelt-Thin"
 
-        statusViewLabel = UITextView(frame: CGRect(x: bounds.midX - CGFloat(width / 2), y: 25,
+        statusViewLabel = UITextView(frame: CGRect(x: bounds.midX - CGFloat(width / 2), y: 50,
                                                    width: CGFloat(width), height: CGFloat(height)),
                                      textContainer: nil)
         statusViewLabel.font = UIFont(name: resultFont, size: CGFloat(size))
         statusViewLabel.textAlignment = NSTextAlignment.center
-        statusViewLabel.text = "asdfghjkl"
+        statusViewLabel.text = ""
         statusViewLabel.backgroundColor = UIColor.clear
         statusViewLabel.isUserInteractionEnabled = false
         statusViewLabel.alpha = 0.0
 
         addSubview(statusViewLabel)
+    }
+
+    private func setupPlayerInfoView(_ name: String, _ currentRound: Int, _ maxRounds: Int, _ score: Int) {
+        let width = 800, height = 200, size = 20, resultFont = "MarkerFelt-Thin"
+
+        infoViewLabel = UITextView(frame: CGRect(x: 10, y: 5, width: CGFloat(width), height: CGFloat(height)),
+                                   textContainer: nil)
+        infoViewLabel.font = UIFont(name: resultFont, size: CGFloat(size))
+        infoViewLabel.textAlignment = NSTextAlignment.left
+        infoViewLabel.text = "\(name): Round \(currentRound) of \(maxRounds)\nScore: \(score)"
+        infoViewLabel.backgroundColor = UIColor.clear
+        infoViewLabel.isUserInteractionEnabled = false
+        infoViewLabel.alpha = 0.6
+
+        addSubview(infoViewLabel)
     }
 
     func animateStatus(with text: String) {
@@ -82,5 +99,12 @@ class CompetitiveView: UIView {
             powerupView.removeFromSuperview()
             powerupViews.remove(powerupView)
         }
+    }
+
+    func addNextButton(_ button: UIImageView) {
+        button.frame = CGRect(x: bounds.maxX - 70, y: bounds.maxY - 100, width: 50, height: 50)
+
+        addSubview(button)
+        bringSubviewToFront(button)
     }
 }

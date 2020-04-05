@@ -14,7 +14,7 @@ class CompetitiveGameUITest: DrawBerryUITest {
         super.setUp()
     }
 
-    func testSignUpViewUILayout() {
+    func testCompetitiveModeUILayout() {
         let app = initialiseAppMoveToCompetitveCanvas()
 
         verifyAppCurrentScreen(app: app)
@@ -37,7 +37,7 @@ class CompetitiveGameUITest: DrawBerryUITest {
             .children(matching: .other).element
             .children(matching: .image).element(boundBy: 4).tap()
 
-        // Pick red for bottom left playe
+        // Pick red for bottom left player
         allCanvases.children(matching: .other).element(boundBy: 4)
             .children(matching: .other).element
             .children(matching: .image).element(boundBy: 2).tap()
@@ -49,9 +49,91 @@ class CompetitiveGameUITest: DrawBerryUITest {
 
         verifyAppCurrentScreen(app: app)
     }
+
+    func testCompetitiveVotingUILayout() {
+        let app = initializeAppMoveToVotingScreen()
+        verifyAppCurrentScreen(app: app, tolerance: 0.01)
+    }
+
+    func testCompetitiveVotingResultUILayout() {
+        let app = initializeAppMoveToVotingResultScreen()
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
+
+    func testCompetitiveScoreboardUILayout() {
+        let app = intializeAppMoveToScoreboardScreen()
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
+
+    func testCompetitiveModeRestartsAfterResultScreen() {
+        let app = intializeAppMoveToScoreboardScreen()
+        app.images.element(boundBy: 1).tap()
+        app.images.element(boundBy: 2).tap()
+        app.images.element(boundBy: 3).tap()
+        app.images.element(boundBy: 4).tap()
+
+        sleep(1)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
 }
 
 extension CompetitiveGameUITest {
+    private func intializeAppMoveToScoreboardScreen() -> XCUIApplication {
+        let app = initializeAppMoveToVotingResultScreen()
+
+        app.images.element(boundBy: 3).tap()
+        app.images.element(boundBy: 8).tap()
+        app.images.element(boundBy: 15).tap()
+        app.images.element(boundBy: 20).tap()
+
+        return app
+    }
+    private func initializeAppMoveToVotingResultScreen() -> XCUIApplication {
+        let app = initializeAppMoveToVotingScreen()
+
+        // Player 1 votes
+        app.images.element(boundBy: 0).tap()
+        app.images.element(boundBy: 2).tap()
+
+        // Player 2 votes
+        app.images.element(boundBy: 6).tap()
+        app.images.element(boundBy: 7).tap()
+
+        // Player 3 votes
+        app.images.element(boundBy: 10).tap()
+        app.images.element(boundBy: 12).tap()
+
+        // Player 4 votes
+        app.images.element(boundBy: 15).tap()
+        app.images.element(boundBy: 17).tap()
+
+        sleep(1)
+        return app
+    }
+
+    private func initializeAppMoveToVotingScreen() -> XCUIApplication {
+        let app = initialiseAppMoveToCompetitveCanvas()
+
+        let allCanvases = app.children(matching: .window).element(boundBy: 0)
+            .children(matching: .other).element
+            .children(matching: .other).element
+
+        allCanvases.children(matching: .other).element(boundBy: 0).swipeRight()
+        allCanvases.children(matching: .other).element(boundBy: 2).swipeRight()
+        allCanvases.children(matching: .other).element(boundBy: 4).swipeRight()
+        allCanvases.children(matching: .other).element(boundBy: 6).swipeRight()
+
+        sleep(4)
+
+        app.images.element(boundBy: 1).tap()
+        app.images.element(boundBy: 2).tap()
+        app.images.element(boundBy: 3).tap()
+        app.images.element(boundBy: 4).tap()
+
+        sleep(2)
+        return app
+    }
+
     private func initialiseAppMoveToCompetitveCanvas() -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()

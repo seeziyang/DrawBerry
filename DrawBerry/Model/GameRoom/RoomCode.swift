@@ -6,7 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-struct RoomCode: Equatable {
+struct RoomCode: Hashable {
     let value: String
     let type: GameRoomType
 
