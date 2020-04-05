@@ -12,20 +12,20 @@ import FBSnapshotTestCase
 
 class CooperativeGameUITest: DrawBerryUITest {
     static var adapter: RoomNetworkAdapter!
-    let testRoomCode = RoomCode(value: "testroom", type: .CooperativeRoom)
+    static let testRoomCode = RoomCode(value: "testroom", type: .CooperativeRoom)
     override static func setUp() {
         FirebaseApp.configure()
-        adapter = RoomNetworkAdapter()
+        adapter = RoomNetworkAdapter(roomCode: testRoomCode)
     }
 
     override func setUp() {
         super.setUp()
-        CooperativeGameUITest.adapter.deleteRoom(roomCode: testRoomCode)
+        CooperativeGameUITest.adapter.deleteRoom()
     }
 
     override func tearDown() {
         super.tearDown()
-        CooperativeGameUITest.adapter.deleteRoom(roomCode: testRoomCode)
+        CooperativeGameUITest.adapter.deleteRoom()
     }
 
     func testCooperativeGameUILayout_threePlayers() {
@@ -236,14 +236,14 @@ extension CooperativeGameUITest {
     }
 
     private func addSecondPlayer() {
-        RoomNetworkAdapterStub()
-            .joinRoom(roomCode: testRoomCode, userID: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2", username: "admin2")
+        RoomNetworkAdapterStub(roomCode: CooperativeGameUITest.testRoomCode)
+            .joinRoom(userID: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2", username: "admin2")
         sleep(3)
     }
 
     private func addThirdPlayer() {
-        RoomNetworkAdapterStub()
-            .joinRoom(roomCode: testRoomCode, userID: "KPXfiOZ5XxY4QHvGvYqSvaemTFj2", username: "admin3")
+        RoomNetworkAdapterStub(roomCode: CooperativeGameUITest.testRoomCode)
+            .joinRoom(userID: "KPXfiOZ5XxY4QHvGvYqSvaemTFj2", username: "admin3")
         sleep(3)
     }
 
@@ -289,7 +289,7 @@ extension CooperativeGameUITest {
 }
 
 class RoomNetworkAdapterStub: RoomNetworkAdapter {
-    func joinRoom(roomCode: RoomCode, userID: String, username: String) {
+    func joinRoom(userID: String, username: String) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)

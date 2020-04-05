@@ -38,7 +38,7 @@ class GameRoom {
     }
 
     convenience init(roomCode: RoomCode) {
-        self.init(roomCode: roomCode, roomNetworkAdapter: RoomNetworkAdapter())
+        self.init(roomCode: roomCode, roomNetworkAdapter: RoomNetworkAdapter(roomCode: roomCode))
     }
 
     init(roomCode: RoomCode, roomNetworkAdapter: RoomNetworkAdapter) {
@@ -47,38 +47,38 @@ class GameRoom {
         self.players = []
         self.isRapid = true
 
-        roomNetworkAdapter.observeRoomPlayers(roomCode: roomCode, listener: { [weak self] players in
+        roomNetworkAdapter.observeRoomPlayers(listener: { [weak self] players in
             self?.players = players
             self?.delegate?.playersDidUpdate()
         })
 
-        roomNetworkAdapter.observeGameStart(roomCode: roomCode, listener: { [weak self] hasStarted in
+        roomNetworkAdapter.observeGameStart(listener: { [weak self] hasStarted in
             if hasStarted {
                 self?.delegate?.gameHasStarted()
             }
         })
 
-        roomNetworkAdapter.observeIsRapidToggle(roomCode: roomCode, listener: { [weak self] isRapid in
+        roomNetworkAdapter.observeIsRapidToggle(listener: { [weak self] isRapid in
             self?.isRapid = isRapid
             self?.delegate?.isRapidDidUpdate(isRapid: isRapid)
         })
     }
 
     func startGame() {
-        roomNetworkAdapter.startGame(roomCode: roomCode, isRapid: isRapid)
+        roomNetworkAdapter.startGame(isRapid: isRapid)
     }
 
     func leaveRoom() {
         let isLastPlayer = players.count == 1
         if isLastPlayer {
-            roomNetworkAdapter.deleteRoom(roomCode: roomCode)
+            roomNetworkAdapter.deleteRoom()
         } else {
-            roomNetworkAdapter.leaveRoom(roomCode: roomCode, isRoomMaster: user?.isRoomMaster ?? false)
+            roomNetworkAdapter.leaveRoom(isRoomMaster: user?.isRoomMaster ?? false)
         }
     }
 
     func toggleIsRapid() {
         isRapid.toggle()
-        roomNetworkAdapter.setIsRapid(roomCode: roomCode, isRapid: isRapid)
+        roomNetworkAdapter.setIsRapid(isRapid: isRapid)
     }
 }
