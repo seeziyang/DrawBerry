@@ -112,9 +112,7 @@ extension CooperativeGameRoomViewController: UICollectionViewDataSource {
         }
 
         let player = room.players[indexPath.row]
-
-        // Truncate uid for testing
-        let username = String(player.name.prefix(10))
+        let username = player.name
 
         UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
 

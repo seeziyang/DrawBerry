@@ -127,15 +127,11 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
         guard indexPath.row < room.players.count else {
             return cell
         }
-
         let player = room.players[indexPath.row]
-
-        // Truncate uid for testing
-        let username = String(player.name.prefix(10))
-
-        UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
-
+        let username = player.name
         cell.setUsername(username)
+        print(username)
+        UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
 
         return cell
     }
