@@ -11,7 +11,7 @@ import Firebase
 class RoomNetworkAdapter {
 
     let db: DatabaseReference
-    private let roomCode: RoomCode
+    let roomCode: RoomCode
 
     init(roomCode: RoomCode) {
         self.db = Database.database().reference()

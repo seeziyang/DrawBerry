@@ -31,6 +31,8 @@
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411024337F7E00992F5D /* VoteResultsViewController.swift */; };
 		1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */; };
+		1A953AD8243986B90016D481 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* Game.swift */; };
+		1A953AD9243986B90016D481 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* Game.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		1AD8A4242434A50000C05D40 /* ClassicGameEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */; };
 		371F28C32430F2A7006852EE /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD5241FB30A0097A14F /* GameRoom.swift */; };
@@ -1089,6 +1091,7 @@
 				372CA57E242BC13E000E1E71 /* ClassicPlayer.swift in Sources */,
 				371F28C52430F377006852EE /* CooperativeGameDelegate.swift in Sources */,
 				371F28C32430F2A7006852EE /* GameRoom.swift in Sources */,
+				1A953AD8243986B90016D481 /* Game.swift in Sources */,
 				FCA298662426196400AE1A83 /* HideDrawingPowerup.swift in Sources */,
 				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
@@ -1134,6 +1137,7 @@
 				379EE02424249144005257E1 /* CanvasDelegate.swift in Sources */,
 				3749D3AE2425F1D100CE798F /* UIImageViewExtension.swift in Sources */,
 				379EE014242210E8005257E1 /* ClassicGameUITest.swift in Sources */,
+				1A953AD9243986B90016D481 /* Game.swift in Sources */,
 				372CA583242BC190000E1E71 /* RoomCode.swift in Sources */,
 				3749D3C424265B9000CE798F /* DrawBerryUITest.swift in Sources */,
 				379EE02824249170005257E1 /* PaletteObserver.swift in Sources */,
