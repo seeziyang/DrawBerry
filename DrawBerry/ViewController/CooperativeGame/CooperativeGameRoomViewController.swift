@@ -67,7 +67,9 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     /// Reloads the collection view when a player joins or leave the room.
     func playersDidUpdate() {
-        playersCollectionView.reloadData()
+        if room.didPlayersCountChange ?? true {
+            playersCollectionView.reloadData()
+        }
         configureStartButton()
     }
 

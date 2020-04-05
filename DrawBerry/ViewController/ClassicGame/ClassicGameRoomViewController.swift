@@ -79,7 +79,9 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
     func playersDidUpdate() {
         configureRoomMasterButtons()
-        playersCollectionView.reloadData()
+        if room.didPlayersCountChange ?? true {
+            playersCollectionView.reloadData()
+        }
     }
 
     func gameHasStarted() {
@@ -130,7 +132,6 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
         let player = room.players[indexPath.row]
         let username = player.name
         cell.setUsername(username)
-        print(username)
         UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
 
         return cell
