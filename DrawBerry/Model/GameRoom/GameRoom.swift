@@ -21,6 +21,8 @@ class GameRoom {
             players.sort()
         }
     }
+
+    var didPlayersCountChange: Bool?
     var user: RoomPlayer? {
         players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
     }
@@ -48,6 +50,10 @@ class GameRoom {
         self.isRapid = true
 
         roomNetworkAdapter.observeRoomPlayers(listener: { [weak self] players in
+
+            if let previousPlayers = self?.players {
+                self?.didPlayersCountChange = (previousPlayers.count != players.count)
+            }
             self?.players = players
             self?.delegate?.playersDidUpdate()
         })
