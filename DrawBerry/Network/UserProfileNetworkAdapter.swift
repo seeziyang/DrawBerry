@@ -83,7 +83,7 @@ class UserProfileNetworkAdapter {
     }
 
     /// Uploads image data to database
-    private static func uploadDataToDatabase(data: Data, reference: StorageReference) {
+    static func uploadDataToDatabase(data: Data, reference: StorageReference) {
         reference.putData(data, metadata: nil, completion: { _, error in
             if let error = error {
                 print("Error \(error) occured while uploading to CloudStorage")
@@ -93,8 +93,8 @@ class UserProfileNetworkAdapter {
     }
 
     /// Downloads image data from database
-    private static func downloadDataFromDatabase(reference: StorageReference,
-                                                 delegate: UserProfileNetworkDelegate) {
+    static func downloadDataFromDatabase(reference: StorageReference,
+                                         delegate: UserProfileNetworkDelegate) {
         reference.getData(maxSize: 1 * 1_024 * 1_024, completion: { data, error in
             if let error = error {
                 print("Error \(error) occured while downloading data")

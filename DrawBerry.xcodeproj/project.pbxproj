@@ -136,6 +136,7 @@
 		3E975D552431D16C00AE61E3 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */; };
 		3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */; };
 		3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E212425FF210065C426 /* AuthenticationTests.swift */; };
+		3ED1B74F2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
 		3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F9241907FB00136234 /* HomeViewController.swift */; };
@@ -279,6 +280,7 @@
 		3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUpdateDelegate.swift; sourceTree = "<group>"; };
 		3EA22E212425FF210065C426 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileNetworkAdapterTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3EF004F9241907FB00136234 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -696,6 +698,7 @@
 			children = (
 				1A3920F42425BE9700847E72 /* ModelTests */,
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
+				3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */,
 				371F28CC2431FA7C006852EE /* CooperativeGameTests */,
 				371F28C82430F45B006852EE /* GameNetworkAdapterStub.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
@@ -1105,6 +1108,7 @@
 				1A953AD8243986B90016D481 /* Game.swift in Sources */,
 				FCA298662426196400AE1A83 /* HideDrawingPowerup.swift in Sources */,
 				3749D3BA2426099600CE798F /* BerryConstants.swift in Sources */,
+				3ED1B74F2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift in Sources */,
 				FCA298572425FA5100AE1A83 /* CompetitivePlayerTests.swift in Sources */,
 				1A3920F82425BF1D00847E72 /* GameRoomTests.swift in Sources */,
 				3789191C2432E22F0042B705 /* ComparablePlayer.swift in Sources */,
