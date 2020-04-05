@@ -51,6 +51,14 @@ class GameNetworkAdapter {
             dbPathRef.setValue(true)
         })
 
+        updateCurrRound(prevRound: round)
+    }
+
+    private func updateCurrRound(prevRound round: Int) {
+        guard let userID = NetworkHelper.getLoggedInUserID() else {
+            return
+        }
+
         let dbRoomPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
