@@ -1,5 +1,5 @@
 //
-//  NetworkRoomHelper.swift
+//  EnterRoomNetworkAdapter.swift
 //  DrawBerry
 //
 //  Created by See Zi Yang on 16/3/20.
@@ -26,6 +26,7 @@ class EnterRoomNetworkAdapter {
         }
     }
 
+    // Create room with roomCode in db
     func createRoom(roomCode: RoomCode) {
         guard let userID = NetworkHelper.getLoggedInUserID(),
             let username = NetworkHelper.getLoggedInUserName() else {
@@ -46,6 +47,7 @@ class EnterRoomNetworkAdapter {
             ])
     }
 
+    // Checks if room exists in db
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -55,6 +57,7 @@ class EnterRoomNetworkAdapter {
             })
     }
 
+    // Check if room can be entered
     func checkRoomEnterable(roomCode: RoomCode, completionHandler: @escaping (GameRoomStatus) -> Void) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -81,6 +84,7 @@ class EnterRoomNetworkAdapter {
             })
     }
 
+    // User joins a room
     func joinRoom(roomCode: RoomCode) {
         guard let userID = NetworkHelper.getLoggedInUserID(),
             let username = NetworkHelper.getLoggedInUserName() else {
@@ -96,6 +100,7 @@ class EnterRoomNetworkAdapter {
                        "isRoomMaster": false])
     }
 
+    // Get user's active non-rapid classic games
     func getUsersNonRapidGameRoomCodes(completionHandler: @escaping ([RoomCode]) -> Void) {
         guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
@@ -114,6 +119,7 @@ class EnterRoomNetworkAdapter {
             })
     }
 
+    // Observe user's active non-rapid classic games' turn status
     func observeNonRapidGamesTurn(
         roomCode: RoomCode,
         completionHandler: @escaping (_ isMyTurn: Bool, ClassicGame) -> Void

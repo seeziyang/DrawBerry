@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CompetitiveGame {
+struct CompetitiveGame: Game {
     static let MAX_ROUNDS = 5
     static let STROKES_PER_PLAYER = 1
 

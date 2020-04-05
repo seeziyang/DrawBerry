@@ -8,21 +8,18 @@
 
 import UIKit
 
-class ClassicPlayer: Player {
-    let name: String
-    let uid: String
+class ClassicPlayer: ComparablePlayer {
     var isRoomMaster: Bool
     var points: Int
     private var drawingImages: [UIImage]
     private var votedPlayers: [ClassicPlayer]
 
     init(name: String, uid: String, isRoomMaster: Bool, points: Int = 0) {
-        self.name = name
-        self.uid = uid
         self.isRoomMaster = isRoomMaster
         self.points = points
         self.drawingImages = []
         self.votedPlayers = []
+        super.init(name: name, uid: uid)
     }
 
     convenience init(from roomPlayer: RoomPlayer) {

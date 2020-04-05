@@ -1,5 +1,5 @@
 //
-//  NetworkRoomHelper.swift
+//  RoomNetworkAdapter.swift
 //  DrawBerry
 //
 //  Created by See Zi Yang on 16/3/20.
@@ -28,6 +28,7 @@ class RoomNetworkAdapter {
         dbPathRef.removeAllObservers()
     }
 
+    // User leaves room he is in
     func leaveRoom(isRoomMaster: Bool) {
         guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
@@ -49,6 +50,7 @@ class RoomNetworkAdapter {
 
     }
 
+    // If the room master leaves the room, handover room master to another player
     private func handoverRoomMaster() {
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -70,6 +72,7 @@ class RoomNetworkAdapter {
         })
     }
 
+    // Delete room from db when last player leaves
     func deleteRoom() {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -77,6 +80,7 @@ class RoomNetworkAdapter {
             .removeValue()
     }
 
+    // Set room's game isRapid in db
     func setIsRapid(isRapid: Bool) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -85,6 +89,7 @@ class RoomNetworkAdapter {
             .setValue(isRapid)
     }
 
+    // Set hasStarted to true in db
     func startGame(isRapid: Bool) {
         let dbRoomPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -110,7 +115,7 @@ class RoomNetworkAdapter {
                         guard let roomCode = self?.roomCode else {
                             return
                         }
-                        
+
                         self?.db.child("users")
                             .child(playerUID)
                             .child("activeNonRapidGames")
@@ -121,6 +126,7 @@ class RoomNetworkAdapter {
         }
     }
 
+    // Observe for players entering or leaving the user's room
     func observeRoomPlayers(listener: @escaping ([RoomPlayer]) -> Void) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -141,6 +147,7 @@ class RoomNetworkAdapter {
             })
     }
 
+    // Observe to see if game has started by another player in db
     func observeGameStart(listener: @escaping (Bool) -> Void) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -155,6 +162,7 @@ class RoomNetworkAdapter {
             })
     }
 
+    // Observe to see if isRapid is toggled by room master
     func observeIsRapidToggle(listener: @escaping (Bool) -> Void) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
