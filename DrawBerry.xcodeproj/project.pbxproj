@@ -455,15 +455,13 @@
 		1A5252B5241FAF3F00E7F68C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A953AD6243982160016D481 /* UIElements */,
 				FC62692C2436F8C5000AC2D2 /* CompetitiveGame */,
 				37CE065D241E1BF20085BE4A /* InkView.swift */,
 				379EE01F2424556E005257E1 /* StrokeView.swift */,
 				FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */,
 				3749D3A92425F00500CE798F /* UIImageExtension.swift */,
 				3749D3AC2425F14A00CE798F /* UIImageViewExtension.swift */,
-				3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */,
-				3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */,
-				1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,6 +473,25 @@
 				1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */,
 			);
 			path = ClassicGameTests;
+			sourceTree = "<group>";
+		};
+		1A953AD6243982160016D481 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */,
+				3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */,
+				1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
+		1A953AD7243982980016D481 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */,
+				3E2837DD2425C51E001BAA2F /* Authentication.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		371F28CC2431FA7C006852EE /* CooperativeGameTests */ = {
@@ -530,8 +547,6 @@
 			children = (
 				3EF004F5241906A300136234 /* LoginViewController.swift */,
 				3EF004F72419071F00136234 /* SignUpViewController.swift */,
-				3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */,
-				3E2837DD2425C51E001BAA2F /* Authentication.swift */,
 			);
 			path = UserAuthentication;
 			sourceTree = "<group>";
@@ -648,6 +663,7 @@
 		FCEC3BE42417941600F0DE03 /* DrawBerry */ = {
 			isa = PBXGroup;
 			children = (
+				1A953AD7243982980016D481 /* Authentication */,
 				1A432BDB241FC5CE0097A14F /* Network */,
 				1A5252B5241FAF3F00E7F68C /* Views */,
 				1A5252B3241FAD0D00E7F68C /* ViewControllers */,
