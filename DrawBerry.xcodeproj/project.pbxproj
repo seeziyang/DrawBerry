@@ -126,6 +126,8 @@
 		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
 		37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
 		37D794282436E1DF00D2BE57 /* CooperativeGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */; };
+		3E21C64D243DB66100FF62DC /* TeamBattlePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */; };
+		3E21C64F243DD22500FF62DC /* TeamBattleGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E21C64E243DD22500FF62DC /* TeamBattleGameDelegate.swift */; };
 		3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DB2425BBB7001BAA2F /* Constants.swift */; };
 		3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DD2425C51E001BAA2F /* Authentication.swift */; };
 		3E2BDC86241A59C0001D8E8A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
@@ -136,6 +138,21 @@
 		3E975D552431D16C00AE61E3 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */; };
 		3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */; };
 		3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA22E212425FF210065C426 /* AuthenticationTests.swift */; };
+		3EBFFE81243D6A87002675B3 /* EnterTeamBattleRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE80243D6A87002675B3 /* EnterTeamBattleRoomViewController.swift */; };
+		3EBFFE83243D6DA0002675B3 /* TeamBattleGameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE82243D6DA0002675B3 /* TeamBattleGameRoomViewController.swift */; };
+		3EBFFE85243D725A002675B3 /* TeamBattleDrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE84243D725A002675B3 /* TeamBattleDrawingViewController.swift */; };
+		3EBFFE87243D7269002675B3 /* TeamBattleGuessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE86243D7269002675B3 /* TeamBattleGuessingViewController.swift */; };
+		3EBFFE89243D734B002675B3 /* TeamBattleEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE88243D734B002675B3 /* TeamBattleEndViewController.swift */; };
+		3EBFFE8E243D7A8C002675B3 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE8D243D7A8C002675B3 /* Team.swift */; };
+		3EBFFE90243D7B80002675B3 /* TeamBattlePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE8F243D7B80002675B3 /* TeamBattlePlayer.swift */; };
+		3EBFFE92243D7BDE002675B3 /* WordBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE91243D7BDE002675B3 /* WordBank.swift */; };
+		3EBFFE94243D7CC3002675B3 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE93243D7CC3002675B3 /* Word.swift */; };
+		3EBFFE96243D7D33002675B3 /* WordDifficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE95243D7D33002675B3 /* WordDifficulty.swift */; };
+		3EBFFE98243D7E3C002675B3 /* TopicWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE97243D7E3C002675B3 /* TopicWord.swift */; };
+		3EBFFE9A243D82A7002675B3 /* TeamBattleDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */; };
+		3EBFFE9C243D82B2002675B3 /* TeamBattleGuesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */; };
+		3EBFFE9E243D891D002675B3 /* TeamBattleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9D243D891D002675B3 /* TeamBattleGame.swift */; };
+		3EBFFEA0243D8AC6002675B3 /* TeamBattleGameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9F243D8AC6002675B3 /* TeamBattleGameResult.swift */; };
 		3ED1B74F2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
@@ -270,6 +287,8 @@
 		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
 		37CE0661241FC1120085BE4A /* CanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegate.swift; sourceTree = "<group>"; };
 		37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameUITest.swift; sourceTree = "<group>"; };
+		3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattlePair.swift; sourceTree = "<group>"; };
+		3E21C64E243DD22500FF62DC /* TeamBattleGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameDelegate.swift; sourceTree = "<group>"; };
 		3E2837DB2425BBB7001BAA2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E2837DD2425C51E001BAA2F /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		3E2BDC85241A59C0001D8E8A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -280,6 +299,21 @@
 		3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		3EA22E1F2425F6B50065C426 /* AuthenticationUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUpdateDelegate.swift; sourceTree = "<group>"; };
 		3EA22E212425FF210065C426 /* AuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTests.swift; sourceTree = "<group>"; };
+		3EBFFE80243D6A87002675B3 /* EnterTeamBattleRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterTeamBattleRoomViewController.swift; sourceTree = "<group>"; };
+		3EBFFE82243D6DA0002675B3 /* TeamBattleGameRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameRoomViewController.swift; sourceTree = "<group>"; };
+		3EBFFE84243D725A002675B3 /* TeamBattleDrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleDrawingViewController.swift; sourceTree = "<group>"; };
+		3EBFFE86243D7269002675B3 /* TeamBattleGuessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGuessingViewController.swift; sourceTree = "<group>"; };
+		3EBFFE88243D734B002675B3 /* TeamBattleEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleEndViewController.swift; sourceTree = "<group>"; };
+		3EBFFE8D243D7A8C002675B3 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		3EBFFE8F243D7B80002675B3 /* TeamBattlePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattlePlayer.swift; sourceTree = "<group>"; };
+		3EBFFE91243D7BDE002675B3 /* WordBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBank.swift; sourceTree = "<group>"; };
+		3EBFFE93243D7CC3002675B3 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		3EBFFE95243D7D33002675B3 /* WordDifficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDifficulty.swift; sourceTree = "<group>"; };
+		3EBFFE97243D7E3C002675B3 /* TopicWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicWord.swift; sourceTree = "<group>"; };
+		3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleDrawer.swift; sourceTree = "<group>"; };
+		3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGuesser.swift; sourceTree = "<group>"; };
+		3EBFFE9D243D891D002675B3 /* TeamBattleGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGame.swift; sourceTree = "<group>"; };
+		3EBFFE9F243D8AC6002675B3 /* TeamBattleGameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameResult.swift; sourceTree = "<group>"; };
 		3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileNetworkAdapterTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -436,6 +470,7 @@
 				3E2BDC87241A6224001D8E8A /* UserAuthentication */,
 				1A3ACB872422794F007FA27C /* ClassicGame */,
 				1A3920F32425BC3100847E72 /* CompetitiveGame */,
+				3EBFFE7F243D6A11002675B3 /* TeamBattleGame */,
 				379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
 				3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */,
@@ -547,6 +582,7 @@
 				1A3F39982421C0DC0084859F /* GameRoom */,
 				1A3F39972421C0CD0084859F /* ClassicGame */,
 				1A5252B4241FAF0300E7F68C /* Canvas */,
+				3EBFFE8C243D7A5E002675B3 /* TeamBattleGame */,
 				FC48897C241C79D900375140 /* CompetitiveGame */,
 				1A3F39992421C0FB0084859F /* Player.swift */,
 				3789191A2432E1680042B705 /* ComparablePlayer.swift */,
@@ -582,6 +618,37 @@
 				3E2837DB2425BBB7001BAA2F /* Constants.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		3EBFFE7F243D6A11002675B3 /* TeamBattleGame */ = {
+			isa = PBXGroup;
+			children = (
+				3EBFFE80243D6A87002675B3 /* EnterTeamBattleRoomViewController.swift */,
+				3EBFFE82243D6DA0002675B3 /* TeamBattleGameRoomViewController.swift */,
+				3EBFFE84243D725A002675B3 /* TeamBattleDrawingViewController.swift */,
+				3EBFFE86243D7269002675B3 /* TeamBattleGuessingViewController.swift */,
+				3EBFFE88243D734B002675B3 /* TeamBattleEndViewController.swift */,
+			);
+			path = TeamBattleGame;
+			sourceTree = "<group>";
+		};
+		3EBFFE8C243D7A5E002675B3 /* TeamBattleGame */ = {
+			isa = PBXGroup;
+			children = (
+				3EBFFE8D243D7A8C002675B3 /* Team.swift */,
+				3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */,
+				3EBFFE9D243D891D002675B3 /* TeamBattleGame.swift */,
+				3E21C64E243DD22500FF62DC /* TeamBattleGameDelegate.swift */,
+				3EBFFE8F243D7B80002675B3 /* TeamBattlePlayer.swift */,
+				3EBFFE9F243D8AC6002675B3 /* TeamBattleGameResult.swift */,
+				3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */,
+				3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */,
+				3EBFFE91243D7BDE002675B3 /* WordBank.swift */,
+				3EBFFE93243D7CC3002675B3 /* Word.swift */,
+				3EBFFE97243D7E3C002675B3 /* TopicWord.swift */,
+				3EBFFE95243D7D33002675B3 /* WordDifficulty.swift */,
+			);
+			path = TeamBattleGame;
 			sourceTree = "<group>";
 		};
 		4DC5CBA0BFA55A45E799CE59 /* Pods */ = {
@@ -991,12 +1058,14 @@
 				3E975D552431D16C00AE61E3 /* UserProfileViewController.swift in Sources */,
 				1A3A9F7D2423C35200C417AC /* ClassicGameDelegate.swift in Sources */,
 				3E64DA752430F5AF00C1473A /* UserProfileNetworkAdapter.swift in Sources */,
+				3EBFFE9A243D82A7002675B3 /* TeamBattleDrawer.swift in Sources */,
 				1A3ACB8624227948007FA27C /* VotingViewController.swift in Sources */,
 				FCC995F1242C7F6E00808550 /* InvulnerabilityPowerup.swift in Sources */,
 				1A432BD4241FB2E10097A14F /* RoomPlayer.swift in Sources */,
 				379EE01C24230283005257E1 /* PaletteObserver.swift in Sources */,
 				3E2837DE2425C51E001BAA2F /* Authentication.swift in Sources */,
 				1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */,
+				3E21C64D243DB66100FF62DC /* TeamBattlePair.swift in Sources */,
 				1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */,
 				FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
@@ -1006,7 +1075,11 @@
 				1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */,
 				3787ACF82430E26B0064A1F6 /* CooperativeGameViewController.swift in Sources */,
 				1A41C6AF2439766B00BD7BF0 /* EnterRoomNetworkAdapter.swift in Sources */,
+				3EBFFE98243D7E3C002675B3 /* TopicWord.swift in Sources */,
 				3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */,
+				3EBFFE83243D6DA0002675B3 /* TeamBattleGameRoomViewController.swift in Sources */,
+				3EBFFE94243D7CC3002675B3 /* Word.swift in Sources */,
+				3EBFFE89243D734B002675B3 /* TeamBattleEndViewController.swift in Sources */,
 				FC62692E2436F8E6000AC2D2 /* CompetitiveVotingView.swift in Sources */,
 				372CA574242BA995000E1E71 /* GameRoomType.swift in Sources */,
 				3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */,
@@ -1014,26 +1087,32 @@
 				FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */,
 				FC488980241C79FD00375140 /* CompetitivePlayer.swift in Sources */,
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
+				3E21C64F243DD22500FF62DC /* TeamBattleGameDelegate.swift in Sources */,
 				1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */,
 				1A3F399A2421C0FB0084859F /* Player.swift in Sources */,
 				37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */,
 				1A432BDF241FC6AC0097A14F /* RoomNetworkAdapter.swift in Sources */,
+				3EBFFE96243D7D33002675B3 /* WordDifficulty.swift in Sources */,
 				3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */,
 				372CA596242C427D000E1E71 /* DrawingViewController.swift in Sources */,
 				3749D3AA2425F00500CE798F /* UIImageExtension.swift in Sources */,
 				3E64DA742430F5AF00C1473A /* UserProfileNetworkDelegate.swift in Sources */,
+				3EBFFE9C243D82B2002675B3 /* TeamBattleGuesser.swift in Sources */,
 				3749D39D2425ABD400CE798F /* Palette.swift in Sources */,
 				372CA58D242C36B2000E1E71 /* CooperativeGame.swift in Sources */,
 				FCEC3BEA2417941600F0DE03 /* ClassicViewController.swift in Sources */,
 				372CA594242C3BC3000E1E71 /* CooperativePlayer.swift in Sources */,
+				3EBFFE9E243D891D002675B3 /* TeamBattleGame.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
 				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
+				3EBFFEA0243D8AC6002675B3 /* TeamBattleGameResult.swift in Sources */,
 				FC6CB97D243607C90049D597 /* CompetitiveVotingViewController.swift in Sources */,
 				1A4C5F252422619500937244 /* GameNetworkAdapter.swift in Sources */,
 				3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */,
+				3EBFFE90243D7B80002675B3 /* TeamBattlePlayer.swift in Sources */,
 				FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */,
 				372CA598242C67B0000E1E71 /* ViewingViewController.swift in Sources */,
 				372CA5A624308046000E1E71 /* CooperativeGameViewingDelegate.swift in Sources */,
@@ -1044,15 +1123,20 @@
 				372CA576242BBC90000E1E71 /* RoomCode.swift in Sources */,
 				372CA592242C3B22000E1E71 /* CooperativeGameDelegate.swift in Sources */,
 				FC59CA3D241E0A10004D50EF /* Powerup.swift in Sources */,
+				3EBFFE92243D7BDE002675B3 /* WordBank.swift in Sources */,
+				3EBFFE85243D725A002675B3 /* TeamBattleDrawingViewController.swift in Sources */,
 				372CA59C242C69F3000E1E71 /* EnterCooperativeRoomViewController.swift in Sources */,
 				3789191B2432E1680042B705 /* ComparablePlayer.swift in Sources */,
+				3EBFFE87243D7269002675B3 /* TeamBattleGuessingViewController.swift in Sources */,
 				1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */,
 				372CA59E242C6B07000E1E71 /* CooperativeGameRoomViewController.swift in Sources */,
 				FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */,
 				FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */,
+				3EBFFE81243D6A87002675B3 /* EnterTeamBattleRoomViewController.swift in Sources */,
 				37CE06542418809D0085BE4A /* Canvas.swift in Sources */,
 				FC488988241C7C4D00375140 /* CompetitiveViewController.swift in Sources */,
 				3749D3AD2425F14A00CE798F /* UIImageViewExtension.swift in Sources */,
+				3EBFFE8E243D7A8C002675B3 /* Team.swift in Sources */,
 				1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */,
 				1AD8A4242434A50000C05D40 /* ClassicGameEndViewController.swift in Sources */,
 				1A41C6B124397EF000BD7BF0 /* Game.swift in Sources */,
