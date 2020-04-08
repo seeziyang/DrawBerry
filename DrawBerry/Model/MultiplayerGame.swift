@@ -6,8 +6,6 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-protocol Game {
-    associatedtype GamePlayer: Player
-
-    var players: [GamePlayer] { get }
+protocol MultiplayerGame {
+    var players: [MultiplayerPlayer] { get }
 }

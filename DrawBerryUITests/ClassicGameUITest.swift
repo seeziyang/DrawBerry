@@ -179,6 +179,40 @@ class ClassicGameUITest: DrawBerryUITest {
 
         verifyAppCurrentScreen(app: app)
     }
+
+    func testCompleteDrawing_onePlayer() {
+        let app = initialiseAppMoveToClassicCanvas()
+        let palette = getPalette(from: app)
+        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
+        palette.children(matching: .image).element(boundBy: 2).tap()
+        palette.children(matching: .image).element(boundBy: 5).tap()
+        canvasScrollView.swipeRight()
+        palette.children(matching: .image).element(boundBy: 1).tap()
+        palette.children(matching: .image).element(boundBy: 4).tap()
+        canvasScrollView.swipeDown()
+
+        app.buttons["Done"].tap()
+        sleep(2)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
+
+    func testCompleteDrawing_twoPlayer() {
+        let app = initialiseAppMoveToGameRoom()
+        addSecondPlayer()
+        startGame(app: app)
+        let palette = getPalette(from: app)
+        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
+        palette.children(matching: .image).element(boundBy: 2).tap()
+        palette.children(matching: .image).element(boundBy: 5).tap()
+        canvasScrollView.swipeRight()
+        palette.children(matching: .image).element(boundBy: 1).tap()
+        palette.children(matching: .image).element(boundBy: 4).tap()
+        canvasScrollView.swipeDown()
+
+        app.buttons["Done"].tap()
+        sleep(2)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
 }
 
 extension XCUIElement {
@@ -196,8 +230,7 @@ extension XCUIElement {
 }
 
 extension ClassicGameUITest {
-    // Helper methods
-    private func initialiseAppMoveToClassicCanvas() -> XCUIApplication {
+    private func initialiseAppMoveToGameRoom() -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()
         if isLoginPage(app: app) {
@@ -209,8 +242,23 @@ extension ClassicGameUITest {
         roomCodeTextField.typeText("testroom")
         let createButton = app.buttons["Create"]
         createButton.tap()
-        app.navigationBars["testroom"].buttons["Start"].tap()
+        return app
+    }
+
+    private func addSecondPlayer() {
+        RoomNetworkAdapterStub(roomCode: ClassicGameUITest.testRoomCode)
+            .joinRoom(userID: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2", username: "admin2")
         sleep(3)
+    }
+
+    private func startGame(app: XCUIApplication) {
+        app.navigationBars["testroom"].buttons["Start"].tap()
+        sleep(5)
+    }
+
+    private func initialiseAppMoveToClassicCanvas() -> XCUIApplication {
+        let app = initialiseAppMoveToGameRoom()
+        startGame(app: app)
         return app
     }
 

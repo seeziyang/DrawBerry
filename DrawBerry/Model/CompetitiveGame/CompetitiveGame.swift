@@ -8,7 +8,9 @@
 
 import UIKit
 
-struct CompetitiveGame: Game {
+struct CompetitiveGame {
+    typealias GamePlayer = CompetitivePlayer
+
     static let MAX_ROUNDS = 5
     static let STROKES_PER_PLAYER = 1
 
@@ -21,7 +23,7 @@ struct CompetitiveGame: Game {
 
     static let NEXT_BUTTON = #imageLiteral(resourceName: "next")
 
-    var players = [CompetitivePlayer]()
+    var players = [GamePlayer]()
 
     var currentRound = 1
     var isGameOver: Bool {

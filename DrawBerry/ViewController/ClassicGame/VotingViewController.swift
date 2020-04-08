@@ -50,7 +50,7 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
                 return
             }
 
-            let player = classicGame.players[indexPath.row]
+            let player = classicGame.classicPlayers[indexPath.row]
 
             if player === classicGame.user {
                 // TODO: show msg saying user cannot vote for themself
@@ -90,7 +90,7 @@ extension VotingViewController: UICollectionViewDataSource {
         let imageView = UIImageView(frame: cell.bounds)
 
         if classicGame.isRapid {
-            imageView.image = classicGame.players[indexPath.row]
+            imageView.image = classicGame.classicPlayers[indexPath.row]
                 .getDrawingImage(ofRound: classicGame.currentRound)
         } else {
             imageView.image = classicGame.players[indexPath.row].getDrawingImage()
