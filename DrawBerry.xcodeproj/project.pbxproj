@@ -126,6 +126,7 @@
 		37CE065E241E1BF20085BE4A /* InkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE065D241E1BF20085BE4A /* InkView.swift */; };
 		37CE0662241FC1120085BE4A /* CanvasDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CE0661241FC1120085BE4A /* CanvasDelegate.swift */; };
 		37D794282436E1DF00D2BE57 /* CooperativeGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */; };
+		3E0E2428243F09420076505A /* TeamBattleGameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E2427243F09420076505A /* TeamBattleGameResult.swift */; };
 		3E21C64D243DB66100FF62DC /* TeamBattlePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */; };
 		3E21C64F243DD22500FF62DC /* TeamBattleGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E21C64E243DD22500FF62DC /* TeamBattleGameDelegate.swift */; };
 		3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DB2425BBB7001BAA2F /* Constants.swift */; };
@@ -152,7 +153,7 @@
 		3EBFFE9A243D82A7002675B3 /* TeamBattleDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */; };
 		3EBFFE9C243D82B2002675B3 /* TeamBattleGuesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */; };
 		3EBFFE9E243D891D002675B3 /* TeamBattleGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9D243D891D002675B3 /* TeamBattleGame.swift */; };
-		3EBFFEA0243D8AC6002675B3 /* TeamBattleGameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9F243D8AC6002675B3 /* TeamBattleGameResult.swift */; };
+		3EBFFEA0243D8AC6002675B3 /* TeamBattleTeamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9F243D8AC6002675B3 /* TeamBattleTeamResult.swift */; };
 		3ED1B74F2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */; };
 		3EF004F6241906A300136234 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F5241906A300136234 /* LoginViewController.swift */; };
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
@@ -287,6 +288,7 @@
 		37CE065D241E1BF20085BE4A /* InkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkView.swift; sourceTree = "<group>"; };
 		37CE0661241FC1120085BE4A /* CanvasDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasDelegate.swift; sourceTree = "<group>"; };
 		37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameUITest.swift; sourceTree = "<group>"; };
+		3E0E2427243F09420076505A /* TeamBattleGameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameResult.swift; sourceTree = "<group>"; };
 		3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattlePair.swift; sourceTree = "<group>"; };
 		3E21C64E243DD22500FF62DC /* TeamBattleGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameDelegate.swift; sourceTree = "<group>"; };
 		3E2837DB2425BBB7001BAA2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -313,7 +315,7 @@
 		3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleDrawer.swift; sourceTree = "<group>"; };
 		3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGuesser.swift; sourceTree = "<group>"; };
 		3EBFFE9D243D891D002675B3 /* TeamBattleGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGame.swift; sourceTree = "<group>"; };
-		3EBFFE9F243D8AC6002675B3 /* TeamBattleGameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameResult.swift; sourceTree = "<group>"; };
+		3EBFFE9F243D8AC6002675B3 /* TeamBattleTeamResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleTeamResult.swift; sourceTree = "<group>"; };
 		3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileNetworkAdapterTest.swift; sourceTree = "<group>"; };
 		3EF004F5241906A300136234 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -638,9 +640,10 @@
 				3EBFFE8D243D7A8C002675B3 /* Team.swift */,
 				3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */,
 				3EBFFE9D243D891D002675B3 /* TeamBattleGame.swift */,
+				3E0E2427243F09420076505A /* TeamBattleGameResult.swift */,
 				3E21C64E243DD22500FF62DC /* TeamBattleGameDelegate.swift */,
 				3EBFFE8F243D7B80002675B3 /* TeamBattlePlayer.swift */,
-				3EBFFE9F243D8AC6002675B3 /* TeamBattleGameResult.swift */,
+				3EBFFE9F243D8AC6002675B3 /* TeamBattleTeamResult.swift */,
 				3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */,
 				3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */,
 				3EBFFE91243D7BDE002675B3 /* WordBank.swift */,
@@ -1105,7 +1108,7 @@
 				3EBFFE9E243D891D002675B3 /* TeamBattleGame.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
 				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
-				3EBFFEA0243D8AC6002675B3 /* TeamBattleGameResult.swift in Sources */,
+				3EBFFEA0243D8AC6002675B3 /* TeamBattleTeamResult.swift in Sources */,
 				FC6CB97D243607C90049D597 /* CompetitiveVotingViewController.swift in Sources */,
 				1A4C5F252422619500937244 /* GameNetworkAdapter.swift in Sources */,
 				3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */,
@@ -1129,6 +1132,7 @@
 				3789191B2432E1680042B705 /* ComparablePlayer.swift in Sources */,
 				3EBFFE87243D7269002675B3 /* TeamBattleGuessingViewController.swift in Sources */,
 				1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */,
+				3E0E2428243F09420076505A /* TeamBattleGameResult.swift in Sources */,
 				372CA59E242C6B07000E1E71 /* CooperativeGameRoomViewController.swift in Sources */,
 				FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */,
 				FC59CA40241E0BDF004D50EF /* PowerupManager.swift in Sources */,

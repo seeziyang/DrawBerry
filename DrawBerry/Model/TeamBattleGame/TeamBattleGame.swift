@@ -12,9 +12,10 @@ class TeamBattleGame: Game {
     let networkAdapter: GameNetworkAdapter
     let roomCode: RoomCode
     let maxRounds = 3
-    var players: [TeamBattlePlayer]
+    var players = [TeamBattlePlayer]()
     var teams = [TeamBattlePair]()
-    var delegate: TeamBattleGameDelegate?
+    var gameResult = TeamBattleGameResult()
+    weak var delegate: TeamBattleGameDelegate?
 
     let userIndex: Int
     var user: TeamBattlePlayer {
@@ -28,7 +29,6 @@ class TeamBattleGame: Game {
         return nil
     }
 
-
     private(set) var currentRound: Int
 
     convenience init(from room: GameRoom) {
@@ -39,16 +39,18 @@ class TeamBattleGame: Game {
         self.roomCode = room.roomCode
         self.networkAdapter = networkAdapter
 
-        let players = room.players.map { TeamBattlePlayer(from: $0) }
-        self.players = players
+//        let players = room.players.map { TeamBattlePlayer(from: $0) }
+//        self.players = players
 
-        let drawerIndices = Array(stride(from: 0, to: players.count, by: 2))
-        print(drawerIndices)
+        let drawerIndices = Array(stride(from: 0, to: room.players.count, by: 2))
+
         for index in drawerIndices {
             let drawer = TeamBattleDrawer(from: room.players[index])
             let guesser = TeamBattleGuesser(from: room.players[index + 1])
             let team = TeamBattlePair(drawer: drawer, guesser: guesser)
             teams.append(team)
+            gameResult.addTeamResult(result: team.result)
+            players.append(contentsOf: [drawer, guesser])
         }
 
         self.userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
@@ -57,6 +59,11 @@ class TeamBattleGame: Game {
         self.currentRound = 1
     }
 
+    func incrementRound() {
+        currentRound += 1
+    }
+
+    /// Uploads drawer's drawing to db
     func addUsersDrawing(image: UIImage) {
         networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
     }
@@ -65,15 +72,17 @@ class TeamBattleGame: Game {
         guard let id = userTeam?.teamID else {
             return
         }
-        let round = currentRound
+        //let round = currentRound
 
-        networkAdapter.waitAndDownloadPlayerDrawing(
-            playerUID: id, forRound: round,
-            completionHandler: { [weak self] image in
-                //user.draw
-                self?.delegate?.updateDrawing(image)
-            }
-        )
+        for round in 1...maxRounds {
+            networkAdapter.waitAndDownloadPlayerDrawing(
+                playerUID: id, forRound: round,
+                completionHandler: { [weak self] image in
+                    //user.draw
+                    self?.delegate?.updateDrawing(image, for: round)
+                }
+            )
+        }
 
     }
 

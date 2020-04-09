@@ -37,10 +37,13 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
     }
 
     private func addTopicTextLabelToView() {
-        let frame = CGRect(x: self.view.frame.midX - 50, y: 50,
-        width: 100, height: 50)
+        let frame = CGRect(x: self.view.frame.midX - 150, y: 50, width: 300, height: 50)
         let topicTextLabel = UILabel(frame: frame)
-        topicTextLabel.text = game.userTeam?.drawer.getDrawingTopic()
+
+        guard let topic = game.userTeam?.drawer.getDrawingTopic() else {
+            return
+        }
+        topicTextLabel.text = "Round \(game.currentRound) Topic: \(topic)"
         topicTextLabel.textAlignment = .center
         topicTextLabel.font = UIFont(name: "Noteworthy", size: 30)
         self.topicTextLabel = topicTextLabel
@@ -48,7 +51,10 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
     }
 
     private func reloadTopicText() {
-        topicTextLabel.text = game.userTeam?.drawer.getDrawingTopic()
+        guard let topic = game.userTeam?.drawer.getDrawingTopic() else {
+            return
+        }
+        topicTextLabel.text = "Round \(game.currentRound) Topic: \(topic)"
     }
 
     private func addDoneButtonToView() {
@@ -66,17 +72,25 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         finishDrawing()
     }
 
+    private func reloadCanvas() {
+        canvas.removeFromSuperview()
+        addCanvasToView()
+        view.sendSubviewToBack(canvas)
+    }
+
     private func finishDrawing() {
         game.addUsersDrawing(image: canvas.drawingImage)
 
         // TODO:
         if game.currentRound >= game.maxRounds {
-            performSegue(withIdentifier: "segueToTeamBattleEnd", sender: self)
-        } else {
-            reloadTopicText()
-            //canvas.
+            performSegue(withIdentifier: "drawToTeamBattleEnd", sender: self)
+            return
         }
 
+        // Proceed to next round
+        game.incrementRound()
+        reloadCanvas()
+        reloadTopicText()
     }
 
 }

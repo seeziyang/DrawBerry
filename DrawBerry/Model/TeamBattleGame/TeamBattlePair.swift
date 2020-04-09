@@ -6,23 +6,24 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TeamBattlePair: Team {
     // Use drawer uid as team id
     var teamID: String
     var teamPlayers: [TeamBattlePlayer]
-    var result: TeamBattleGameResult
+    var result: TeamBattleTeamResult
 
-    var drawer: TeamBattleDrawer
-    var guesser: TeamBattleGuesser
+    let drawer: TeamBattleDrawer
+    let guesser: TeamBattleGuesser
+    var drawings = [UIImage]()
 
     init(drawer: TeamBattleDrawer, guesser: TeamBattleGuesser) {
         self.teamID = drawer.uid
         self.drawer = drawer
         self.guesser = guesser
         self.teamPlayers = [drawer, guesser]
-        self.result = TeamBattleGameResult()
+        self.result = TeamBattleTeamResult(resultID: teamID)
     }
 
 }

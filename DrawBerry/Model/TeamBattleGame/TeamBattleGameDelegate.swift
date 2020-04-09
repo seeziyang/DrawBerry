@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol TeamBattleGameDelegate {
-    func updateDrawing(_ image: UIImage)
+protocol TeamBattleGameDelegate: AnyObject {
+    func updateDrawing(_ image: UIImage, for round: Int)
 }

@@ -10,34 +10,140 @@ import UIKit
 
 class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate {
 
+    @IBOutlet private weak var errorMessageLabel: UILabel!
+    @IBOutlet private weak var userInputTextField: UITextField!
+    @IBOutlet private weak var guessBox: UIView!
+
     var game: TeamBattleGame!
     var messageLabel: UILabel!
+    var imageView: UIImageView!
+    var currentRound = 1
+
+    var isGuesserWaiting: Bool = true {
+        didSet {
+            if currentRound == game.maxRounds {
+                return
+            }
+
+            if isGuesserWaiting {
+                imageView.image = nil
+                guessBox.alpha = 0
+                let text = "Round \(currentRound + 1)\n\(Message.teamBattleWaitingMessage)"
+                displayMessage(text: text)
+            } else {
+                let drawingIndex = currentRound - 1
+                imageView.image = game.userTeam?.drawings[drawingIndex]
+                changeMessage(text: "")
+                guessBox.alpha = 1
+                userInputTextField.text = ""
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        errorMessageLabel.alpha = 0
         addCanvasToView()
-        displayMessage(text: Message.teamBattleWaitingMessage)
+        addImageToView()
+        let text = "Round \(currentRound)\n\(Message.teamBattleWaitingMessage)"
+        displayMessage(text: text)
+    }
+
+    @IBAction private func guessCurrentDrawing(_ sender: UIButton) {
+        guard let guess = StringHelper.trim(string: userInputTextField.text) else {
+            return
+        }
+
+        guard let team = game.userTeam else {
+            return
+        }
+
+        let user = team.guesser
+
+        guard user.isGuessCorrect(guess: guess, for: currentRound) else {
+            team.result.addincorrectGuess()
+            showErrorMessage("Guess is wrong!")
+            return
+        }
+
+        //goToNextDrawing
+        if !viewNextDrawing() {
+            isGuesserWaiting = true
+        }
+        team.result.addCorrectGuess()
+        incrementRound()
 
     }
 
-    func updateDrawing(_ image: UIImage) {
-        let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+    func incrementRound() {
+        print(currentRound)
+        currentRound += 1
+        if currentRound > game.maxRounds {
+            performSegue(withIdentifier: "guessToTeamBattleEnd", sender: self)
+        }
+    }
 
-        let origin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
-        let imageView = UIImageView(frame: CGRect(origin: origin, size: defaultSize))
-        imageView.image = image
-        view.addSubview(imageView)
-        changeMessage(text: "")
+    func nextDrawingReady() -> Bool {
+        let nextDrawingIndex = currentRound
+
+        guard let drawings = game.userTeam?.drawings else {
+            return false
+        }
+
+        return drawings.count > nextDrawingIndex
+    }
+
+    private func viewNextDrawing() -> Bool {
+        let nextDrawingIndex = currentRound
+        print(nextDrawingReady())
+        if nextDrawingReady() {
+            changeMessage(text: "")
+            guessBox.alpha = 1
+            imageView.image = game.userTeam?.drawings[nextDrawingIndex]
+            return true
+        }
+        return false
+    }
+
+    @IBAction private func goToNextDrawing(_ sender: UIButton) {
+        guard viewNextDrawing() else {
+            showErrorMessage("Drawing is not ready!")
+            return
+        }
+        incrementRound()
+    }
+
+    func updateDrawing(_ image: UIImage, for round: Int) {
+        game.userTeam?.drawings.append(image)
+
+        // loads image if user is waiting on the round
+        if isGuesserWaiting && round >= currentRound {
+            isGuesserWaiting = false
+        }
     }
 
     /// Adds the background canvas.
     private func addCanvasToView() {
-        let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height - 100)
+        let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height - 200)
 
         let origin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
         let canvasBackground = UIImageView(frame: CGRect(origin: origin, size: defaultSize))
         canvasBackground.image = BerryConstants.paperBackgroundImage
         view.addSubview(canvasBackground)
+    }
+
+    private func addImageToView() {
+        let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height - 200)
+
+        let origin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
+        self.imageView = UIImageView(frame: CGRect(origin: origin, size: defaultSize))
+        imageView.image = nil
+        view.addSubview(imageView)
+    }
+
+    private func showErrorMessage(_ text: String) {
+        errorMessageLabel.text = text
+        errorMessageLabel.alpha = 1
     }
 
     func changeMessage(text: String) {
@@ -50,6 +156,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate
         message.text = text
         message.textAlignment = .center
         message.font = UIFont(name: "Noteworthy", size: 80)
+        message.numberOfLines = 2
         messageLabel = message
         view.addSubview(message)
     }

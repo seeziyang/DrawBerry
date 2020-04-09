@@ -8,21 +8,18 @@
 
 class TeamBattleGuesser: TeamBattlePlayer {
 
-//    convenience init(from roomPlayer: RoomPlayer) {
-//        self.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
-//    }
-
-    func getDrawingTopic() -> String {
+    func getDrawingTopic(for round: Int) -> String {
         // TODO: use network
         return "apple"
     }
 
-    func getLengthHint() -> Int {
-        return getDrawingTopic().count
+    func getLengthHint(for round: Int) -> Int {
+        return getDrawingTopic(for: round).count
     }
 
-    func isGuessCorrect(guess: String) -> Bool {
-        return guess == getDrawingTopic()
+    func isGuessCorrect(guess: String, for round: Int) -> Bool {
+        //print(getDrawingTopic(for: round))
+        return guess == getDrawingTopic(for: round)
     }
 
 }

@@ -27,17 +27,17 @@ class TeamBattleDrawer: TeamBattlePlayer {
         return topic
     }
 
-    func addDrawing(image: UIImage) {
-        drawingImages.append(image)
-    }
-
-    func getDrawingImage() -> UIImage? {
-        getDrawingImage(ofRound: 1)
-    }
-
-    func getDrawingImage(ofRound round: Int) -> UIImage? {
-        let index = round - 1
-        return drawingImages[index]
-    }
+//    func addDrawing(image: UIImage) {
+//        drawingImages.append(image)
+//    }
+//
+//    func getDrawingImage() -> UIImage? {
+//        getDrawingImage(ofRound: 1)
+//    }
+//
+//    func getDrawingImage(ofRound round: Int) -> UIImage? {
+//        let index = round - 1
+//        return drawingImages[index]
+//    }
 
 }

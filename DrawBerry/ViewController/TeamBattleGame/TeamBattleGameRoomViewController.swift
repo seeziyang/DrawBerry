@@ -113,9 +113,7 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
             let userIndex = getPlayerIndex(user: user, players: room.players) else {
             return
         }
-
-        userIndex % 2 == 0 ? segueToDrawingVC(): segueToGuessingVC()
-
+        userIndex.isMultiple(of: 2) ? segueToDrawingVC(): segueToGuessingVC()
     }
 
     private func segueToDrawingVC() {
