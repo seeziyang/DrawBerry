@@ -26,4 +26,8 @@ class TeamBattlePair: Team {
         self.result = TeamBattleTeamResult(resultID: teamID)
     }
 
+    func updateResult(_ result: TeamBattleTeamResult) {
+        self.result = result
+    }
+
 }

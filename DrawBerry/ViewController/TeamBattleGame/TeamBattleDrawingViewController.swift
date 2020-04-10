@@ -21,6 +21,17 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         addTopicTextLabelToView()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let teamBattleEndVC = segue.destination as? TeamBattleEndViewController {
+
+            teamBattleEndVC.game = game
+            teamBattleEndVC.game.resultDelegate = teamBattleEndVC
+            teamBattleEndVC.game.observeAllTeamResult()
+
+        }
+    }
+
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -79,7 +90,7 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
     }
 
     private func finishDrawing() {
-        game.addUsersDrawing(image: canvas.drawingImage)
+        game.addTeamDrawing(image: canvas.drawingImage)
 
         // TODO:
         if game.currentRound >= game.maxRounds {

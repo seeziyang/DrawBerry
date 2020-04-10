@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate {
+class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDelegate {
 
     @IBOutlet private weak var errorMessageLabel: UILabel!
     @IBOutlet private weak var userInputTextField: UITextField!
@@ -35,7 +35,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate
                 imageView.image = game.userTeam?.drawings[drawingIndex]
                 changeMessage(text: "")
                 guessBox.alpha = 1
-                userInputTextField.text = ""
+
             }
         }
     }
@@ -49,18 +49,31 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate
         displayMessage(text: text)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if let teamBattleEndVC = segue.destination as? TeamBattleEndViewController {
+
+            guard let result = game.userTeam?.result else {
+                return
+            }
+            game.addTeamResult(result: result)
+            teamBattleEndVC.game = game
+            teamBattleEndVC.game.resultDelegate = teamBattleEndVC
+            teamBattleEndVC.game.observeAllTeamResult()
+        }
+    }
+
     @IBAction private func guessCurrentDrawing(_ sender: UIButton) {
         guard let guess = StringHelper.trim(string: userInputTextField.text) else {
             return
         }
+        userInputTextField.text = ""
 
         guard let team = game.userTeam else {
             return
         }
 
-        let user = team.guesser
-
-        guard user.isGuessCorrect(guess: guess, for: currentRound) else {
+        guard team.guesser.isGuessCorrect(guess: guess, for: currentRound) else {
             team.result.addincorrectGuess()
             showErrorMessage("Guess is wrong!")
             return
@@ -71,12 +84,11 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate
             isGuesserWaiting = true
         }
         team.result.addCorrectGuess()
-        incrementRound()
+        proceedToNextRound()
 
     }
 
-    func incrementRound() {
-        print(currentRound)
+    func proceedToNextRound() {
         currentRound += 1
         if currentRound > game.maxRounds {
             performSegue(withIdentifier: "guessToTeamBattleEnd", sender: self)
@@ -95,7 +107,6 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate
 
     private func viewNextDrawing() -> Bool {
         let nextDrawingIndex = currentRound
-        print(nextDrawingReady())
         if nextDrawingReady() {
             changeMessage(text: "")
             guessBox.alpha = 1
@@ -110,7 +121,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameDelegate
             showErrorMessage("Drawing is not ready!")
             return
         }
-        incrementRound()
+        proceedToNextRound()
     }
 
     func updateDrawing(_ image: UIImage, for round: Int) {

@@ -1617,22 +1617,13 @@
             </objects>
             <point key="canvasLocation" x="3900.78125" y="1439.6484375"/>
         </scene>
-        <!--View Controller-->
+        <!--Team Battle End View Controller-->
         <scene sceneID="8uX-X9-tBb">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="FVB-Of-MsB" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="FVB-Of-MsB" customClass="TeamBattleEndViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qMP-dB-g8b">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2n-OL-gOf">
-                                <rect key="frame" x="237" y="432" width="334" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="5ag-h7-WaJ"/>
                     </view>

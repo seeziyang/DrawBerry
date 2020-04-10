@@ -1,5 +1,5 @@
 //
-//  TeamBattleGameDelegate.swift
+//  TeamBattleGameViewDelegate.swift
 //  DrawBerry
 //
 //  Created by Calvin Chen on 8/4/20.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol TeamBattleGameDelegate: AnyObject {
+protocol TeamBattleGameViewDelegate: AnyObject {
     func updateDrawing(_ image: UIImage, for round: Int)
 }

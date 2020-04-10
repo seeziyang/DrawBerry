@@ -14,8 +14,9 @@ class TeamBattleGame: Game {
     let maxRounds = 3
     var players = [TeamBattlePlayer]()
     var teams = [TeamBattlePair]()
-    var gameResult = TeamBattleGameResult()
-    weak var delegate: TeamBattleGameDelegate?
+    var gameResult: TeamBattleGameResult
+    weak var delegate: TeamBattleGameViewDelegate?
+    weak var resultDelegate: TeamBattleResultDelegate?
 
     let userIndex: Int
     var user: TeamBattlePlayer {
@@ -42,6 +43,7 @@ class TeamBattleGame: Game {
 //        let players = room.players.map { TeamBattlePlayer(from: $0) }
 //        self.players = players
 
+        // Even indices players draws
         let drawerIndices = Array(stride(from: 0, to: room.players.count, by: 2))
 
         for index in drawerIndices {
@@ -49,9 +51,9 @@ class TeamBattleGame: Game {
             let guesser = TeamBattleGuesser(from: room.players[index + 1])
             let team = TeamBattlePair(drawer: drawer, guesser: guesser)
             teams.append(team)
-            gameResult.addTeamResult(result: team.result)
             players.append(contentsOf: [drawer, guesser])
         }
+        self.gameResult = TeamBattleGameResult(numberOfTeams: teams.count)
 
         self.userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
         ?? 0
@@ -64,7 +66,7 @@ class TeamBattleGame: Game {
     }
 
     /// Uploads drawer's drawing to db
-    func addUsersDrawing(image: UIImage) {
+    func addTeamDrawing(image: UIImage) {
         networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
     }
 
@@ -72,18 +74,33 @@ class TeamBattleGame: Game {
         guard let id = userTeam?.teamID else {
             return
         }
-        //let round = currentRound
 
         for round in 1...maxRounds {
             networkAdapter.waitAndDownloadPlayerDrawing(
                 playerUID: id, forRound: round,
                 completionHandler: { [weak self] image in
-                    //user.draw
                     self?.delegate?.updateDrawing(image, for: round)
                 }
             )
         }
-
     }
 
+    func addTeamResult(result: TeamBattleTeamResult) {
+        networkAdapter.uploadTeamResult(result: result)
+    }
+
+    func observeAllTeamResult() {
+        for team in teams {
+            let id = team.teamID
+            networkAdapter.waitAndDownloadTeamResult(
+                playerUID: id,
+                completionHandler: { [weak self] result in
+                    // TODO: maybe use delegate
+                    self?.gameResult.updateTeamResult(result)
+                    team.updateResult(result)
+                    self?.resultDelegate?.updateResults()
+                }
+            )
+        }
+    }
 }

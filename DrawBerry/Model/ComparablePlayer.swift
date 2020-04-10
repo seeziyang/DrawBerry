@@ -24,5 +24,4 @@ extension ComparablePlayer: Comparable {
     static func == (lhs: ComparablePlayer, rhs: ComparablePlayer) -> Bool {
         lhs.uid == rhs.uid
     }
-
 }
