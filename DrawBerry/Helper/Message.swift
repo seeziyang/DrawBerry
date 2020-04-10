@@ -25,7 +25,7 @@ enum Message {
     static let teamBattleWaitingMessage = "Drawer is still drawing~"
     static let teamBattleWaitingResult = "Waiting For Results~"
 
-    static teamBattleResultError = "Error in getting result\n"
+    static let teamBattleResultError = "Error in getting result\n"
 
     // Classic Room
     static let roomDoesNotExist = "Unable to join as room does not exist"
