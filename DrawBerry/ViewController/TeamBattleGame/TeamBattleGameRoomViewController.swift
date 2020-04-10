@@ -13,7 +13,7 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
     @IBOutlet private weak var playersCollectionView: UICollectionView!
     @IBOutlet private weak var startButton: UIBarButtonItem!
 
-    var room: GameRoom!
+    var room: TeamBattleGameRoom!
     private var currentViewingPlayerID: String?
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)

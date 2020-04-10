@@ -29,7 +29,7 @@ class EnterTeamBattleRoomViewController: UIViewController {
         if let roomVC = segue.destination as? TeamBattleGameRoomViewController,
             let roomCodeValue = roomCodeField.text {
             let roomCode = RoomCode(value: roomCodeValue, type: .TeamBattleRoom)
-            roomVC.room = GameRoom(roomCode: roomCode)
+            roomVC.room = TeamBattleGameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
             roomVC.configureStartButton()
         }

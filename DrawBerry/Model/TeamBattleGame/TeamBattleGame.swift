@@ -40,9 +40,6 @@ class TeamBattleGame: Game {
         self.roomCode = room.roomCode
         self.networkAdapter = networkAdapter
 
-//        let players = room.players.map { TeamBattlePlayer(from: $0) }
-//        self.players = players
-
         // Even indices players draws
         let drawerIndices = Array(stride(from: 0, to: room.players.count, by: 2))
 

@@ -128,6 +128,7 @@
 		37D794282436E1DF00D2BE57 /* CooperativeGameUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */; };
 		3E0E2428243F09420076505A /* TeamBattleGameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E2427243F09420076505A /* TeamBattleGameResult.swift */; };
 		3E1303C52440403300CB04F1 /* TeamBattleResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1303C42440403300CB04F1 /* TeamBattleResultDelegate.swift */; };
+		3E1A9EDA2440BD9C0084199C /* TeamBattleGameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A9ED92440BD9C0084199C /* TeamBattleGameRoom.swift */; };
 		3E21C64D243DB66100FF62DC /* TeamBattlePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */; };
 		3E21C64F243DD22500FF62DC /* TeamBattleGameViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E21C64E243DD22500FF62DC /* TeamBattleGameViewDelegate.swift */; };
 		3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2837DB2425BBB7001BAA2F /* Constants.swift */; };
@@ -291,6 +292,7 @@
 		37D794272436E1DF00D2BE57 /* CooperativeGameUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameUITest.swift; sourceTree = "<group>"; };
 		3E0E2427243F09420076505A /* TeamBattleGameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameResult.swift; sourceTree = "<group>"; };
 		3E1303C42440403300CB04F1 /* TeamBattleResultDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleResultDelegate.swift; sourceTree = "<group>"; };
+		3E1A9ED92440BD9C0084199C /* TeamBattleGameRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameRoom.swift; sourceTree = "<group>"; };
 		3E21C64C243DB66100FF62DC /* TeamBattlePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattlePair.swift; sourceTree = "<group>"; };
 		3E21C64E243DD22500FF62DC /* TeamBattleGameViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameViewDelegate.swift; sourceTree = "<group>"; };
 		3E2837DB2425BBB7001BAA2F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				1A432BD3241FB2E00097A14F /* RoomPlayer.swift */,
 				372CA575242BBC90000E1E71 /* RoomCode.swift */,
 				1A432BD5241FB30A0097A14F /* GameRoom.swift */,
+				3E1A9ED92440BD9C0084199C /* TeamBattleGameRoom.swift */,
 				372CA573242BA995000E1E71 /* GameRoomType.swift */,
 				1A000ED62422208C007FDB32 /* GameRoomStatus.swift */,
 				1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */,
@@ -1079,6 +1082,7 @@
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
 				1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */,
 				3E1303C52440403300CB04F1 /* TeamBattleResultDelegate.swift in Sources */,
+				3E1A9EDA2440BD9C0084199C /* TeamBattleGameRoom.swift in Sources */,
 				1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */,
 				3787ACF82430E26B0064A1F6 /* CooperativeGameViewController.swift in Sources */,
 				1A41C6AF2439766B00BD7BF0 /* EnterRoomNetworkAdapter.swift in Sources */,
