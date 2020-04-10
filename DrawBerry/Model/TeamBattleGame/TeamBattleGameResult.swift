@@ -38,10 +38,7 @@ class TeamBattleGameResult {
     }
 
     func getWinnerTeamID() -> String? {
-        return teamResults.first?.resultID
+        return sortedTeamResults.first?.resultID
     }
 
-    func getSortedTeams() -> [TeamBattlePair] {
-        return []
-    }
 }

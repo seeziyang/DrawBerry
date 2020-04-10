@@ -57,7 +57,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         message.text = text
         message.textAlignment = .center
         message.font = UIFont(name: "Noteworthy", size: 60)
-        message.numberOfLines = 5
+        message.numberOfLines = 8
         messageLabel = message
         view.addSubview(message)
     }

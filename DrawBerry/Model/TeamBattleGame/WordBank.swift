@@ -17,15 +17,19 @@ struct WordBank {
         words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat")]
     }
 
-    func getRandomWord(difficulty: WordDifficulty) -> Word? {
+    mutating func popRandomWord(difficulty: WordDifficulty) -> Word? {
         let filteredWords = words.filter { $0.difficulty == difficulty }
 
-        return getRandomWord(from: filteredWords)
+        return popRandomWord(from: filteredWords)
+    }
+
+    mutating func reloadWordBank() {
+        words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat")]
     }
 
     private mutating func popRandomWord(from words: [Word]) -> Word? {
         let poppedWord = getRandomWord(from: words)
-        self.words = words.filter { $0.value == poppedWord?.value }
+        self.words = words.filter { $0.value != poppedWord?.value }
         return poppedWord
     }
 
@@ -37,7 +41,4 @@ struct WordBank {
         return TopicWord("dog")
     }
 
-    mutating func reloadWordBank() {
-        words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat")]
-    }
 }
