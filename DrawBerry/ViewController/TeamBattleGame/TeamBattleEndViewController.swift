@@ -16,12 +16,11 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addCanvasToView()
-        let text = "Waiting For Results"
-        addTextLabelToView(text: text)
+        addTextLabelToView(text: Message.teamBattleWaitingResult)
     }
 
+    /// Updates game result whenever a new team result is downloaded from database
     func updateResults() {
-
         guard game.gameResult.didGameFinish() else {
             return
         }
@@ -30,11 +29,12 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
             return
         }
 
-        let scoreMessage = game.userTeam?.result.getDisplayDescription() ?? "Error"
+        let scoreMessage = game.userTeam?.result.getDisplayDescription()
+            ?? Message.teamBattleResultError
         let rankMessage = "\n Your Rank: \(rank)"
         let message = scoreMessage + rankMessage
         changeDisplayMessage(text: message)
-
+        game.endGame()
     }
 
     /// Adds the background canvas.

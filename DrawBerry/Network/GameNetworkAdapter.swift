@@ -34,6 +34,7 @@ class GameNetworkAdapter {
             .child("rounds")
             .child("round\(round)")
             .child("hasUploadedImage")
+
         let cloudPathRef = cloud.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -174,7 +175,8 @@ class GameNetworkAdapter {
                            completionHandler: @escaping (String) -> Void) {
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
-            .child(roomCode.value).child("players")
+            .child(roomCode.value)
+            .child("players")
             .child(playerUID)
             .child("rounds")
             .child("round\(round)")

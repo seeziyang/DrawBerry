@@ -103,4 +103,8 @@ class TeamBattleGame: Game {
             )
         }
     }
+
+    func endGame() {
+        networkAdapter.endGame(isRoomMaster: user.isRoomMaster, numRounds: maxRounds)
+    }
 }
