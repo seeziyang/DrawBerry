@@ -9,7 +9,7 @@
 import UIKit
 
 class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
-    var decoratedCanvas: CompetitiveCanvas
+    var decoratedCanvas: CompetitiveCanvas?
 
     required init?(coder: NSCoder) {
         nil
@@ -37,9 +37,6 @@ class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
     }
 
     func showDrawing() {
-        decoratedCanvas.isHidden = false
-    }
-
-    func removeDecorator(decoratorToRemove decorator: InvulnerableBerryCanvas) {
+        decoratedCanvas?.isHidden = false
     }
 }

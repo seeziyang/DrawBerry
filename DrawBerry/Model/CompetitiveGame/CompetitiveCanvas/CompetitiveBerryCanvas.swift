@@ -9,6 +9,8 @@
 import UIKit
 
 class CompetitiveBerryCanvas: BerryCanvas, CompetitiveCanvas {
+    var decoratedCanvas: CompetitiveCanvas?
+
     required init?(coder: NSCoder) {
         nil
     }

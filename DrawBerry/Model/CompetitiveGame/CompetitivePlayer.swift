@@ -42,4 +42,28 @@ class CompetitivePlayer: Player, Equatable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
     }
+
+    /// Removes a specified decorator from the player's canvas.
+    /// If not found, searches until `nil`.
+    func removeDecorator(decoratorToRemove decorator: CompetitiveCanvas) {
+        if canvasDrawing == decorator {
+            guard let nextCanvas = canvasDrawing.decoratedCanvas else {
+                return
+            }
+            canvasDrawing = nextCanvas
+        }
+        removeDecoratorRecursive(decoratorToRemove: decorator, prevCanvas: canvasDrawing)
+    }
+
+    func removeDecoratorRecursive(decoratorToRemove decorator: CompetitiveCanvas, prevCanvas: CompetitiveCanvas) {
+        guard let nextNode = prevCanvas.decoratedCanvas else {
+            return
+        }
+
+        if nextNode == decorator {
+            prevCanvas.decoratedCanvas = nextNode.decoratedCanvas
+            return
+        }
+        removeDecoratorRecursive(decoratorToRemove: decorator, prevCanvas: nextNode)
+    }
 }
