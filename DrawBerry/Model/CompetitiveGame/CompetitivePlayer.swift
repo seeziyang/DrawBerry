@@ -8,19 +8,14 @@
 
 import UIKit
 
-class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
-    init(name: String, canvasDrawing: Canvas) {
+class CompetitivePlayer: Player, Equatable, Hashable {
+    init(name: String, canvasDrawing: CompetitiveCanvas) {
         self.name = name
         self.canvasDrawing = canvasDrawing
     }
 
     var name: String
-    var canvasDrawing: Canvas
-    var canvasProxy: Canvas? {
-        isInvulnerable ? nil : canvasDrawing
-    }
-
-    var isInvulnerable = false
+    var canvasDrawing: CompetitiveCanvas
     var extraStrokes = 0
 
     var score = 0
@@ -34,8 +29,10 @@ class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
         votesLeft <= 0
     }
 
-    var description: String {
-        "(\(name))"
+    func resetVotes() {
+        votesLeft = CompetitivePlayer.NUMBER_OF_VOTES_TO_GIVE
+        votesGiven = 0
+        hasVotedFor.removeAll()
     }
 
     static func == (lhs: CompetitivePlayer, rhs: CompetitivePlayer) -> Bool {
@@ -44,11 +41,5 @@ class CompetitivePlayer: Player, CustomStringConvertible, Equatable, Hashable {
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
-    }
-
-    func resetVotes() {
-        votesLeft = CompetitivePlayer.NUMBER_OF_VOTES_TO_GIVE
-        votesGiven = 0
-        hasVotedFor.removeAll()
     }
 }

@@ -36,7 +36,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPlayers()
-        addCanvasesToView()
+        addPlayersAndCanvasesToView()
         setupTimer()
         setupDisplayLink()
     }
@@ -119,12 +119,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
     /// Draws the specified powerup description on the powerup's targets.
     private func drawDescriptionOnView(_ powerup: Powerup) {
         for target in powerup.targets {
-            if powerup.owner != target && target.isInvulnerable {
-                let newDescription = powerup.description + "\n" + Message.playerIsInvulnerable
-                competitiveViews[target]?.animateStatus(with: newDescription)
-            } else {
-                competitiveViews[target]?.animateStatus(with: powerup.description)
-            }
+            competitiveViews[target]?.animateStatus(with: powerup.description)
         }
     }
 
@@ -134,16 +129,14 @@ class CompetitiveViewController: CanvasDelegateViewController {
             return
         }
 
-        for i in 1...4 {
-            let newPlayer = CompetitivePlayer(name: "Player \(i)", canvasDrawing: BerryCanvas())
-            competitiveGame.players.append(newPlayer)
-        }
+//        for i in 1...4 {
+//            let newPlayer = CompetitivePlayer(name: "Player \(i)")
+//            competitiveGame.players.append(newPlayer)
+//        }
     }
 
     /// Adds the canvases for the four players to the competitive game.
-    private func addCanvasesToView() {
-        assert(competitiveGame.players.count == 4, "Player count should be 4")
-
+    private func addPlayersAndCanvasesToView() {
         let defaultSize = CGSize(width: self.view.bounds.width / 2, height: self.view.bounds.height / 2)
 
         let minX = self.view.bounds.minX
@@ -161,11 +154,11 @@ class CompetitiveViewController: CanvasDelegateViewController {
                     return
                 }
 
-                let currentPlayer = competitiveGame.players[playerNum]
-                currentPlayer.canvasDrawing = canvas
+                let newPlayer = CompetitivePlayer(name: "Player \(playerNum + 1)", canvasDrawing: canvas)
+                competitiveGame.players.append(newPlayer)
 
                 let currentPlayerCompetitiveView = CompetitiveView(frame: rect)
-                competitiveViews[currentPlayer] = currentPlayerCompetitiveView
+                competitiveViews[newPlayer] = currentPlayerCompetitiveView
                 currentPlayerCompetitiveView.isUserInteractionEnabled = false
                 currentPlayerCompetitiveView.setupViews(name: competitiveGame.players[playerNum].name,
                                                         currentRound: competitiveGame.currentRound,
@@ -184,11 +177,13 @@ class CompetitiveViewController: CanvasDelegateViewController {
                 playerNum += 1
             }
         }
+
+        assert(competitiveGame.players.count == 4, "Player count should be 4")
     }
 
     /// Creates a canvas within the specified `CGRect`.
-    private func createBerryCanvas(within rect: CGRect) -> Canvas? {
-        guard let canvas = BerryCanvas.createCanvas(within: rect) else {
+    private func createBerryCanvas(within rect: CGRect) -> CompetitiveCanvas? {
+        guard let canvas = CompetitiveBerryCanvas.createCompetitiveCanvas(within: rect) else {
             return nil
         }
         canvas.isClearButtonEnabled = false

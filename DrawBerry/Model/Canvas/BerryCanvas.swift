@@ -97,11 +97,11 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
     }
 
     /// Checks if the given bounds is within the acceptable bounds.
-    private static func outOfBounds(bounds: CGRect) -> Bool {
+    internal static func outOfBounds(bounds: CGRect) -> Bool {
         bounds.width < BerryConstants.minimumCanvasWidth || bounds.height < BerryConstants.minimumCanvasHeight
     }
 
-    override private init(frame: CGRect) {
+    override internal init(frame: CGRect) {
         palette = BerryCanvas.createPalette(within: frame)
         drawingCanvas = BerryCanvas.createCanvasView(within: frame)
         clearButton = BerryCanvas.createClearButton(within: frame)
@@ -112,6 +112,16 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         palette.selectFirstColorFirstStroke()
         bindGestureRecognizers()
         addComponentsToCanvas()
+    }
+
+    internal init(canvas: BerryCanvas) {
+        self.drawingCanvas = canvas.drawingCanvas
+        self.palette = canvas.palette
+        self.clearButton = canvas.clearButton
+        self.isClearButtonEnabled = canvas.isClearButtonEnabled
+
+        super.init(frame: canvas.frame)
+        self.gestureRecognizers = canvas.gestureRecognizers
     }
 
     required init?(coder: NSCoder) {

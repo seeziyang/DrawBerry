@@ -24,9 +24,7 @@ class ExtraStrokePowerup: Powerup {
     }
 
     func activate() {
-        targets.forEach {
-            $0.extraStrokes += 1
-        }
+        targets.forEach { $0.extraStrokes += 1 }
     }
 
     func deactivate() {

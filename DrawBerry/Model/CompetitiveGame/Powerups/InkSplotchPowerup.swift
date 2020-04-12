@@ -24,19 +24,7 @@ class InkSplotchPowerup: Powerup {
     }
 
     func activate() {
-        for target in targets {
-            let inkSplotch = UIImageView(image: PowerupAssets.inkSplotchUIImage)
-
-            let randomWidth = CGFloat.random(in: 100...400)
-            let randomHeight = CGFloat.random(in: 100...400)
-
-            inkSplotch.frame = CGRect(x: .random(in: 0...target.canvasDrawing.bounds.maxX - randomWidth),
-                                      y: .random(in: 0...target.canvasDrawing.bounds.maxY - randomHeight),
-                                      width: randomWidth, height: randomHeight)
-
-            target.canvasProxy?.addSubview(inkSplotch)
-            target.canvasProxy?.bringSubviewToFront(inkSplotch)
-        }
+        targets.forEach { $0.canvasDrawing.addInkSplotch() }
     }
 
     func deactivate() {
