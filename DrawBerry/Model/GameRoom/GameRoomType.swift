@@ -9,4 +9,5 @@
 enum GameRoomType: String {
     case ClassicRoom = "classicRooms"
     case CooperativeRoom = "cooperativeRooms"
+    case TeamBattleRoom = "teamBattleRooms"
 }

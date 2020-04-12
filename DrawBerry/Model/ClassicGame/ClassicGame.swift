@@ -78,8 +78,7 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func hasAllPlayersVotedForCurrentRound() -> Bool {
-        players.compactMap { $0 as? ClassicPlayer }
-            .allSatisfy { $0.hasVoted(inRound: currentRound) }
+        classicPlayers.allSatisfy { $0.hasVoted(inRound: currentRound) }
     }
 
     func userVoteFor(player: ClassicPlayer) {
@@ -102,7 +101,7 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func observePlayerVotes() {
-        for player in players.compactMap({ $0 as? ClassicPlayer }) where player !== user {
+        for player in classicPlayers where player !== user {
             observePlayerVote(
                 player: player, for: currentRound, completionHandler: { [weak self] votedForPlayerUID in
                     guard let votedForPlayer =
@@ -152,5 +151,16 @@ class ClassicGame: MultiplayerNetworkGame {
             self?.endGame(isRoomMaster: self?.user.isRoomMaster ?? false, numRounds: self?.currentRound ?? 0)
             self?.delegate?.segueToGameEnd()
         })
+    }
+}
+
+/// Extensions to network interface
+extension ClassicGame {
+    func voteFor(player: ClassicPlayer, for round: Int, updatedPlayerPoints: Int) {
+        networkAdapter.userVoteFor(playerUID: player.uid, forRound: round, updatedPlayerPoints: player.points)
+    }
+
+    func observePlayerVote(player: ClassicPlayer, for round: Int, completionHandler: @escaping (String) -> Void) {
+        networkAdapter.observePlayerVote(playerUID: player.uid, forRound: round, completionHandler: completionHandler)
     }
 }

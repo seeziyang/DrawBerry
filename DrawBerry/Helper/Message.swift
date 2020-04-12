@@ -21,6 +21,12 @@ enum Message {
     static let passwordsDoNotMatch = "Passwords do not match!"
     static let usernameLengthTooLong = "Length of username should not be greater than 10 characters"
 
+    // Team Battle
+    static let teamBattleWaitingMessage = "Drawer is still drawing~"
+    static let teamBattleWaitingResult = "Waiting For Results~"
+
+    static let teamBattleResultError = "Error in getting result\n"
+
     // Classic Room
     static let roomDoesNotExist = "Unable to join as room does not exist"
     static let roomFull = "Unable to join as room is full"

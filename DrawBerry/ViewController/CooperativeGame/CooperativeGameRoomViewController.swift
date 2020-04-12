@@ -12,6 +12,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBOutlet private weak var playersCollectionView: UICollectionView!
     @IBOutlet private weak var startButton: UIBarButtonItem!
+    @IBOutlet private weak var roomCodeLabel: UINavigationItem!
 
     var room: CooperativeGameRoom!
     private var currentViewingPlayerID: String?
@@ -38,6 +39,8 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     override func viewDidLoad() {
         playersCollectionView.delegate = self
         playersCollectionView.dataSource = self
+        
+        roomCodeLabel.title = room.roomCode.value
         super.viewDidLoad()
     }
 
