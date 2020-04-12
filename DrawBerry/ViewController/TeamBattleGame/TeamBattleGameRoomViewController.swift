@@ -1,21 +1,20 @@
 //
-//  GameRoomViewController.swift
+//  TeamBattleGameRoomViewController.swift
 //  DrawBerry
 //
-//  Created by See Zi Yang on 16/3/20.
+//  Created by Calvin Chen on 8/4/20.
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
 import UIKit
 
-class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
-    var room: GameRoom!
-    private var currentViewingPlayerID: String?
+class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
 
-    @IBOutlet private weak var startButton: UIBarButtonItem!
     @IBOutlet private weak var playersCollectionView: UICollectionView!
-    @IBOutlet private weak var roomCodeLabel: UINavigationItem!
-    @IBOutlet private weak var isRapidSwitch: UISwitch!
+    @IBOutlet private weak var startButton: UIBarButtonItem!
+
+    var room: TeamBattleGameRoom!
+    private var currentViewingPlayerID: String?
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
     private let itemsPerRow: CGFloat = 2
@@ -25,18 +24,33 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         true
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    /// Enable or disable the start button, depending on whether
+    /// the user is the room master or not.
+    func configureStartButton() {
+        if let currentUser = room.user {
+            if !currentUser.isRoomMaster {
+                startButton.isEnabled = false
+                startButton.tintColor = UIColor.clear
+            }
+        }
+    }
 
+    override func viewDidLoad() {
         playersCollectionView.delegate = self
         playersCollectionView.dataSource = self
-
-        roomCodeLabel.title = room.roomCode.value
+        super.viewDidLoad()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let classicVC = segue.destination as? ClassicViewController {
-            classicVC.classicGame = ClassicGame(from: room)
+        if let teamBattleDrawVC = segue.destination as? TeamBattleDrawingViewController {
+            teamBattleDrawVC.game = TeamBattleGame(from: room)
+        }
+
+        if let teamBattleGuessVC = segue.destination as? TeamBattleGuessingViewController {
+            teamBattleGuessVC.game = TeamBattleGame(from: room)
+
+            teamBattleGuessVC.game.delegate = teamBattleGuessVC
+            teamBattleGuessVC.game.observeTeamDrawing()
         }
 
         if segue.destination is UserProfileViewController {
@@ -53,54 +67,32 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         leaveGameRoom()
     }
 
-    @IBAction private func isRapidSwitchOnToggle(_ sender: UISwitch) {
-        toggleIsRapid()
-    }
-
     @IBAction private func startOnTap(_ sender: UIBarButtonItem) {
         startGame()
     }
 
-    private func configureRoomMasterButtons() {
-        if let currentUser = room.user {
-            if !currentUser.isRoomMaster {
-                startButton.isEnabled = false
-                startButton.tintColor = .clear
-
-                isRapidSwitch.isEnabled = false
-            } else {
-                startButton.isEnabled = true
-                startButton.tintColor = .systemBlue
-
-                isRapidSwitch.isEnabled = true
-            }
-        }
-    }
-
+    /// Reloads the collection view when a player joins or leave the room.
     func playersDidUpdate() {
-        configureRoomMasterButtons()
         if room.didPlayersCountChange ?? true {
             playersCollectionView.reloadData()
         }
+        configureStartButton()
     }
 
+    /// Navigates to the game view controller.
     func gameHasStarted() {
         segueToGameVC()
     }
 
-    func isRapidDidUpdate(isRapid: Bool) {
-        isRapidSwitch.setOn(isRapid, animated: true)
-    }
-
+    /// Removes the user from the current game room.
     private func leaveGameRoom() {
         room.leaveRoom()
-
         dismiss(animated: true, completion: nil)
     }
 
+    /// Starts the game if the number of players in the room is a valid number.
     private func startGame() {
         if !room.canStart {
-            // TODO: show some UIPrompt indicating minPlayer amount not reached
             return
         }
 
@@ -108,18 +100,34 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         segueToGameVC()
     }
 
-    private func toggleIsRapid() {
-        room.toggleIsRapid()
+    private func getPlayerIndex(user: RoomPlayer, players: [RoomPlayer]) -> Int? {
+        for i in 0..<players.count where players[i] == user {
+            return i
+        }
+
+        return nil
     }
 
-    private func segueToGameVC() {
-        performSegue(withIdentifier: "segueToClassicGame", sender: self)
+    func segueToGameVC() {
+        guard let user = room.user,
+            let userIndex = getPlayerIndex(user: user, players: room.players) else {
+            return
+        }
+        userIndex.isMultiple(of: 2) ? segueToDrawingVC(): segueToGuessingVC()
+    }
+
+    private func segueToDrawingVC() {
+        performSegue(withIdentifier: "segueToTeamBattleDrawing", sender: self)
+    }
+
+    private func segueToGuessingVC() {
+        performSegue(withIdentifier: "segueToTeamBattleGuessing", sender: self)
     }
 }
 
-extension ClassicGameRoomViewController: UICollectionViewDataSource {
+extension TeamBattleGameRoomViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        GameRoom.maxPlayers
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -129,10 +137,13 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
         guard indexPath.row < room.players.count else {
             return cell
         }
+
         let player = room.players[indexPath.row]
         let username = player.name
-        cell.setUsername(username)
+
         UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
+
+        cell.setUsername(username)
 
         return cell
     }
@@ -150,10 +161,9 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
 }
 
 // Code for layout adapted from https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
-extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
+extension TeamBattleGameRoomViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
@@ -176,8 +186,8 @@ extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-/// Handles gestures for `GameRoomViewController`
-extension ClassicGameRoomViewController {
+/// Handles gestures for `TeamBattleGameRoomViewController`
+extension TeamBattleGameRoomViewController {
 
     /// Loads the user profile when single tap is detected on a specific cell.
     @IBAction private func handleSingleTap(_ sender: UITapGestureRecognizer) {
@@ -196,6 +206,6 @@ extension ClassicGameRoomViewController {
 
     // TODO:
     private func openUserProfile(at index: Int) {
-        performSegue(withIdentifier: "segueClassicToPlayerProfile", sender: self)
+        // performSegue(withIdentifier: "segueTeamBattleToPlayerProfile", sender: self)
     }
 }

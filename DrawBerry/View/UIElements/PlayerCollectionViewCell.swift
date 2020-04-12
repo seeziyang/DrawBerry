@@ -13,9 +13,11 @@ class PlayerCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var usernameLabel: UILabel!
     @IBOutlet private weak var profileImageView: UIImageView!
 
+    // Disable function until bug is fixed
     func setCircularShape() {
-        profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.height
-        profileImageView.clipsToBounds = true
+
+//        profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.height
+//        profileImageView.clipsToBounds = true
     }
 
     func setDefaultImage() {

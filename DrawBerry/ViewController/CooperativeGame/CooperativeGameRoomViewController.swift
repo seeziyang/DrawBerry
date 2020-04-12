@@ -67,7 +67,9 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     /// Reloads the collection view when a player joins or leave the room.
     func playersDidUpdate() {
-        playersCollectionView.reloadData()
+        if room.didPlayersCountChange ?? true {
+            playersCollectionView.reloadData()
+        }
         configureStartButton()
     }
 
@@ -112,9 +114,7 @@ extension CooperativeGameRoomViewController: UICollectionViewDataSource {
         }
 
         let player = room.players[indexPath.row]
-
-        // Truncate uid for testing
-        let username = String(player.name.prefix(10))
+        let username = player.name
 
         UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
 

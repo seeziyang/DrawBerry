@@ -11,10 +11,17 @@ import XCTest
 
 class AuthenticationTests: XCTestCase {
     let validEmail = "admin1@drawberry.com"
-    let invalidEmail = "admin@com"
     let validPassword = "password1"
-    let invalidPassword = "a123"
     let validUsername = "Admin"
+
+    // wrong format
+    let invalidEmail = "admin@com"
+
+    // username too long
+    let invalidUsername = "Admin!@#$%^&*"
+
+    // password too short
+    let invalidPassword = "a123"
 
     func testLoginSuccess() {
         let expectation = self.expectation(description: "Login")
@@ -43,12 +50,20 @@ class AuthenticationTests: XCTestCase {
         XCTAssertTrue(stub.result!)
     }
 
-    /*
     func testSignupFailure_existingAccount() {
         let expectation = self.expectation(description: "Signup")
         let stub = AuthenticationUpdateDelegateStub(expectation: expectation)
         Authentication.delegate = stub
         Authentication.signUp(username: validUsername, email: validEmail, password: validPassword)
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertFalse(stub.result!)
+    }
+
+    func testSignupFailure_invalidUsername() {
+        let expectation = self.expectation(description: "Signup")
+        let stub = AuthenticationUpdateDelegateStub(expectation: expectation)
+        Authentication.delegate = stub
+        Authentication.signUp(username: invalidUsername, email: validEmail, password: validPassword)
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertFalse(stub.result!)
     }
@@ -70,7 +85,6 @@ class AuthenticationTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertFalse(stub.result!)
     }
-    */
 
 }
 

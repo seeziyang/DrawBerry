@@ -1,0 +1,25 @@
+//
+//  TeamBattlePlayer.swift
+//  DrawBerry
+//
+//  Created by Calvin Chen on 8/4/20.
+//  Copyright © 2020 DrawBerry. All rights reserved.
+//
+
+import UIKit
+
+class TeamBattlePlayer: ComparablePlayer {
+    var isRoomMaster: Bool
+    var points: Int
+
+    init(name: String, uid: String, isRoomMaster: Bool, points: Int = 0) {
+        self.isRoomMaster = isRoomMaster
+        self.points = points
+        super.init(name: name, uid: uid)
+    }
+
+    convenience init(from roomPlayer: RoomPlayer) {
+        self.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
+    }
+
+}
