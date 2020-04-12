@@ -11,9 +11,9 @@ import UIKit
 struct PowerupManager {
     static let POWERUP_PROBABILITY = 0.009_5
     static let POWERUP_RADIUS: CGFloat = 20
-    static let ALL_POWERUPS: [Powerup.Type] = [HideDrawingPowerup.self, InvulnerabilityPowerup.self]
-                                               //ExtraStrokePowerup.self, InkSplotchPowerup.self,
-                                               //EarthquakePowerup.self]
+    static let ALL_POWERUPS: [Powerup.Type] = [HideDrawingPowerup.self, InvulnerabilityPowerup.self,
+                                               ExtraStrokePowerup.self, InkSplotchPowerup.self,
+                                               EarthquakePowerup.self]
 
     var allAvailablePowerups = [Powerup]()
     var powerupsToAdd = [Powerup]()

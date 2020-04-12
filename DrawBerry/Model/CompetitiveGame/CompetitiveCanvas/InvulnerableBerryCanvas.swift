@@ -10,6 +10,7 @@ import UIKit
 
 class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
     var decoratedCanvas: CompetitiveCanvas?
+    var defaultRotationValue: CGFloat = 0
 
     required init?(coder: NSCoder) {
         nil
@@ -29,7 +30,10 @@ class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
     }
 
     func rotateCanvas(by rotationValue: CGFloat) {
-        // Does nothing because the user is invulnerable
+        guard let rotation = decoratedCanvas?.transform.rotated(by: defaultRotationValue) else {
+            return
+        }
+        decoratedCanvas?.transform = rotation
     }
 
     func hideDrawing() {

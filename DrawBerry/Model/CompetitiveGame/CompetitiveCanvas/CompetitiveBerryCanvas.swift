@@ -10,6 +10,7 @@ import UIKit
 
 class CompetitiveBerryCanvas: BerryCanvas, CompetitiveCanvas {
     var decoratedCanvas: CompetitiveCanvas?
+    var defaultRotationValue: CGFloat = 0
 
     required init?(coder: NSCoder) {
         nil

@@ -10,6 +10,7 @@ import UIKit
 
 protocol CompetitiveCanvas: Canvas {
     var decoratedCanvas: CompetitiveCanvas? { get set }
+    var defaultRotationValue: CGFloat { get set }
 
     func addInkSplotch()
     func rotateCanvas(by rotationValue: CGFloat)

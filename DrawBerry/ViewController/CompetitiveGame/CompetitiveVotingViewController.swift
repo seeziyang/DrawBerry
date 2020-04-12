@@ -252,7 +252,6 @@ class CompetitiveVotingViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let competitiveVC = segue.destination as? CompetitiveViewController {
             competitiveVC.competitiveGame = currentGame
-            // TODO: Extension for best drawing?
         }
     }
 

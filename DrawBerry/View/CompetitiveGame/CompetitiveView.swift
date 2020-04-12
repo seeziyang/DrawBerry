@@ -16,6 +16,7 @@ class CompetitiveView: UIView {
     private var powerupViews = Set<PowerupView>()
 
     func setupViews(name: String, currentRound: Int, maxRounds: Int, score: Int) {
+        self.isUserInteractionEnabled = false
         setupTimeLeftText()
         setupStatusView()
         setupPlayerInfoView(name, currentRound, maxRounds, score)
