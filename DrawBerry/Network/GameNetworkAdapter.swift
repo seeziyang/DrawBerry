@@ -34,6 +34,7 @@ class GameNetworkAdapter {
             .child("rounds")
             .child("round\(round)")
             .child("hasUploadedImage")
+
         let cloudPathRef = cloud.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -174,7 +175,8 @@ class GameNetworkAdapter {
                            completionHandler: @escaping (String) -> Void) {
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
-            .child(roomCode.value).child("players")
+            .child(roomCode.value)
+            .child("players")
             .child(playerUID)
             .child("rounds")
             .child("round\(round)")
@@ -214,5 +216,59 @@ class GameNetworkAdapter {
         for round in 0..<numRounds {
             cloudPathRef.child("\(round).png").delete()
         }
+    }
+
+    func waitAndDownloadTeamResult(playerUID: String,
+                                   completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(playerUID)
+            .child("hasTeamResult")
+
+        dbPathRef.observe(.value, with: { snapshot in
+            guard snapshot.value as? Bool ?? false else { // result not ready
+                return
+            }
+
+            self.downloadTeamResult(playerUID: playerUID, completionHandler: completionHandler)
+
+            //dbPathRef.remove// remove observer after downloading image
+        })
+    }
+
+    private func downloadTeamResult(playerUID: String, completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(playerUID)
+            .child("teamResult")
+
+        dbPathRef.observe(.value, with: { snapshot in
+            guard let databaseDescription = snapshot.value as? String else { // result not ready
+                return
+            }
+
+            guard let result = TeamBattleTeamResult(databaseDescription: databaseDescription) else {
+                return
+            }
+
+            completionHandler(result)
+
+            // dbPathRef.removeAllObservers() // remove observer after downloading image
+        })
+    }
+
+    func uploadTeamResult(result: TeamBattleTeamResult) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(result.resultID)
+
+        dbPathRef.child("teamResult").setValue(result.getDatabaseStorageDescription())
+        dbPathRef.child("hasTeamResult").setValue(true)
     }
 }
