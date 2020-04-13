@@ -11,17 +11,16 @@ import XCTest
 
 class ClassicGameTests: XCTestCase {
     static let roomCode = RoomCode(value: "abc123", type: GameRoomType.ClassicRoom)
-    var classicGame = ClassicGame(
-        from: GameRoom(roomCode: ClassicGameTests.roomCode),
-        networkAdapter: GameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
+    var classicGame = ClassicGame(from: GameRoom(roomCode: ClassicGameTests.roomCode))
 
+    /*
     override func setUp() {
         super.setUp()
 
         classicGame = ClassicGame(
             from: GameRoom(roomCode: ClassicGameTests.roomCode),
             networkAdapter: GameNetworkAdapterStub(roomCode: ClassicGameTests.roomCode))
-    }
+    }*/
 
 //    func testConstruct() {
 //        let classicGame = ClassicGame(

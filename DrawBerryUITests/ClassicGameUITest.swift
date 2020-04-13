@@ -10,7 +10,7 @@ import Firebase
 import FBSnapshotTestCase
 @testable import DrawBerry
 
-class ClassicGameUITest: DrawBerryUITest {
+class ClassicGameUITest: EnterRoomUITest {
     static var adapter: RoomNetworkAdapter!
     static let testRoomCode = RoomCode(value: "testroom", type: .ClassicRoom)
     override static func setUp() {
@@ -179,6 +179,41 @@ class ClassicGameUITest: DrawBerryUITest {
 
         verifyAppCurrentScreen(app: app)
     }
+
+    func testCompleteDrawing_onePlayer() {
+        let app = initialiseAppMoveToClassicCanvas()
+        let palette = getPalette(from: app)
+        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
+        palette.children(matching: .image).element(boundBy: 2).tap()
+        palette.children(matching: .image).element(boundBy: 5).tap()
+        canvasScrollView.swipeRight()
+        palette.children(matching: .image).element(boundBy: 1).tap()
+        palette.children(matching: .image).element(boundBy: 4).tap()
+        canvasScrollView.swipeDown()
+
+        app.buttons["Done"].tap()
+        sleep(2)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
+
+    func testCompleteDrawing_twoPlayer() {
+        let app = initialiseAppToEnterRoomScreen(type: ClassicGameUITest.testRoomCode.type)
+        createRoom(app: app, roomCode: ClassicGameUITest.testRoomCode)
+        addSecondPlayer()
+        startGame(app: app, roomCode: ClassicGameUITest.testRoomCode)
+        let palette = getPalette(from: app)
+        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
+        palette.children(matching: .image).element(boundBy: 2).tap()
+        palette.children(matching: .image).element(boundBy: 5).tap()
+        canvasScrollView.swipeRight()
+        palette.children(matching: .image).element(boundBy: 1).tap()
+        palette.children(matching: .image).element(boundBy: 4).tap()
+        canvasScrollView.swipeDown()
+
+        app.buttons["Done"].tap()
+        sleep(2)
+        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+    }
 }
 
 extension XCUIElement {
@@ -196,43 +231,17 @@ extension XCUIElement {
 }
 
 extension ClassicGameUITest {
-    // Helper methods
-    private func initialiseAppMoveToClassicCanvas() -> XCUIApplication {
-        let app = XCUIApplication()
-        app.launch()
-        if isLoginPage(app: app) {
-            attemptLogin(app: app)
-        }
-        app.buttons["Classic"].tap()
-        let roomCodeTextField = app.textFields["Room Code"]
-        roomCodeTextField.tap()
-        roomCodeTextField.typeText("testroom")
-        let createButton = app.buttons["Create"]
-        createButton.tap()
-        app.navigationBars["testroom"].buttons["Start"].tap()
+    private func addSecondPlayer() {
+        RoomNetworkAdapterStub(roomCode: ClassicGameUITest.testRoomCode)
+            .joinRoom(userID: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2", username: "admin2")
         sleep(3)
+    }
+
+    private func initialiseAppMoveToClassicCanvas() -> XCUIApplication {
+        let app = initialiseAppToEnterRoomScreen(type: ClassicGameUITest.testRoomCode.type)
+        createRoom(app: app, roomCode: ClassicGameUITest.testRoomCode)
+        startGame(app: app, roomCode: ClassicGameUITest.testRoomCode)
         return app
-    }
-
-    private func attemptLogin(app: XCUIElement) {
-        let emailTextField = app.textFields["Email"]
-        let passwordSecureTextField = app.secureTextFields["password"]
-        emailTextField.tap()
-        emailTextField.clearText()
-        passwordSecureTextField.tap()
-        emailTextField.tap()
-        emailTextField.clearText()
-        app.textFields["Email"].typeText("admin1@drawberry.com")
-
-        passwordSecureTextField.tap()
-        passwordSecureTextField.clearText()
-        passwordSecureTextField.typeText("password1")
-
-        app.buttons["login"].tap()
-    }
-
-    private func isLoginPage(app: XCUIElement) -> Bool {
-        app.buttons["Login"].exists
     }
 
     private func getPalette(from app: XCUIApplication) -> XCUIElement {

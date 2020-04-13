@@ -10,7 +10,7 @@ import Firebase
 import FBSnapshotTestCase
 @testable import DrawBerry
 
-class CooperativeGameUITest: DrawBerryUITest {
+class CooperativeGameUITest: EnterRoomUITest {
     static var adapter: RoomNetworkAdapter!
     static let testRoomCode = RoomCode(value: "testroom", type: .CooperativeRoom)
     override static func setUp() {
@@ -29,29 +29,29 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testCooperativeGameUILayout_threePlayers() {
-        let app = initialiseAppMoveToWaitingRoom()
+        let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
+        createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         addSecondPlayer()
         addThirdPlayer()
-        startGame(app: app)
+        startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         verifyAppCurrentScreen(app: app)
     }
 
     func testCooperativeGameUILayout_twoPlayers() {
-        let app = initialiseAppMoveToWaitingRoom()
+        let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
+        createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         addSecondPlayer()
-        startGame(app: app)
+        startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         verifyAppCurrentScreen(app: app)
     }
 
     func testCooperativeGameUILayout_onePlayer() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         verifyAppCurrentScreen(app: app)
     }
 
     func testDraw() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
 
         let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
         canvasScrollView.swipeRight()
@@ -66,8 +66,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testUndo() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
 
         // verify empty canvas first
         verifyAppCurrentScreen(app: app)
@@ -82,8 +81,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testSelectBlackInk() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 0).tap()
 
@@ -91,8 +89,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testSelectBlueInk() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 1).tap()
 
@@ -100,8 +97,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testSelectRedInk() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         // Select thick stroke to vary stroke from previous tests
         palette.children(matching: .image).element(boundBy: 5).tap()
@@ -111,8 +107,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testTapEraser() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         // Select random color and stroke first
         palette.children(matching: .image).element(boundBy: 5).tap()
@@ -124,8 +119,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testSelectThinStroke() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         // Select blue ink to vary color from previous tests
         palette.children(matching: .image).element(boundBy: 1).tap()
@@ -135,8 +129,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testSelectMediumStroke() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         // Select blue ink to vary color from previous tests
         palette.children(matching: .image).element(boundBy: 2).tap()
@@ -146,8 +139,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testSelectThickStroke() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 5).tap()
 
@@ -155,8 +147,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testDrawBlueInk() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 1).tap()
         let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
@@ -166,8 +157,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testTapEraserThenThickStroke() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         // Select random color and stroke first
         palette.children(matching: .image).element(boundBy: 5).tap()
@@ -180,8 +170,7 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testTapEraserThenBlueInk() {
-        let app = initialiseAppMoveToWaitingRoom()
-        startGame(app: app)
+        let app = initialiseAppMoveToCooperativeGame()
         let palette = getPalette(from: app)
         // Select random color and stroke first
         palette.children(matching: .image).element(boundBy: 5).tap()
@@ -194,9 +183,10 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testTwoPlayer_completeFirstDrawing() {
-        let app = initialiseAppMoveToWaitingRoom()
+        let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
+        createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         addSecondPlayer()
-        startGame(app: app)
+        startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 5).tap() // selecting thick stroke
         let canvas = app.scrollViews.children(matching: .other).element(boundBy: 0)
@@ -207,9 +197,10 @@ class CooperativeGameUITest: DrawBerryUITest {
     }
 
     func testTwoPlayer_drawOutsideBounds() {
-        let app = initialiseAppMoveToWaitingRoom()
+        let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
+        createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         addSecondPlayer()
-        startGame(app: app)
+        startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 5).tap() // selecting thick stroke
         let canvas = app.scrollViews.children(matching: .other).element(boundBy: 0)
@@ -219,19 +210,10 @@ class CooperativeGameUITest: DrawBerryUITest {
 }
 
 extension CooperativeGameUITest {
-    private func initialiseAppMoveToWaitingRoom() -> XCUIApplication {
-        let app = XCUIApplication()
-        app.launch()
-        if isLoginPage(app: app) {
-            attemptLogin(app: app)
-        }
-        app.buttons["Cooperative"].tap()
-        let roomCodeTextField = app.textFields["Room Code"]
-        roomCodeTextField.tap()
-        roomCodeTextField.typeText("testroom")
-        let createButton = app.buttons["Create"]
-        createButton.tap()
-        sleep(3)
+    private func initialiseAppMoveToCooperativeGame() -> XCUIApplication {
+        let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
+        createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
+        startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         return app
     }
 
@@ -245,37 +227,6 @@ extension CooperativeGameUITest {
         RoomNetworkAdapterStub(roomCode: CooperativeGameUITest.testRoomCode)
             .joinRoom(userID: "KPXfiOZ5XxY4QHvGvYqSvaemTFj2", username: "admin3")
         sleep(3)
-    }
-
-    private func startGame(app: XCUIApplication) {
-        app.navigationBars["Players"].buttons["Start"].tap()
-        sleep(5)
-    }
-
-    private func attemptLogin(app: XCUIElement) {
-        attemptLogin(app: app, email: "admin1@drawberry.com", password: "password1")
-    }
-
-    private func attemptLogin(app: XCUIElement, email: String, password: String) {
-        let emailTextField = app.textFields["Email"]
-        let passwordSecureTextField = app.secureTextFields["password"]
-
-        emailTextField.tap()
-        emailTextField.clearText()
-        passwordSecureTextField.tap()
-        emailTextField.tap()
-        emailTextField.clearText()
-        app.textFields["Email"].typeText(email)
-
-        passwordSecureTextField.tap()
-        passwordSecureTextField.clearText()
-        passwordSecureTextField.typeText(password)
-
-        app.buttons["login"].tap()
-    }
-
-    private func isLoginPage(app: XCUIElement) -> Bool {
-        app.buttons["Login"].exists
     }
 
     private func getPalette(from app: XCUIApplication) -> XCUIElement {

@@ -78,7 +78,10 @@ class DrawingViewController: CooperativeGameViewController {
 
     /// Creates the mask to highlight the drawable areas for the current user.
     private func createMask() {
-        let drawingSpaceOrigin = CGPoint(x: 0, y: CGFloat(cooperativeGame.userIndex) * drawingSpaceHeight)
+        guard let userIndex = cooperativeGame.getIndex(of: cooperativeGame.user) else {
+            return
+        }
+        let drawingSpaceOrigin = CGPoint(x: 0, y: CGFloat(userIndex) * drawingSpaceHeight)
         canvas.drawableArea = CGRect(
             x: drawingSpaceOrigin.x,
             y: drawingSpaceOrigin.y,

@@ -8,23 +8,28 @@
 
 import UIKit
 
-class CooperativePlayer: ComparablePlayer {
-    var index: Int
+class CooperativePlayer: ComparablePlayer, MultiplayerPlayer {
     var isRoomMaster: Bool
-    var drawingImage: UIImage?
+    private var drawingImage: UIImage?
 
-    init(name: String, uid: String, isRoomMaster: Bool, index: Int) {
+    init(name: String, uid: String, isRoomMaster: Bool) {
         self.isRoomMaster = isRoomMaster
-        self.index = index
         super.init(name: name, uid: uid)
     }
 
-    convenience init(from roomPlayer: RoomPlayer, index: Int) {
+    convenience init(from roomPlayer: RoomPlayer) {
         self.init(
             name: roomPlayer.name,
             uid: roomPlayer.uid,
-            isRoomMaster: roomPlayer.isRoomMaster,
-            index: index
+            isRoomMaster: roomPlayer.isRoomMaster
         )
+    }
+
+    func addDrawing(image: UIImage) {
+        drawingImage = image
+    }
+
+    func getDrawingImage() -> UIImage? {
+        drawingImage
     }
 }

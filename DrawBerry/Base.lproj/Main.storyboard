@@ -647,6 +647,7 @@
                     <navigationItem key="navigationItem" id="Z9G-Lf-f1A"/>
                     <connections>
                         <outlet property="playersCollectionView" destination="bUj-f5-ikZ" id="lvb-Pv-bXi"/>
+                        <outlet property="roomCodeLabel" destination="SPI-21-lFS" id="M1J-Q2-KO7"/>
                         <outlet property="startButton" destination="JI3-iw-NvF" id="Rdu-eU-fba"/>
                         <segue destination="27I-Q5-ZWl" kind="show" identifier="segueToCooperativeGame" id="yOx-SV-Vc5"/>
                         <segue destination="uMC-2e-j9F" kind="presentation" identifier="segueCoopToPlayerProfile" id="9o1-fk-ENI"/>
@@ -723,11 +724,11 @@
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="uMC-2e-j9F" customClass="UserProfileViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4nK-Yi-d2A">
-                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iot-r1-mEX">
-                                <rect key="frame" x="0.0" y="330" width="712" height="654"/>
+                                <rect key="frame" x="0.0" y="330" width="768" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N7W-EB-2tC">
                                     <size key="itemSize" width="391" height="344"/>
@@ -737,7 +738,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="ZoJ-6P-z4c" customClass="ImageCollectionViewCell" customModule="DrawBerry" customModuleProvider="target">
-                                        <rect key="frame" x="160.5" y="0.0" width="391" height="344"/>
+                                        <rect key="frame" x="188.5" y="0.0" width="391" height="344"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yS7-GJ-l21">
                                             <rect key="frame" x="0.0" y="0.0" width="391" height="344"/>
@@ -762,10 +763,10 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaQ-jq-KKR">
-                                <rect key="frame" x="0.0" y="0.0" width="712" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="330"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOo-ji-nSv">
-                                        <rect key="frame" x="200" y="100" width="312" height="130"/>
+                                        <rect key="frame" x="200" y="100" width="368" height="130"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1754,11 +1755,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="yOx-SV-Vc5"/>
         <segue reference="yfi-lF-uTa"/>
         <segue reference="aYW-Q6-A9x"/>
         <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
-        <segue reference="lzf-gF-2yn"/>
+        <segue reference="Gg7-CT-DLI"/>
         <segue reference="9o1-fk-ENI"/>
     </inferredMetricsTieBreakers>
     <resources>

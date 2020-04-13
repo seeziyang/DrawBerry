@@ -12,8 +12,9 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBOutlet private weak var playersCollectionView: UICollectionView!
     @IBOutlet private weak var startButton: UIBarButtonItem!
+    @IBOutlet private weak var roomCodeLabel: UINavigationItem!
 
-    var room: GameRoom!
+    var room: CooperativeGameRoom!
     private var currentViewingPlayerID: String?
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
@@ -38,6 +39,8 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     override func viewDidLoad() {
         playersCollectionView.delegate = self
         playersCollectionView.dataSource = self
+        
+        roomCodeLabel.title = room.roomCode.value
         super.viewDidLoad()
     }
 
