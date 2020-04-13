@@ -60,7 +60,7 @@ extension VoteResultsViewController: UICollectionViewDataSource {
             fatalError("Unable to get reusable cell.")
         }
 
-        let player = classicGame.players[indexPath.row]
+        let player = classicGame.classicPlayers[indexPath.row]
 
         cell.backgroundColor = player === classicGame.roundMaster ? .systemOrange : .systemYellow
 

@@ -8,9 +8,7 @@
 
 import UIKit
 
-class TeamBattleGame: Game {
-    let networkAdapter: GameNetworkAdapter
-    let roomCode: RoomCode
+class TeamBattleGame: NetworkGame {
     let maxRounds = 3
     var players = [TeamBattlePlayer]()
     var teams = [TeamBattlePair]()
@@ -33,13 +31,10 @@ class TeamBattleGame: Game {
     private(set) var currentRound: Int
 
     convenience init(from room: GameRoom) {
-        self.init(from: room, networkAdapter: GameNetworkAdapter(roomCode: room.roomCode))
+        self.init(from: room, networkAdapter: GameNetworkAdapter(roomCode: room.roomCode))!
     }
 
-    init(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
-        self.roomCode = room.roomCode
-        self.networkAdapter = networkAdapter
-
+    init?(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
         // Even indices players draws
         let drawerIndices = Array(stride(from: 0, to: room.players.count, by: 2))
 
@@ -52,10 +47,10 @@ class TeamBattleGame: Game {
         }
         self.gameResult = TeamBattleGameResult(numberOfTeams: teams.count)
 
-        self.userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-        ?? 0
+        self.userIndex = players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? 0
 
         self.currentRound = 1
+        super.init(from: room.roomCode, networkAdapter: networkAdapter)
     }
 
     func incrementRound() {
@@ -64,7 +59,7 @@ class TeamBattleGame: Game {
 
     /// Uploads drawer's drawing to db
     func addTeamDrawing(image: UIImage) {
-        networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
+        upload(image: image, for: currentRound)
     }
 
     func observeTeamDrawing() {
@@ -73,15 +68,15 @@ class TeamBattleGame: Game {
         }
 
         for round in 1...maxRounds {
-            networkAdapter.waitAndDownloadPlayerDrawing(
-                playerUID: id, forRound: round,
-                completionHandler: { [weak self] image in
-                    self?.delegate?.updateDrawing(image, for: round)
-                }
-            )
+            observe(uid: id, for: round, completionHandler: { [weak self] image in
+                self?.delegate?.updateDrawing(image, for: round)
+            })
         }
     }
+}
 
+/// Extensions to network interface
+extension TeamBattleGame {
     func addTeamResult(result: TeamBattleTeamResult) {
         networkAdapter.uploadTeamResult(result: result)
     }
@@ -102,6 +97,6 @@ class TeamBattleGame: Game {
     }
 
     func endGame() {
-        networkAdapter.endGame(isRoomMaster: user.isRoomMaster, numRounds: maxRounds)
+        endGame(isRoomMaster: user.isRoomMaster, numRounds: maxRounds)
     }
 }

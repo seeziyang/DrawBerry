@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClassicPlayer: ComparablePlayer {
+class ClassicPlayer: ComparablePlayer, MultiplayerPlayer {
     var isRoomMaster: Bool
     var points: Int
     private var drawingImages: [UIImage]

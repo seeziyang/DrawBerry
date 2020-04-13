@@ -70,6 +70,10 @@ class GameRoom {
         })
     }
 
+    func createPlayer(from player: RoomPlayer) -> MultiplayerPlayer {
+       fatalError("This function must be overriden")
+    }
+
     func startGame() {
         roomNetworkAdapter.startGame(isRapid: isRapid)
     }

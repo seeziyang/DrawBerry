@@ -7,47 +7,18 @@
 //
 import UIKit
 
-class CooperativeGame: Game {
+class CooperativeGame: MultiplayerNetworkGame {
     weak var delegate: CooperativeGameDelegate?
     weak var viewingDelegate: CooperativeGameViewingDelegate?
-    let networkAdapter: GameNetworkAdapter
-    let roomCode: RoomCode
-    var allDrawings: [UIImage] = []
-    private(set) var players: [CooperativePlayer] {
-        didSet {
-            players.sort()
-        }
-    }
-    let userIndex: Int
-    var user: CooperativePlayer {
-        players[userIndex]
-    }
-    private(set) var currentRound: Int
     var isFirstPlayer: Bool {
-        userIndex == 0
+        players[0] == user
+    }
+    var cooperativePlayers: [CooperativePlayer] {
+        players.compactMap { $0 as? CooperativePlayer }
     }
 
-    convenience init(from room: GameRoom) {
-        self.init(from: room, networkAdapter: GameNetworkAdapter(roomCode: room.roomCode))
-    }
-
-    init(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
-        self.roomCode = room.roomCode
-        self.networkAdapter = networkAdapter
-        let sortedRoomPlayers = room.players.sorted()
-        self.players = []
-        for i in 0..<sortedRoomPlayers.count {
-            self.players.append(CooperativePlayer(from: sortedRoomPlayers[i], index: i))
-        }
-        self.userIndex = self.players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? 0
-        self.currentRound = 1
-    }
-
-    /// Adds a `UIImage` to the associated user.
-    func addUsersDrawing(image: UIImage) {
-        user.drawingImage = image
-        networkAdapter.uploadUserDrawing(image: image, forRound: currentRound)
+    init(from room: GameRoom) {
+        super.init(from: room, maxRounds: 1)
     }
 
     /// Download drawings of players before the user.
@@ -55,20 +26,25 @@ class CooperativeGame: Game {
         if isFirstPlayer {
             return
         }
-        let previousPlayers = players.filter { $0.index < userIndex }
+        guard let userIndex = getIndex(of: user) else {
+            return
+        }
+        let previousPlayers = cooperativePlayers.filter { getIndex(of: $0) ?? 0 < userIndex }
         previousPlayers.forEach { downloadDrawing(of: $0) }
     }
 
     /// Downloads the subsequent drawings by observing for uploads.
     func downloadSubsequentDrawings() {
-        let futurePlayers = players.filter { $0.index >= userIndex }
+        guard let userIndex = getIndex(of: user) else {
+            return
+        }
+        let futurePlayers = cooperativePlayers.filter { getIndex(of: $0) ?? 0 >= userIndex }
         futurePlayers.forEach { downloadDrawing(of: $0) }
     }
 
     /// Downloads the drawing of the given player once it is available.
     private func downloadDrawing(of player: CooperativePlayer) {
-        networkAdapter.waitAndDownloadPlayerDrawing(
-            playerUID: player.uid, forRound: currentRound, completionHandler: { [weak self] image in
+        observe(player: player, for: currentRound, completionHandler: { [weak self] image in
                 self?.allDrawings.append(image)
                 self?.navigateIfUserIsNextPlayer(currentPlayer: player)
                 self?.viewingDelegate?.updateDrawings()
@@ -79,7 +55,11 @@ class CooperativeGame: Game {
 
     /// Navigates to the drawing screen if user is the next player.
     private func navigateIfUserIsNextPlayer(currentPlayer: CooperativePlayer) {
-        if currentPlayer.index + 1 == userIndex {
+        guard let currentPlayerIndex = getIndex(of: currentPlayer),
+            let userIndex = getIndex(of: user) else {
+                return
+        }
+        if currentPlayerIndex + 1 == userIndex {
             self.delegate?.changeMessageToGetReady()
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.delegate?.navigateToDrawingPage()
@@ -89,13 +69,16 @@ class CooperativeGame: Game {
 
     /// Navigates to the end screen if user is the last player.
     private func navigateIfPlayerIsLast(currentPlayer: CooperativePlayer) {
-        if currentPlayer.index + 1 == players.count {
+        guard let currentPlayerIndex = getIndex(of: currentPlayer) else {
+            return
+        }
+        if currentPlayerIndex + 1 == players.count {
             self.viewingDelegate?.navigateToEndPage()
         }
     }
 
     /// Ends the game in the network.
     func endGame() {
-        networkAdapter.endGame(isRoomMaster: user.isRoomMaster, numRounds: currentRound)
+        endGame(isRoomMaster: user.isRoomMaster, numRounds: currentRound)
     }
 }
