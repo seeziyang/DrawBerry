@@ -23,11 +23,8 @@ class CompetitiveVotingViewController: UIViewController {
         assert(drawingList.count == 4, "Player count should be 4")
 
         let defaultSize = CGSize(width: self.view.bounds.width / 2, height: self.view.bounds.height / 2)
-
-        let minX = self.view.bounds.minX
-        let maxX = self.view.bounds.maxX
-        let minY = self.view.bounds.minY
-        let maxY = self.view.bounds.maxY
+        let minX = self.view.bounds.minX, maxX = self.view.bounds.maxX,
+            minY = self.view.bounds.minY, maxY = self.view.bounds.maxY
 
         var playerNum = 0
 
@@ -97,9 +94,7 @@ class CompetitiveVotingViewController: UIViewController {
         }
 
         removeAllDrawings()
-        for view in drawingViews.values {
-            view.showResultText(text: rankingText)
-        }
+        drawingViews.values.forEach { $0.showResultText(text: rankingText) }
     }
 
     /// Removes all drawings from views.

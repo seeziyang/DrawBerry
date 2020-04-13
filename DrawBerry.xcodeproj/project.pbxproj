@@ -164,6 +164,7 @@
 		FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */; };
 		FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */; };
 		FC1D8D6D2421FEFD00370EC4 /* PowerupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */; };
+		FC3582382444A6430080ACB3 /* CompetitiveNameEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3582372444A6430080ACB3 /* CompetitiveNameEntryViewController.swift */; };
 		FC3C3BA72442DC67009AD0D6 /* CompetitiveCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BA62442DC67009AD0D6 /* CompetitiveCanvas.swift */; };
 		FC3C3BA92442DC98009AD0D6 /* CompetitiveBerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BA82442DC98009AD0D6 /* CompetitiveBerryCanvas.swift */; };
 		FC3C3BAB2442ED5B009AD0D6 /* InvulnerableBerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BAA2442ED5B009AD0D6 /* InvulnerableBerryCanvas.swift */; };
@@ -337,6 +338,7 @@
 		FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveGameTests.swift; sourceTree = "<group>"; };
 		FC1D8D6A2421CE5600370EC4 /* PowerupAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupAssets.swift; sourceTree = "<group>"; };
 		FC1D8D6C2421FEFD00370EC4 /* PowerupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerupView.swift; sourceTree = "<group>"; };
+		FC3582372444A6430080ACB3 /* CompetitiveNameEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveNameEntryViewController.swift; sourceTree = "<group>"; };
 		FC3C3BA62442DC67009AD0D6 /* CompetitiveCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveCanvas.swift; sourceTree = "<group>"; };
 		FC3C3BA82442DC98009AD0D6 /* CompetitiveBerryCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitiveBerryCanvas.swift; sourceTree = "<group>"; };
 		FC3C3BAA2442ED5B009AD0D6 /* InvulnerableBerryCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvulnerableBerryCanvas.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			children = (
 				FC488987241C7C4D00375140 /* CompetitiveViewController.swift */,
 				FC6CB97C243607C90049D597 /* CompetitiveVotingViewController.swift */,
+				FC3582372444A6430080ACB3 /* CompetitiveNameEntryViewController.swift */,
 			);
 			path = CompetitiveGame;
 			sourceTree = "<group>";
@@ -1139,6 +1142,7 @@
 				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
 				3EBFFEA0243D8AC6002675B3 /* TeamBattleTeamResult.swift in Sources */,
 				FC6CB97D243607C90049D597 /* CompetitiveVotingViewController.swift in Sources */,
+				FC3582382444A6430080ACB3 /* CompetitiveNameEntryViewController.swift in Sources */,
 				1A4C5F252422619500937244 /* GameNetworkAdapter.swift in Sources */,
 				3EA22E202425F6B50065C426 /* AuthenticationUpdateDelegate.swift in Sources */,
 				FCEC3BE62417941600F0DE03 /* AppDelegate.swift in Sources */,

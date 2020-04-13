@@ -11,6 +11,7 @@ import UIKit
 class CompetitiveViewController: CanvasDelegateViewController {
     private var competitiveViews: [CompetitivePlayer: CompetitiveView] = [:]
     var competitiveGame = CompetitiveGame()
+    var playerNames = [String]()
 
     private var powerupManager = PowerupManager() {
         didSet {
@@ -144,7 +145,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
                 let newPlayer: CompetitivePlayer
                 if competitiveGame.players.count < 4 {
-                    newPlayer = CompetitivePlayer(name: "Player \(playerNum + 1)", canvasDrawing: canvas)
+                    newPlayer = CompetitivePlayer(name: playerNames[playerNum], canvasDrawing: canvas)
                     competitiveGame.players.append(newPlayer)
                 } else {
                     newPlayer = competitiveGame.players[playerNum]
