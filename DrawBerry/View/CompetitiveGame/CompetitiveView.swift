@@ -12,6 +12,7 @@ class CompetitiveView: UIView {
     private var timeLeftLabel = UITextView()
     private var statusViewLabel = UITextView()
     private var infoViewLabel = UITextView()
+    private var strokesLeftLabel = UITextView()
 
     private var powerupViews = Set<PowerupView>()
 
@@ -20,6 +21,7 @@ class CompetitiveView: UIView {
         setupTimeLeftText()
         setupStatusView()
         setupPlayerInfoView(name, currentRound, maxRounds, score)
+        setupStrokesLeftView()
     }
 
     private func setupTimeLeftText() {
@@ -70,6 +72,22 @@ class CompetitiveView: UIView {
         addSubview(infoViewLabel)
     }
 
+    private func setupStrokesLeftView() {
+        let width = 800, height = 50, size = 20, resultFont = "MarkerFelt-Thin"
+        strokesLeftLabel = UITextView(frame: CGRect(x: bounds.midX - CGFloat(width / 2),
+                                                    y: bounds.midY + 80 - CGFloat(height / 2),
+                                                    width: CGFloat(width), height: CGFloat(height)),
+                                      textContainer: nil)
+        strokesLeftLabel.font = UIFont(name: resultFont, size: CGFloat(size))
+        strokesLeftLabel.textAlignment = NSTextAlignment.center
+        strokesLeftLabel.text = "Strokes Left: 1"
+        strokesLeftLabel.backgroundColor = UIColor.clear
+        strokesLeftLabel.isUserInteractionEnabled = false
+        strokesLeftLabel.alpha = 0.6
+
+        addSubview(strokesLeftLabel)
+    }
+
     func animateStatus(with text: String) {
         statusViewLabel.text = text
         statusViewLabel.alpha = 0.6
@@ -83,6 +101,11 @@ class CompetitiveView: UIView {
     func updateTimeLeftText(to text: String) {
         timeLeftLabel.text = text
         timeLeftLabel.setNeedsDisplay()
+    }
+
+    func updateStrokesLeft(to number: Int) {
+        strokesLeftLabel.text = "Strokes left: \(number)"
+        strokesLeftLabel.setNeedsDisplay()
     }
 
     func addPowerupToView(_ powerup: Powerup) {

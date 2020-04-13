@@ -21,6 +21,13 @@ class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
         super.init(canvas: canvas as? BerryCanvas ?? BerryCanvas())
     }
 
+    func getNumberOfStrokes() -> Int {
+        guard let innerCanvas = decoratedCanvas else {
+            return numberOfStrokes
+        }
+        return numberOfStrokes + innerCanvas.getNumberOfStrokes()
+    }
+
     static func decoratedCanvasFrom(canvas: CompetitiveCanvas) -> InvulnerableBerryCanvas? {
         InvulnerableBerryCanvas(bounds: canvas.bounds, canvas: canvas)
     }

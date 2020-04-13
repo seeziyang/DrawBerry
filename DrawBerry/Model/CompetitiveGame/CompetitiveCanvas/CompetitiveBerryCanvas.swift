@@ -20,6 +20,13 @@ class CompetitiveBerryCanvas: BerryCanvas, CompetitiveCanvas {
         super.init(frame: bounds)
     }
 
+    func getNumberOfStrokes() -> Int {
+        guard let innerCanvas = decoratedCanvas else {
+            return numberOfStrokes
+        }
+        return numberOfStrokes + innerCanvas.getNumberOfStrokes()
+    }
+
     /// Creates a `CompetitiveCanvas` with the given bounds.
     static func createCompetitiveCanvas(within bounds: CGRect) -> CompetitiveCanvas? {
         CompetitiveBerryCanvas(bounds: bounds)

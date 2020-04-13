@@ -56,44 +56,21 @@ class CompetitiveVotingViewController: UIViewController {
         }
     }
 
+    /// Assigns a vote from `playerWhoVoted` to the player `playerVotedFor`.
+    /// Gives 2 votes if the player's drawing was voted as the best and 1 vote if voted as the second best drawing.
     @objc func handleTap(sender: UITapGestureRecognizer) {
         guard let tappedView = sender.view as? DrawingView else {
             return
         }
 
-        let players = currentGame.players
         let playerWhoVoted = tappedView.player
         let playerVotedFor = tappedView.drawingArtist
+        let result = playerWhoVoted.voteFor(player: playerVotedFor)
 
-        vote(with: players, playerWhoVoted, playerVotedFor)
-    }
-
-    /// Assigns a vote from `playerWhoVoted` to the player `playerVotedFor`.
-    /// Gives 2 votes if the player's drawing was voted as the best and 1 vote if voted as the second best drawing.
-    private func vote(with players: [CompetitivePlayer], _ playerWhoVoted: CompetitivePlayer,
-                      _ playerVotedFor: CompetitivePlayer) {
         guard let playerVotingView = drawingViews[playerWhoVoted] else {
             return
         }
-
-        if playerWhoVoted.votesLeft <= 0 {
-            playerVotingView.updateText(to: Message.competitiveVotingUsedAllVotes)
-            return
-        } else if playerWhoVoted == playerVotedFor {
-            playerVotingView.updateText(to: Message.competitiveVotingCannotSelfVote)
-            return
-        } else if playerWhoVoted.hasVotedFor.contains(playerVotedFor) {
-            playerVotingView.updateText(to: Message.competitiveVotingAlreadyVoted)
-            return
-        }
-
-        playerVotingView.updateText(to: "You gave \(playerWhoVoted.votesLeft) vote(s) " +
-            "to \(playerVotedFor.name)")
-
-        playerVotedFor.votesGiven += playerWhoVoted.votesLeft
-        playerWhoVoted.hasVotedFor.insert(playerVotedFor)
-        playerWhoVoted.votesLeft -= 1
-
+        playerVotingView.updateText(to: result)
         checkAllPlayersDoneVoting()
     }
 
@@ -102,7 +79,6 @@ class CompetitiveVotingViewController: UIViewController {
     private func checkAllPlayersDoneVoting() {
         if currentGame.players.map({ $0.isDoneVoting }).allSatisfy({ $0 }) {
             collateVotesAndAssignScores()
-
             currentGame.nextRound()
             currentGame.players.forEach { $0.resetVotes() }
             showNextButtons()

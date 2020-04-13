@@ -12,6 +12,8 @@ protocol CompetitiveCanvas: Canvas {
     var decoratedCanvas: CompetitiveCanvas? { get set }
     var defaultRotationValue: CGFloat { get set }
 
+    func getNumberOfStrokes() -> Int
+    
     func addInkSplotch()
     func rotateCanvas(by rotationValue: CGFloat)
     func hideDrawing()

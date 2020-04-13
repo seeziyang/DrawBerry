@@ -54,12 +54,13 @@ class CompetitiveViewController: CanvasDelegateViewController {
         checkForPlayerStrokeOutOfBounds()
         checkNumberOfStrokesUsed()
         checkPowerupActivations()
+        updateStrokesLeftView()
     }
 
     /// Checks to see if all players are done with drawing
     private func checkForPlayersDoneWithDrawing() {
         for player in competitiveGame.players where
-            player.canvasDrawing.numberOfStrokes < CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
+            player.canvasDrawing.getNumberOfStrokes() < CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 return
         }
 
@@ -83,7 +84,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
     /// Checks to see if each player can continue drawing based on the number of strokes used.
     private func checkNumberOfStrokesUsed() {
         for player in competitiveGame.players {
-            if player.canvasDrawing.numberOfStrokes >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
+            if player.canvasDrawing.getNumberOfStrokes() >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 // Player has used their stroke, disable their canvas
                 player.canvasDrawing.isAbleToDraw = false
             } else {
@@ -115,6 +116,12 @@ class CompetitiveViewController: CanvasDelegateViewController {
         }
     }
 
+    private func updateStrokesLeftView() {
+        competitiveViews.forEach { player, canvas in
+            canvas.updateStrokesLeft(to: player.extraStrokes + 1 - player.canvasDrawing.getNumberOfStrokes())
+        }
+    }
+
     /// Draws the specified powerup description on the powerup's targets.
     private func drawDescriptionOnView(_ powerup: Powerup) {
         powerup.targets.forEach { competitiveViews[$0]?.animateStatus(with: powerup.description) }
@@ -141,6 +148,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
                     competitiveGame.players.append(newPlayer)
                 } else {
                     newPlayer = competitiveGame.players[playerNum]
+                    newPlayer.resetStrokes()
                     newPlayer.canvasDrawing = canvas
                 }
 

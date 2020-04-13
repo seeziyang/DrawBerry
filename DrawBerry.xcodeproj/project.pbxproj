@@ -179,6 +179,10 @@
 		FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC59CA45241E18C9004D50EF /* HideDrawingPowerup.swift */; };
 		FC62692E2436F8E6000AC2D2 /* CompetitiveVotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC62692D2436F8E6000AC2D2 /* CompetitiveVotingView.swift */; };
 		FC62692F2436F919000AC2D2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
+		FC6A83E1244446360046C7D3 /* InvulnerableBerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BAA2442ED5B009AD0D6 /* InvulnerableBerryCanvas.swift */; };
+		FC6A83E2244446570046C7D3 /* TeamBattleTeamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9F243D8AC6002675B3 /* TeamBattleTeamResult.swift */; };
+		FC6A83E3244446A40046C7D3 /* CompetitiveCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BA62442DC67009AD0D6 /* CompetitiveCanvas.swift */; };
+		FC6A83E4244446A70046C7D3 /* CompetitiveBerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BA82442DC98009AD0D6 /* CompetitiveBerryCanvas.swift */; };
 		FC6CB97D243607C90049D597 /* CompetitiveVotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6CB97C243607C90049D597 /* CompetitiveVotingViewController.swift */; };
 		FC8D95DE24236FFE00D7A563 /* InkSplotchPowerup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D95DD24236FFE00D7A563 /* InkSplotchPowerup.swift */; };
 		FCA298552425FA2C00AE1A83 /* PowerupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA298542425FA2C00AE1A83 /* PowerupTests.swift */; };
@@ -1182,6 +1186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				371F28CB2431F96B006852EE /* CooperativePlayerTests.swift in Sources */,
+				FC6A83E3244446A40046C7D3 /* CompetitiveCanvas.swift in Sources */,
 				FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */,
 				372CA57B242BC040000E1E71 /* RoomNetworkAdapter.swift in Sources */,
 				372CA58B242C2FD9000E1E71 /* RoomCodeTests.swift in Sources */,
@@ -1193,6 +1198,7 @@
 				3749D3B62426093500CE798F /* PaletteObserver.swift in Sources */,
 				3749D3B42426093000CE798F /* BerryPalette.swift in Sources */,
 				3749D3B0242608D400CE798F /* BerryCanvasTest.swift in Sources */,
+				FC6A83E1244446360046C7D3 /* InvulnerableBerryCanvas.swift in Sources */,
 				371F28C62430F37A006852EE /* CooperativeGameViewingDelegate.swift in Sources */,
 				371F28C72430F37C006852EE /* CooperativePlayer.swift in Sources */,
 				FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */,
@@ -1214,9 +1220,11 @@
 				3749D3B82426098E00CE798F /* InkView.swift in Sources */,
 				372CA57C242BC0A4000E1E71 /* RoomCode.swift in Sources */,
 				372CA581242BC147000E1E71 /* GameRoomStatus.swift in Sources */,
+				FC6A83E4244446A70046C7D3 /* CompetitiveBerryCanvas.swift in Sources */,
 				372CA588242BC2DE000E1E71 /* GameNetworkAdapter.swift in Sources */,
 				372CA57E242BC13E000E1E71 /* ClassicPlayer.swift in Sources */,
 				371F28C52430F377006852EE /* CooperativeGameDelegate.swift in Sources */,
+				FC6A83E2244446570046C7D3 /* TeamBattleTeamResult.swift in Sources */,
 				371F28C32430F2A7006852EE /* GameRoom.swift in Sources */,
 				1A953AD8243986B90016D481 /* Game.swift in Sources */,
 				FCA298662426196400AE1A83 /* HideDrawingPowerup.swift in Sources */,
@@ -1480,7 +1488,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = DrawBerryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1504,7 +1512,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W76H98A34A;
 				INFOPLIST_FILE = DrawBerryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
