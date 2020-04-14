@@ -13,7 +13,7 @@ class GameRoom {
     static let minStartablePlayers = 1 // for testing, change to 3 for game
 
     weak var delegate: GameRoomDelegate?
-    let roomNetworkAdapter: RoomNetworkAdapter
+    let roomNetwork: RoomNetwork
     let roomCode: RoomCode
     private(set) var isRapid: Bool
     private(set) var players: [RoomPlayer] { // synced with database
@@ -40,16 +40,16 @@ class GameRoom {
     }
 
     convenience init(roomCode: RoomCode) {
-        self.init(roomCode: roomCode, roomNetworkAdapter: RoomNetworkAdapter(roomCode: roomCode))
+        self.init(roomCode: roomCode, roomNetwork: FirebaseRoomNetworkAdapter(roomCode: roomCode))
     }
 
-    init(roomCode: RoomCode, roomNetworkAdapter: RoomNetworkAdapter) {
-        self.roomNetworkAdapter = roomNetworkAdapter
+    init(roomCode: RoomCode, roomNetwork: RoomNetwork) {
+        self.roomNetwork = roomNetwork
         self.roomCode = roomCode
         self.players = []
         self.isRapid = true
 
-        roomNetworkAdapter.observeRoomPlayers(listener: { [weak self] players in
+        roomNetwork.observeRoomPlayers(listener: { [weak self] players in
 
             if let previousPlayers = self?.players {
                 self?.didPlayersCountChange = (previousPlayers.count != players.count)
@@ -58,13 +58,13 @@ class GameRoom {
             self?.delegate?.playersDidUpdate()
         })
 
-        roomNetworkAdapter.observeGameStart(listener: { [weak self] hasStarted in
+        roomNetwork.observeGameStart(listener: { [weak self] hasStarted in
             if hasStarted {
                 self?.delegate?.gameHasStarted()
             }
         })
 
-        roomNetworkAdapter.observeIsRapidToggle(listener: { [weak self] isRapid in
+        roomNetwork.observeIsRapidToggle(listener: { [weak self] isRapid in
             self?.isRapid = isRapid
             self?.delegate?.isRapidDidUpdate(isRapid: isRapid)
         })
@@ -75,20 +75,20 @@ class GameRoom {
     }
 
     func startGame() {
-        roomNetworkAdapter.startGame(isRapid: isRapid)
+        roomNetwork.startGame(isRapid: isRapid)
     }
 
     func leaveRoom() {
         let isLastPlayer = players.count == 1
         if isLastPlayer {
-            roomNetworkAdapter.deleteRoom()
+            roomNetwork.deleteRoom()
         } else {
-            roomNetworkAdapter.leaveRoom(isRoomMaster: user?.isRoomMaster ?? false)
+            roomNetwork.leaveRoom(isRoomMaster: user?.isRoomMaster ?? false)
         }
     }
 
     func toggleIsRapid() {
         isRapid.toggle()
-        roomNetworkAdapter.setIsRapid(isRapid: isRapid)
+        roomNetwork.setIsRapid(isRapid: isRapid)
     }
 }

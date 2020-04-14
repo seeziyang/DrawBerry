@@ -8,7 +8,7 @@
 
 import Firebase
 
-class RoomNetwork {
+class FirebaseRoomNetworkAdapter: RoomNetwork {
 
     let db: DatabaseReference
     let roomCode: RoomCode
