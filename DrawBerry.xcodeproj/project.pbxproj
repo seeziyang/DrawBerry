@@ -541,18 +541,26 @@
 		1A432BDB241FC5CE0097A14F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1A4595D0244601BF009D447D /* FIrebase */,
 				1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */,
 				1A4595B82445B57F009D447D /* RoomEnteringNetwork.swift */,
-				1A41C6AE2439766B00BD7BF0 /* FirebaseRoomEnteringNetworkAdapter.swift */,
 				1A4595BA2445BC07009D447D /* RoomNetwork.swift */,
-				1A432BDE241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift */,
 				1A4595BC2445C25D009D447D /* GameNetwork.swift */,
-				1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */,
 				1A4595CE2445FEBB009D447D /* UserProfileNetwork.swift */,
-				3E64DA732430F5AF00C1473A /* FirebaseUserProfileNetworkAdapter.swift */,
 				3E64DA722430F5AF00C1473A /* UserProfileNetworkDelegate.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		1A4595D0244601BF009D447D /* FIrebase */ = {
+			isa = PBXGroup;
+			children = (
+				1A41C6AE2439766B00BD7BF0 /* FirebaseRoomEnteringNetworkAdapter.swift */,
+				1A432BDE241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift */,
+				1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */,
+				3E64DA732430F5AF00C1473A /* FirebaseUserProfileNetworkAdapter.swift */,
+			);
+			path = FIrebase;
 			sourceTree = "<group>";
 		};
 		1A5252B3241FAD0D00E7F68C /* ViewController */ = {
