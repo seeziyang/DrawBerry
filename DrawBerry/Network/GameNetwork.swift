@@ -25,7 +25,7 @@ protocol GameNetwork {
     func endGame(isRoomMaster: Bool, numRounds: Int)
 
     func observeAndDownloadTeamResult(playerUID: String,
-                                   completionHandler: @escaping (TeamBattleTeamResult) -> Void)
+                                      completionHandler: @escaping (TeamBattleTeamResult) -> Void)
 
     func uploadTeamResult(result: TeamBattleTeamResult)
 }

@@ -11,21 +11,21 @@ import FBSnapshotTestCase
 @testable import DrawBerry
 
 class CooperativeGameUITest: EnterRoomUITest {
-    static var adapter: RoomNetworkAdapter!
+    static var roomNetwork: RoomNetwork!
     static let testRoomCode = RoomCode(value: "testroom", type: .CooperativeRoom)
     override static func setUp() {
         FirebaseApp.configure()
-        adapter = RoomNetworkAdapter(roomCode: testRoomCode)
+        roomNetwork = FirebaseRoomNetworkAdapter(roomCode: testRoomCode)
     }
 
     override func setUp() {
         super.setUp()
-        CooperativeGameUITest.adapter.deleteRoom()
+        CooperativeGameUITest.roomNetwork.deleteRoom()
     }
 
     override func tearDown() {
         super.tearDown()
-        CooperativeGameUITest.adapter.deleteRoom()
+        CooperativeGameUITest.roomNetwork.deleteRoom()
     }
 
     func testCooperativeGameUILayout_threePlayers() {
@@ -239,7 +239,7 @@ extension CooperativeGameUITest {
 
 }
 
-class RoomNetworkAdapterStub: RoomNetworkAdapter {
+class RoomNetworkAdapterStub: FirebaseRoomNetworkAdapter {
     func joinRoom(userID: String, username: String) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)

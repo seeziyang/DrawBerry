@@ -11,12 +11,12 @@ import Firebase
 @testable import DrawBerry
 
 class ClassicRoomUITest: EnterRoomUITest {
-    static var adapter: RoomNetworkAdapter!
+    static var roomNetwork: RoomNetwork!
     static let testRoomCode = RoomCode(value: "testroom", type: .ClassicRoom)
 
     override static func setUp() {
         FirebaseApp.configure()
-        adapter = RoomNetworkAdapter(roomCode: testRoomCode)
+        roomNetwork = FirebaseRoomNetworkAdapter(roomCode: testRoomCode)
     }
 
     override func setUp() {

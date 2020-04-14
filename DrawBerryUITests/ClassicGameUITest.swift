@@ -11,21 +11,21 @@ import FBSnapshotTestCase
 @testable import DrawBerry
 
 class ClassicGameUITest: EnterRoomUITest {
-    static var adapter: RoomNetworkAdapter!
+    static var roomNetwork: RoomNetwork!
     static let testRoomCode = RoomCode(value: "testroom", type: .ClassicRoom)
     override static func setUp() {
         FirebaseApp.configure()
-        adapter = RoomNetworkAdapter(roomCode: testRoomCode)
+        roomNetwork = FirebaseRoomNetworkAdapter(roomCode: testRoomCode)
     }
 
     override func setUp() {
         super.setUp()
-        ClassicGameUITest.adapter.deleteRoom()
+        ClassicGameUITest.roomNetwork.deleteRoom()
     }
 
     override func tearDown() {
         super.tearDown()
-        ClassicGameUITest.adapter.deleteRoom()
+        ClassicGameUITest.roomNetwork.deleteRoom()
     }
 
     func testClassicGameUILayout() {
