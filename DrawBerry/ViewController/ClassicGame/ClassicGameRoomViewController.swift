@@ -17,7 +17,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     @IBOutlet private weak var roomCodeLabel: UINavigationItem!
     @IBOutlet private weak var isRapidSwitch: UISwitch!
 
-    private var userProfileNetwork: UserProfileNetworkAdapter!
+    private var userProfileNetwork: UserProfileNetwork!
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
     private let itemsPerRow: CGFloat = 2
@@ -35,7 +35,7 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
 
         roomCodeLabel.title = room.roomCode.value
 
-        userProfileNetwork = UserProfileNetworkAdapter()
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

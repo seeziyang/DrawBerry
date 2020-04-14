@@ -15,14 +15,14 @@ class HomeViewController: UIViewController {
 
     private var imagePicker: UIImagePickerController!
 
-    private var userProfileNetwork: UserProfileNetworkAdapter!
+    private var userProfileNetwork: UserProfileNetwork!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
         setupImagePicker()
 
-        userProfileNetwork = UserProfileNetworkAdapter()
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
         userProfileNetwork.downloadProfileImage(delegate: self, playerUID: NetworkHelper.getLoggedInUserID())
     }
 

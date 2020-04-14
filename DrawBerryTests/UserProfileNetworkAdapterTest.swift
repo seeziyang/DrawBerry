@@ -9,21 +9,22 @@
 import XCTest
 @testable import DrawBerry
 
-class UserProfileNetworkAdapterTest: XCTestCase {
+class FirebaseUserProfileNetworkAdapterTest: XCTestCase {
 
     let testUserID = "testUser"
     let image = #imageLiteral(resourceName: "red")
     let imageData = #imageLiteral(resourceName: "red").pngData()!
+    let userProfileAdapter = FirebaseUserProfileNetworkAdapter()
 
     func testUploadDataSuccess() {
-        let cloud = UserProfileNetworkAdapter.cloud
+        let cloud = userProfileAdapter.cloud
         let cloudPathRef = cloud.child("users").child(testUserID).child(Constants.profilePictureFileName)
-        UserProfileNetworkAdapter.uploadDataToDatabase(data: imageData, reference: cloudPathRef)
+        userProfileAdapter.uploadDataToDatabase(data: imageData, reference: cloudPathRef)
 
         // Use download to test if upload was successful
         let expectation = self.expectation(description: "Upload")
         let stub = UserProfileNetworkDelegateStub(expectation: expectation)
-        UserProfileNetworkAdapter.downloadDataFromDatabase(reference: cloudPathRef, delegate: stub)
+        userProfileAdapter.downloadDataFromDatabase(reference: cloudPathRef, delegate: stub)
         waitForExpectations(timeout: 5, handler: nil)
         XCTAssertNotNil(stub.image, "Image does not exist")
         XCTAssertEqual(stub.image?.pngData(),
@@ -33,9 +34,9 @@ class UserProfileNetworkAdapterTest: XCTestCase {
     func testDownloadDataSuccess_withStub() {
         let expectation = self.expectation(description: "Download")
         let stub = UserProfileNetworkDelegateStub(expectation: expectation)
-        let cloud = UserProfileNetworkAdapter.cloud
+        let cloud = userProfileAdapter.cloud
         let cloudPathRef = cloud.child("users").child(testUserID).child(Constants.profilePictureFileName)
-        UserProfileNetworkAdapter.downloadDataFromDatabase(reference: cloudPathRef, delegate: stub)
+        userProfileAdapter.downloadDataFromDatabase(reference: cloudPathRef, delegate: stub)
         waitForExpectations(timeout: 5, handler: nil)
     }
 }

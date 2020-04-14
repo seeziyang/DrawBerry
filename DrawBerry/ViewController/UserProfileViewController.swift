@@ -17,14 +17,14 @@ class UserProfileViewController: UIViewController {
     private let itemsPerRow: CGFloat = 5
     private let maxImagesInGallery = 10
 
-    private var userProfileNetwork: UserProfileNetworkAdapter!
+    private var userProfileNetwork: UserProfileNetwork!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
 
-        userProfileNetwork = UserProfileNetworkAdapter()
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
     }
 
     /// Hides the status bar at the top

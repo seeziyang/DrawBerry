@@ -17,7 +17,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: CooperativeGameRoom!
     private var currentViewingPlayerID: String?
 
-    private var userProfileNetwork: UserProfileNetworkAdapter!
+    private var userProfileNetwork: UserProfileNetwork!
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
     private let itemsPerRow: CGFloat = 2
@@ -45,7 +45,7 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
         roomCodeLabel.title = room.roomCode.value
         super.viewDidLoad()
 
-        userProfileNetwork = UserProfileNetworkAdapter()
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
