@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class EnterClassicRoomViewController: UIViewController {
-    var enterRoomNetworkAdapter: EnterRoomNetworkAdapter!
+    var roomEnteringNetwork: RoomEnteringNetwork!
     var usersNonRapidGameRoomCodes: [RoomCode]!
     var usersNonRapidGameStatuses: [RoomCode: (isMyTurn: Bool, game: ClassicGame)]!
 
@@ -25,7 +25,7 @@ class EnterClassicRoomViewController: UIViewController {
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
 
-        enterRoomNetworkAdapter = EnterRoomNetworkAdapter()
+        roomEnteringNetwork = FirebaseRoomEnteringNetworkAdapter()
         loadActiveNonRapidGamesTable()
     }
 
@@ -46,7 +46,7 @@ class EnterClassicRoomViewController: UIViewController {
 
     private func loadActiveNonRapidGamesTable() {
         // load user's active Non-Rapid Classic Games
-        enterRoomNetworkAdapter.getUsersNonRapidGameRoomCodes(completionHandler: { [weak self] roomCodes in
+        roomEnteringNetwork.getUsersNonRapidGameRoomCodes(completionHandler: { [weak self] roomCodes in
             self?.usersNonRapidGameRoomCodes = roomCodes
             self?.usersNonRapidGameStatuses = [:]
 
@@ -58,7 +58,7 @@ class EnterClassicRoomViewController: UIViewController {
 
     private func loadActiveNonRapidGameStatuses() {
         usersNonRapidGameRoomCodes.forEach { roomCode in
-            enterRoomNetworkAdapter.observeNonRapidGamesTurn(
+            roomEnteringNetwork.observeNonRapidGamesTurn(
                 roomCode: roomCode,
                 completionHandler: { [weak self] activeRoomTurn, classicGame in
                     self?.usersNonRapidGameStatuses[roomCode] = (activeRoomTurn, classicGame)
@@ -102,11 +102,11 @@ class EnterClassicRoomViewController: UIViewController {
             return
         }
 
-        enterRoomNetworkAdapter
+        roomEnteringNetwork
             .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
                 switch roomStatus {
                 case .enterable:
-                    self?.enterRoomNetworkAdapter.joinRoom(roomCode: roomCode)
+                    self?.roomEnteringNetwork.joinRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 case .doesNotExist:
                     self?.showErrorMessage(Message.roomDoesNotExist)
@@ -129,10 +129,10 @@ class EnterClassicRoomViewController: UIViewController {
             return
         }
 
-        enterRoomNetworkAdapter
+        roomEnteringNetwork
             .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
                 if !roomExists {
-                    self?.enterRoomNetworkAdapter.createRoom(roomCode: roomCode)
+                    self?.roomEnteringNetwork.createRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 } else {
                     self?.showErrorMessage(Message.roomCodeTaken)

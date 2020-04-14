@@ -8,7 +8,7 @@
 
 import Firebase
 
-class EnterRoomNetworkAdapter {
+class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
     let db: DatabaseReference
     private var observingRoomCodes: Set<RoomCode>
 
