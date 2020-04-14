@@ -17,6 +17,8 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
     var room: CooperativeGameRoom!
     private var currentViewingPlayerID: String?
 
+    private var userProfileNetwork: UserProfileNetworkAdapter!
+
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
     private let itemsPerRow: CGFloat = 2
 
@@ -42,6 +44,8 @@ class CooperativeGameRoomViewController: UIViewController, GameRoomDelegate {
         
         roomCodeLabel.title = room.roomCode.value
         super.viewDidLoad()
+
+        userProfileNetwork = UserProfileNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -119,7 +123,7 @@ extension CooperativeGameRoomViewController: UICollectionViewDataSource {
         let player = room.players[indexPath.row]
         let username = player.name
 
-        UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
+        userProfileNetwork.downloadProfileImage(delegate: cell, playerUID: player.uid)
 
         cell.setUsername(username)
 
