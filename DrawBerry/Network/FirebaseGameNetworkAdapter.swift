@@ -9,7 +9,7 @@
 import Firebase
 import FirebaseStorage
 
-class GameNetworkAdapter {
+class FirebaseGameNetworkAdapter: GameNetwork {
     let roomCode: RoomCode
     let db: DatabaseReference
     let cloud: StorageReference
@@ -116,8 +116,8 @@ class GameNetworkAdapter {
         })
     }
 
-    func waitAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
-                                      completionHandler: @escaping (UIImage) -> Void) {
+    func observeAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
+                                         completionHandler: @escaping (UIImage) -> Void) {
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -218,8 +218,8 @@ class GameNetworkAdapter {
         }
     }
 
-    func waitAndDownloadTeamResult(playerUID: String,
-                                   completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
+    func observeAndDownloadTeamResult(playerUID: String,
+                                      completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)

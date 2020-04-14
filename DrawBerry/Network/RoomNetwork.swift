@@ -7,6 +7,8 @@
 //
 
 protocol RoomNetwork {
+    var roomCode: RoomCode { get }
+
     func leaveRoom(isRoomMaster: Bool)
 
     func deleteRoom()
