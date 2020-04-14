@@ -14,7 +14,6 @@ class UserProfileNetworkAdapter {
     let cloud: StorageReference
     var storageListResult: StorageListResult?
 
-
     init() {
         self.db = Database.database().reference()
         self.cloud = Storage.storage().reference()
@@ -100,7 +99,7 @@ class UserProfileNetworkAdapter {
 
     /// Downloads image data from database
     func downloadDataFromDatabase(reference: StorageReference,
-                                         delegate: UserProfileNetworkDelegate) {
+                                  delegate: UserProfileNetworkDelegate) {
         reference.getData(maxSize: 1 * 1_024 * 1_024, completion: { data, error in
             if let error = error {
                 print("Error \(error) occured while downloading data")
