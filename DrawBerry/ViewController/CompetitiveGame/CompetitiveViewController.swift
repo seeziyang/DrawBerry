@@ -11,6 +11,7 @@ import UIKit
 class CompetitiveViewController: CanvasDelegateViewController {
     private var competitiveViews: [CompetitivePlayer: CompetitiveView] = [:]
     var competitiveGame = CompetitiveGame()
+    var playerNames = [String]()
 
     private var powerupManager = PowerupManager() {
         didSet {
@@ -35,8 +36,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPlayers()
-        addCanvasesToView()
+        setupPlayersAndCanvases()
         setupTimer()
         setupDisplayLink()
     }
@@ -55,12 +55,13 @@ class CompetitiveViewController: CanvasDelegateViewController {
         checkForPlayerStrokeOutOfBounds()
         checkNumberOfStrokesUsed()
         checkPowerupActivations()
+        updateStrokesLeftView()
     }
 
     /// Checks to see if all players are done with drawing
     private func checkForPlayersDoneWithDrawing() {
         for player in competitiveGame.players where
-            player.canvasDrawing.numberOfStrokes < CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
+            player.canvasDrawing.getNumberOfStrokes() < CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 return
         }
 
@@ -84,7 +85,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
     /// Checks to see if each player can continue drawing based on the number of strokes used.
     private func checkNumberOfStrokesUsed() {
         for player in competitiveGame.players {
-            if player.canvasDrawing.numberOfStrokes >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
+            if player.canvasDrawing.getNumberOfStrokes() >= CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
                 // Player has used their stroke, disable their canvas
                 player.canvasDrawing.isAbleToDraw = false
             } else {
@@ -116,57 +117,44 @@ class CompetitiveViewController: CanvasDelegateViewController {
         }
     }
 
+    private func updateStrokesLeftView() {
+        competitiveViews.forEach { player, canvas in
+            canvas.updateStrokesLeft(to: player.extraStrokes + 1 - player.canvasDrawing.getNumberOfStrokes())
+        }
+    }
+
     /// Draws the specified powerup description on the powerup's targets.
     private func drawDescriptionOnView(_ powerup: Powerup) {
-        for target in powerup.targets {
-            if powerup.owner != target && target.isInvulnerable {
-                let newDescription = powerup.description + "\n" + Message.playerIsInvulnerable
-                competitiveViews[target]?.animateStatus(with: newDescription)
-            } else {
-                competitiveViews[target]?.animateStatus(with: powerup.description)
-            }
-        }
+        powerup.targets.forEach { competitiveViews[$0]?.animateStatus(with: powerup.description) }
     }
 
-    /// Adds the four players to the competitive game.
-    private func setupPlayers() {
-        if !competitiveGame.players.isEmpty {
-            return
-        }
-
-        for i in 1...4 {
-            let newPlayer = CompetitivePlayer(name: "Player \(i)", canvasDrawing: BerryCanvas())
-            competitiveGame.players.append(newPlayer)
-        }
-    }
-
-    /// Adds the canvases for the four players to the competitive game.
-    private func addCanvasesToView() {
-        assert(competitiveGame.players.count == 4, "Player count should be 4")
-
+    /// Adds the four players and canvases to the competitive game.
+    private func setupPlayersAndCanvases() {
         let defaultSize = CGSize(width: self.view.bounds.width / 2, height: self.view.bounds.height / 2)
-
-        let minX = self.view.bounds.minX
-        let maxX = self.view.bounds.maxX
-        let minY = self.view.bounds.minY
-        let maxY = self.view.bounds.maxY
+        let minX = self.view.bounds.minX, maxX = self.view.bounds.maxX,
+            minY = self.view.bounds.minY, maxY = self.view.bounds.maxY
 
         var playerNum = 0
 
         for y in stride(from: minY, to: maxY, by: (maxY + minY) / 2) {
             for x in stride(from: minX, to: maxX, by: (maxX + minX) / 2) {
-
                 let rect = CGRect(origin: CGPoint(x: x, y: y), size: defaultSize)
                 guard let canvas = createBerryCanvas(within: rect) else {
                     return
                 }
 
-                let currentPlayer = competitiveGame.players[playerNum]
-                currentPlayer.canvasDrawing = canvas
+                let newPlayer: CompetitivePlayer
+                if competitiveGame.players.count < 4 {
+                    newPlayer = CompetitivePlayer(name: playerNames[playerNum], canvasDrawing: canvas)
+                    competitiveGame.players.append(newPlayer)
+                } else {
+                    newPlayer = competitiveGame.players[playerNum]
+                    newPlayer.resetStrokes()
+                    newPlayer.canvasDrawing = canvas
+                }
 
                 let currentPlayerCompetitiveView = CompetitiveView(frame: rect)
-                competitiveViews[currentPlayer] = currentPlayerCompetitiveView
-                currentPlayerCompetitiveView.isUserInteractionEnabled = false
+                competitiveViews[newPlayer] = currentPlayerCompetitiveView
                 currentPlayerCompetitiveView.setupViews(name: competitiveGame.players[playerNum].name,
                                                         currentRound: competitiveGame.currentRound,
                                                         maxRounds: CompetitiveGame.MAX_ROUNDS,
@@ -174,6 +162,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
                 if playerNum < 2 {
                     canvas.transform = canvas.transform.rotated(by: CGFloat.pi)
+                    canvas.defaultRotationValue = atan2(canvas.transform.b, canvas.transform.a)
                     currentPlayerCompetitiveView.transform =
                         currentPlayerCompetitiveView.transform.rotated(by: CGFloat.pi)
                 }
@@ -184,18 +173,19 @@ class CompetitiveViewController: CanvasDelegateViewController {
                 playerNum += 1
             }
         }
+
+        assert(competitiveGame.players.count == 4, "Player count should be 4")
     }
 
     /// Creates a canvas within the specified `CGRect`.
-    private func createBerryCanvas(within rect: CGRect) -> Canvas? {
-        guard let canvas = BerryCanvas.createCanvas(within: rect) else {
+    private func createBerryCanvas(within rect: CGRect) -> CompetitiveCanvas? {
+        guard let canvas = CompetitiveBerryCanvas.createCompetitiveCanvas(within: rect) else {
             return nil
         }
         canvas.isClearButtonEnabled = false
         canvas.isUndoButtonEnabled = false
         canvas.isEraserEnabled = false
         canvas.delegate = self
-
         return canvas
     }
 
@@ -205,6 +195,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
                                      selector: #selector(onTimerFires), userInfo: nil, repeats: true)
     }
 
+    /// Decreases the onscreen timer by 1 every timer tick.
     @objc func onTimerFires() {
         timeLeft -= 1
 
@@ -254,9 +245,7 @@ class CompetitiveViewController: CanvasDelegateViewController {
 
     /// Disables the canvas for all players.
     private func disableAllPlayerDrawings() {
-        for player in competitiveGame.players {
-            player.canvasDrawing.isAbleToDraw = false
-        }
+        competitiveGame.players.forEach { $0.canvasDrawing.isAbleToDraw = false }
     }
 
     /// Sets up the display link for the game.

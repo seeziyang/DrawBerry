@@ -1002,7 +1002,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Competitive"/>
                                         <connections>
-                                            <segue destination="hsU-YQ-DKO" kind="show" id="tCy-1e-rRB"/>
+                                            <segue destination="f5Z-XX-MK0" kind="presentation" modalPresentationStyle="fullScreen" id="iYR-Fz-UUn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-ax-xy3">
@@ -1634,11 +1634,130 @@
             </objects>
             <point key="canvasLocation" x="4681" y="1440"/>
         </scene>
+        <!--Competitive Name Entry View Controller-->
+        <scene sceneID="dwQ-qS-dUD">
+            <objects>
+                <viewController id="f5Z-XX-MK0" customClass="CompetitiveNameEntryViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2XD-rf-8Tt">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="DdC-sZ-S6V">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Player Names:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-Zx-rk2">
+                                <rect key="frame" x="263" y="137" width="242" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="7iL-bX-QWr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="0Jm-Sx-ZJO">
+                                <rect key="frame" x="184" y="212" width="400" height="600"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nco-8J-vkY" userLabel="Player 1">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="3LF-SL-ldE"/>
+                                            <constraint firstAttribute="width" constant="400" id="4P4-QB-80S"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYe-r2-UYq">
+                                        <rect key="frame" x="0.0" y="90" width="400" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gtr-gq-MYC">
+                                        <rect key="frame" x="0.0" y="180" width="400" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player 4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aOh-59-cNj">
+                                        <rect key="frame" x="0.0" y="270" width="400" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SS1-3h-yT8">
+                                        <rect key="frame" x="0.0" y="360" width="400" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Start Game"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="login"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="startGameButton:" destination="f5Z-XX-MK0" eventType="touchUpInside" id="A74-u8-Auz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pe-iK-exu">
+                                        <rect key="frame" x="0.0" y="450" width="400" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="T1a-TQ-HIY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Gtr-gq-MYC" firstAttribute="height" secondItem="nco-8J-vkY" secondAttribute="height" id="EhI-3s-aLr"/>
+                                    <constraint firstItem="fYe-r2-UYq" firstAttribute="height" secondItem="nco-8J-vkY" secondAttribute="height" id="MOU-aR-vwP"/>
+                                    <constraint firstItem="SS1-3h-yT8" firstAttribute="height" secondItem="nco-8J-vkY" secondAttribute="height" id="jNL-iu-hhN"/>
+                                    <constraint firstItem="aOh-59-cNj" firstAttribute="height" secondItem="nco-8J-vkY" secondAttribute="height" id="yFN-mY-xL8"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NES-H5-fh6">
+                                <rect key="frame" x="41" y="38" width="105" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="3jf-8N-QcI"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="zXX-7d-1dV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="goBackToLoginScreen:" destination="f5Z-XX-MK0" eventType="touchUpInside" id="hdF-Qu-77r"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Z3r-xR-gap" firstAttribute="trailing" secondItem="DdC-sZ-S6V" secondAttribute="trailing" id="9Zj-K7-AbC"/>
+                            <constraint firstItem="NES-H5-fh6" firstAttribute="top" secondItem="Z3r-xR-gap" secondAttribute="top" constant="38" id="EzR-6q-D9v"/>
+                            <constraint firstItem="0Jm-Sx-ZJO" firstAttribute="top" secondItem="uMi-Zx-rk2" secondAttribute="bottom" constant="8" id="PL3-Js-muf"/>
+                            <constraint firstItem="Z3r-xR-gap" firstAttribute="bottom" secondItem="DdC-sZ-S6V" secondAttribute="bottom" id="Qhy-IN-vUx"/>
+                            <constraint firstItem="DdC-sZ-S6V" firstAttribute="top" secondItem="Z3r-xR-gap" secondAttribute="top" id="UFZ-QF-hF3"/>
+                            <constraint firstItem="Z3r-xR-gap" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NES-H5-fh6" secondAttribute="trailing" symbolic="YES" id="Uj4-gU-jhY"/>
+                            <constraint firstItem="uMi-Zx-rk2" firstAttribute="top" secondItem="Z3r-xR-gap" secondAttribute="top" constant="137" id="dFN-eM-9zp"/>
+                            <constraint firstItem="DdC-sZ-S6V" firstAttribute="leading" secondItem="Z3r-xR-gap" secondAttribute="leading" id="qCH-wK-hNC"/>
+                            <constraint firstItem="0Jm-Sx-ZJO" firstAttribute="centerX" secondItem="Z3r-xR-gap" secondAttribute="centerX" id="wkZ-Bp-l2D"/>
+                            <constraint firstItem="NES-H5-fh6" firstAttribute="leading" secondItem="Z3r-xR-gap" secondAttribute="leading" constant="41" id="xLO-Df-VDM"/>
+                            <constraint firstItem="uMi-Zx-rk2" firstAttribute="centerX" secondItem="Z3r-xR-gap" secondAttribute="centerX" id="yXm-9a-dhX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z3r-xR-gap"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SA8-Gu-5fa"/>
+                    <connections>
+                        <outlet property="messageLabel" destination="7Pe-iK-exu" id="d6V-dt-ooO"/>
+                        <outlet property="player1TextLabel" destination="nco-8J-vkY" id="UUc-z4-gyO"/>
+                        <outlet property="player2TextLabel" destination="fYe-r2-UYq" id="WD9-jq-sOM"/>
+                        <outlet property="player3TextLabel" destination="Gtr-gq-MYC" id="wG8-e3-bpU"/>
+                        <outlet property="player4TextLabel" destination="aOh-59-cNj" id="Gae-4K-dIM"/>
+                        <segue destination="hsU-YQ-DKO" kind="presentation" identifier="segueToCompetitiveGame" id="aYW-Q6-A9x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqg-0L-0He" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="2184"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yOx-SV-Vc5"/>
         <segue reference="yfi-lF-uTa"/>
-        <segue reference="tCy-1e-rRB"/>
+        <segue reference="aYW-Q6-A9x"/>
         <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
         <segue reference="Gg7-CT-DLI"/>

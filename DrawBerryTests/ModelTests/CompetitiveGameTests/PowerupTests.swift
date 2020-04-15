@@ -20,7 +20,7 @@ class PowerupTests: XCTestCase {
 
         for i in 0..<4 {
             let frame = CGRect(x: 100, y: 100, width: 500, height: 500)
-            guard let canvas = BerryCanvas.createCanvas(within: frame) else {
+            guard let canvas = CompetitiveBerryCanvas.createCompetitiveCanvas(within: frame) else {
                 XCTFail("Failed to create canvas")
                 break
             }
@@ -81,18 +81,15 @@ class PowerupTests: XCTestCase {
                                              location: CGPoint.randomLocation(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
+        XCTAssertTrue(selectedPlayer.canvasDrawing is InvulnerableBerryCanvas, "Owner is not invulnerable")
         for player in players where player != selectedPlayer {
-            XCTAssertFalse(player.isInvulnerable, "Other players were invulnerable")
+            XCTAssertFalse(player.canvasDrawing is InvulnerableBerryCanvas, "Other players were invulnerable")
         }
 
-        XCTAssertTrue(selectedPlayer.isInvulnerable, "Owner was not invulnerable")
-        XCTAssertNil(selectedPlayer.canvasProxy, "Owner's canvas proxy is not nil")
-
         powerup.deactivate()
-
         for player in players {
-            XCTAssertFalse(player.isInvulnerable, "Players were invulnerable after powerup deactivation")
-            XCTAssertNotNil(selectedPlayer.canvasProxy, "Player's canvas proxy is nil after powerup deactivation")
+            XCTAssertFalse(player.canvasDrawing is InvulnerableBerryCanvas,
+                           "Players were invulnerable after powerup deactivation")
         }
     }
 
@@ -106,26 +103,6 @@ class PowerupTests: XCTestCase {
         let hideDrawingPowerup = HideDrawingPowerup(owner: otherPlayer, players: players,
                                                     location: CGPoint.randomLocation(for: otherPlayer))
         powerupManager.applyPowerup(hideDrawingPowerup)
-
-        XCTAssertNil(selectedPlayer.canvasProxy, "Invulnerable player's canvas proxy not nil")
         XCTAssertFalse(selectedPlayer.canvasDrawing.isHidden, "Invulnerable player's drawing was hidden")
-    }
-
-    func testInkSplotchWhileInvulnerable() {
-        let selectedPlayer = players[1]
-        let initialSubviewsCount = selectedPlayer.canvasDrawing.subviews.count
-
-        let otherPlayer = players[2]
-        let invulnerabilityPowerup = InvulnerabilityPowerup(owner: selectedPlayer, players: players,
-                                                            location: CGPoint.randomLocation(for: selectedPlayer))
-        powerupManager.applyPowerup(invulnerabilityPowerup)
-
-        let inkSplotchPowerup = InkSplotchPowerup(owner: otherPlayer, players: players,
-                                                  location: CGPoint.randomLocation(for: otherPlayer))
-        powerupManager.applyPowerup(inkSplotchPowerup)
-
-        XCTAssertNil(selectedPlayer.canvasProxy, "Invulnerable player's canvas proxy not nil")
-        XCTAssertEqual(initialSubviewsCount, selectedPlayer.canvasDrawing.subviews.count,
-                       "Invulnerable player affected by ink splotch powerup")
     }
 }

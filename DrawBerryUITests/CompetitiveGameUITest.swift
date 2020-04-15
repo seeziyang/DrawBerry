@@ -14,9 +14,13 @@ class CompetitiveGameUITest: DrawBerryUITest {
         super.setUp()
     }
 
+    func testCompetitiveModeNameEntryUILayout() {
+        let app = initialiseAppMoveToNameEntry()
+        verifyAppCurrentScreen(app: app)
+    }
+
     func testCompetitiveModeUILayout() {
         let app = initialiseAppMoveToCompetitveCanvas()
-
         verifyAppCurrentScreen(app: app)
     }
 
@@ -135,6 +139,14 @@ extension CompetitiveGameUITest {
     }
 
     private func initialiseAppMoveToCompetitveCanvas() -> XCUIApplication {
+        let app = initialiseAppMoveToNameEntry()
+        print(app.buttons)
+        app.buttons["Start Game"].tap()
+        sleep(1)
+        return app
+    }
+
+    private func initialiseAppMoveToNameEntry() -> XCUIApplication {
         let app = XCUIApplication()
         app.launch()
         if isLoginPage(app: app) {

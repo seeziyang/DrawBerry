@@ -9,13 +9,10 @@
 import UIKit
 
 class HideDrawingPowerup: TogglePowerup {
-    static let DELTA_VALUE: CGFloat = 0.7
-
     var image = PowerupAssets.hideDrawingPowerupUIImage
 
     var owner: CompetitivePlayer
     var targets: [CompetitivePlayer]
-    var targetCanvases = [Canvas]()
 
     var description = Message.hiddenDrawingPowerup
 
@@ -29,8 +26,7 @@ class HideDrawingPowerup: TogglePowerup {
     }
 
     func activate() {
-        targetCanvases = targets.compactMap { $0.canvasProxy }
-        targetCanvases.forEach { $0.isHidden = true }
+        targets.forEach { $0.canvasDrawing.hideDrawing() }
 
         _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { timer in
             self.deactivate()
@@ -39,6 +35,6 @@ class HideDrawingPowerup: TogglePowerup {
     }
 
     func deactivate() {
-        targetCanvases.forEach { $0.isHidden = false }
+        targets.forEach { $0.canvasDrawing.showDrawing() }
     }
 }
