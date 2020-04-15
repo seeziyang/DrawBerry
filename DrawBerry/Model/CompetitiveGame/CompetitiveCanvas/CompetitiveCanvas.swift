@@ -19,3 +19,12 @@ protocol CompetitiveCanvas: Canvas {
     func hideDrawing()
     func showDrawing()
 }
+
+extension CompetitiveCanvas {
+    func getNumberOfStrokes() -> Int {
+        guard let innerCanvas = decoratedCanvas else {
+            return numberOfStrokes
+        }
+        return numberOfStrokes + innerCanvas.getNumberOfStrokes()
+    }
+}
