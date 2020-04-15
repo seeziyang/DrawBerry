@@ -21,4 +21,19 @@ class CompetitiveGameTests: XCTestCase {
         XCTAssertEqual(competitiveGame.players.count, 0, "Initial player count is not 0")
         XCTAssertEqual(competitiveGame.currentRound, 1, "Initial round is not 1")
     }
+
+    func testNextRound() {
+        let currentRound = competitiveGame.currentRound
+        competitiveGame.nextRound()
+        XCTAssertEqual(competitiveGame.currentRound, currentRound + 1, "Next round does not increment currentRound")
+    }
+
+    func testGameOver() {
+        let rounds = CompetitiveGame.MAX_ROUNDS
+        for _ in 1...rounds {
+            XCTAssertFalse(competitiveGame.isGameOver, "Game is over before \(rounds) rounds")
+            competitiveGame.nextRound()
+        }
+        XCTAssertTrue(competitiveGame.isGameOver, "Game is not over after \(rounds) rounds")
+    }
 }

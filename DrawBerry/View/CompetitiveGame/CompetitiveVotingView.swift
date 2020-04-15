@@ -25,6 +25,7 @@ class CompetitiveVotingView: UIView {
 
         super.init(frame: frame)
 
+        addBackground()
         addDrawings()
         addVotingText()
     }
@@ -33,17 +34,15 @@ class CompetitiveVotingView: UIView {
         nil
     }
 
-    private func addDrawings() {
+    private func addBackground() {
         let backgroundImage = UIImageView(frame: bounds)
         backgroundImage.image = BerryConstants.paperBackgroundImage
         addSubview(backgroundImage)
+    }
 
+    private func addDrawings() {
         let defaultSize = CGSize(width: bounds.width / 2, height: bounds.height / 2)
-
-        let minX = bounds.minX
-        let maxX = bounds.maxX
-        let minY = bounds.minY
-        let maxY = bounds.maxY
+        let minX = bounds.minX, maxX = bounds.maxX, minY = bounds.minY, maxY = bounds.maxY
 
         var playerNum = 0
 

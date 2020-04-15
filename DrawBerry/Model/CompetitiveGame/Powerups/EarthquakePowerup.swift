@@ -31,11 +31,7 @@ class EarthquakePowerup: RepeatingTogglePowerup {
     }
 
     func activate() {
-        if timesToRepeat == EarthquakePowerup.TOTAL_TIMES {
-            targetCanvases = targets.compactMap { $0.canvasProxy }
-        }
-
-        targetCanvases.forEach { $0.transform = $0.transform.rotated(by: EarthquakePowerup.ROTATION_VALUE) }
+        targets.forEach { $0.canvasDrawing.rotateCanvas(by: EarthquakePowerup.ROTATION_VALUE) }
 
         _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { _ in
             self.deactivate()
@@ -43,7 +39,7 @@ class EarthquakePowerup: RepeatingTogglePowerup {
     }
 
     func deactivate() {
-        targetCanvases.forEach { $0.transform = $0.transform.rotated(by: -EarthquakePowerup.ROTATION_VALUE) }
+        targets.forEach { $0.canvasDrawing.rotateCanvas(by: -EarthquakePowerup.ROTATION_VALUE) }
 
         _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { _ in
             self.timesToRepeat -= 1
