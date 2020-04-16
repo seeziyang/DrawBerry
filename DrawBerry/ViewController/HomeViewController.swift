@@ -15,11 +15,15 @@ class HomeViewController: UIViewController {
 
     private var imagePicker: UIImagePickerController!
 
+    private var userProfileNetwork: UserProfileNetwork!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeElements()
         setupImagePicker()
-        UserProfileNetworkAdapter.downloadProfileImage(delegate: self, playerUID: NetworkHelper.getLoggedInUserID())
+
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
+        userProfileNetwork.downloadProfileImage(delegate: self, playerUID: NetworkHelper.getLoggedInUserID())
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -98,8 +102,8 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
 
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageView.image = image
-            UserProfileNetworkAdapter.uploadProfileImage(image)
-            UserProfileNetworkAdapter.uploadImageToFavourites(image)
+            userProfileNetwork.uploadProfileImage(image)
+            userProfileNetwork.uploadImageToFavourites(image)
         }
 
         picker.dismiss(animated: true, completion: nil)

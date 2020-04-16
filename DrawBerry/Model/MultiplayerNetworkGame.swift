@@ -27,14 +27,14 @@ class MultiplayerNetworkGame: NetworkGame, MultiplayerGame {
         super.init(from: room.roomCode)
     }
 
-    init?(from room: GameRoom, maxRounds: Int, networkAdapter: GameNetworkAdapter) {
+    init?(from room: GameRoom, maxRounds: Int, gameNetwork: GameNetwork) {
         let players = room.players.sorted().map { room.createPlayer(from: $0) }
         self.players = players
         self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
             ?? players[0]
         self.maxRounds = maxRounds
         self.currentRound = 1
-        super.init(from: room.roomCode, networkAdapter: networkAdapter)
+        super.init(from: room.roomCode, gameNetwork: gameNetwork)
     }
 
     init(from roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {

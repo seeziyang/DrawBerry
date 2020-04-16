@@ -17,6 +17,8 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
     @IBOutlet private weak var roomCodeLabel: UINavigationItem!
     @IBOutlet private weak var isRapidSwitch: UISwitch!
 
+    private var userProfileNetwork: UserProfileNetwork!
+
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
     private let itemsPerRow: CGFloat = 2
 
@@ -32,6 +34,8 @@ class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
         playersCollectionView.dataSource = self
 
         roomCodeLabel.title = room.roomCode.value
+
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -132,7 +136,7 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
         let player = room.players[indexPath.row]
         let username = player.name
         cell.setUsername(username)
-        UserProfileNetworkAdapter.downloadProfileImage(delegate: cell, playerUID: player.uid)
+        userProfileNetwork.downloadProfileImage(delegate: cell, playerUID: player.uid)
 
         return cell
     }

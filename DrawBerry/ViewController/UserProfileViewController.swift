@@ -17,10 +17,14 @@ class UserProfileViewController: UIViewController {
     private let itemsPerRow: CGFloat = 5
     private let maxImagesInGallery = 10
 
+    private var userProfileNetwork: UserProfileNetwork!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
+
+        userProfileNetwork = FirebaseUserProfileNetworkAdapter()
     }
 
     /// Hides the status bar at the top
@@ -34,7 +38,7 @@ class UserProfileViewController: UIViewController {
 
     func setUserID(id: String) {
         userID = id
-        UserProfileNetworkAdapter.getListOfImages(delegate: self, playerUID: id)
+        userProfileNetwork.getListOfImages(delegate: self, playerUID: id)
     }
 
     @IBAction private func backToRoom(_ sender: UIButton) {
@@ -51,7 +55,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = getReusableCell(for: indexPath)
 
-        UserProfileNetworkAdapter.downloadImage(delegate: cell, index: indexPath.row)
+        userProfileNetwork.downloadImage(delegate: cell, index: indexPath.row)
 
         return cell
     }

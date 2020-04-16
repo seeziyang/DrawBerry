@@ -31,10 +31,10 @@ class TeamBattleGame: NetworkGame {
     private(set) var currentRound: Int
 
     convenience init(from room: GameRoom) {
-        self.init(from: room, networkAdapter: GameNetworkAdapter(roomCode: room.roomCode))!
+        self.init(from: room, gameNetwork: FirebaseGameNetworkAdapter(roomCode: room.roomCode))!
     }
 
-    init?(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
+    init?(from room: GameRoom, gameNetwork: GameNetwork) {
         // Even indices players draws
         let drawerIndices = Array(stride(from: 0, to: room.players.count, by: 2))
 
@@ -50,7 +50,7 @@ class TeamBattleGame: NetworkGame {
         self.userIndex = players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? 0
 
         self.currentRound = 1
-        super.init(from: room.roomCode, networkAdapter: networkAdapter)
+        super.init(from: room.roomCode, gameNetwork: gameNetwork)
     }
 
     func incrementRound() {
@@ -78,13 +78,13 @@ class TeamBattleGame: NetworkGame {
 /// Extensions to network interface
 extension TeamBattleGame {
     func addTeamResult(result: TeamBattleTeamResult) {
-        networkAdapter.uploadTeamResult(result: result)
+        gameNetwork.uploadTeamResult(result: result)
     }
 
     func observeAllTeamResult() {
         for team in teams {
             let id = team.teamID
-            networkAdapter.waitAndDownloadTeamResult(
+            gameNetwork.observeAndDownloadTeamResult(
                 playerUID: id,
                 completionHandler: { [weak self] result in
                     // TODO: maybe use delegate

@@ -30,13 +30,13 @@ class ClassicGame: MultiplayerNetworkGame {
         super.init(from: room, maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
     }
 
-    init?(from room: GameRoom, networkAdapter: GameNetworkAdapter) {
+    init?(from room: GameRoom, gameNetwork: GameNetwork) {
         self.isRapid = room.isRapid
         self.roundMasterIndex = room.players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
         super.init(
             from: room,
             maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count),
-            networkAdapter: networkAdapter
+            gameNetwork: gameNetwork
         )
     }
 
@@ -157,10 +157,11 @@ class ClassicGame: MultiplayerNetworkGame {
 /// Extensions to network interface
 extension ClassicGame {
     func voteFor(player: ClassicPlayer, for round: Int, updatedPlayerPoints: Int) {
-        networkAdapter.userVoteFor(playerUID: player.uid, forRound: round, updatedPlayerPoints: player.points)
+        gameNetwork.userVoteFor(playerUID: player.uid, forRound: round,
+                                updatedPlayerPoints: player.points, updatedUserPoints: nil)
     }
 
     func observePlayerVote(player: ClassicPlayer, for round: Int, completionHandler: @escaping (String) -> Void) {
-        networkAdapter.observePlayerVote(playerUID: player.uid, forRound: round, completionHandler: completionHandler)
+        gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round, completionHandler: completionHandler)
     }
 }

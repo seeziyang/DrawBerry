@@ -15,14 +15,14 @@ class EnterTeamBattleRoomViewController: UIViewController {
     @IBOutlet private weak var roomCodeField: UITextField!
     @IBOutlet private weak var errorLabel: UILabel!
 
-    var enterRoomNetworkAdapter: EnterRoomNetworkAdapter!
+    var roomEnteringNetwork: RoomEnteringNetwork!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         background.image = Constants.roomBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
-        enterRoomNetworkAdapter = EnterRoomNetworkAdapter()
+        roomEnteringNetwork = FirebaseRoomEnteringNetworkAdapter()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,11 +71,11 @@ class EnterTeamBattleRoomViewController: UIViewController {
             return
         }
 
-        enterRoomNetworkAdapter
+        roomEnteringNetwork
             .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
                 switch roomStatus {
                 case .enterable:
-                    self?.enterRoomNetworkAdapter.joinRoom(roomCode: roomCode)
+                    self?.roomEnteringNetwork.joinRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 case .doesNotExist:
                     self?.showErrorMessage(Message.roomDoesNotExist)
@@ -99,10 +99,10 @@ class EnterTeamBattleRoomViewController: UIViewController {
             return
         }
 
-        enterRoomNetworkAdapter
+        roomEnteringNetwork
             .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
                 if !roomExists {
-                    self?.enterRoomNetworkAdapter.createRoom(roomCode: roomCode)
+                    self?.roomEnteringNetwork.createRoom(roomCode: roomCode)
                     self?.segueToRoomVC()
                 } else {
                     self?.showErrorMessage(Message.roomCodeTaken)
