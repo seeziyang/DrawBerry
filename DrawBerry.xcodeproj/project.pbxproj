@@ -45,6 +45,7 @@
 		1A5709DF244856540007197F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709DE244856540007197F /* Game.swift */; };
 		1A5709E02448641F0007197F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709DE244856540007197F /* Game.swift */; };
 		1A5709E12448641F0007197F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709DE244856540007197F /* Game.swift */; };
+		1A5709E324486FD20007197F /* EnterRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709E224486FD20007197F /* EnterRoomViewController.swift */; };
 		1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */; };
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411024337F7E00992F5D /* VoteResultsViewController.swift */; };
@@ -315,6 +316,7 @@
 		1A4595CE2445FEBB009D447D /* UserProfileNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileNetwork.swift; sourceTree = "<group>"; };
 		1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseGameNetworkAdapter.swift; sourceTree = "<group>"; };
 		1A5709DE244856540007197F /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		1A5709E224486FD20007197F /* EnterRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewController.swift; sourceTree = "<group>"; };
 		1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayerTests.swift; sourceTree = "<group>"; };
 		1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameTests.swift; sourceTree = "<group>"; };
 		1A70411024337F7E00992F5D /* VoteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultsViewController.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				1A3920F32425BC3100847E72 /* CompetitiveGame */,
 				3EBFFE7F243D6A11002675B3 /* TeamBattleGame */,
 				379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */,
+				1A5709E224486FD20007197F /* EnterRoomViewController.swift */,
 				3EF004F9241907FB00136234 /* HomeViewController.swift */,
 				3E975D542431D16C00AE61E3 /* UserProfileViewController.swift */,
 			);
@@ -1197,6 +1200,7 @@
 				1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */,
 				FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */,
 				1A5709DF244856540007197F /* Game.swift in Sources */,
+				1A5709E324486FD20007197F /* EnterRoomViewController.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
 				372CA59A242C67EB000E1E71 /* EndViewController.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
