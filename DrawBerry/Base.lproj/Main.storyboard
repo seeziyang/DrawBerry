@@ -724,11 +724,11 @@
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="uMC-2e-j9F" customClass="UserProfileViewController" customModule="DrawBerry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4nK-Yi-d2A">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iot-r1-mEX">
-                                <rect key="frame" x="0.0" y="330" width="768" height="694"/>
+                                <rect key="frame" x="0.0" y="330" width="712" height="654"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N7W-EB-2tC">
                                     <size key="itemSize" width="391" height="344"/>
@@ -738,7 +738,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="ZoJ-6P-z4c" customClass="ImageCollectionViewCell" customModule="DrawBerry" customModuleProvider="target">
-                                        <rect key="frame" x="188.5" y="0.0" width="391" height="344"/>
+                                        <rect key="frame" x="160.5" y="0.0" width="391" height="344"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yS7-GJ-l21">
                                             <rect key="frame" x="0.0" y="0.0" width="391" height="344"/>
@@ -763,10 +763,10 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaQ-jq-KKR">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="330"/>
+                                <rect key="frame" x="0.0" y="0.0" width="712" height="330"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOo-ji-nSv">
-                                        <rect key="frame" x="200" y="100" width="368" height="130"/>
+                                        <rect key="frame" x="200" y="100" width="312" height="130"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1404,7 +1404,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhH-do-3YJ">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                 <items>
-                                    <navigationItem title="Players" id="X93-dR-XTG">
+                                    <navigationItem title="Players" id="X93-dR-XTG" userLabel="Room Code Label">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="o9H-Iw-jMS">
                                             <connections>
                                                 <action selector="backOnTap:" destination="S0d-VR-zD9" id="Uug-bo-m45"/>
@@ -1497,6 +1497,7 @@
                     <navigationItem key="navigationItem" id="OD0-FN-Cbe"/>
                     <connections>
                         <outlet property="playersCollectionView" destination="LNb-eq-QAA" id="hqv-Ae-2MS"/>
+                        <outlet property="roomCodeLabel" destination="X93-dR-XTG" id="3oI-oA-VFZ"/>
                         <outlet property="startButton" destination="RYd-Xi-0oy" id="c1B-mF-fB3"/>
                         <segue destination="dGP-aV-Yhp" kind="show" identifier="segueToTeamBattleDrawing" id="I1D-lI-ChQ"/>
                         <segue destination="dD7-qe-Kbz" kind="show" identifier="segueToTeamBattleGuessing" id="Ldr-Ki-sRU"/>
@@ -1761,7 +1762,7 @@
         <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
         <segue reference="Gg7-CT-DLI"/>
-        <segue reference="9o1-fk-ENI"/>
+        <segue reference="TXh-cz-zfd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="4000" height="3000"/>

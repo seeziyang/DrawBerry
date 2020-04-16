@@ -11,7 +11,7 @@ import UIKit
 protocol EnterRoomViewController: UIViewController {
     static var roomType: GameRoomType { get }
 
-    var roomEnteringNetwork: RoomEnteringNetwork! { get }
+    var roomEnteringNetwork: RoomEnteringNetwork! { get set }
 
     var roomCodeField: UITextField! { get set }
     var errorLabel: UILabel! { get set }

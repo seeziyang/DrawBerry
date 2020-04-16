@@ -12,7 +12,7 @@ import Firebase
 class EnterCooperativeRoomViewController: UIViewController, EnterRoomViewController {
     static let roomType: GameRoomType = .CooperativeRoom
 
-    var roomEnteringNetwork: RoomEnteringNetwork!
+    internal var roomEnteringNetwork: RoomEnteringNetwork!
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet internal weak var roomCodeField: UITextField!
@@ -33,7 +33,7 @@ class EnterCooperativeRoomViewController: UIViewController, EnterRoomViewControl
             let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.CooperativeRoom)
             roomVC.room = GameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
-            roomVC.configureStartButton()
+            roomVC.configureButtons()
         }
     }
 

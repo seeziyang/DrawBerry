@@ -12,7 +12,7 @@ import Firebase
 class EnterClassicRoomViewController: UIViewController, EnterRoomViewController {
     static let roomType: GameRoomType = .ClassicRoom
 
-    var roomEnteringNetwork: RoomEnteringNetwork!
+    internal var roomEnteringNetwork: RoomEnteringNetwork!
     var usersNonRapidGameRoomCodes: [RoomCode]!
     var usersNonRapidGameStatuses: [RoomCode: (isMyTurn: Bool, game: ClassicGame)]!
 

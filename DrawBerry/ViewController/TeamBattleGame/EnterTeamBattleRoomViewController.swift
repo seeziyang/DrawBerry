@@ -16,7 +16,7 @@ class EnterTeamBattleRoomViewController: UIViewController, EnterRoomViewControll
     @IBOutlet internal weak var roomCodeField: UITextField!
     @IBOutlet internal weak var errorLabel: UILabel!
 
-    var roomEnteringNetwork: RoomEnteringNetwork!
+    internal var roomEnteringNetwork: RoomEnteringNetwork!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class EnterTeamBattleRoomViewController: UIViewController, EnterRoomViewControll
             let roomCode = RoomCode(value: roomCodeValue, type: .TeamBattleRoom)
             roomVC.room = TeamBattleGameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
-            roomVC.configureStartButton()
+            roomVC.configureButtons()
         }
     }
 
