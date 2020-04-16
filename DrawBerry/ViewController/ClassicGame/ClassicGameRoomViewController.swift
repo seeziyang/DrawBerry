@@ -37,7 +37,9 @@ class ClassicGameRoomViewController: UIViewController, GameRoomViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let classicVC = segue.destination as? ClassicViewController {
-            classicVC.classicGame = ClassicGame(from: room)
+            classicVC.classicGame = room.isRapid
+                ? ClassicGame(from: room)
+                : NonRapidClassicGame(from: room)
         }
 
         if let userProfileVC = segue.destination as? UserProfileViewController,

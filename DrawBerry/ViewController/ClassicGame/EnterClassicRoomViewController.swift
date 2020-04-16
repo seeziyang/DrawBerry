@@ -14,7 +14,7 @@ class EnterClassicRoomViewController: UIViewController, EnterRoomViewController 
 
     internal var roomEnteringNetwork: RoomEnteringNetwork!
     var usersNonRapidGameRoomCodes: [RoomCode]!
-    var usersNonRapidGameStatuses: [RoomCode: (isMyTurn: Bool, game: ClassicGame)]!
+    var usersNonRapidGameStatuses: [RoomCode: (isMyTurn: Bool, game: NonRapidClassicGame)]!
 
     @IBOutlet private weak var background: UIImageView!
     @IBOutlet internal weak var roomCodeField: UITextField!
@@ -62,8 +62,8 @@ class EnterClassicRoomViewController: UIViewController, EnterRoomViewController 
         usersNonRapidGameRoomCodes.forEach { roomCode in
             roomEnteringNetwork.observeNonRapidGamesTurn(
                 roomCode: roomCode,
-                completionHandler: { [weak self] activeRoomTurn, classicGame in
-                    self?.usersNonRapidGameStatuses[roomCode] = (activeRoomTurn, classicGame)
+                completionHandler: { [weak self] activeRoomTurn, nonRapidClassicGame in
+                    self?.usersNonRapidGameStatuses[roomCode] = (activeRoomTurn, nonRapidClassicGame)
 
                     self?.activeNonRapidGamesTable.reloadData()
                 }

@@ -69,10 +69,10 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
     }
 
     private func segueToNextScreen() {
-        if classicGame.isRapid {
-            performSegue(withIdentifier: "segueToVoteResults", sender: self)
-        } else {
+        if classicGame is NonRapidClassicGame {
             performSegue(withIdentifier: "segueToDrawing", sender: self)
+        } else {
+            performSegue(withIdentifier: "segueToVoteResults", sender: self)
         }
     }
 }
@@ -89,15 +89,16 @@ extension VotingViewController: UICollectionViewDataSource {
 
         let imageView = UIImageView(frame: cell.bounds)
 
-        if classicGame.isRapid {
+        if classicGame is NonRapidClassicGame {
+            imageView.image = classicGame.players[indexPath.row].getDrawingImage()
+        } else {
             imageView.image = classicGame.players[indexPath.row]
                 .getDrawingImage(ofRound: classicGame.currentRound)
-        } else {
-            imageView.image = classicGame.players[indexPath.row].getDrawingImage()
         }
 
         imageView.contentMode = .scaleAspectFit
 
+        cell.subviews.forEach { $0.removeFromSuperview() }
         cell.addSubview(imageView)
         cell.backgroundColor = .systemYellow // TODO: remove
 

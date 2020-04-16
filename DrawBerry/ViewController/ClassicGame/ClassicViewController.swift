@@ -60,10 +60,10 @@ class ClassicViewController: CanvasDelegateViewController {
 
     private func finishDrawing() {
         classicGame.addUsersDrawing(image: canvas.drawingImage)
-        if classicGame.isRapid {
-            performSegue(withIdentifier: "segueToVoting", sender: self)
-        } else {
+        if classicGame is NonRapidClassicGame {
             performSegue(withIdentifier: "classicUnwindSegueToHomeVC", sender: self)
+        } else {
+            performSegue(withIdentifier: "segueToVoting", sender: self)
         }
     }
 }

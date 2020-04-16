@@ -47,6 +47,9 @@
 		1A5709E12448641F0007197F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709DE244856540007197F /* Game.swift */; };
 		1A5709E324486FD20007197F /* EnterRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709E224486FD20007197F /* EnterRoomViewController.swift */; };
 		1A5709E5244881FA0007197F /* GameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709E4244881FA0007197F /* GameRoomViewController.swift */; };
+		1A5709E724489CB20007197F /* NonRapidClassicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709E624489CB20007197F /* NonRapidClassicGame.swift */; };
+		1A5709E82448B2960007197F /* NonRapidClassicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709E624489CB20007197F /* NonRapidClassicGame.swift */; };
+		1A5709E92448B2960007197F /* NonRapidClassicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5709E624489CB20007197F /* NonRapidClassicGame.swift */; };
 		1A6C69232425C811005E6D45 /* ClassicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */; };
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411024337F7E00992F5D /* VoteResultsViewController.swift */; };
@@ -319,6 +322,7 @@
 		1A5709DE244856540007197F /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		1A5709E224486FD20007197F /* EnterRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewController.swift; sourceTree = "<group>"; };
 		1A5709E4244881FA0007197F /* GameRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomViewController.swift; sourceTree = "<group>"; };
+		1A5709E624489CB20007197F /* NonRapidClassicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonRapidClassicGame.swift; sourceTree = "<group>"; };
 		1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayerTests.swift; sourceTree = "<group>"; };
 		1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameTests.swift; sourceTree = "<group>"; };
 		1A70411024337F7E00992F5D /* VoteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultsViewController.swift; sourceTree = "<group>"; };
@@ -528,6 +532,7 @@
 			children = (
 				1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */,
 				1A000EDA24222AF4007FDB32 /* ClassicGame.swift */,
+				1A5709E624489CB20007197F /* NonRapidClassicGame.swift */,
 				1A3A9F7C2423C35200C417AC /* ClassicGameDelegate.swift */,
 			);
 			path = ClassicGame;
@@ -1258,6 +1263,7 @@
 				37CE065C241E19850085BE4A /* BerryConstants.swift in Sources */,
 				FC1D8D6B2421CE5600370EC4 /* PowerupAssets.swift in Sources */,
 				3EBFFE90243D7B80002675B3 /* TeamBattlePlayer.swift in Sources */,
+				1A5709E724489CB20007197F /* NonRapidClassicGame.swift in Sources */,
 				FCC7F3E92421CA690096F934 /* CompetitiveView.swift in Sources */,
 				372CA598242C67B0000E1E71 /* ViewingViewController.swift in Sources */,
 				372CA5A624308046000E1E71 /* CooperativeGameViewingDelegate.swift in Sources */,
@@ -1347,6 +1353,7 @@
 				375E239E2443005700BA8AB1 /* Word.swift in Sources */,
 				375E23892443003B00BA8AB1 /* TeamBattleGameResult.swift in Sources */,
 				3749D3B52426093300CE798F /* Stroke.swift in Sources */,
+				1A5709E92448B2960007197F /* NonRapidClassicGame.swift in Sources */,
 				FCA298672426196400AE1A83 /* PowerupAssets.swift in Sources */,
 				FCA298682426196400AE1A83 /* InkSplotchPowerup.swift in Sources */,
 				3749D3B82426098E00CE798F /* InkView.swift in Sources */,
@@ -1402,6 +1409,7 @@
 				379EE02624249152005257E1 /* Stroke.swift in Sources */,
 				375E237D243DC85400BA8AB1 /* FirebaseGameNetworkAdapter.swift in Sources */,
 				1A4595C92445E207009D447D /* ClassicGameDelegate.swift in Sources */,
+				1A5709E82448B2960007197F /* NonRapidClassicGame.swift in Sources */,
 				3749D39E2425DFF400CE798F /* Palette.swift in Sources */,
 				1A4595C82445C850009D447D /* ClassicGame.swift in Sources */,
 				37D794282436E1DF00D2BE57 /* CooperativeGameUITest.swift in Sources */,

@@ -19,6 +19,6 @@ protocol RoomEnteringNetwork {
 
     func observeNonRapidGamesTurn(
         roomCode: RoomCode,
-        completionHandler: @escaping (_ isMyTurn: Bool, ClassicGame) -> Void
+        completionHandler: @escaping (_ isMyTurn: Bool, NonRapidClassicGame) -> Void
     )
 }

@@ -27,36 +27,27 @@ class ClassicGame: MultiplayerNetworkGame {
 
     weak var delegate: ClassicGameDelegate?
 
-    let isRapid: Bool
+    init(players: [ClassicPlayer], user: ClassicPlayer, currentRound: Int, maxRounds: Int,
+         roundMasterIndex: Int, gameNetwork: GameNetwork, roomCode: RoomCode) {
+        self.players = players
+        self.user = user
+        self.currentRound = currentRound
+        self.maxRounds = maxRounds
+        self.roundMasterIndex = roundMasterIndex
+        self.gameNetwork = gameNetwork
+        self.roomCode = roomCode
+    }
 
     init(from room: GameRoom) {
         let players = room.players.sorted().map { ClassicPlayer(from: $0) }
         self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? players[0]
+        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+                ?? players[0]
         self.currentRound = 1
         self.maxRounds = ClassicGame.calculateMaxRounds(numPlayers: players.count)
         self.roundMasterIndex = players.firstIndex(where: { $0.isRoomMaster }) ?? 0
-
         self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
         self.roomCode = room.roomCode
-
-        self.isRapid = room.isRapid
-    }
-
-    // will refactor this out to its own subclass later so dont worry about the duplicated inits first
-    init(nonRapidRoomCode roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
-        let sortedPlayers = players.sorted()
-        self.players = sortedPlayers
-        self.user = sortedPlayers.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? sortedPlayers[0]
-        self.currentRound = currentRound
-        self.maxRounds = .max
-        self.roundMasterIndex = sortedPlayers.firstIndex(where: { $0.isRoomMaster }) ?? 0
-
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: roomCode)
-        self.roomCode = roomCode
-
-        self.isRapid = false
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
@@ -70,14 +61,9 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func observePlayersDrawing() {
-        // users vote previous rounds drawing in non-rapid mode
-        let round = isRapid ? currentRound : currentRound - 1
-
-        for player in players {
-            if isRapid && player === user {
-                continue
-            }
-            observe(player: player, for: round, completionHandler: { [weak self] image in
+        // don't need to observe user as drawing is already added to user
+        for player in players where player !== user {
+            observe(player: player, for: currentRound, completionHandler: { [weak self] image in
                 player.addDrawing(image: image)
                 self?.delegate?.drawingsDidUpdate()
             })
@@ -85,8 +71,7 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func hasAllPlayersDrawnForCurrentRound() -> Bool {
-        let round = isRapid ? currentRound : 1
-        return players.allSatisfy { $0.hasDrawing(ofRound: round) }
+        players.allSatisfy { $0.hasDrawing(ofRound: currentRound) }
     }
 
     func hasAllPlayersVotedForCurrentRound() -> Bool {
@@ -94,18 +79,15 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func userVoteFor(player: ClassicPlayer) {
-        // users vote for previous rounds drawing in non-rapid mode
-        let round = isRapid ? currentRound : currentRound - 1
-
         user.voteFor(player: player)
 
         player.points += ClassicGame.votingPoints
 
         if player === roundMaster {
             user.points += ClassicGame.pointsForCorrectPick
-            voteFor(player: player, for: round, updatedPlayerPoints: user.points)
+            voteFor(player: player, for: currentRound, updatedPlayerPoints: user.points)
         } else {
-            voteFor(player: player, for: round, updatedPlayerPoints: player.points)
+            voteFor(player: player, for: currentRound, updatedPlayerPoints: player.points)
         }
     }
 
