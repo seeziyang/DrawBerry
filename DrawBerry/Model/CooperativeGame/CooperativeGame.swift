@@ -8,17 +8,30 @@
 import UIKit
 
 class CooperativeGame: MultiplayerNetworkGame {
-    weak var delegate: CooperativeGameDelegate?
-    weak var viewingDelegate: CooperativeGameViewingDelegate?
+    var players: [CooperativePlayer]
+    var user: CooperativePlayer
+    var allDrawings: [UIImage]
+    var currentRound: Int
+    let maxRounds: Int = 1
     var isFirstPlayer: Bool {
         players[0] == user
     }
-    var cooperativePlayers: [CooperativePlayer] {
-        players.compactMap { $0 as? CooperativePlayer }
-    }
+
+    let gameNetwork: GameNetwork
+    let roomCode: RoomCode
+
+    weak var delegate: CooperativeGameDelegate?
+    weak var viewingDelegate: CooperativeGameViewingDelegate?
 
     init(from room: GameRoom) {
-        super.init(from: room, maxRounds: 1)
+        let players = room.players.sorted().map { CooperativePlayer(from: $0) }
+        self.players = players
+        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? players[0]
+        self.allDrawings = []
+        self.currentRound = 1
+
+        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
+        self.roomCode = room.roomCode
     }
 
     /// Download drawings of players before the user.
@@ -29,7 +42,7 @@ class CooperativeGame: MultiplayerNetworkGame {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let previousPlayers = cooperativePlayers.filter { getIndex(of: $0) ?? 0 < userIndex }
+        let previousPlayers = players.filter { getIndex(of: $0) ?? 0 < userIndex }
         previousPlayers.forEach { downloadDrawing(of: $0) }
     }
 
@@ -38,7 +51,7 @@ class CooperativeGame: MultiplayerNetworkGame {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let futurePlayers = cooperativePlayers.filter { getIndex(of: $0) ?? 0 >= userIndex }
+        let futurePlayers = players.filter { getIndex(of: $0) ?? 0 >= userIndex }
         futurePlayers.forEach { downloadDrawing(of: $0) }
     }
 

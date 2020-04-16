@@ -7,52 +7,30 @@
 //
 import UIKit
 
-class MultiplayerNetworkGame: NetworkGame, MultiplayerGame {
-    var players: [MultiplayerPlayer]
-    var user: MultiplayerPlayer
-    var allDrawings: [UIImage] = []
-    var currentRound: Int
-    let maxRounds: Int
+protocol MultiplayerNetworkGame: NetworkGame, MultiplayerGame {
+//    var players: [GamePlayer] { get set }
+    var user: GamePlayer { get set }
+    var currentRound: Int { get set }
+    var maxRounds: Int { get }
+    var isLastRound: Bool { get }
+
+    /// Adds a `UIImage` to the associated user.
+    func addUsersDrawing(image: UIImage)
+
+    func getIndex(of player: GamePlayer) -> Int?
+}
+
+extension MultiplayerNetworkGame {
     var isLastRound: Bool {
         currentRound == maxRounds
     }
 
-    init(from room: GameRoom, maxRounds: Int) {
-        let players = room.players.sorted().map { room.createPlayer(from: $0) }
-        self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? players[0]
-        self.maxRounds = maxRounds
-        self.currentRound = 1
-        super.init(from: room.roomCode)
-    }
-
-    init?(from room: GameRoom, maxRounds: Int, gameNetwork: GameNetwork) {
-        let players = room.players.sorted().map { room.createPlayer(from: $0) }
-        self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? players[0]
-        self.maxRounds = maxRounds
-        self.currentRound = 1
-        super.init(from: room.roomCode, gameNetwork: gameNetwork)
-    }
-
-    init(from roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
-        self.players = players.sorted()
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-            ?? players[0]
-        self.maxRounds = .max
-        self.currentRound = currentRound
-        super.init(from: roomCode)
-    }
-
-    /// Adds a `UIImage` to the associated user.
     func addUsersDrawing(image: UIImage) {
         user.addDrawing(image: image)
         upload(image: image, for: currentRound)
     }
 
-    func getIndex(of player: MultiplayerPlayer) -> Int? {
+    func getIndex(of player: GamePlayer) -> Int? {
         players.firstIndex(where: { $0.uid == player.uid })
     }
 }

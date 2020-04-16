@@ -29,7 +29,7 @@ class EnterCooperativeRoomViewController: UIViewController {
         if let roomVC = segue.destination as? CooperativeGameRoomViewController,
             let roomCodeValue = roomCodeField.text {
             let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.CooperativeRoom)
-            roomVC.room = CooperativeGameRoom(roomCode: roomCode)
+            roomVC.room = GameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
             roomVC.configureStartButton()
         }

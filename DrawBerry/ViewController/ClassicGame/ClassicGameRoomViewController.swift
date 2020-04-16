@@ -9,7 +9,7 @@
 import UIKit
 
 class ClassicGameRoomViewController: UIViewController, GameRoomDelegate {
-    var room: ClassicGameRoom!
+    var room: GameRoom!
     private var currentViewingPlayerID: String?
 
     @IBOutlet private weak var startButton: UIBarButtonItem!

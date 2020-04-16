@@ -8,8 +8,6 @@
 import UIKit
 
 protocol MultiplayerPlayer: ComparablePlayer {
-    var isRoomMaster: Bool { get set }
-
     func addDrawing(image: UIImage)
 
     func getDrawingImage() -> UIImage?

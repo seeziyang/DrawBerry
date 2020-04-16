@@ -33,7 +33,7 @@ class EnterClassicRoomViewController: UIViewController {
         if let roomVC = segue.destination as? ClassicGameRoomViewController,
             let roomCodeValue = roomCodeField.text {
                 let roomCode = RoomCode(value: roomCodeValue, type: GameRoomType.ClassicRoom)
-                roomVC.room = ClassicGameRoom(roomCode: roomCode)
+                roomVC.room = GameRoom(roomCode: roomCode)
                 roomVC.room.delegate = roomVC
         } else if let votingVC = segue.destination as? VotingViewController,
             let roomCode = sender as? RoomCode,

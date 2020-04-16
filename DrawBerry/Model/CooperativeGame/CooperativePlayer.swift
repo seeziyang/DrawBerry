@@ -8,13 +8,16 @@
 
 import UIKit
 
-class CooperativePlayer: ComparablePlayer, MultiplayerPlayer {
+class CooperativePlayer: MultiplayerPlayer {
+    let name: String
+    let uid: String
     var isRoomMaster: Bool
     private var drawingImage: UIImage?
 
     init(name: String, uid: String, isRoomMaster: Bool) {
+        self.name = name
+        self.uid = uid
         self.isRoomMaster = isRoomMaster
-        super.init(name: name, uid: uid)
     }
 
     convenience init(from roomPlayer: RoomPlayer) {

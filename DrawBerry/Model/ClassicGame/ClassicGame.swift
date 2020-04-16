@@ -9,42 +9,54 @@
 import UIKit
 
 class ClassicGame: MultiplayerNetworkGame {
+    var players: [ClassicPlayer]
+    var user: ClassicPlayer
+    var currentRound: Int
+    let maxRounds: Int
+    private var roundMasterIndex: Int
+    // round master is the player who chooses the topic for the current round
+    var roundMaster: ClassicPlayer {
+        players[roundMasterIndex]
+    }
+
+    let gameNetwork: GameNetwork
+    let roomCode: RoomCode
+
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
     weak var delegate: ClassicGameDelegate?
+
     let isRapid: Bool
 
-    private var roundMasterIndex: Int
-    // round master is the player who chooses the topic for the current round
-    var roundMaster: MultiplayerPlayer {
-        players[roundMasterIndex]
-    }
-    var classicPlayers: [ClassicPlayer] {
-        players.compactMap { $0 as? ClassicPlayer }
-    }
-
     init(from room: GameRoom) {
+        let players = room.players.sorted().map { ClassicPlayer(from: $0) }
+        self.players = players
+        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? players[0]
+        self.currentRound = 1
+        self.maxRounds = ClassicGame.calculateMaxRounds(numPlayers: players.count)
+        self.roundMasterIndex = players.firstIndex(where: { $0.isRoomMaster }) ?? 0
+
+        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
+        self.roomCode = room.roomCode
+
         self.isRapid = room.isRapid
-        self.roundMasterIndex = room.players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
-        super.init(from: room, maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
     }
 
-    init?(from room: GameRoom, gameNetwork: GameNetwork) {
-        self.isRapid = room.isRapid
-        self.roundMasterIndex = room.players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
-        super.init(
-            from: room,
-            maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count),
-            gameNetwork: gameNetwork
-        )
-    }
-
+    // will refactor this out to its own subclass later so dont worry about the duplicated inits first
     init(nonRapidRoomCode roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
         let sortedPlayers = players.sorted()
+        self.players = sortedPlayers
+        self.user = sortedPlayers.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+            ?? sortedPlayers[0]
+        self.currentRound = currentRound
+        self.maxRounds = .max
+        self.roundMasterIndex = sortedPlayers.firstIndex(where: { $0.isRoomMaster }) ?? 0
+
+        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: roomCode)
+        self.roomCode = roomCode
+
         self.isRapid = false
-        self.roundMasterIndex = players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
-        super.init(from: roomCode, players: sortedPlayers, currentRound: currentRound)
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
@@ -74,38 +86,37 @@ class ClassicGame: MultiplayerNetworkGame {
 
     func hasAllPlayersDrawnForCurrentRound() -> Bool {
         let round = isRapid ? currentRound : 1
-        return classicPlayers.allSatisfy { $0.hasDrawing(ofRound: round) }
+        return players.allSatisfy { $0.hasDrawing(ofRound: round) }
     }
 
     func hasAllPlayersVotedForCurrentRound() -> Bool {
-        classicPlayers.allSatisfy { $0.hasVoted(inRound: currentRound) }
+        players.allSatisfy { $0.hasVoted(inRound: currentRound) }
     }
 
     func userVoteFor(player: ClassicPlayer) {
         // users vote for previous rounds drawing in non-rapid mode
         let round = isRapid ? currentRound : currentRound - 1
-        guard let classicUser = user as? ClassicPlayer else {
-            return
-        }
 
-        classicUser.voteFor(player: player)
+        user.voteFor(player: player)
 
         player.points += ClassicGame.votingPoints
 
         if player === roundMaster {
-            classicUser.points += ClassicGame.pointsForCorrectPick
-            voteFor(player: player, for: round, updatedPlayerPoints: classicUser.points)
+            user.points += ClassicGame.pointsForCorrectPick
+            voteFor(player: player, for: round, updatedPlayerPoints: user.points)
         } else {
             voteFor(player: player, for: round, updatedPlayerPoints: player.points)
         }
     }
 
     func observePlayerVotes() {
-        for player in classicPlayers where player !== user {
+        for player in players where player !== user {
             observePlayerVote(
-                player: player, for: currentRound, completionHandler: { [weak self] votedForPlayerUID in
+                player: player,
+                for: currentRound,
+                completionHandler: { [weak self] votedForPlayerUID in
                     guard let votedForPlayer =
-                        self?.classicPlayers.first(where: { $0.uid == votedForPlayerUID }) else {
+                        self?.players.first(where: { $0.uid == votedForPlayerUID }) else {
                             return
                     }
 
@@ -161,7 +172,9 @@ extension ClassicGame {
                                 updatedPlayerPoints: player.points, updatedUserPoints: nil)
     }
 
-    func observePlayerVote(player: ClassicPlayer, for round: Int, completionHandler: @escaping (String) -> Void) {
-        gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round, completionHandler: completionHandler)
+    func observePlayerVote(player: ClassicPlayer, for round: Int,
+                           completionHandler: @escaping (String) -> Void) {
+        gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round,
+                                      completionHandler: completionHandler)
     }
 }
