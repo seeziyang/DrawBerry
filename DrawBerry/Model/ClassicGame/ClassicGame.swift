@@ -20,6 +20,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
 
     static let drawingDuration: Double = 60.0
     static let votingDuration: Double = 45.0
+    static let viewingDuration: Double = 7.5
 
     weak var delegate: ClassicGameDelegate?
 
@@ -115,11 +116,15 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     }
 
     private func moveToNextRound() {
-        Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
-            self?.currentRound += 1
-            self?.moveRoundMasterIndex()
-            self?.delegate?.segueToNextRound()
-        })
+        delegate?.segueToNextRound()
+        Timer.scheduledTimer(
+            withTimeInterval: ClassicGame.viewingDuration,
+            repeats: false,
+            block: { [weak self] _ in
+                self?.currentRound += 1
+                self?.moveRoundMasterIndex()
+            }
+        )
     }
 
     private func moveRoundMasterIndex() {
@@ -127,10 +132,15 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     }
 
     private func endGame() {
-        Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
-            self?.endGame(isRoomMaster: self?.user.isRoomMaster ?? false, numRounds: self?.currentRound ?? 0)
-            self?.delegate?.segueToGameEnd()
-        })
+        delegate?.segueToGameEnd()
+        Timer.scheduledTimer(
+            withTimeInterval: ClassicGame.viewingDuration,
+            repeats: false,
+            block: { [weak self] _ in
+                self?.endGame(isRoomMaster: self?.user.isRoomMaster ?? false,
+                              numRounds: self?.currentRound ?? 0)
+            }
+        )
     }
 }
 

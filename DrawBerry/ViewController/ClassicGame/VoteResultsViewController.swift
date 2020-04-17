@@ -38,11 +38,23 @@ class VoteResultsViewController: UIViewController, ClassicGameDelegate {
     }
 
     func segueToNextRound() {
-        performSegue(withIdentifier: "segueToNextRound", sender: self)
+        startTimerToSegue(segueIdentifier: "segueToNextRound")
     }
 
     func segueToGameEnd() {
-        performSegue(withIdentifier: "segueToGameEnd", sender: self)
+        startTimerToSegue(segueIdentifier: "segueToGameEnd")
+    }
+
+    private func startTimerToSegue(segueIdentifier: String) {
+        let timerBarView = TimerBarView(
+            frame: CGRect(x: view.frame.minX, y: view.frame.minY + 30,
+                          width: view.frame.width, height: 10),
+            duration: ClassicGame.viewingDuration,
+            completionHandler: { self.performSegue(withIdentifier: segueIdentifier, sender: self) }
+        )
+
+        view.addSubview(timerBarView)
+        timerBarView.start()
     }
 }
 

@@ -11,15 +11,26 @@ import UIKit
 class ClassicGameEndViewController: UIViewController {
     var classicGame: ClassicGame!
 
+    @IBOutlet private weak var resultsText: UITextView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         addDoneButtonToView()
+        setResultsText()
+    }
+
+    private func setResultsText() {
+        var text = ""
+        for player in classicGame.players {
+            text += player.name.padding(toLength: 25, withPad: " ", startingAt: 0)
+            text += String(player.points) + "\n"
+        }
+        resultsText.text = text
     }
 
     private func addDoneButtonToView() {
         let button = UIButton(type: .system)
-        button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.maxY - 250,
+        button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.midY + 150,
                               width: 100, height: 50)
         button.backgroundColor = .systemYellow
         button.setTitle("Ok", for: .normal)
