@@ -31,7 +31,10 @@ class EarthquakePowerup: RepeatingTogglePowerup {
     }
 
     func activate() {
-        targets.forEach { $0.canvasDrawing.rotateCanvas(by: EarthquakePowerup.ROTATION_VALUE) }
+        targets.forEach {
+            $0.canvasDrawing.rotateCanvas(rotationValue: $0.canvasDrawing.defaultRotationValue +
+                EarthquakePowerup.ROTATION_VALUE)
+        }
 
         _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { _ in
             self.deactivate()
@@ -39,7 +42,7 @@ class EarthquakePowerup: RepeatingTogglePowerup {
     }
 
     func deactivate() {
-        targets.forEach { $0.canvasDrawing.rotateCanvas(by: -EarthquakePowerup.ROTATION_VALUE) }
+        targets.forEach { $0.canvasDrawing.rotateCanvas(rotationValue: $0.canvasDrawing.defaultRotationValue) }
 
         _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { _ in
             self.timesToRepeat -= 1

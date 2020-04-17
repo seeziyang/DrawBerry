@@ -54,4 +54,6 @@ enum Message {
     static let competitiveVotingUsedAllVotes = "You have already used all your votes!"
     static let competitiveVotingCannotSelfVote = "You cannot vote for yourself!"
     static let competitiveVotingAlreadyVoted = "You have already voted for this player!"
+
+    static let competitiveGameDuplicateNamesNotAllowed = "Duplicate names are not allowed!"
 }

@@ -33,7 +33,7 @@ class PowerupTests: XCTestCase {
     func testHideDrawingPowerup() {
         let selectedPlayer = players[0]
         let powerup = HideDrawingPowerup(owner: selectedPlayer, players: players,
-                                         location: CGPoint.randomLocation(for: selectedPlayer))
+                                         location: CGPoint.randomLocationInCanvas(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
         for player in players where player != selectedPlayer {
@@ -53,7 +53,7 @@ class PowerupTests: XCTestCase {
     func testExtraStrokePowerup() {
         let selectedPlayer = players[1]
         let powerup = ExtraStrokePowerup(owner: selectedPlayer, players: players,
-                                         location: CGPoint.randomLocation(for: selectedPlayer))
+                                         location: CGPoint.randomLocationInCanvas(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
         for player in players where player != selectedPlayer {
@@ -66,7 +66,7 @@ class PowerupTests: XCTestCase {
     func testInkSplotchPowerup() {
         let selectedPlayer = players[2]
         let powerup = InkSplotchPowerup(owner: selectedPlayer, players: players,
-                                        location: CGPoint.randomLocation(for: selectedPlayer))
+                                        location: CGPoint.randomLocationInCanvas(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
         for player in players where player != selectedPlayer {
@@ -78,7 +78,7 @@ class PowerupTests: XCTestCase {
     func testInvulnerabilityPowerup() {
         let selectedPlayer = players[3]
         let powerup = InvulnerabilityPowerup(owner: selectedPlayer, players: players,
-                                             location: CGPoint.randomLocation(for: selectedPlayer))
+                                             location: CGPoint.randomLocationInCanvas(for: selectedPlayer))
         powerupManager.applyPowerup(powerup)
 
         XCTAssertTrue(selectedPlayer.canvasDrawing is InvulnerableBerryCanvas, "Owner is not invulnerable")
@@ -93,16 +93,96 @@ class PowerupTests: XCTestCase {
         }
     }
 
+    func testEarthquakePowerup() {
+        let selectedPlayer = players[1]
+        let powerup = EarthquakePowerup(owner: selectedPlayer, players: players,
+                                        location: CGPoint.randomLocationInCanvas(for: selectedPlayer))
+        powerupManager.applyPowerup(powerup)
+
+        for player in players where player != selectedPlayer {
+            let rotationAngle = atan2(player.canvasDrawing.transform.b, player.canvasDrawing.transform.a)
+            XCTAssertNotEqual(rotationAngle, player.canvasDrawing.defaultRotationValue,
+                              "Target player's canvas was not rotated")
+        }
+
+        let rotationAngle = atan2(selectedPlayer.canvasDrawing.transform.b, selectedPlayer.canvasDrawing.transform.a)
+        XCTAssertEqual(rotationAngle, selectedPlayer.canvasDrawing.defaultRotationValue,
+                       "Owner's canvas was rotated")
+    }
+
     func testHideDrawingWhileInvulnerable() {
-        let selectedPlayer = players[0]
+        let invulnerablePlayer = players[0]
         let otherPlayer = players[1]
-        let invulnerabilityPowerup = InvulnerabilityPowerup(owner: selectedPlayer, players: players,
-                                                            location: CGPoint.randomLocation(for: selectedPlayer))
+        let invulnerabilityPowerup =
+            InvulnerabilityPowerup(owner: invulnerablePlayer, players: players,
+                                   location: CGPoint.randomLocationInCanvas(for: invulnerablePlayer))
         powerupManager.applyPowerup(invulnerabilityPowerup)
 
         let hideDrawingPowerup = HideDrawingPowerup(owner: otherPlayer, players: players,
-                                                    location: CGPoint.randomLocation(for: otherPlayer))
+                                                    location: CGPoint.randomLocationInCanvas(for: otherPlayer))
         powerupManager.applyPowerup(hideDrawingPowerup)
-        XCTAssertFalse(selectedPlayer.canvasDrawing.isHidden, "Invulnerable player's drawing was hidden")
+        XCTAssertFalse(invulnerablePlayer.getInnermostCanvas().isHidden, "Invulnerable player's drawing was hidden")
+    }
+
+    func testEarthquakeWhileInvulnerable() {
+        let invulnerablePlayer = players[3]
+        let otherPlayer = players[0]
+        let invulnerabilityPowerup =
+            InvulnerabilityPowerup(owner: invulnerablePlayer, players: players,
+                                   location: CGPoint.randomLocationInCanvas(for: invulnerablePlayer))
+        powerupManager.applyPowerup(invulnerabilityPowerup)
+
+        let earthquakePowerup = EarthquakePowerup(owner: otherPlayer, players: players,
+                                                  location: CGPoint.randomLocationInCanvas(for: otherPlayer))
+        powerupManager.applyPowerup(earthquakePowerup)
+        let rotationAngle = atan2(invulnerablePlayer.canvasDrawing.transform.b,
+                                  invulnerablePlayer.canvasDrawing.transform.a)
+
+        XCTAssertEqual(rotationAngle, invulnerablePlayer.getInnermostCanvas().defaultRotationValue,
+                       accuracy: 1e-6, "Invulnerable player's canvas was rotated")
+    }
+
+    func testInkSplotchWhileInvulnerable() {
+        let invulnerablePlayer = players[2]
+        let otherPlayer = players[0]
+
+        let expectedNumberOfSubviews = invulnerablePlayer.canvasDrawing.subviews.count
+        let invulnerabilityPowerup =
+            InvulnerabilityPowerup(owner: invulnerablePlayer, players: players,
+                                   location: CGPoint.randomLocationInCanvas(for: invulnerablePlayer))
+        powerupManager.applyPowerup(invulnerabilityPowerup)
+
+        let inkSplotchPowerup = InkSplotchPowerup(owner: otherPlayer, players: players,
+                                                  location: CGPoint.randomLocationInCanvas(for: otherPlayer))
+        powerupManager.applyPowerup(inkSplotchPowerup)
+
+        XCTAssertEqual(expectedNumberOfSubviews, invulnerablePlayer.getInnermostCanvas().subviews.count,
+                       "Subview count differs for invulnerable player")
+    }
+
+    func testExtraStrokeWhileInvulnerable() {
+        let invulnerablePlayer = players[1]
+        let invulnerabilityPowerup =
+            InvulnerabilityPowerup(owner: invulnerablePlayer, players: players,
+                                   location: CGPoint.randomLocationInCanvas(for: invulnerablePlayer))
+        powerupManager.applyPowerup(invulnerabilityPowerup)
+
+        let extraStrokePowerup = ExtraStrokePowerup(owner: invulnerablePlayer, players: players,
+                                                    location: CGPoint.randomLocationInCanvas(for: invulnerablePlayer))
+        powerupManager.applyPowerup(extraStrokePowerup)
+
+        XCTAssertEqual(invulnerablePlayer.extraStrokes, 1, "Extra stroke not incremented for invulnerable player")
+    }
+}
+
+extension CompetitivePlayer {
+    func getInnermostCanvas() -> CompetitiveCanvas {
+        var currentCanvas = canvasDrawing
+        while true {
+            guard let canvas = currentCanvas.decoratedCanvas else {
+                return currentCanvas
+            }
+            currentCanvas = canvas
+        }
     }
 }
