@@ -39,6 +39,8 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
+        return 2 // TODO: REMOVE@!!!!!
+        
         if numPlayers <= 3 {
             return numPlayers * 3
         } else if numPlayers <= 5 {

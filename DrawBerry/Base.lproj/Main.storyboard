@@ -343,6 +343,7 @@
                         <outlet property="roomCodeField" destination="0Qa-g5-cEd" id="mj7-pz-PEF"/>
                         <segue destination="cuu-G9-htT" kind="show" identifier="segueToClassicRoom" id="qM3-6L-xtS"/>
                         <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVotingFromEnterRoom" id="6FN-2v-NBi"/>
+                        <segue destination="0SH-7d-mKs" kind="show" identifier="segueToResults" id="HnX-p1-WPu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaY-f7-xXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1151,6 +1152,7 @@
                     <connections>
                         <segue destination="iV6-EF-2OA" kind="show" identifier="segueToVoting" id="Uzk-c9-9Y5"/>
                         <segue destination="evc-Ih-NW2" kind="unwind" identifier="classicUnwindSegueToHomeVC" unwindAction="unwindToHomeVCWithSegue:" id="AHu-Kv-L8G"/>
+                        <segue destination="evc-Ih-NW2" kind="unwind" identifier="classicUnwindSegueToEnterClassicGameRoomVC" unwindAction="unwindToEnterClassicGameRoomVCWithSegue:" id="v69-qK-1Zh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNe-2z-6aR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1367,6 +1369,7 @@
                     <connections>
                         <outlet property="resultsText" destination="26J-pQ-yLp" id="Tol-Gx-Qce"/>
                         <segue destination="Qam-rv-IYs" kind="unwind" identifier="gameEndUnwindSegueToHomeVC" unwindAction="unwindToHomeVCWithSegue:" id="ana-Aa-UEA"/>
+                        <segue destination="Qam-rv-IYs" kind="unwind" identifier="gameEndUnwindToEnterClassicGameRoomVC" unwindAction="unwindToEnterClassicGameRoomVCWithSegue:" id="SrE-xA-a5M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKX-Wd-BnJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1795,6 +1798,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="yfi-lF-uTa"/>
         <segue reference="aYW-Q6-A9x"/>
+        <segue reference="HnX-p1-WPu"/>
         <segue reference="6FN-2v-NBi"/>
         <segue reference="zXI-Xz-Tkd"/>
         <segue reference="Gg7-CT-DLI"/>

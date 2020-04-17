@@ -43,6 +43,10 @@ class EnterClassicRoomViewController: UIViewController, EnterRoomViewController 
                 votingVC.classicGame = classicGame
                 votingVC.classicGame.delegate = votingVC
                 votingVC.classicGame.observePlayersDrawing()
+        } else if let resultsVC = segue.destination as? ClassicGameEndViewController,
+            let roomCode = sender as? RoomCode,
+            let classicGame = usersNonRapidGameStatuses[roomCode]?.game {
+                resultsVC.classicGame = classicGame
         }
     }
 
@@ -86,6 +90,9 @@ class EnterClassicRoomViewController: UIViewController, EnterRoomViewController 
     func segueToRoomVC() {
         performSegue(withIdentifier: "segueToClassicRoom", sender: self)
     }
+
+    @IBAction private func unwindToEnterClassicGameRoomVC(segue: UIStoryboardSegue) {
+    }
 }
 
 extension EnterClassicRoomViewController: UITableViewDataSource {
@@ -108,7 +115,10 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                           action: #selector(handleCellTap(_:)))
+        let longPressGestureRecognizer =
+            UILongPressGestureRecognizer(target: self, action: #selector(handleCellLongPress(_:)))
         cell.addGestureRecognizer(tapGestureRecognizer)
+        cell.addGestureRecognizer(longPressGestureRecognizer)
 
         return cell
     }
@@ -131,6 +141,21 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
             performSegue(withIdentifier: "segueToVotingFromEnterRoom", sender: roomCode)
         } else {
             // TODO: Show some alert?
+        }
+    }
+
+    @objc private func handleCellLongPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            guard let cell = sender.view as? UITableViewCell else {
+                return
+            }
+
+            guard let index = activeNonRapidGamesTable.indexPath(for: cell)?.row else {
+                return
+            }
+
+            let roomCode = usersNonRapidGameRoomCodes[index]
+            performSegue(withIdentifier: "segueToResults", sender: roomCode)
         }
     }
 }
