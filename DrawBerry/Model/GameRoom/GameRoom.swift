@@ -16,7 +16,7 @@ class GameRoom {
     let roomNetwork: RoomNetwork
     let roomCode: RoomCode
     private(set) var isRapid: Bool
-    private(set) var players: [RoomPlayer] { // synced with database
+    internal(set) var players: [RoomPlayer] { // synced with database
         didSet {
             players.sort()
         }
@@ -50,7 +50,6 @@ class GameRoom {
         self.isRapid = true
 
         roomNetwork.observeRoomPlayers(listener: { [weak self] players in
-
             if let previousPlayers = self?.players {
                 self?.didPlayersCountChange = (previousPlayers.count != players.count)
             }
@@ -71,7 +70,7 @@ class GameRoom {
     }
 
     func createPlayer(from player: RoomPlayer) -> MultiplayerPlayer {
-       fatalError("This function must be overriden")
+       preconditionFailure("This function must be overriden")
     }
 
     func startGame() {
