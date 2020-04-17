@@ -8,9 +8,11 @@
 
 class TeamBattleGuesser: TeamBattlePlayer {
 
+    var wordList: WordList?
+
     func getDrawingTopic(for round: Int) -> String {
         // TODO: use network
-        return "apple"
+        return wordList?.getWord(at: round - 1)?.value ?? ""
     }
 
     func getLengthHint(for round: Int) -> Int {

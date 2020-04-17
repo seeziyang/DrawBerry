@@ -224,6 +224,7 @@
 		3EF004F82419071F00136234 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F72419071F00136234 /* SignUpViewController.swift */; };
 		3EF004FA241907FB00136234 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004F9241907FB00136234 /* HomeViewController.swift */; };
 		3EF004FC2419149A00136234 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF004FB2419149A00136234 /* StringHelper.swift */; };
+		3EFD7AB62449605300623767 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD7AB52449605300623767 /* WordList.swift */; };
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
 		FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */; };
@@ -410,6 +411,7 @@
 		3EF004F72419071F00136234 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3EF004F9241907FB00136234 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3EF004FB2419149A00136234 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		3EFD7AB52449605300623767 /* WordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.debug.xcconfig"; sourceTree = "<group>"; };
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				3EBFFE99243D82A7002675B3 /* TeamBattleDrawer.swift */,
 				3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */,
 				3EBFFE91243D7BDE002675B3 /* WordBank.swift */,
+				3EFD7AB52449605300623767 /* WordList.swift */,
 				3EBFFE93243D7CC3002675B3 /* Word.swift */,
 				3EBFFE97243D7E3C002675B3 /* TopicWord.swift */,
 				3EBFFE95243D7D33002675B3 /* WordDifficulty.swift */,
@@ -1244,6 +1247,7 @@
 				372CA594242C3BC3000E1E71 /* CooperativePlayer.swift in Sources */,
 				3EBFFE9E243D891D002675B3 /* TeamBattleGame.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
+				3EFD7AB62449605300623767 /* WordList.swift in Sources */,
 				1A4595BB2445BC07009D447D /* RoomNetwork.swift in Sources */,
 				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
 				3EBFFEA0243D8AC6002675B3 /* TeamBattleTeamResult.swift in Sources */,
@@ -1438,7 +1442,6 @@
 				1A4595C32445C527009D447D /* RoomEnteringNetwork.swift in Sources */,
 				3749D3C424265B9000CE798F /* DrawBerryUITest.swift in Sources */,
 				375E238B2443003E00BA8AB1 /* Team.swift in Sources */,
-				1AD702C92439B5040059C80D /* PowerupView.swift in Sources */,
 				3792F45E243DC7C000FDEBDC /* CooperativeGameRoom.swift in Sources */,
 				375E237F243DC8B000BA8AB1 /* CooperativePlayer.swift in Sources */,
 				3792F45A243DC7A900FDEBDC /* MultiplayerPlayer.swift in Sources */,

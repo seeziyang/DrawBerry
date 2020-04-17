@@ -93,7 +93,7 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         game.addTeamDrawing(image: canvas.drawingImage)
 
         // TODO:
-        if game.currentRound >= game.maxRounds {
+        if game.currentRound >= TeamBattleGame.maxRounds {
             performSegue(withIdentifier: "drawToTeamBattleEnd", sender: self)
             return
         }

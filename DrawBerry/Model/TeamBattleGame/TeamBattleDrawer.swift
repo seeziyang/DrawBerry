@@ -10,20 +10,17 @@ import UIKit
 
 class TeamBattleDrawer: TeamBattlePlayer {
 
-    private var wordBank: WordBank
+    var wordList: WordList
 
     init(from roomPlayer: RoomPlayer) {
-        self.wordBank = WordBank()
+        var wordBank = WordBank()
+        self.wordList = wordBank.getWordList(length: TeamBattleGame.maxRounds, difficulty: .Easy)
         super.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
     }
 
     func getDrawingTopic() -> String {
-        guard let topic = wordBank.popRandomWord(difficulty: .Easy)?.value else {
-            wordBank.reloadWordBank()
-            return wordBank.getWordWhenEmptyWordBank().value
-        }
 
-        return topic
+        return wordList.getNextWord().value
     }
 
 }

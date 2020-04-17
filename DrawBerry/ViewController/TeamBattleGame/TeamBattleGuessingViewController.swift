@@ -21,7 +21,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
 
     var isGuesserWaiting: Bool = true {
         didSet {
-            if currentRound == game.maxRounds {
+            if currentRound == TeamBattleGame.maxRounds {
                 return
             }
 
@@ -90,7 +90,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
 
     func proceedToNextRound() {
         currentRound += 1
-        if currentRound > game.maxRounds {
+        if currentRound > TeamBattleGame.maxRounds {
             performSegue(withIdentifier: "guessToTeamBattleEnd", sender: self)
         }
     }

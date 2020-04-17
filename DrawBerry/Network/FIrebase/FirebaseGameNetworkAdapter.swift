@@ -13,11 +13,16 @@ class FirebaseGameNetworkAdapter: GameNetwork {
     let roomCode: RoomCode
     let db: DatabaseReference
     let cloud: StorageReference
+    let roomDefaultPath: DatabaseReference
 
     init(roomCode: RoomCode) {
         self.roomCode = roomCode
         self.db = Database.database().reference()
         self.cloud = Storage.storage().reference()
+        self.roomDefaultPath = db.child("activeRooms")
+                                .child(roomCode.type.rawValue)
+                                .child(roomCode.value)
+                                .child("players")
     }
 
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
@@ -233,8 +238,6 @@ class FirebaseGameNetworkAdapter: GameNetwork {
             }
 
             self.downloadTeamResult(playerUID: playerUID, completionHandler: completionHandler)
-
-            //dbPathRef.remove// remove observer after downloading image
         })
     }
 
@@ -256,8 +259,6 @@ class FirebaseGameNetworkAdapter: GameNetwork {
             }
 
             completionHandler(result)
-
-            // dbPathRef.removeAllObservers() // remove observer after downloading image
         })
     }
 
@@ -270,5 +271,16 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
         dbPathRef.child("teamResult").setValue(result.getDatabaseStorageDescription())
         dbPathRef.child("hasTeamResult").setValue(true)
+    }
+
+    func uploadWordList(list: WordList, drawerID: String) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("players")
+            .child(drawerID)
+
+        dbPathRef.child("wordList").setValue(list.getDatabaseDescription())
+        dbPathRef.child("hasWordList").setValue(true)
     }
 }

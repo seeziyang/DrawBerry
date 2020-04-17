@@ -6,8 +6,6 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-import Foundation
-
 struct WordBank {
     var words: [Word]
     // TODO: Init from file
@@ -15,6 +13,14 @@ struct WordBank {
     // Default constructor
     init() {
         words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat")]
+    }
+
+    mutating func getWordList(length: Int, difficulty: WordDifficulty) -> WordList {
+        var list = [Word]()
+        for _ in 0..<length {
+            list.append(popRandomWord(difficulty: difficulty) ?? getWordWhenEmptyWordBank())
+        }
+        return WordList(words: list)
     }
 
     mutating func popRandomWord(difficulty: WordDifficulty) -> Word? {

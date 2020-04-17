@@ -9,7 +9,7 @@
 import UIKit
 
 class TeamBattleGame: NetworkGame {
-    let maxRounds = 3
+    static let maxRounds = 3
     var players = [TeamBattlePlayer]()
     var teams = [TeamBattlePair]()
     var gameResult: TeamBattleGameResult
@@ -67,7 +67,7 @@ class TeamBattleGame: NetworkGame {
             return
         }
 
-        for round in 1...maxRounds {
+        for round in 1...TeamBattleGame.maxRounds {
             observe(uid: id, for: round, completionHandler: { [weak self] image in
                 self?.delegate?.updateDrawing(image, for: round)
             })
@@ -77,6 +77,14 @@ class TeamBattleGame: NetworkGame {
 
 /// Extensions to network interface
 extension TeamBattleGame {
+    func uploadWordList() {
+
+    }
+
+    func downloadWordList() {
+        userTeam?.guesser
+    }
+
     func addTeamResult(result: TeamBattleTeamResult) {
         gameNetwork.uploadTeamResult(result: result)
     }
@@ -97,6 +105,6 @@ extension TeamBattleGame {
     }
 
     func endGame() {
-        endGame(isRoomMaster: user.isRoomMaster, numRounds: maxRounds)
+        endGame(isRoomMaster: user.isRoomMaster, numRounds: TeamBattleGame.maxRounds)
     }
 }
