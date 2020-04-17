@@ -8,7 +8,6 @@
 import UIKit
 
 protocol MultiplayerNetworkGame: NetworkGame, MultiplayerGame {
-//    var players: [GamePlayer] { get set }
     var user: GamePlayer { get set }
     var currentRound: Int { get set }
     var maxRounds: Int { get }
