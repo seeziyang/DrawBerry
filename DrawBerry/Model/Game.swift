@@ -10,4 +10,5 @@ protocol Game {
     associatedtype GamePlayer: Player
 
     var players: [GamePlayer] { get }
+    var currentRound: Int { get set }
 }

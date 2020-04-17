@@ -31,7 +31,7 @@ class TeamBattleGame: NetworkGame {
         return nil
     }
 
-    private(set) var currentRound: Int
+    var currentRound: Int
 
     convenience init(from room: GameRoom) {
         self.init(from: room, gameNetwork: FirebaseGameNetworkAdapter(roomCode: room.roomCode))!

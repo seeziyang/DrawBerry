@@ -9,7 +9,6 @@ import UIKit
 
 protocol MultiplayerNetworkGame: NetworkGame, MultiplayerGame {
     var user: GamePlayer { get set }
-    var currentRound: Int { get set }
     var maxRounds: Int { get }
     var isLastRound: Bool { get }
 
