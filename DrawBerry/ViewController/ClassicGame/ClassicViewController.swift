@@ -22,6 +22,7 @@ class ClassicViewController: CanvasDelegateViewController {
 
         if !(classicGame is NonRapidClassicGame) {
             addTimerBarToView()
+            timerBarView?.start()
         }
     }
 
@@ -66,7 +67,6 @@ class ClassicViewController: CanvasDelegateViewController {
                                         completionHandler: finishDrawing)
         view.addSubview(timerBarView)
         self.timerBarView = timerBarView
-        timerBarView.start()
     }
 
     @objc private func doneOnTap(sender: UIButton) {

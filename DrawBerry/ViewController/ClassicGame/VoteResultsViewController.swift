@@ -68,6 +68,11 @@ extension VoteResultsViewController: UICollectionViewDataSource {
         cell.setName(player.name)
         cell.setPoints(player.points)
 
+        let voters = classicGame.players
+            .filter { $0.getVotedPlayer(inRound: classicGame.currentRound) == player }
+
+        cell.setVoters(votersName: voters.map { $0.name })
+
         return cell
     }
 }
