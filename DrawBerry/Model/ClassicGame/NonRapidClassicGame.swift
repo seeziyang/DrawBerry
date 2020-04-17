@@ -10,17 +10,7 @@ import UIKit
 
 class NonRapidClassicGame: ClassicGame {
     init(roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
-        let sortedPlayers = players.sorted()
-        super.init(
-            players: sortedPlayers,
-            user: sortedPlayers.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-                ?? sortedPlayers[0],
-            currentRound: currentRound,
-            maxRounds: .max,
-            roundMasterIndex: sortedPlayers.firstIndex(where: { $0.isRoomMaster }) ?? 0,
-            gameNetwork: FirebaseGameNetworkAdapter(roomCode: roomCode),
-            roomCode: roomCode
-        )
+        super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: .max)
     }
 
     override init(from room: GameRoom) {

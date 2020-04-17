@@ -7,31 +7,18 @@
 //
 import UIKit
 
-class CooperativeGame: MultiplayerNetworkGame {
-    var players: [CooperativePlayer]
-    var user: CooperativePlayer
+class CooperativeGame: MultiplayerNetworkGame<CooperativePlayer> {
     var allDrawings: [UIImage]
-    var currentRound: Int
-    let maxRounds: Int = 1
     var isFirstPlayer: Bool {
         players[0] == user
     }
-
-    let gameNetwork: GameNetwork
-    let roomCode: RoomCode
 
     weak var delegate: CooperativeGameDelegate?
     weak var viewingDelegate: CooperativeGameViewingDelegate?
 
     init(from room: GameRoom) {
-        let players = room.players.sorted().map { CooperativePlayer(from: $0) }
-        self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? players[0]
         self.allDrawings = []
-        self.currentRound = 1
-
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
-        self.roomCode = room.roomCode
+        super.init(from: room, maxRounds: 1)
     }
 
     /// Download drawings of players before the user.

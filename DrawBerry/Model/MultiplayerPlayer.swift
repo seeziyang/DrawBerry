@@ -8,6 +8,8 @@
 import UIKit
 
 protocol MultiplayerPlayer: ComparablePlayer {
+    init(from: RoomPlayer)
+
     func addDrawing(image: UIImage)
 
     func getDrawingImage() -> UIImage?

@@ -8,46 +8,30 @@
 
 import UIKit
 
-class ClassicGame: MultiplayerNetworkGame {
-    var players: [ClassicPlayer]
-    var user: ClassicPlayer
-    var currentRound: Int
-    let maxRounds: Int
+class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     private var roundMasterIndex: Int
     // round master is the player who chooses the topic for the current round
     var roundMaster: ClassicPlayer {
         players[roundMasterIndex]
     }
 
-    let gameNetwork: GameNetwork
-    let roomCode: RoomCode
-
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
     weak var delegate: ClassicGameDelegate?
 
-    init(players: [ClassicPlayer], user: ClassicPlayer, currentRound: Int, maxRounds: Int,
-         roundMasterIndex: Int, gameNetwork: GameNetwork, roomCode: RoomCode) {
-        self.players = players
-        self.user = user
-        self.currentRound = currentRound
-        self.maxRounds = maxRounds
-        self.roundMasterIndex = roundMasterIndex
-        self.gameNetwork = gameNetwork
-        self.roomCode = roomCode
+    init(from room: GameRoom) {
+        self.roundMasterIndex = 0
+        super.init(from: room,
+                   maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
+        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
-    init(from room: GameRoom) {
-        let players = room.players.sorted().map { ClassicPlayer(from: $0) }
-        self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
-                ?? players[0]
-        self.currentRound = 1
-        self.maxRounds = ClassicGame.calculateMaxRounds(numPlayers: players.count)
-        self.roundMasterIndex = players.firstIndex(where: { $0.isRoomMaster }) ?? 0
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
-        self.roomCode = room.roomCode
+    override init(from roomCode: RoomCode, players: [ClassicPlayer],
+                  currentRound: Int, maxRounds: Int) {
+        self.roundMasterIndex = 0
+        super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
+        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {

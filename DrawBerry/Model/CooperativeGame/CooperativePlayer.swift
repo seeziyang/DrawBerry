@@ -20,7 +20,7 @@ class CooperativePlayer: MultiplayerPlayer {
         self.isRoomMaster = isRoomMaster
     }
 
-    convenience init(from roomPlayer: RoomPlayer) {
+    required convenience init(from roomPlayer: RoomPlayer) {
         self.init(
             name: roomPlayer.name,
             uid: roomPlayer.uid,

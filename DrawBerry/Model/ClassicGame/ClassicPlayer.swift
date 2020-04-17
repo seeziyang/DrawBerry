@@ -25,7 +25,7 @@ class ClassicPlayer: MultiplayerPlayer {
         self.votedPlayers = []
     }
 
-    convenience init(from roomPlayer: RoomPlayer) {
+    required convenience init(from roomPlayer: RoomPlayer) {
         self.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
     }
 
