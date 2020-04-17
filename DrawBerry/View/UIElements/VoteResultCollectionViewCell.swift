@@ -9,6 +9,7 @@
 import UIKit
 
 class VoteResultCollectionViewCell: UICollectionViewCell {
+    @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var drawingImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
@@ -16,6 +17,7 @@ class VoteResultCollectionViewCell: UICollectionViewCell {
     func setDrawingImage(_ image: UIImage?) {
         drawingImageView.image = image
         drawingImageView.contentMode = .scaleAspectFit
+        contentView.sendSubviewToBack(backgroundImageView)
     }
 
     func setName(_ name: String) {

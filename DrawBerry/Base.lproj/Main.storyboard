@@ -1252,7 +1252,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paper-brown" translatesAutoresizingMaskIntoConstraints="NO" id="aEE-S3-31V" userLabel="Background">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paper-brown" translatesAutoresizingMaskIntoConstraints="NO" id="aEE-S3-31V" userLabel="Background">
                                                     <rect key="frame" x="50" y="30" width="300" height="460"/>
                                                 </imageView>
                                             </subviews>
@@ -1280,6 +1280,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="400" height="600"/>
                                         <connections>
+                                            <outlet property="backgroundImageView" destination="aEE-S3-31V" id="MpH-TE-75E"/>
                                             <outlet property="drawingImageView" destination="NjO-T9-xik" id="5nV-yl-rYX"/>
                                             <outlet property="nameLabel" destination="Gaq-qo-Zfp" id="nhl-If-Zmv"/>
                                             <outlet property="pointsLabel" destination="gO2-VD-DTd" id="3Oa-xV-zhb"/>
@@ -1763,6 +1764,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="udu-LZ-T2s"/>
         <segue reference="yfi-lF-uTa"/>
         <segue reference="aYW-Q6-A9x"/>
         <segue reference="6FN-2v-NBi"/>
