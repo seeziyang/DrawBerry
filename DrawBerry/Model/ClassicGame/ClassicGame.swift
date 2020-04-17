@@ -18,6 +18,9 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
+    static let drawingDuration: Double = 60.0
+    static let votingDuration: Double = 45.0
+
     weak var delegate: ClassicGameDelegate?
 
     init(from room: GameRoom) {

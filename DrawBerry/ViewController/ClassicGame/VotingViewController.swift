@@ -100,7 +100,7 @@ extension VotingViewController: UICollectionViewDataSource {
 
         cell.subviews.forEach { $0.removeFromSuperview() }
         cell.addSubview(imageView)
-        cell.backgroundColor = .systemYellow // TODO: remove
+        cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "paper-brown"))
 
         addTapGesture(cell: cell)
 

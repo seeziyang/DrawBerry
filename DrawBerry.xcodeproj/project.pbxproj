@@ -54,6 +54,7 @@
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411024337F7E00992F5D /* VoteResultsViewController.swift */; };
 		1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */; };
+		1A86D6D82449A23800DD869D /* TimerBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A86D6D72449A23800DD869D /* TimerBarView.swift */; };
 		1A953AD8243986B90016D481 /* MultiplayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* MultiplayerGame.swift */; };
 		1A953AD9243986B90016D481 /* MultiplayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* MultiplayerGame.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
@@ -327,6 +328,7 @@
 		1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameTests.swift; sourceTree = "<group>"; };
 		1A70411024337F7E00992F5D /* VoteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultsViewController.swift; sourceTree = "<group>"; };
 		1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		1A86D6D72449A23800DD869D /* TimerBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBarView.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameEndViewController.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 				3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */,
 				3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */,
 				1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */,
+				1A86D6D72449A23800DD869D /* TimerBarView.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -1213,6 +1216,7 @@
 				372CA59A242C67EB000E1E71 /* EndViewController.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
 				FC3C3BA72442DC67009AD0D6 /* CompetitiveCanvas.swift in Sources */,
+				1A86D6D82449A23800DD869D /* TimerBarView.swift in Sources */,
 				1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */,
 				3E1303C52440403300CB04F1 /* TeamBattleResultDelegate.swift in Sources */,
 				3E1A9EDA2440BD9C0084199C /* TeamBattleGameRoom.swift in Sources */,
