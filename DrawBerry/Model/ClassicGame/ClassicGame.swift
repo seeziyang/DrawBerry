@@ -9,6 +9,7 @@
 import UIKit
 
 class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
+    private var topics: [String]
     private var roundMasterIndex: Int
     // round master is the player who chooses the topic for the current round
     var roundMaster: ClassicPlayer {
@@ -25,6 +26,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     weak var delegate: ClassicGameDelegate?
 
     init(from room: GameRoom) {
+        self.topics = []
         self.roundMasterIndex = 0
         super.init(from: room,
                    maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
@@ -33,14 +35,13 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
 
     override init(from roomCode: RoomCode, players: [ClassicPlayer],
                   currentRound: Int, maxRounds: Int) {
+        self.topics = []
         self.roundMasterIndex = 0
         super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
-        return 2 // TODO: REMOVE@!!!!!
-        
         if numPlayers <= 3 {
             return numPlayers * 3
         } else if numPlayers <= 5 {
@@ -118,31 +119,69 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     }
 
     private func moveToNextRound() {
-        delegate?.segueToNextRound()
+        delegate?.showCountdownTimer(for: ClassicGame.viewingDuration)
         Timer.scheduledTimer(
             withTimeInterval: ClassicGame.viewingDuration,
             repeats: false,
             block: { [weak self] _ in
                 self?.currentRound += 1
                 self?.moveRoundMasterIndex()
+                self?.delegate?.segueToNextRound()
             }
         )
     }
 
     private func moveRoundMasterIndex() {
-        roundMasterIndex = (roundMasterIndex + 1) % players.count
+        roundMasterIndex = getNextRoundMasterIndex()
+    }
+
+    private func getNextRoundMasterIndex() -> Int {
+        (roundMasterIndex + 1) % players.count
+    }
+
+    func userIsNextRoundMaster() -> Bool {
+        user === players[getNextRoundMasterIndex()]
     }
 
     private func endGame() {
-        delegate?.segueToGameEnd()
+        delegate?.showCountdownTimer(for: ClassicGame.viewingDuration)
         Timer.scheduledTimer(
             withTimeInterval: ClassicGame.viewingDuration,
             repeats: false,
             block: { [weak self] _ in
                 self?.endGame(isRoomMaster: self?.user.isRoomMaster ?? false,
                               numRounds: self?.currentRound ?? 0)
+                self?.delegate?.segueToGameEnd()
             }
         )
+    }
+
+    func getCurrentRoundTopic() -> String {
+        let index = currentRound - 1
+        return topics[index]
+    }
+
+    func addFirstRoundTopic(_ topic: String) {
+        setTopic(topic: topic, forRound: 1)
+        topics.append(topic)
+    }
+
+    func addNextRoundTopic(_ topic: String) {
+        setTopic(topic: topic, forRound: currentRound + 1)
+        topics.append(topic)
+    }
+
+    func observeFirstRoundTopic(completionHandler: @escaping () -> Void) {
+        observeTopic(for: 1, completionHandler: { [weak self] topic in
+            self?.topics.append(topic)
+            completionHandler()
+        })
+    }
+
+    func observeNextRoundTopic() {
+        observeTopic(for: currentRound + 1, completionHandler: { [weak self] topic in
+            self?.topics.append(topic)
+        })
     }
 }
 
@@ -157,5 +196,13 @@ extension ClassicGame {
                            completionHandler: @escaping (String) -> Void) {
         gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round,
                                       completionHandler: completionHandler)
+    }
+
+    func setTopic(topic: String, forRound round: Int) {
+        gameNetwork.setTopic(topic: topic, forRound: round)
+    }
+
+    func observeTopic(for round: Int, completionHandler: @escaping (String) -> Void) {
+        gameNetwork.observeTopic(forRound: round, completionHandler: completionHandler)
     }
 }

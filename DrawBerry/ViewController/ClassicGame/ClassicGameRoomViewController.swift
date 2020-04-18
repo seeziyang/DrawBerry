@@ -36,10 +36,9 @@ class ClassicGameRoomViewController: UIViewController, GameRoomViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let classicVC = segue.destination as? ClassicViewController {
-            classicVC.classicGame = room.isRapid
-                ? ClassicGame(from: room)
-                : NonRapidClassicGame(from: room)
+        if let classicVC = segue.destination as? ClassicViewController,
+            let classicGame = sender as? ClassicGame {
+                classicVC.classicGame = classicGame
         }
 
         if let userProfileVC = segue.destination as? UserProfileViewController,
@@ -86,7 +85,15 @@ class ClassicGameRoomViewController: UIViewController, GameRoomViewController {
     }
 
     internal func segueToGameVC() {
-        performSegue(withIdentifier: "segueToClassicGame", sender: self)
+        let classicGame = room.isRapid ? ClassicGame(from: room) : NonRapidClassicGame(from: room)
+        if classicGame.user.isRoomMaster {
+            classicGame.addFirstRoundTopic("First topic!") // TODO: get from user
+            performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)
+        } else {
+            classicGame.observeFirstRoundTopic(completionHandler: { [weak self] in
+                self?.performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)
+            })
+        }
     }
 }
 
@@ -103,7 +110,8 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
 
 extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         getSizeForItem(at: indexPath)
     }

@@ -35,6 +35,9 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
             voteResultsVC.classicGame = classicGame
             voteResultsVC.classicGame.delegate = voteResultsVC
             voteResultsVC.classicGame.observePlayerVotes()
+            if !voteResultsVC.classicGame.userIsNextRoundMaster() {
+                voteResultsVC.classicGame.observeNextRoundTopic()
+            }
         } else if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = classicGame
         }
@@ -65,6 +68,11 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     private func voteForPlayerDrawing(player: ClassicPlayer) {
         classicGame.userVoteFor(player: player)
+
+        if classicGame.userIsNextRoundMaster() {
+            classicGame.addNextRoundTopic("my topic!!") // todo prompt user for this
+        }
+
         segueToNextScreen()
     }
 

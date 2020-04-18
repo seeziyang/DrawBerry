@@ -19,6 +19,7 @@ class ClassicViewController: CanvasDelegateViewController {
         // Do any additional setup after loading the view.
         addCanvasToView()
         addDoneButtonToView()
+        addTopicToView()
 
         if !(classicGame is NonRapidClassicGame) {
             addTimerBarToView()
@@ -67,6 +68,16 @@ class ClassicViewController: CanvasDelegateViewController {
                                         completionHandler: finishDrawing)
         view.addSubview(timerBarView)
         self.timerBarView = timerBarView
+    }
+
+    private func addTopicToView() {
+        let label = UILabel(frame: CGRect(x: view.frame.minX, y: view.frame.minY + 50,
+                                          width: view.frame.width, height: 150))
+        label.text = "Round \(classicGame.currentRound): \(classicGame.getCurrentRoundTopic())"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Noteworthy", size: 30)
+
+        self.view.addSubview(label)
     }
 
     @objc private func doneOnTap(sender: UIButton) {
