@@ -140,7 +140,8 @@ extension EnterClassicRoomViewController: UITableViewDataSource {
         if status.isMyTurn {
             performSegue(withIdentifier: "segueToVotingFromEnterRoom", sender: roomCode)
         } else {
-            // TODO: Show some alert?
+            view.addSubview(ErrorToastView(message: "Other players have not drawn yet!", showFor: 7.0,
+                                           frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
         }
     }
 

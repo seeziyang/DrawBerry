@@ -58,13 +58,15 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
             let player = classicGame.players[indexPath.row]
 
             if player === classicGame.user {
-                // TODO: show msg saying user cannot vote for themself
+                view.addSubview(ErrorToastView(message: "You cannot vote for yourself!", showFor: 5.0,
+                                               frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
                 return
             }
 
             voteForPlayerDrawing(player: player)
         } else {
-            // TODO: show msg saying not all players have drawn
+            view.addSubview(ErrorToastView(message: "Not all players have drawn yet!", showFor: 10.0,
+                                           frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
         }
     }
 
@@ -121,12 +123,22 @@ extension VotingViewController: UICollectionViewDataSource {
         imageView.contentMode = .scaleAspectFit
 
         cell.subviews.forEach { $0.removeFromSuperview() }
+        if imageView.image == nil {
+            showSpinningIndicator(cell: cell)
+        }
         cell.addSubview(imageView)
         cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "paper-brown"))
 
         addTapGesture(cell: cell)
 
         return cell
+    }
+
+    private func showSpinningIndicator(cell: UICollectionViewCell) {
+        let spinningIndicator = UIActivityIndicatorView(style: .large)
+        spinningIndicator.center = cell.center
+        spinningIndicator.startAnimating()
+        cell.addSubview(spinningIndicator)
     }
 
     private func addTapGesture(cell: UICollectionViewCell) {
