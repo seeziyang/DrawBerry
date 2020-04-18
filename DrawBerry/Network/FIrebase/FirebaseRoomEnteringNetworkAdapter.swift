@@ -122,7 +122,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
     // Observe user's active non-rapid classic games' turn status
     func observeNonRapidGamesTurn(
         roomCode: RoomCode,
-        completionHandler: @escaping (_ isMyTurn: Bool, ClassicGame) -> Void
+        completionHandler: @escaping (_ isMyTurn: Bool, NonRapidClassicGame) -> Void
     ) {
         guard let userID = NetworkHelper.getLoggedInUserID() else {
             return
@@ -145,7 +145,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
                 var players: [ClassicPlayer] = []
                 playersDict.forEach { playerUID, values in
                     guard let isRoomMaster = values["isRoomMaster"] as? Bool,
-                        let points = (values["points"] == nil) ? 0 : values["points"] as? Int ,
+                        let points = (values["points"] == nil) ? 0 : values["points"] as? Int,
                         let name = values["username"] as? String else {
                             return
                     }
@@ -154,18 +154,19 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
                                                  isRoomMaster: isRoomMaster, points: points))
                 }
 
-                let classicGame = ClassicGame(nonRapidRoomCode: roomCode,
-                                              players: players, currentRound: currRound)
+                let nonRapidClassicGame = NonRapidClassicGame(roomCode: roomCode,
+                                                              players: players,
+                                                              currentRound: currRound)
 
                 // [round1: [hasUploadedImage: Any]]
                 guard let userRounds = playersDict[userID]?["rounds"] as? [String: [String: Any]] else {
-                        completionHandler(true, classicGame)
+                        completionHandler(true, nonRapidClassicGame)
                         return
                 }
 
                 let hasUserDrawn = userRounds["round\(currRound)"]?["hasUploadedImage"] as? Bool ?? false
 
-                completionHandler(!hasUserDrawn, classicGame)
+                completionHandler(!hasUserDrawn, nonRapidClassicGame)
             })
     }
 }

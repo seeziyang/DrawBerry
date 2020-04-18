@@ -8,33 +8,20 @@
 
 import UIKit
 
-class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
+class TeamBattleGameRoomViewController: UIViewController, GameRoomViewController {
 
-    @IBOutlet private weak var playersCollectionView: UICollectionView!
-    @IBOutlet private weak var startButton: UIBarButtonItem!
+    @IBOutlet internal weak var playersCollectionView: UICollectionView!
+    @IBOutlet internal weak var startButton: UIBarButtonItem!
+    @IBOutlet internal weak var roomCodeLabel: UINavigationItem!
 
     var room: TeamBattleGameRoom!
-    private var currentViewingPlayerID: String?
+    internal var currentViewingPlayerID: String?
 
-    private var userProfileNetwork: UserProfileNetwork!
-
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 160.0, bottom: 50.0, right: 160.0)
-    private let itemsPerRow: CGFloat = 2
+    internal var userProfileNetwork: UserProfileNetwork!
 
     /// Hides the status bar at the top
     override var prefersStatusBarHidden: Bool {
         true
-    }
-
-    /// Enable or disable the start button, depending on whether
-    /// the user is the room master or not.
-    func configureStartButton() {
-        if let currentUser = room.user {
-            if !currentUser.isRoomMaster {
-                startButton.isEnabled = false
-                startButton.tintColor = UIColor.clear
-            }
-        }
     }
 
     override func viewDidLoad() {
@@ -42,6 +29,7 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
         playersCollectionView.dataSource = self
         super.viewDidLoad()
 
+        roomCodeLabel.title = room.roomCode.value
         userProfileNetwork = FirebaseUserProfileNetworkAdapter()
     }
 
@@ -57,13 +45,10 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
             teamBattleGuessVC.game.observeTeamDrawing()
         }
 
-        if segue.destination is UserProfileViewController {
-            let target = segue.destination as? UserProfileViewController
-            guard let id = currentViewingPlayerID else {
-                return
-            }
-
-            target?.setUserID(id: id)
+        if let userProfileVC = segue.destination as? UserProfileViewController,
+                let id = currentViewingPlayerID {
+            userProfileVC.userProfileNetwork = FirebaseUserProfileNetworkAdapter()
+            userProfileVC.setUserID(id: id)
         }
     }
 
@@ -73,35 +58,6 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
 
     @IBAction private func startOnTap(_ sender: UIBarButtonItem) {
         startGame()
-    }
-
-    /// Reloads the collection view when a player joins or leave the room.
-    func playersDidUpdate() {
-        if room.didPlayersCountChange ?? true {
-            playersCollectionView.reloadData()
-        }
-        configureStartButton()
-    }
-
-    /// Navigates to the game view controller.
-    func gameHasStarted() {
-        segueToGameVC()
-    }
-
-    /// Removes the user from the current game room.
-    private func leaveGameRoom() {
-        room.leaveRoom()
-        dismiss(animated: true, completion: nil)
-    }
-
-    /// Starts the game if the number of players in the room is a valid number.
-    private func startGame() {
-        if !room.canStart {
-            return
-        }
-
-        room.startGame()
-        segueToGameVC()
     }
 
     private func getPlayerIndex(user: RoomPlayer, players: [RoomPlayer]) -> Int? {
@@ -131,62 +87,31 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomDelegate {
 
 extension TeamBattleGameRoomViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        getNumOfItemsInSection()
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = getReusableCell(for: indexPath)
-
-        guard indexPath.row < room.players.count else {
-            return cell
-        }
-
-        let player = room.players[indexPath.row]
-        let username = player.name
-
-        userProfileNetwork.downloadProfileImage(delegate: cell, playerUID: player.uid)
-
-        cell.setUsername(username)
-
-        return cell
-    }
-
-    private func getReusableCell(for indexPath: IndexPath) -> PlayerCollectionViewCell {
-        guard let cell = playersCollectionView.dequeueReusableCell(
-            withReuseIdentifier: "playerCell", for: indexPath) as? PlayerCollectionViewCell else {
-                fatalError("Unable to get reusable cell.")
-        }
-        cell.setCircularShape()
-        cell.setDefaultImage()
-        cell.setUsername("Empty Slot")
-        return cell
+        getCellForItem(at: indexPath)
     }
 }
 
-// Code for layout adapted from https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 extension TeamBattleGameRoomViewController: UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = playersCollectionView.bounds.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        getSizeForItem(at: indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        sectionInsets
+        getInsetForSection(at: section)
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        sectionInsets.left
+        getMinimimumLineSpacingForSection(at: section)
     }
 }
 
@@ -195,21 +120,11 @@ extension TeamBattleGameRoomViewController {
 
     /// Loads the user profile when single tap is detected on a specific cell.
     @IBAction private func handleSingleTap(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: playersCollectionView)
-        guard let indexPath = playersCollectionView.indexPathForItem(at: location) else {
-            return
-        }
-
-        // Disable gestures on empty slots
-        guard indexPath.row < room.players.count else {
-            return
-        }
-        currentViewingPlayerID = room.players[indexPath.row].uid
-        openUserProfile(at: indexPath.row)
+        handleTap(sender: sender)
     }
 
     // TODO:
-    private func openUserProfile(at index: Int) {
+    internal func openUserProfile(at index: Int) {
         // performSegue(withIdentifier: "segueTeamBattleToPlayerProfile", sender: self)
     }
 }

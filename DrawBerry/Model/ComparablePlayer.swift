@@ -6,22 +6,18 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-class ComparablePlayer: Player {
-    let name: String
-    let uid: String
+protocol ComparablePlayer: Player, Comparable {
+    var uid: String { get }
 
-    init(name: String, uid: String) {
-        self.name = name
-        self.uid = uid
-    }
+    var isRoomMaster: Bool { get set }
 }
 
-extension ComparablePlayer: Comparable {
-    static func < (lhs: ComparablePlayer, rhs: ComparablePlayer) -> Bool {
+extension ComparablePlayer {
+    static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.uid < rhs.uid
     }
 
-    static func == (lhs: ComparablePlayer, rhs: ComparablePlayer) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.uid == rhs.uid
     }
 }

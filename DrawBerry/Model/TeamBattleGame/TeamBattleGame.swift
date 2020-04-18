@@ -9,6 +9,9 @@
 import UIKit
 
 class TeamBattleGame: NetworkGame {
+    let gameNetwork: GameNetwork
+    let roomCode: RoomCode
+
     let maxRounds = 3
     var players = [TeamBattlePlayer]()
     var teams = [TeamBattlePair]()
@@ -28,7 +31,7 @@ class TeamBattleGame: NetworkGame {
         return nil
     }
 
-    private(set) var currentRound: Int
+    var currentRound: Int
 
     convenience init(from room: GameRoom) {
         self.init(from: room, gameNetwork: FirebaseGameNetworkAdapter(roomCode: room.roomCode))!
@@ -50,7 +53,9 @@ class TeamBattleGame: NetworkGame {
         self.userIndex = players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? 0
 
         self.currentRound = 1
-        super.init(from: room.roomCode, gameNetwork: gameNetwork)
+
+        self.roomCode = room.roomCode
+        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
     }
 
     func incrementRound() {

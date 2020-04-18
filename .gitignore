@@ -1,4 +1,6 @@
+*.DS_STORE
+
 xcuserdata/
 
-*.DS_Store
+DrawBerryUITests/FailureDiffs?
 

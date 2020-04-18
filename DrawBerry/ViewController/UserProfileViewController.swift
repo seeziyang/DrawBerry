@@ -17,7 +17,7 @@ class UserProfileViewController: UIViewController {
     private let itemsPerRow: CGFloat = 5
     private let maxImagesInGallery = 10
 
-    private var userProfileNetwork: UserProfileNetwork!
+    var userProfileNetwork: UserProfileNetwork!
 
     override func viewDidLoad() {
         super.viewDidLoad()

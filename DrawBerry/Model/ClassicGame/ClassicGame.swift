@@ -8,43 +8,30 @@
 
 import UIKit
 
-class ClassicGame: MultiplayerNetworkGame {
+class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
+    private var roundMasterIndex: Int
+    // round master is the player who chooses the topic for the current round
+    var roundMaster: ClassicPlayer {
+        players[roundMasterIndex]
+    }
+
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
     weak var delegate: ClassicGameDelegate?
-    let isRapid: Bool
-
-    private var roundMasterIndex: Int
-    // round master is the player who chooses the topic for the current round
-    var roundMaster: MultiplayerPlayer {
-        players[roundMasterIndex]
-    }
-    var classicPlayers: [ClassicPlayer] {
-        players.compactMap { $0 as? ClassicPlayer }
-    }
 
     init(from room: GameRoom) {
-        self.isRapid = room.isRapid
-        self.roundMasterIndex = room.players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
-        super.init(from: room, maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
+        self.roundMasterIndex = 0
+        super.init(from: room,
+                   maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
+        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
-    init?(from room: GameRoom, gameNetwork: GameNetwork) {
-        self.isRapid = room.isRapid
-        self.roundMasterIndex = room.players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
-        super.init(
-            from: room,
-            maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count),
-            gameNetwork: gameNetwork
-        )
-    }
-
-    init(nonRapidRoomCode roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
-        let sortedPlayers = players.sorted()
-        self.isRapid = false
-        self.roundMasterIndex = players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
-        super.init(from: roomCode, players: sortedPlayers, currentRound: currentRound)
+    override init(from roomCode: RoomCode, players: [ClassicPlayer],
+                  currentRound: Int, maxRounds: Int) {
+        self.roundMasterIndex = 0
+        super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
+        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
@@ -58,14 +45,9 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func observePlayersDrawing() {
-        // users vote previous rounds drawing in non-rapid mode
-        let round = isRapid ? currentRound : currentRound - 1
-
-        for player in players {
-            if isRapid && player === user {
-                continue
-            }
-            observe(player: player, for: round, completionHandler: { [weak self] image in
+        // don't need to observe user as drawing is already added to user
+        for player in players where player !== user {
+            observe(player: player, for: currentRound, completionHandler: { [weak self] image in
                 player.addDrawing(image: image)
                 self?.delegate?.drawingsDidUpdate()
             })
@@ -73,39 +55,34 @@ class ClassicGame: MultiplayerNetworkGame {
     }
 
     func hasAllPlayersDrawnForCurrentRound() -> Bool {
-        let round = isRapid ? currentRound : 1
-        return classicPlayers.allSatisfy { $0.hasDrawing(ofRound: round) }
+        players.allSatisfy { $0.hasDrawing(ofRound: currentRound) }
     }
 
     func hasAllPlayersVotedForCurrentRound() -> Bool {
-        classicPlayers.allSatisfy { $0.hasVoted(inRound: currentRound) }
+        players.allSatisfy { $0.hasVoted(inRound: currentRound) }
     }
 
     func userVoteFor(player: ClassicPlayer) {
-        // users vote for previous rounds drawing in non-rapid mode
-        let round = isRapid ? currentRound : currentRound - 1
-        guard let classicUser = user as? ClassicPlayer else {
-            return
-        }
-
-        classicUser.voteFor(player: player)
+        user.voteFor(player: player)
 
         player.points += ClassicGame.votingPoints
 
         if player === roundMaster {
-            classicUser.points += ClassicGame.pointsForCorrectPick
-            voteFor(player: player, for: round, updatedPlayerPoints: classicUser.points)
+            user.points += ClassicGame.pointsForCorrectPick
+            voteFor(player: player, for: currentRound, updatedPlayerPoints: user.points)
         } else {
-            voteFor(player: player, for: round, updatedPlayerPoints: player.points)
+            voteFor(player: player, for: currentRound, updatedPlayerPoints: player.points)
         }
     }
 
     func observePlayerVotes() {
-        for player in classicPlayers where player !== user {
+        for player in players where player !== user {
             observePlayerVote(
-                player: player, for: currentRound, completionHandler: { [weak self] votedForPlayerUID in
+                player: player,
+                for: currentRound,
+                completionHandler: { [weak self] votedForPlayerUID in
                     guard let votedForPlayer =
-                        self?.classicPlayers.first(where: { $0.uid == votedForPlayerUID }) else {
+                        self?.players.first(where: { $0.uid == votedForPlayerUID }) else {
                             return
                     }
 
@@ -161,7 +138,9 @@ extension ClassicGame {
                                 updatedPlayerPoints: player.points, updatedUserPoints: nil)
     }
 
-    func observePlayerVote(player: ClassicPlayer, for round: Int, completionHandler: @escaping (String) -> Void) {
-        gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round, completionHandler: completionHandler)
+    func observePlayerVote(player: ClassicPlayer, for round: Int,
+                           completionHandler: @escaping (String) -> Void) {
+        gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round,
+                                      completionHandler: completionHandler)
     }
 }

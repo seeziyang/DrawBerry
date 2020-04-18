@@ -7,17 +7,17 @@
 //
 import UIKit
 
-class CooperativeGame: MultiplayerNetworkGame {
-    weak var delegate: CooperativeGameDelegate?
-    weak var viewingDelegate: CooperativeGameViewingDelegate?
+class CooperativeGame: MultiplayerNetworkGame<CooperativePlayer> {
+    var allDrawings: [UIImage]
     var isFirstPlayer: Bool {
         players[0] == user
     }
-    var cooperativePlayers: [CooperativePlayer] {
-        players.compactMap { $0 as? CooperativePlayer }
-    }
+
+    weak var delegate: CooperativeGameDelegate?
+    weak var viewingDelegate: CooperativeGameViewingDelegate?
 
     init(from room: GameRoom) {
+        self.allDrawings = []
         super.init(from: room, maxRounds: 1)
     }
 
@@ -29,7 +29,7 @@ class CooperativeGame: MultiplayerNetworkGame {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let previousPlayers = cooperativePlayers.filter { getIndex(of: $0) ?? 0 < userIndex }
+        let previousPlayers = players.filter { getIndex(of: $0) ?? 0 < userIndex }
         previousPlayers.forEach { downloadDrawing(of: $0) }
     }
 
@@ -38,7 +38,7 @@ class CooperativeGame: MultiplayerNetworkGame {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let futurePlayers = cooperativePlayers.filter { getIndex(of: $0) ?? 0 >= userIndex }
+        let futurePlayers = players.filter { getIndex(of: $0) ?? 0 >= userIndex }
         futurePlayers.forEach { downloadDrawing(of: $0) }
     }
 
