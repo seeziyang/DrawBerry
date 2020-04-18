@@ -27,7 +27,6 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     func drawingsDidUpdate() {
         votingImagesCollectionView.reloadData()
-        // TODO: show spinning wheel or some loading indicator if player havent upload
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,7 +64,7 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
             voteForPlayerDrawing(player: player)
         } else {
-            view.addSubview(ErrorToastView(message: "Not all players have drawn yet!", showFor: 10.0,
+            view.addSubview(ErrorToastView(message: "Not all players have drawn yet!", showFor: 5.0,
                                            frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
         }
     }
