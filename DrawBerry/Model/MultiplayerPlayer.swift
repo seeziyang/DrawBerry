@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MultiplayerPlayer: ComparablePlayer {
-    var isRoomMaster: Bool { get set }
+    init(from: RoomPlayer)
 
     func addDrawing(image: UIImage)
 
