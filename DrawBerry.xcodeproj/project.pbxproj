@@ -229,6 +229,9 @@
 		3EF54727244B1CC100817F58 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF54726244B1CC100817F58 /* WordList.swift */; };
 		3EF54728244B1CEC00817F58 /* TeamBattleGuesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */; };
 		3EF54729244B1CED00817F58 /* TeamBattleGuesser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9B243D82B2002675B3 /* TeamBattleGuesser.swift */; };
+		3EF5472A244B223000817F58 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF54726244B1CC100817F58 /* WordList.swift */; };
+		3EF5472B244B223000817F58 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF54726244B1CC100817F58 /* WordList.swift */; };
+		3EF5472D244B242600817F58 /* TeamBattleTeamResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5472C244B242600817F58 /* TeamBattleTeamResultTests.swift */; };
 		7077775E169D994ED78C9B28 /* Pods_DrawBerry_DrawBerryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7B86EB6DA88700E93D9971 /* Pods_DrawBerry_DrawBerryUITests.framework */; };
 		93DAF243E97405D78CF30A21 /* Pods_DrawBerryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E717231FA04EC0E07B9DFF /* Pods_DrawBerryTests.framework */; };
 		FC08299F2425F8F700251AB4 /* CompetitiveGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC08299E2425F8F700251AB4 /* CompetitiveGameTests.swift */; };
@@ -251,7 +254,6 @@
 		FC62692E2436F8E6000AC2D2 /* CompetitiveVotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC62692D2436F8E6000AC2D2 /* CompetitiveVotingView.swift */; };
 		FC62692F2436F919000AC2D2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BDC85241A59C0001D8E8A /* Message.swift */; };
 		FC6A83E1244446360046C7D3 /* InvulnerableBerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BAA2442ED5B009AD0D6 /* InvulnerableBerryCanvas.swift */; };
-		FC6A83E2244446570046C7D3 /* TeamBattleTeamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFFE9F243D8AC6002675B3 /* TeamBattleTeamResult.swift */; };
 		FC6A83E3244446A40046C7D3 /* CompetitiveCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BA62442DC67009AD0D6 /* CompetitiveCanvas.swift */; };
 		FC6A83E4244446A70046C7D3 /* CompetitiveBerryCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3C3BA82442DC98009AD0D6 /* CompetitiveBerryCanvas.swift */; };
 		FC6CB97D243607C90049D597 /* CompetitiveVotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6CB97C243607C90049D597 /* CompetitiveVotingViewController.swift */; };
@@ -420,6 +422,7 @@
 		3EF54722244B18A200817F58 /* TeamBattlePairTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattlePairTest.swift; sourceTree = "<group>"; };
 		3EF54724244B1C0C00817F58 /* TeamBattleGameResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleGameResultTests.swift; sourceTree = "<group>"; };
 		3EF54726244B1CC100817F58 /* WordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
+		3EF5472C244B242600817F58 /* TeamBattleTeamResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleTeamResultTests.swift; sourceTree = "<group>"; };
 		3F32A3E67038A82FFC1388CC /* Pods-DrawBerry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry/Pods-DrawBerry.debug.xcconfig"; sourceTree = "<group>"; };
 		51DFAD24D4266887B74A5783 /* Pods-DrawBerryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.release.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F180B30F4ED1A69977FEC0D /* Pods-DrawBerryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerryTests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerryTests/Pods-DrawBerryTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -910,6 +913,7 @@
 				371F28C82430F45B006852EE /* GameNetworkStub.swift */,
 				3EF54722244B18A200817F58 /* TeamBattlePairTest.swift */,
 				3EF54724244B1C0C00817F58 /* TeamBattleGameResultTests.swift */,
+				3EF5472C244B242600817F58 /* TeamBattleTeamResultTests.swift */,
 				1A4595C62445C61C009D447D /* RoomNetworkStub.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
 				3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */,
@@ -1326,6 +1330,7 @@
 				1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */,
 				FCA298632426196400AE1A83 /* Powerup.swift in Sources */,
 				FCA298642426196400AE1A83 /* PowerupManager.swift in Sources */,
+				3EF5472A244B223000817F58 /* WordList.swift in Sources */,
 				3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */,
 				FCA2985C2426195500AE1A83 /* CompetitiveGame.swift in Sources */,
 				375E238A2443003E00BA8AB1 /* Team.swift in Sources */,
@@ -1379,7 +1384,6 @@
 				1A5709E02448641F0007197F /* Game.swift in Sources */,
 				3792F459243DC7A800FDEBDC /* MultiplayerPlayer.swift in Sources */,
 				371F28C52430F377006852EE /* CooperativeGameDelegate.swift in Sources */,
-				FC6A83E2244446570046C7D3 /* TeamBattleTeamResult.swift in Sources */,
 				371F28C32430F2A7006852EE /* GameRoom.swift in Sources */,
 				1A953AD8243986B90016D481 /* MultiplayerGame.swift in Sources */,
 				FCA298662426196400AE1A83 /* HideDrawingPowerup.swift in Sources */,
@@ -1397,6 +1401,7 @@
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
 				FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */,
+				3EF5472D244B242600817F58 /* TeamBattleTeamResultTests.swift in Sources */,
 				3749D3CA242797AA00CE798F /* BerryPaletteTest.swift in Sources */,
 				371F28C42430F375006852EE /* CooperativeGame.swift in Sources */,
 				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
@@ -1442,6 +1447,7 @@
 				375E23AB2443065B00BA8AB1 /* ClassicRoomUITest.swift in Sources */,
 				3749D3BB242614F800CE798F /* Canvas.swift in Sources */,
 				375E23972443004D00BA8AB1 /* TeamBattleResultDelegate.swift in Sources */,
+				3EF5472B244B223000817F58 /* WordList.swift in Sources */,
 				375E238F2443004300BA8AB1 /* TeamBattleGame.swift in Sources */,
 				3749D3A32425E38D00CE798F /* NetworkHelper.swift in Sources */,
 				3749D3AB2425F0B200CE798F /* UIImageExtension.swift in Sources */,

@@ -42,7 +42,7 @@ class TeamBattleTeamResult: Hashable, Comparable {
         correctGuess += 1
     }
 
-    func addincorrectGuess() {
+    func addIncorrectGuess() {
         incorrectGuess += 1
     }
 

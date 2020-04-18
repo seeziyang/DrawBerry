@@ -74,7 +74,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         }
 
         guard team.guesser.isGuessCorrect(guess: guess, for: currentRound) else {
-            team.result.addincorrectGuess()
+            team.result.addIncorrectGuess()
             showErrorMessage("Guess is wrong!")
             return
         }

@@ -43,7 +43,7 @@ class TeamBattlePairTest: XCTestCase {
         let testList = WordList(words: [])
         team.updateWordList(testList)
 
-        XCTAssertEqual(team.wordList, testList, "Team word list is wrong")
+        XCTAssertEqual(team.wordList?.words, testList.words, "Team word list is wrong")
     }
 
     func testUpdateWordList_nonEmptyList() {
@@ -51,10 +51,12 @@ class TeamBattlePairTest: XCTestCase {
         let guesser = TeamBattleGuesser(from: player2)
         let team = TeamBattlePair(drawer: drawer, guesser: guesser)
 
-        let testList = WordList(databaseDescription: "dog")
+        guard let testList = WordList(databaseDescription: "dog") else {
+            return
+        }
         team.updateWordList(testList)
 
-        XCTAssertEqual(team.wordList, testList, "Team word list is wrong")
+        XCTAssertEqual(team.wordList?.words, testList.words, "Team word list is wrong")
     }
 
 }

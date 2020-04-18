@@ -7,10 +7,10 @@
 //
 
 struct WordList {
-    let words: [Word]
+    let words: [TopicWord]
     private var index = 0
 
-    init(words: [Word]) {
+    init(words: [TopicWord]) {
         self.words = words
     }
 
@@ -22,14 +22,14 @@ struct WordList {
 
     /// Gets the next word in the list
     /// Wraps around if list ends
-    mutating func getNextWord() -> Word {
+    mutating func getNextWord() -> TopicWord {
         let nextWord = words[index]
         index = (index + 1) % words.count
 
         return nextWord
     }
 
-    func getWord(at index: Int) -> Word? {
+    func getWord(at index: Int) -> TopicWord? {
         return words[index]
     }
 
@@ -48,4 +48,3 @@ struct WordList {
     }
 
 }
-
