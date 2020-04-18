@@ -9,14 +9,17 @@
 import Foundation
 
 class RoomPlayer: ComparablePlayer {
+    let name: String
+    let uid: String
     var isRoomMaster: Bool
 
     init(name: String, uid: String, isRoomMaster: Bool) {
+        self.name = name
+        self.uid = uid
         self.isRoomMaster = isRoomMaster
-        super.init(name: name, uid: uid)
     }
 
-    override convenience init(name: String, uid: String) {
+    convenience init(name: String, uid: String) {
         self.init(name: name, uid: uid, isRoomMaster: false)
     }
 }

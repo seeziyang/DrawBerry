@@ -9,13 +9,14 @@
 import UIKit
 import Firebase
 
-class EnterTeamBattleRoomViewController: UIViewController {
+class EnterTeamBattleRoomViewController: UIViewController, EnterRoomViewController {
+    static let roomType: GameRoomType = .TeamBattleRoom
 
     @IBOutlet private weak var background: UIImageView!
-    @IBOutlet private weak var roomCodeField: UITextField!
-    @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet internal weak var roomCodeField: UITextField!
+    @IBOutlet internal weak var errorLabel: UILabel!
 
-    var roomEnteringNetwork: RoomEnteringNetwork!
+    internal var roomEnteringNetwork: RoomEnteringNetwork!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +32,8 @@ class EnterTeamBattleRoomViewController: UIViewController {
             let roomCode = RoomCode(value: roomCodeValue, type: .TeamBattleRoom)
             roomVC.room = TeamBattleGameRoom(roomCode: roomCode)
             roomVC.room.delegate = roomVC
-            roomVC.configureStartButton()
+            roomVC.configureButtons()
         }
-    }
-
-    /// Displays the error message.
-    func showErrorMessage(_ message: String) {
-        errorLabel.text = message
-        errorLabel.alpha = 1
     }
 
     @IBAction private func backOnTap(_ sender: UIButton) {
@@ -53,64 +48,7 @@ class EnterTeamBattleRoomViewController: UIViewController {
         createRoom()
     }
 
-    /// Checks if the room code is valid.
-    private func isRoomCodeValid(_ roomCode: RoomCode) -> Bool {
-        !roomCode.value.isEmpty
-    }
-
-    /// Joins the `TeamBattleRoom` with the specified room code.
-    private func joinRoom() {
-        guard let roomCodeValue = roomCodeField.text else {
-            showErrorMessage(Message.emptyTextField)
-            return
-        }
-        let roomCode = RoomCode(value: roomCodeValue, type: .TeamBattleRoom)
-
-        if !isRoomCodeValid(roomCode) {
-            showErrorMessage(Message.whitespaceOnlyTextField)
-            return
-        }
-
-        roomEnteringNetwork
-            .checkRoomEnterable(roomCode: roomCode, completionHandler: { [weak self] roomStatus in
-                switch roomStatus {
-                case .enterable:
-                    self?.roomEnteringNetwork.joinRoom(roomCode: roomCode)
-                    self?.segueToRoomVC()
-                case .doesNotExist:
-                    self?.showErrorMessage(Message.roomDoesNotExist)
-                case .full:
-                    self?.showErrorMessage(Message.roomFull)
-                case .started:
-                    self?.showErrorMessage(Message.roomStarted)
-                }
-            })
-    }
-
-    /// Creates the `TeamBattleRoom` with the specified room code.
-    private func createRoom() {
-        guard let roomCodeValue = StringHelper.trim(string: roomCodeField.text) else {
-            showErrorMessage(Message.emptyTextField)
-            return
-        }
-        let roomCode = RoomCode(value: roomCodeValue, type: .TeamBattleRoom)
-        if !isRoomCodeValid(roomCode) {
-            showErrorMessage(Message.whitespaceOnlyTextField)
-            return
-        }
-
-        roomEnteringNetwork
-            .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
-                if !roomExists {
-                    self?.roomEnteringNetwork.createRoom(roomCode: roomCode)
-                    self?.segueToRoomVC()
-                } else {
-                    self?.showErrorMessage(Message.roomCodeTaken)
-                }
-            })
-    }
-
-    private func segueToRoomVC() {
+    func segueToRoomVC() {
         performSegue(withIdentifier: "segueToTeamBattleRoom", sender: self)
     }
 

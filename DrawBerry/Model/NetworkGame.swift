@@ -7,28 +7,18 @@
 //
 import UIKit
 
-class NetworkGame {
-    internal let gameNetwork: GameNetwork
-    internal let roomCode: RoomCode
+protocol NetworkGame: Game {
+    var gameNetwork: GameNetwork { get }
+    var roomCode: RoomCode { get }
+}
 
-    init(from roomCode: RoomCode) {
-        self.roomCode = roomCode
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: roomCode)
-    }
-
-    init?(from roomCode: RoomCode, gameNetwork: GameNetwork) {
-        if gameNetwork.roomCode != roomCode {
-            return nil
-        }
-        self.roomCode = roomCode
-        self.gameNetwork = gameNetwork
-    }
-
+extension NetworkGame {
     func upload(image: UIImage, for currentRound: Int) {
         gameNetwork.uploadUserDrawing(image: image, forRound: currentRound)
     }
 
-    func observe(player: ComparablePlayer, for round: Int, completionHandler: @escaping (UIImage) -> Void) {
+    func observe<T: ComparablePlayer>(player: T, for round: Int,
+                                      completionHandler: @escaping (UIImage) -> Void) {
         observe(uid: player.uid, for: round, completionHandler: completionHandler)
     }
 

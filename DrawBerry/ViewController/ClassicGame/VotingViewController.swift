@@ -50,7 +50,7 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
                 return
             }
 
-            let player = classicGame.classicPlayers[indexPath.row]
+            let player = classicGame.players[indexPath.row]
 
             if player === classicGame.user {
                 // TODO: show msg saying user cannot vote for themself
@@ -69,10 +69,10 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
     }
 
     private func segueToNextScreen() {
-        if classicGame.isRapid {
-            performSegue(withIdentifier: "segueToVoteResults", sender: self)
-        } else {
+        if classicGame is NonRapidClassicGame {
             performSegue(withIdentifier: "segueToDrawing", sender: self)
+        } else {
+            performSegue(withIdentifier: "segueToVoteResults", sender: self)
         }
     }
 }
@@ -89,15 +89,16 @@ extension VotingViewController: UICollectionViewDataSource {
 
         let imageView = UIImageView(frame: cell.bounds)
 
-        if classicGame.isRapid {
-            imageView.image = classicGame.classicPlayers[indexPath.row]
-                .getDrawingImage(ofRound: classicGame.currentRound)
-        } else {
+        if classicGame is NonRapidClassicGame {
             imageView.image = classicGame.players[indexPath.row].getDrawingImage()
+        } else {
+            imageView.image = classicGame.players[indexPath.row]
+                .getDrawingImage(ofRound: classicGame.currentRound)
         }
 
         imageView.contentMode = .scaleAspectFit
 
+        cell.subviews.forEach { $0.removeFromSuperview() }
         cell.addSubview(imageView)
         cell.backgroundColor = .systemYellow // TODO: remove
 

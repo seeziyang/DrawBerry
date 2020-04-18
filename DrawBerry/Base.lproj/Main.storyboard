@@ -1404,7 +1404,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhH-do-3YJ">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                 <items>
-                                    <navigationItem title="Players" id="X93-dR-XTG">
+                                    <navigationItem title="Players" id="X93-dR-XTG" userLabel="Room Code Label">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="o9H-Iw-jMS">
                                             <connections>
                                                 <action selector="backOnTap:" destination="S0d-VR-zD9" id="Uug-bo-m45"/>
@@ -1497,6 +1497,7 @@
                     <navigationItem key="navigationItem" id="OD0-FN-Cbe"/>
                     <connections>
                         <outlet property="playersCollectionView" destination="LNb-eq-QAA" id="hqv-Ae-2MS"/>
+                        <outlet property="roomCodeLabel" destination="X93-dR-XTG" id="3oI-oA-VFZ"/>
                         <outlet property="startButton" destination="RYd-Xi-0oy" id="c1B-mF-fB3"/>
                         <segue destination="dGP-aV-Yhp" kind="show" identifier="segueToTeamBattleDrawing" id="I1D-lI-ChQ"/>
                         <segue destination="dD7-qe-Kbz" kind="show" identifier="segueToTeamBattleGuessing" id="Ldr-Ki-sRU"/>
@@ -1762,8 +1763,13 @@
         <segue reference="aYW-Q6-A9x"/>
         <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
+<<<<<<< HEAD
         <segue reference="onY-jZ-Yqx"/>
         <segue reference="9o1-fk-ENI"/>
+=======
+        <segue reference="Gg7-CT-DLI"/>
+        <segue reference="TXh-cz-zfd"/>
+>>>>>>> origin/master
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="4000" height="3000"/>

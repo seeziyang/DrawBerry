@@ -9,13 +9,16 @@
 import UIKit
 
 class TeamBattlePlayer: ComparablePlayer {
+    let name: String
+    let uid: String
     var isRoomMaster: Bool
     var points: Int
 
     init(name: String, uid: String, isRoomMaster: Bool, points: Int = 0) {
+        self.name = name
+        self.uid = uid
         self.isRoomMaster = isRoomMaster
         self.points = points
-        super.init(name: name, uid: uid)
     }
 
     convenience init(from roomPlayer: RoomPlayer) {
