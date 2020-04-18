@@ -5,11 +5,10 @@
 //  Created by See Zi Yang on 14/4/20.
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
-import Firebase
+import Foundation
 
 class RoomNetworkStub: RoomNetwork {
     let roomCode: RoomCode
-    let db = Database.database().reference()
     let admin1 = RoomPlayer(name: "admin1", uid: "I1jcaAauaUQWp7uHuyMHlyDZRlP2", isRoomMaster: true)
     let admin2 = RoomPlayer(name: "admin2", uid: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2")
 
