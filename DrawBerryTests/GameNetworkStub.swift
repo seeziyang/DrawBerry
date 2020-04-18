@@ -50,4 +50,8 @@ class GameNetworkStub: GameNetwork {
 
     func uploadTeamResult(result: TeamBattleTeamResult) {
     }
+
+    func getLoggedInUserID() -> String? {
+        return TestConstants.admin3_Cooperative.uid
+    }
 }

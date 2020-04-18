@@ -8,13 +8,8 @@
 import XCTest
 
 class GameRoomStub: GameRoom {
-    let admin1 = RoomPlayer(name: "admin1", uid: "I1jcaAauaUQWp7uHuyMHlyDZRlP2", isRoomMaster: true)
-    let admin2 = RoomPlayer(name: "admin2", uid: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2")
-    let admin3 = RoomPlayer(name: "admin3", uid: "KPXfiOZ5XxY4QHvGvYqSvaemTFj2")
-
     override init(roomCode: RoomCode, roomNetwork: RoomNetwork) {
         super.init(roomCode: roomCode, roomNetwork: roomNetwork)
-        self.players = [admin1, admin2, admin3]
+        self.players = [TestConstants.admin1, TestConstants.admin2, TestConstants.admin3]
     }
-
 }

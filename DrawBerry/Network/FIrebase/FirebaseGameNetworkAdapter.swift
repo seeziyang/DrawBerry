@@ -22,7 +22,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
         guard let imageData = image.pngData(),
-            let userID = NetworkHelper.getLoggedInUserID() else {
+            let userID = getLoggedInUserID() else {
                 return
         }
 
@@ -56,7 +56,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
     }
 
     private func updateCurrRound(prevRound round: Int) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let userID = getLoggedInUserID() else {
             return
         }
 
@@ -141,7 +141,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     func userVoteFor(playerUID: String, forRound round: Int,
                      updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let userID = getLoggedInUserID() else {
             return
         }
 
@@ -194,7 +194,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
     }
 
     func endGame(isRoomMaster: Bool, numRounds: Int) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let userID = getLoggedInUserID() else {
             return
         }
 

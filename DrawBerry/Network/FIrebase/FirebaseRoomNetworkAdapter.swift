@@ -30,7 +30,7 @@ class FirebaseRoomNetworkAdapter: RoomNetwork {
 
     // User leaves room he is in
     func leaveRoom(isRoomMaster: Bool) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let userID = getLoggedInUserID() else {
             return
         }
 

@@ -14,22 +14,21 @@ class CooperativeGameTests: XCTestCase {
     var cooperativeGame: CooperativeGame!
     static let testRoomCode = RoomCode(value: "testroom", type: .CooperativeRoom)
     static let roomNetwork = RoomNetworkStub(roomCode: testRoomCode)
-    let gameRoom = GameRoomStub(roomCode: CooperativeGameTests.testRoomCode, roomNetwork: roomNetwork)
 
     override func setUp() {
         super.setUp()
-        CooperativeGameTests.roomNetwork.deleteRoom()
+        let gameRoom =
+            GameRoomStub(roomCode: CooperativeGameTests.testRoomCode,
+                         roomNetwork: CooperativeGameTests.roomNetwork)
         cooperativeGame = CooperativeGame(from: gameRoom)
         let gameNetworkStub = GameNetworkStub(roomCode: CooperativeGameTests.testRoomCode)
         cooperativeGame.setGameNetwork(to: gameNetworkStub)
     }
 
-    override func tearDown() {
-        super.tearDown()
-        CooperativeGameTests.roomNetwork.deleteRoom()
-    }
-
     func testConstructor() {
+        let gameRoom =
+            GameRoomStub(roomCode: CooperativeGameTests.testRoomCode,
+                         roomNetwork: CooperativeGameTests.roomNetwork)
         XCTAssertEqual(cooperativeGame.players.map { $0.uid }, gameRoom.players.map { $0.uid })
         XCTAssertTrue(cooperativeGame.allDrawings.isEmpty)
     }

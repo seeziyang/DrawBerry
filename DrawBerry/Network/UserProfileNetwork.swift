@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UserProfileNetwork {
+protocol UserProfileNetwork: NetworkAdapter {
     func uploadProfileImage(_ image: UIImage)
 
     func uploadImageToFavourites(_ image: UIImage)

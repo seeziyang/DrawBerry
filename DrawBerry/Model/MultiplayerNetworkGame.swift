@@ -23,21 +23,23 @@ class MultiplayerNetworkGame<T: MultiplayerPlayer>: NetworkGame, MultiplayerGame
     init(from room: GameRoom, maxRounds: Int) {
         let players = room.players.sorted().map { T(from: $0) }
         self.players = players
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+        let gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
+        self.gameNetwork = gameNetwork
+        self.user = players.first(where: { $0.uid == gameNetwork.getLoggedInUserID() })
             ?? players[0]
         self.currentRound = 1
         self.maxRounds = maxRounds
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
         self.roomCode = room.roomCode
     }
 
     init(from roomCode: RoomCode, players: [T], currentRound: Int, maxRounds: Int) {
         self.players = players.sorted()
-        self.user = players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+        let gameNetwork = FirebaseGameNetworkAdapter(roomCode: roomCode)
+        self.gameNetwork = gameNetwork
+        self.user = players.first(where: { $0.uid == gameNetwork.getLoggedInUserID() })
             ?? players[0]
         self.currentRound = currentRound
         self.maxRounds = maxRounds
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: roomCode)
         self.roomCode = roomCode
     }
 
@@ -47,6 +49,7 @@ class MultiplayerNetworkGame<T: MultiplayerPlayer>: NetworkGame, MultiplayerGame
             return
         }
         self.gameNetwork = network
+        self.user = players.first(where: { $0.uid == network.getLoggedInUserID() }) ?? players[0]
     }
 
     func addUsersDrawing(image: UIImage) {

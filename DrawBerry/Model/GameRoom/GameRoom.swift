@@ -24,7 +24,7 @@ class GameRoom {
 
     var didPlayersCountChange: Bool?
     var user: RoomPlayer? {
-        players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+        players.first(where: { $0.uid == roomNetwork.getLoggedInUserID() })
     }
 
     var status: GameRoomStatus {

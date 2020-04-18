@@ -28,8 +28,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
 
     // Create room with roomCode in db
     func createRoom(roomCode: RoomCode) {
-        guard let userID = NetworkHelper.getLoggedInUserID(),
-            let username = NetworkHelper.getLoggedInUserName() else {
+        guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
                 return
         }
 
@@ -86,8 +85,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
 
     // User joins a room
     func joinRoom(roomCode: RoomCode) {
-        guard let userID = NetworkHelper.getLoggedInUserID(),
-            let username = NetworkHelper.getLoggedInUserName() else {
+        guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
                 return
         }
 
@@ -102,7 +100,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
 
     // Get user's active non-rapid classic games
     func getUsersNonRapidGameRoomCodes(completionHandler: @escaping ([RoomCode]) -> Void) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let userID = getLoggedInUserID() else {
             return
         }
 
@@ -124,7 +122,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
         roomCode: RoomCode,
         completionHandler: @escaping (_ isMyTurn: Bool, NonRapidClassicGame) -> Void
     ) {
-        guard let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let userID = getLoggedInUserID() else {
             return
         }
 

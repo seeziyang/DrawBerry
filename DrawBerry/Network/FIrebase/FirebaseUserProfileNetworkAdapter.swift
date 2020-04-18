@@ -21,8 +21,7 @@ class FirebaseUserProfileNetworkAdapter: UserProfileNetwork {
 
     /// Uploads the profile image of a player
     func uploadProfileImage(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.3),
-            let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let imageData = image.jpegData(compressionQuality: 0.3), let userID = getLoggedInUserID() else {
                 return
         }
 
@@ -33,8 +32,7 @@ class FirebaseUserProfileNetworkAdapter: UserProfileNetwork {
     // TODO: add function after game ends
     /// Uploads the image in the to the player's gallery
     func uploadImageToFavourites(_ image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.3),
-            let userID = NetworkHelper.getLoggedInUserID() else {
+        guard let imageData = image.jpegData(compressionQuality: 0.3), let userID = getLoggedInUserID() else {
                 return
         }
 
