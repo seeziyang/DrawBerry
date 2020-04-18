@@ -14,13 +14,17 @@ class FirebaseGameNetworkAdapter: GameNetwork {
     let roomCode: RoomCode
     let db: DatabaseReference
     let cloud: StorageReference
-    let roomDefaultPath: DatabaseReference
+    let dbDefaultRoomPath: DatabaseReference
+    let cloudDefaultRoomPath: StorageReference
 
     init(roomCode: RoomCode) {
         self.roomCode = roomCode
         self.db = Database.database().reference()
         self.cloud = Storage.storage().reference()
-        self.roomDefaultPath = db.child("activeRooms")
+        self.dbDefaultRoomPath = db.child("activeRooms")
+                                .child(roomCode.type.rawValue)
+                                .child(roomCode.value)
+        self.cloudDefaultRoomPath = cloud.child("activeRooms")
                                 .child(roomCode.type.rawValue)
                                 .child(roomCode.value)
 
@@ -32,16 +36,14 @@ class FirebaseGameNetworkAdapter: GameNetwork {
                 return
         }
 
-        let dbPathRef = roomDefaultPath
+        let dbPathRef = dbDefaultRoomPath
             .child("players")
             .child(userID)
             .child("rounds")
             .child("round\(round)")
             .child("hasUploadedImage")
 
-        let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let cloudPathRef = cloudDefaultRoomPath
             .child("players")
             .child(userID)
             .child("\(round).png")
@@ -64,12 +66,8 @@ class FirebaseGameNetworkAdapter: GameNetwork {
             return
         }
 
-//        let dbRoomPathRef = db.child("activeRooms")
-//            .child(roomCode.type.rawValue)
-//            .child(roomCode.value)
-
         // if is last player to draw, update currRound in db to next round
-        roomDefaultPath.child("players")
+        dbDefaultRoomPath.child("players")
             .observeSingleEvent(of: .value, with: { snapshot in
                 // [playerUID: [rounds: Any]]
                 guard var otherPlayersValues = snapshot.value as? [String: [String: Any]] else {
@@ -91,7 +89,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
                 })
 
                 if isUserLastDrawer {
-                    self.roomDefaultPath.child("currRound")
+                    self.dbDefaultRoomPath.child("currRound")
                         .setValue(round + 1)
                 }
             })
@@ -99,9 +97,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
                                        completionHandler: @escaping (UIImage) -> Void) {
-        let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let cloudPathRef = cloudDefaultRoomPath
             .child("players")
             .child(playerUID)
             .child("\(round).png")
@@ -122,7 +118,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     func observeAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
                                          completionHandler: @escaping (UIImage) -> Void) {
-        let dbPathRef = roomDefaultPath
+        let dbPathRef = dbDefaultRoomPath
             .child("players")
             .child(playerUID)
             .child("rounds")
@@ -147,7 +143,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
             return
         }
 
-        let dbRoomPathRef = roomDefaultPath
+        let dbRoomPathRef = dbDefaultRoomPath
 
         dbRoomPathRef.child("players")
             .child(userID)
@@ -173,7 +169,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     func observePlayerVote(playerUID: String, forRound round: Int,
                            completionHandler: @escaping (String) -> Void) {
-        let dbPathRef = roomDefaultPath
+        let dbPathRef = dbDefaultRoomPath
             .child("players")
             .child(playerUID)
             .child("rounds")
@@ -198,15 +194,10 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
         // room master deletes active room from db
         if isRoomMaster {
-            db.child("activeRooms")
-                .child(roomCode.type.rawValue)
-                .child(roomCode.value)
-                .removeValue()
+            dbDefaultRoomPath.removeValue()
         }
 
-        let cloudPathRef = cloud.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let cloudPathRef = cloudDefaultRoomPath
             .child("players")
             .child(userID)
 
@@ -216,11 +207,10 @@ class FirebaseGameNetworkAdapter: GameNetwork {
         }
     }
 
-    func observeValue(key: String, playerUID: String,
-                                      completionHandler: @escaping (String) -> Void) {
+    func observeValue(key: String, playerUID: String, completionHandler: @escaping (String) -> Void) {
 
         let booleanKey = "has\(key)"
-        let dbPathRef = roomDefaultPath
+        let dbPathRef = dbDefaultRoomPath
             .child("players")
             .child(playerUID)
             .child(booleanKey)
@@ -235,23 +225,23 @@ class FirebaseGameNetworkAdapter: GameNetwork {
     }
 
     private func downloadValue(key: String, playerUID: String, completionHandler: @escaping (String) -> Void) {
-        let dbPathRef = roomDefaultPath
+        let dbPathRef = dbDefaultRoomPath
             .child("players")
             .child(playerUID)
             .child(key)
 
         dbPathRef.observe(.value, with: { snapshot in
-            guard let databaseDescription = snapshot.value as? String else { // result not ready
+            guard let value = snapshot.value as? String else {
                 return
             }
 
-            completionHandler(databaseDescription)
+            completionHandler(value)
         })
     }
 
     func uploadKeyValuePair(key: String, playerUID: String, value: String) {
         let booleanKey = "has\(key)"
-        let dbPathRef = roomDefaultPath
+        let dbPathRef = dbDefaultRoomPath
             .child("players")
             .child(playerUID)
 

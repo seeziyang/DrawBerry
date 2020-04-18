@@ -22,10 +22,6 @@ class TeamBattleGameResult {
         return teamResults.count == numberOfTeams
     }
 
-    func isExistingTeam(result: TeamBattleTeamResult) -> Bool {
-        return teamResults.filter({ $0.resultID == result.resultID }).count == 1
-    }
-
     func updateTeamResult(_ result: TeamBattleTeamResult) {
         teamResults.insert(result)
     }
@@ -35,10 +31,6 @@ class TeamBattleGameResult {
             return i + 1
         }
         return nil
-    }
-
-    func getWinnerTeamID() -> String? {
-        return sortedTeamResults.first?.resultID
     }
 
 }
