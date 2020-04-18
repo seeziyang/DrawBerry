@@ -131,7 +131,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         )
     }
 
-    func moveRoundMasterIndex() {
+    private func moveRoundMasterIndex() {
         roundMasterIndex = getNextRoundMasterIndex()
     }
 
