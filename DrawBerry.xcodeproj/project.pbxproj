@@ -1450,10 +1450,7 @@
 				1A4595C32445C527009D447D /* RoomEnteringNetwork.swift in Sources */,
 				3749D3C424265B9000CE798F /* DrawBerryUITest.swift in Sources */,
 				375E238B2443003E00BA8AB1 /* Team.swift in Sources */,
-<<<<<<< HEAD
 				3792F45E243DC7C000FDEBDC /* CooperativeGameRoom.swift in Sources */,
-=======
->>>>>>> origin/master
 				375E237F243DC8B000BA8AB1 /* CooperativePlayer.swift in Sources */,
 				3792F45A243DC7A900FDEBDC /* MultiplayerPlayer.swift in Sources */,
 				379EE02824249170005257E1 /* PaletteObserver.swift in Sources */,

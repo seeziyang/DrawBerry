@@ -1763,13 +1763,11 @@
         <segue reference="aYW-Q6-A9x"/>
         <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
-<<<<<<< HEAD
         <segue reference="onY-jZ-Yqx"/>
         <segue reference="9o1-fk-ENI"/>
-=======
         <segue reference="Gg7-CT-DLI"/>
         <segue reference="TXh-cz-zfd"/>
->>>>>>> origin/master
+
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="4000" height="3000"/>
