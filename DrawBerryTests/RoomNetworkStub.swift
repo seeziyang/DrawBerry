@@ -33,4 +33,7 @@ class RoomNetworkStub: RoomNetwork {
 
     func observeIsRapidToggle(listener: @escaping (Bool) -> Void) {
     }
+
+    func stopObservingGameStart() {
+    }
 }

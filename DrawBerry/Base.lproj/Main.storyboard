@@ -864,6 +864,7 @@
                                                 <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="56U-Ep-rEz">
                                                     <rect key="frame" x="635.5" y="9.5" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <accessibility key="accessibilityConfiguration" label="rapidToggle"/>
                                                     <connections>
                                                         <action selector="isRapidSwitchOnToggle:" destination="cuu-G9-htT" eventType="valueChanged" id="G35-S8-X5z"/>
                                                     </connections>
@@ -1800,7 +1801,7 @@
         <segue reference="aYW-Q6-A9x"/>
         <segue reference="HnX-p1-WPu"/>
         <segue reference="6FN-2v-NBi"/>
-        <segue reference="zXI-Xz-Tkd"/>
+        <segue reference="epa-EW-RcE"/>
         <segue reference="Gg7-CT-DLI"/>
         <segue reference="TXh-cz-zfd"/>
     </inferredMetricsTieBreakers>
