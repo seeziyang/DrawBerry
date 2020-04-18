@@ -19,6 +19,9 @@ class GameNetworkStub: GameNetwork {
 
     func observeAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
                                          completionHandler: @escaping (UIImage) -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+            completionHandler(UIImage())
+        })
     }
 
     func userVoteFor(playerUID: String, forRound round: Int,

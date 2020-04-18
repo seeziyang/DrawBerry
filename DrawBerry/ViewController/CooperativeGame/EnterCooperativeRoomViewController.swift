@@ -22,6 +22,7 @@ class EnterCooperativeRoomViewController: UIViewController {
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
         roomEnteringNetwork = FirebaseRoomEnteringNetworkAdapter()
+        roomCodeField.autocorrectionType = .no
         print("network connected")
     }
 

@@ -31,4 +31,6 @@ class CooperativeGameTests: XCTestCase {
         XCTAssertEqual(cooperativeGame.players, gameRoom.players)
         XCTAssertTrue(cooperativeGame.allDrawings.isEmpty)
     }
+
+    func test
 }
