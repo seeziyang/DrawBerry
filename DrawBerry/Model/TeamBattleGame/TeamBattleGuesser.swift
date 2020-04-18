@@ -20,7 +20,6 @@ class TeamBattleGuesser: TeamBattlePlayer {
     }
 
     func isGuessCorrect(guess: String, for round: Int) -> Bool {
-        //print(getDrawingTopic(for: round))
         return guess == getDrawingTopic(for: round)
     }
 

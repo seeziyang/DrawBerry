@@ -89,6 +89,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
     }
 
     func proceedToNextRound() {
+
         currentRound += 1
         if currentRound > TeamBattleGame.maxRounds {
             performSegue(withIdentifier: "guessToTeamBattleEnd", sender: self)

@@ -34,7 +34,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         let rankMessage = "\n Your Rank: \(rank)"
         let message = scoreMessage + rankMessage
         changeDisplayMessage(text: message)
-        game.endGame()
+        addMenuButtonToView()
     }
 
     /// Adds the background canvas.
@@ -60,6 +60,23 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         message.numberOfLines = 8
         messageLabel = message
         view.addSubview(message)
+    }
+
+    /// Adds the button to return to the main menu.
+    private func addMenuButtonToView() {
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: self.view.frame.midX - 70, y: self.view.frame.maxY - 180,
+                              width: 150, height: 50)
+        button.backgroundColor = .systemYellow
+        button.setTitle("Main Menu", for: .normal)
+        button.addTarget(self, action: #selector(backToMenu(sender:)), for: .touchUpInside)
+
+        view.addSubview(button)
+    }
+
+    @objc private func backToMenu(sender: UIButton) {
+        performSegue(withIdentifier: "teamBattleEndToMenu", sender: self)
+        game.endGame()
     }
 
 }

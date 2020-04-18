@@ -19,7 +19,6 @@ class TeamBattleDrawer: TeamBattlePlayer {
     }
 
     func getDrawingTopic() -> String {
-
         return wordList.getNextWord().value
     }
 

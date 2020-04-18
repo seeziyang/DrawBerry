@@ -10,6 +10,7 @@ import Firebase
 import FirebaseStorage
 
 class FirebaseGameNetworkAdapter: GameNetwork {
+
     let roomCode: RoomCode
     let db: DatabaseReference
     let cloud: StorageReference
@@ -22,7 +23,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
         self.roomDefaultPath = db.child("activeRooms")
                                 .child(roomCode.type.rawValue)
                                 .child(roomCode.value)
-                                .child("players")
+
     }
 
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
@@ -31,9 +32,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
                 return
         }
 
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let dbPathRef = roomDefaultPath
             .child("players")
             .child(userID)
             .child("rounds")
@@ -65,12 +64,12 @@ class FirebaseGameNetworkAdapter: GameNetwork {
             return
         }
 
-        let dbRoomPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+//        let dbRoomPathRef = db.child("activeRooms")
+//            .child(roomCode.type.rawValue)
+//            .child(roomCode.value)
 
         // if is last player to draw, update currRound in db to next round
-        dbRoomPathRef.child("players")
+        roomDefaultPath.child("players")
             .observeSingleEvent(of: .value, with: { snapshot in
                 // [playerUID: [rounds: Any]]
                 guard var otherPlayersValues = snapshot.value as? [String: [String: Any]] else {
@@ -92,7 +91,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
                 })
 
                 if isUserLastDrawer {
-                    dbRoomPathRef.child("currRound")
+                    self.roomDefaultPath.child("currRound")
                         .setValue(round + 1)
                 }
             })
@@ -123,9 +122,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     func observeAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
                                          completionHandler: @escaping (UIImage) -> Void) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let dbPathRef = roomDefaultPath
             .child("players")
             .child(playerUID)
             .child("rounds")
@@ -150,9 +147,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
             return
         }
 
-        let dbRoomPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let dbRoomPathRef = roomDefaultPath
 
         dbRoomPathRef.child("players")
             .child(userID)
@@ -178,9 +173,7 @@ class FirebaseGameNetworkAdapter: GameNetwork {
 
     func observePlayerVote(playerUID: String, forRound round: Int,
                            completionHandler: @escaping (String) -> Void) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+        let dbPathRef = roomDefaultPath
             .child("players")
             .child(playerUID)
             .child("rounds")
@@ -223,64 +216,46 @@ class FirebaseGameNetworkAdapter: GameNetwork {
         }
     }
 
-    func observeAndDownloadTeamResult(playerUID: String,
-                                      completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+    func observeValue(key: String, playerUID: String,
+                                      completionHandler: @escaping (String) -> Void) {
+
+        let booleanKey = "has\(key)"
+        let dbPathRef = roomDefaultPath
             .child("players")
             .child(playerUID)
-            .child("hasTeamResult")
+            .child(booleanKey)
 
         dbPathRef.observe(.value, with: { snapshot in
             guard snapshot.value as? Bool ?? false else { // result not ready
                 return
             }
 
-            self.downloadTeamResult(playerUID: playerUID, completionHandler: completionHandler)
+            self.downloadValue(key: key, playerUID: playerUID, completionHandler: completionHandler)
         })
     }
 
-    private func downloadTeamResult(playerUID: String, completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+    private func downloadValue(key: String, playerUID: String, completionHandler: @escaping (String) -> Void) {
+        let dbPathRef = roomDefaultPath
             .child("players")
             .child(playerUID)
-            .child("teamResult")
+            .child(key)
 
         dbPathRef.observe(.value, with: { snapshot in
             guard let databaseDescription = snapshot.value as? String else { // result not ready
                 return
             }
 
-            guard let result = TeamBattleTeamResult(databaseDescription: databaseDescription) else {
-                return
-            }
-
-            completionHandler(result)
+            completionHandler(databaseDescription)
         })
     }
 
-    func uploadTeamResult(result: TeamBattleTeamResult) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
+    func uploadKeyValuePair(key: String, playerUID: String, value: String) {
+        let booleanKey = "has\(key)"
+        let dbPathRef = roomDefaultPath
             .child("players")
-            .child(result.resultID)
+            .child(playerUID)
 
-        dbPathRef.child("teamResult").setValue(result.getDatabaseStorageDescription())
-        dbPathRef.child("hasTeamResult").setValue(true)
-    }
-
-    func uploadWordList(list: WordList, drawerID: String) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
-            .child("players")
-            .child(drawerID)
-
-        dbPathRef.child("wordList").setValue(list.getDatabaseDescription())
-        dbPathRef.child("hasWordList").setValue(true)
+        dbPathRef.child(key).setValue(value)
+        dbPathRef.child(booleanKey).setValue(true)
     }
 }

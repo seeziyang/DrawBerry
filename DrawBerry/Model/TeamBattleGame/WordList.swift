@@ -14,7 +14,7 @@ struct WordList {
         self.words = words
     }
 
-    init(databaseDescription: String) {
+    init?(databaseDescription: String) {
         let substrings = databaseDescription.split(separator: "/").map { String($0) }
         let words = substrings.map { TopicWord($0) }
         self.init(words: words)

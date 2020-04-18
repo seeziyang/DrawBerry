@@ -17,6 +17,11 @@ class TeamBattlePair: Team {
     let drawer: TeamBattleDrawer
     let guesser: TeamBattleGuesser
     var drawings = [UIImage]()
+    var wordList: WordList? {
+        didSet {
+            guesser.wordList = wordList
+        }
+    }
 
     init(drawer: TeamBattleDrawer, guesser: TeamBattleGuesser) {
         self.teamID = drawer.uid
@@ -28,6 +33,10 @@ class TeamBattlePair: Team {
 
     func updateResult(_ result: TeamBattleTeamResult) {
         self.result = result
+    }
+
+    func updateWordList(_ list: WordList) {
+        self.wordList = list
     }
 
 }

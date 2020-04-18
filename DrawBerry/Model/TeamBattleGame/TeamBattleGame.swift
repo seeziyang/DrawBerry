@@ -77,25 +77,50 @@ class TeamBattleGame: NetworkGame {
 
 /// Extensions to network interface
 extension TeamBattleGame {
-    func uploadWordList() {
-
+    func uploadTeamWordList() {
+        guard let drawer = userTeam?.drawer else {
+            return
+        }
+        let wordList = drawer.wordList
+        let networkKey = "TeamWordList"
+        gameNetwork.uploadKeyValuePair(key: networkKey,
+                                       playerUID: drawer.uid, value: wordList.getDatabaseDescription())
     }
 
-    func downloadWordList() {
-        userTeam?.guesser
+    func downloadTeamWordList() {
+        guard let drawer = userTeam?.drawer else {
+            return
+        }
+        let networkKey = "TeamWordList"
+        gameNetwork.observeValue(key: networkKey,
+                                 playerUID: drawer.uid, completionHandler: { [weak self] databaseDescription in
+            guard let wordList = WordList(databaseDescription:
+                databaseDescription) else {
+                return
+            }
+
+            self?.userTeam?.updateWordList(wordList)
+        })
     }
 
     func addTeamResult(result: TeamBattleTeamResult) {
-        gameNetwork.uploadTeamResult(result: result)
+        let networkKey = "TeamResult"
+        guard let id = userTeam?.drawer.uid else {
+            return
+        }
+        gameNetwork.uploadKeyValuePair(key: networkKey, playerUID: id, value: result.getDatabaseStorageDescription())
     }
 
     func observeAllTeamResult() {
+        let networkKey = "TeamResult"
         for team in teams {
             let id = team.teamID
-            gameNetwork.observeAndDownloadTeamResult(
-                playerUID: id,
-                completionHandler: { [weak self] result in
-                    // TODO: maybe use delegate
+            gameNetwork.observeValue(
+                key: networkKey, playerUID: id,
+                completionHandler: { [weak self] databaseDescription in
+                    guard let result = TeamBattleTeamResult(databaseDescription: databaseDescription) else {
+                        return
+                    }
                     self?.gameResult.updateTeamResult(result)
                     team.updateResult(result)
                     self?.resultDelegate?.updateResults()
