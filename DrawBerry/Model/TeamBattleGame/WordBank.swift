@@ -12,7 +12,8 @@ struct WordBank {
 
     // Default constructor
     init() {
-        words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat")]
+        words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat"),
+                 TopicWord("dog"), TopicWord("ear"), TopicWord("food")]
     }
 
     mutating func getWordList(length: Int, difficulty: WordDifficulty) -> WordList {
@@ -30,7 +31,8 @@ struct WordBank {
     }
 
     mutating func reloadWordBank() {
-        words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat")]
+        words = [TopicWord("apple"), TopicWord("banana"), TopicWord("cat"),
+                 TopicWord("dog"), TopicWord("ear"), TopicWord("food")]
     }
 
     private mutating func popRandomWord(from words: [Word]) -> Word? {

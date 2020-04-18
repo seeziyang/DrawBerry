@@ -9,14 +9,9 @@
 import UIKit
 
 class TeamBattleGame: NetworkGame {
-<<<<<<< HEAD
     static let maxRounds = 3
-=======
     let gameNetwork: GameNetwork
     let roomCode: RoomCode
-
-    let maxRounds = 3
->>>>>>> origin/master
     var players = [TeamBattlePlayer]()
     var teams = [TeamBattlePair]()
     var gameResult: TeamBattleGameResult

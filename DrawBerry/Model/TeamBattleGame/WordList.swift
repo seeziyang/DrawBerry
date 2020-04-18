@@ -2,7 +2,7 @@
 //  WordList.swift
 //  DrawBerry
 //
-//  Created by Calvin Chen on 17/4/20.
+//  Created by Calvin Chen on 18/4/20.
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
@@ -47,5 +47,5 @@ struct WordList {
         return description
     }
 
-
 }
+

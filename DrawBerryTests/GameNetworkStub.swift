@@ -32,10 +32,11 @@ class GameNetworkStub: GameNetwork {
     func endGame(isRoomMaster: Bool, numRounds: Int) {
     }
 
-    func observeAndDownloadTeamResult(playerUID: String,
-                                      completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
+    func observeValue(key: String, playerUID: String,
+                      completionHandler: @escaping (String) -> Void) {
+
     }
 
-    func uploadTeamResult(result: TeamBattleTeamResult) {
+    func uploadKeyValuePair(key: String, playerUID: String, value: String) {
     }
 }
