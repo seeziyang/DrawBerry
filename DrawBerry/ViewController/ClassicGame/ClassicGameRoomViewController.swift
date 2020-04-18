@@ -87,8 +87,16 @@ class ClassicGameRoomViewController: UIViewController, GameRoomViewController {
     internal func segueToGameVC() {
         let classicGame = room.isRapid ? ClassicGame(from: room) : NonRapidClassicGame(from: room)
         if classicGame.user.isRoomMaster {
-            classicGame.addFirstRoundTopic("First topic!") // TODO: get from user
-            performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)
+            let alert = AlertHelper.makeInputAlert(
+                title: "Enter topic for the first round",
+                message: "As the room master, you are the round master for Round 1",
+                placeholder: "Topic for Round 1",
+                handler: { [weak self] topic in
+                    classicGame.addFirstRoundTopic(topic)
+                    self?.performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)
+                }
+            )
+            present(alert, animated: true)
         } else {
             classicGame.observeFirstRoundTopic(completionHandler: { [weak self] in
                 self?.performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)

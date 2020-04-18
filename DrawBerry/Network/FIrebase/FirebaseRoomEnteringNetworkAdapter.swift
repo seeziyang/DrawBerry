@@ -155,12 +155,10 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
                                                  isRoomMaster: isRoomMaster, points: points))
                 }
 
-                var topics: [String] = topicsDict.sorted { $0.key < $1.key }.map { $0.value }
+                let topics: [String] = topicsDict.sorted { $0.key < $1.key }.map { $0.value }
 
-                let nonRapidClassicGame = NonRapidClassicGame(roomCode: roomCode,
-                                                              players: players,
-                                                              currentRound: currRound,
-                                                              topics: topics)
+                let nonRapidClassicGame = NonRapidClassicGame(roomCode: roomCode, players: players,
+                                                              currentRound: currRound, topics: topics)
 
                 // [round1: [hasUploadedImage: Any]]
                 guard let userRounds = playersDict[userID]?["rounds"] as? [String: [String: Any]] else {

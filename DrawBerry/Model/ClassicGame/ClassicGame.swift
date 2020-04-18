@@ -10,7 +10,7 @@ import UIKit
 
 class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     private var topics: [String]
-    private var roundMasterIndex: Int
+    private(set) var roundMasterIndex: Int
     // round master is the player who chooses the topic for the current round
     var roundMaster: ClassicPlayer {
         players[roundMasterIndex]
@@ -33,12 +33,11 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
-    init(from roomCode: RoomCode, players: [ClassicPlayer],
-         currentRound: Int, maxRounds: Int, topics: [String]) {
+    init(from roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int, maxRounds: Int,
+         topics: [String], roundMasterIndex: Int) {
         self.topics = topics
-        self.roundMasterIndex = 0
+        self.roundMasterIndex = roundMasterIndex
         super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
-        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
@@ -76,7 +75,8 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
 
         if player === roundMaster {
             user.points += ClassicGame.pointsForCorrectPick
-            voteFor(player: player, for: currentRound, updatedPlayerPoints: user.points)
+            voteFor(player: player, for: currentRound,
+                    updatedPlayerPoints: player.points, updatedUserPoints: user.points)
         } else {
             voteFor(player: player, for: currentRound, updatedPlayerPoints: player.points)
         }
@@ -131,7 +131,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         )
     }
 
-    private func moveRoundMasterIndex() {
+    func moveRoundMasterIndex() {
         roundMasterIndex = getNextRoundMasterIndex()
     }
 
@@ -187,9 +187,10 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
 
 /// Extensions to network interface
 extension ClassicGame {
-    func voteFor(player: ClassicPlayer, for round: Int, updatedPlayerPoints: Int) {
+    func voteFor(player: ClassicPlayer, for round: Int,
+                 updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
         gameNetwork.userVoteFor(playerUID: player.uid, forRound: round,
-                                updatedPlayerPoints: player.points, updatedUserPoints: nil)
+                                updatedPlayerPoints: player.points, updatedUserPoints: updatedUserPoints)
     }
 
     func observePlayerVote(player: ClassicPlayer, for round: Int,

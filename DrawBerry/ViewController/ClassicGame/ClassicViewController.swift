@@ -89,10 +89,20 @@ class ClassicViewController: CanvasDelegateViewController {
         classicGame.addUsersDrawing(image: canvas.drawingImage)
 
         if classicGame is NonRapidClassicGame && classicGame.userIsNextRoundMaster() {
-            classicGame.addNextRoundTopic("my topic!!") // todo prompt user for this
+            let nextRound = classicGame.currentRound + 1
+            let alert = AlertHelper.makeInputAlert(
+                title: "Enter topic for the next round",
+                message: "You are the round master for Round \(nextRound)",
+                placeholder: "Topic for Round \(nextRound)",
+                handler: { [weak self] topic in
+                    self?.classicGame.addNextRoundTopic(topic)
+                    self?.segueToNextScreen()
+                }
+            )
+            present(alert, animated: true)
+        } else {
+            segueToNextScreen()
         }
-
-        segueToNextScreen()
     }
 
     private func segueToNextScreen() {

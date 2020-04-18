@@ -71,6 +71,7 @@ class GameRoom {
     }
 
     func startGame() {
+        roomNetwork.stopObservingGameStart()
         roomNetwork.startGame(isRapid: isRapid)
     }
 
