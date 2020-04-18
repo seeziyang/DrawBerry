@@ -508,6 +508,7 @@
 				3749D3BD2426565D00CE798F /* StringHelperTest.swift */,
 				FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */,
 				1A3920F62425BEDB00847E72 /* GameRoomTests */,
+				3EF5472E244B26A000817F58 /* TeamBattleGameTests */,
 				1A6C69212425C7F8005E6D45 /* ClassicGameTests */,
 			);
 			path = ModelTests;
@@ -782,6 +783,16 @@
 			path = TeamBattleGame;
 			sourceTree = "<group>";
 		};
+		3EF5472E244B26A000817F58 /* TeamBattleGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				3EF54722244B18A200817F58 /* TeamBattlePairTest.swift */,
+				3EF54724244B1C0C00817F58 /* TeamBattleGameResultTests.swift */,
+				3EF5472C244B242600817F58 /* TeamBattleTeamResultTests.swift */,
+			);
+			path = TeamBattleGameTests;
+			sourceTree = "<group>";
+		};
 		4DC5CBA0BFA55A45E799CE59 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -910,11 +921,8 @@
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
 				3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */,
 				371F28CC2431FA7C006852EE /* CooperativeGameTests */,
-				371F28C82430F45B006852EE /* GameNetworkStub.swift */,
-				3EF54722244B18A200817F58 /* TeamBattlePairTest.swift */,
-				3EF54724244B1C0C00817F58 /* TeamBattleGameResultTests.swift */,
-				3EF5472C244B242600817F58 /* TeamBattleTeamResultTests.swift */,
 				1A4595C62445C61C009D447D /* RoomNetworkStub.swift */,
+				371F28C82430F45B006852EE /* GameNetworkStub.swift */,
 				3749D3AF242608D400CE798F /* BerryCanvasTest.swift */,
 				3749D3C9242797AA00CE798F /* BerryPaletteTest.swift */,
 				FCEC3BFE2417941700F0DE03 /* Info.plist */,

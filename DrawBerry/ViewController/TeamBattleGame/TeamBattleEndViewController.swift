@@ -65,7 +65,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
     /// Adds the button to return to the main menu.
     private func addMenuButtonToView() {
         let button = UIButton(type: .system)
-        button.frame = CGRect(x: self.view.frame.midX - 70, y: self.view.frame.maxY - 180,
+        button.frame = CGRect(x: self.view.frame.midX - 70, y: self.view.frame.maxY - 220,
                               width: 150, height: 50)
         button.backgroundColor = .systemYellow
         button.setTitle("Main Menu", for: .normal)
