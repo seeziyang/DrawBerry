@@ -71,7 +71,7 @@ class ClassicViewController: CanvasDelegateViewController {
     }
 
     private func addTopicToView() {
-        let label = UILabel(frame: CGRect(x: view.frame.minX, y: view.frame.minY + 50,
+        let label = UILabel(frame: CGRect(x: view.frame.minX, y: view.frame.minY + 30,
                                           width: view.frame.width, height: 150))
         label.text = "Round \(classicGame.currentRound): \(classicGame.getCurrentRoundTopic())"
         label.textAlignment = .center
@@ -87,6 +87,15 @@ class ClassicViewController: CanvasDelegateViewController {
 
     private func finishDrawing() {
         classicGame.addUsersDrawing(image: canvas.drawingImage)
+
+        if classicGame is NonRapidClassicGame && classicGame.userIsNextRoundMaster() {
+            classicGame.addNextRoundTopic("my topic!!") // todo prompt user for this
+        }
+
+        segueToNextScreen()
+    }
+
+    private func segueToNextScreen() {
         if classicGame is NonRapidClassicGame {
             performSegue(withIdentifier: "classicUnwindSegueToHomeVC", sender: self)
         } else {

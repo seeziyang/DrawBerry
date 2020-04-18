@@ -33,9 +33,9 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
-    override init(from roomCode: RoomCode, players: [ClassicPlayer],
-                  currentRound: Int, maxRounds: Int) {
-        self.topics = []
+    init(from roomCode: RoomCode, players: [ClassicPlayer],
+         currentRound: Int, maxRounds: Int, topics: [String]) {
+        self.topics = topics
         self.roundMasterIndex = 0
         super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0

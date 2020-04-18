@@ -32,12 +32,14 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let voteResultsVC = segue.destination as? VoteResultsViewController {
-            voteResultsVC.classicGame = classicGame
-            voteResultsVC.classicGame.delegate = voteResultsVC
-            voteResultsVC.classicGame.observePlayerVotes()
-            if !voteResultsVC.classicGame.userIsNextRoundMaster() {
-                voteResultsVC.classicGame.observeNextRoundTopic()
+            classicGame.delegate = voteResultsVC
+            classicGame.observePlayerVotes()
+            if !(classicGame is NonRapidClassicGame) &&
+                    !classicGame.userIsNextRoundMaster() {
+                classicGame.observeNextRoundTopic()
             }
+
+            voteResultsVC.classicGame = classicGame
         } else if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = classicGame
         }
@@ -69,7 +71,7 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
     private func voteForPlayerDrawing(player: ClassicPlayer) {
         classicGame.userVoteFor(player: player)
 
-        if classicGame.userIsNextRoundMaster() {
+        if !(classicGame is NonRapidClassicGame) && classicGame.userIsNextRoundMaster() {
             classicGame.addNextRoundTopic("my topic!!") // todo prompt user for this
         }
 

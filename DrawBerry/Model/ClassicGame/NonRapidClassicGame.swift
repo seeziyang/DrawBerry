@@ -9,8 +9,10 @@
 import UIKit
 
 class NonRapidClassicGame: ClassicGame {
-    init(roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int) {
-        super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: .max)
+    init(roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int, topics: [String]) {
+        super.init(from: roomCode, players: players,
+                   currentRound: currentRound, maxRounds: .max,
+                   topics: topics)
     }
 
     override init(from room: GameRoom) {
