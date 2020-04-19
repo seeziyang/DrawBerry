@@ -31,8 +31,8 @@ class CooperativeGameUITest: EnterRoomUITest {
     func testCooperativeGameUILayout_threePlayers() {
         let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
         createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
-        addSecondPlayer()
-        addThirdPlayer()
+        add(player: UITestConstants.admin2_user, to: CooperativeGameUITest.testRoomCode)
+        add(player: UITestConstants.admin3_user, to: CooperativeGameUITest.testRoomCode)
         startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         verifyAppCurrentScreen(app: app)
     }
@@ -40,7 +40,7 @@ class CooperativeGameUITest: EnterRoomUITest {
     func testCooperativeGameUILayout_twoPlayers() {
         let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
         createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
-        addSecondPlayer()
+        add(player: UITestConstants.admin2_user, to: CooperativeGameUITest.testRoomCode)
         startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         verifyAppCurrentScreen(app: app)
     }
@@ -185,7 +185,7 @@ class CooperativeGameUITest: EnterRoomUITest {
     func testTwoPlayer_completeFirstDrawing() {
         let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
         createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
-        addSecondPlayer()
+        add(player: UITestConstants.admin2_user, to: CooperativeGameUITest.testRoomCode)
         startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 5).tap() // selecting thick stroke
@@ -199,7 +199,7 @@ class CooperativeGameUITest: EnterRoomUITest {
     func testTwoPlayer_drawOutsideBounds() {
         let app = initialiseAppToEnterRoomScreen(type: .CooperativeRoom)
         createRoom(app: app, roomCode: CooperativeGameUITest.testRoomCode)
-        addSecondPlayer()
+        add(player: UITestConstants.admin2_user, to: CooperativeGameUITest.testRoomCode)
         startGame(app: app, roomCode: CooperativeGameUITest.testRoomCode)
         let palette = getPalette(from: app)
         palette.children(matching: .image).element(boundBy: 5).tap() // selecting thick stroke
@@ -217,18 +217,6 @@ extension CooperativeGameUITest {
         return app
     }
 
-    private func addSecondPlayer() {
-        RoomNetworkAdapterStub(roomCode: CooperativeGameUITest.testRoomCode)
-            .joinRoom(userID: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2", username: "admin2")
-        sleep(3)
-    }
-
-    private func addThirdPlayer() {
-        RoomNetworkAdapterStub(roomCode: CooperativeGameUITest.testRoomCode)
-            .joinRoom(userID: "KPXfiOZ5XxY4QHvGvYqSvaemTFj2", username: "admin3")
-        sleep(3)
-    }
-
     private func getPalette(from app: XCUIApplication) -> XCUIElement {
         app.children(matching: .window).element(boundBy: 0)
             .children(matching: .other).element
@@ -237,16 +225,4 @@ extension CooperativeGameUITest {
             .children(matching: .other).element
     }
 
-}
-
-class RoomNetworkAdapterStub: FirebaseRoomNetworkAdapter {
-    func joinRoom(userID: String, username: String) {
-        db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
-            .child("players")
-            .child(userID)
-            .setValue(["username": username,
-                       "isRoomMaster": false])
-    }
 }
