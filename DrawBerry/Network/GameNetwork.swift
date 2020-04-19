@@ -28,4 +28,10 @@ protocol GameNetwork {
     func uploadKeyValuePair(key: String, playerUID: String, value: String)
 
     func endGame(isRoomMaster: Bool, numRounds: Int)
+
+    func uploadTeamResult(result: TeamBattleTeamResult)
+
+    func setTopic(topic: String, forRound round: Int)
+
+    func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void)
 }

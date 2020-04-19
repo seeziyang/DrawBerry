@@ -9,7 +9,8 @@
 import UIKit
 
 class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
-    private var roundMasterIndex: Int
+    private var topics: [String]
+    private(set) var roundMasterIndex: Int
     // round master is the player who chooses the topic for the current round
     var roundMaster: ClassicPlayer {
         players[roundMasterIndex]
@@ -18,20 +19,25 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     static let votingPoints = 20
     static let pointsForCorrectPick = 10
 
+    static let drawingDuration: Double = 60.0
+    static let votingDuration: Double = 45.0
+    static let viewingDuration: Double = 7.5
+
     weak var delegate: ClassicGameDelegate?
 
     init(from room: GameRoom) {
+        self.topics = []
         self.roundMasterIndex = 0
         super.init(from: room,
                    maxRounds: ClassicGame.calculateMaxRounds(numPlayers: room.players.count))
         self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
-    override init(from roomCode: RoomCode, players: [ClassicPlayer],
-                  currentRound: Int, maxRounds: Int) {
-        self.roundMasterIndex = 0
+    init(from roomCode: RoomCode, players: [ClassicPlayer], currentRound: Int, maxRounds: Int,
+         topics: [String], roundMasterIndex: Int) {
+        self.topics = topics
+        self.roundMasterIndex = roundMasterIndex
         super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
-        self.roundMasterIndex = self.players.firstIndex(where: { $0.isRoomMaster }) ?? 0
     }
 
     static func calculateMaxRounds(numPlayers: Int) -> Int {
@@ -69,7 +75,8 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
 
         if player === roundMaster {
             user.points += ClassicGame.pointsForCorrectPick
-            voteFor(player: player, for: currentRound, updatedPlayerPoints: user.points)
+            voteFor(player: player, for: currentRound,
+                    updatedPlayerPoints: player.points, updatedUserPoints: user.points)
         } else {
             voteFor(player: player, for: currentRound, updatedPlayerPoints: player.points)
         }
@@ -112,35 +119,91 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
     }
 
     private func moveToNextRound() {
-        Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
-            self?.currentRound += 1
-            self?.moveRoundMasterIndex()
-            self?.delegate?.segueToNextRound()
-        })
+        delegate?.showCountdownTimer(for: ClassicGame.viewingDuration)
+        Timer.scheduledTimer(
+            withTimeInterval: ClassicGame.viewingDuration,
+            repeats: false,
+            block: { [weak self] _ in
+                self?.currentRound += 1
+                self?.moveRoundMasterIndex()
+                self?.delegate?.segueToNextRound()
+            }
+        )
     }
 
     private func moveRoundMasterIndex() {
-        roundMasterIndex = (roundMasterIndex + 1) % players.count
+        roundMasterIndex = getNextRoundMasterIndex()
+    }
+
+    private func getNextRoundMasterIndex() -> Int {
+        (roundMasterIndex + 1) % players.count
+    }
+
+    func userIsNextRoundMaster() -> Bool {
+        user === players[getNextRoundMasterIndex()]
     }
 
     private func endGame() {
-        Timer.scheduledTimer(withTimeInterval: 7.5, repeats: false, block: { [weak self] _ in
-            self?.endGame(isRoomMaster: self?.user.isRoomMaster ?? false, numRounds: self?.currentRound ?? 0)
-            self?.delegate?.segueToGameEnd()
+        delegate?.showCountdownTimer(for: ClassicGame.viewingDuration)
+        Timer.scheduledTimer(
+            withTimeInterval: ClassicGame.viewingDuration,
+            repeats: false,
+            block: { [weak self] _ in
+                self?.endGame(isRoomMaster: self?.user.isRoomMaster ?? false,
+                              numRounds: self?.currentRound ?? 0)
+                self?.delegate?.segueToGameEnd()
+            }
+        )
+    }
+
+    func getCurrentRoundTopic() -> String {
+        let index = currentRound - 1
+        return topics[index]
+    }
+
+    func addFirstRoundTopic(_ topic: String) {
+        setTopic(topic: topic, forRound: 1)
+        topics.append(topic)
+    }
+
+    func addNextRoundTopic(_ topic: String) {
+        setTopic(topic: topic, forRound: currentRound + 1)
+        topics.append(topic)
+    }
+
+    func observeFirstRoundTopic(completionHandler: @escaping () -> Void) {
+        observeTopic(for: 1, completionHandler: { [weak self] topic in
+            self?.topics.append(topic)
+            completionHandler()
+        })
+    }
+
+    func observeNextRoundTopic() {
+        observeTopic(for: currentRound + 1, completionHandler: { [weak self] topic in
+            self?.topics.append(topic)
         })
     }
 }
 
 /// Extensions to network interface
 extension ClassicGame {
-    func voteFor(player: ClassicPlayer, for round: Int, updatedPlayerPoints: Int) {
+    func voteFor(player: ClassicPlayer, for round: Int,
+                 updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
         gameNetwork.userVoteFor(playerUID: player.uid, forRound: round,
-                                updatedPlayerPoints: player.points, updatedUserPoints: nil)
+                                updatedPlayerPoints: player.points, updatedUserPoints: updatedUserPoints)
     }
 
     func observePlayerVote(player: ClassicPlayer, for round: Int,
                            completionHandler: @escaping (String) -> Void) {
         gameNetwork.observePlayerVote(playerUID: player.uid, forRound: round,
                                       completionHandler: completionHandler)
+    }
+
+    func setTopic(topic: String, forRound round: Int) {
+        gameNetwork.setTopic(topic: topic, forRound: round)
+    }
+
+    func observeTopic(for round: Int, completionHandler: @escaping (String) -> Void) {
+        gameNetwork.observeTopic(forRound: round, completionHandler: completionHandler)
     }
 }

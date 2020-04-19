@@ -9,7 +9,6 @@
 import Firebase
 
 class FirebaseRoomNetworkAdapter: RoomNetwork {
-
     let db: DatabaseReference
     let roomCode: RoomCode
 
@@ -175,5 +174,13 @@ class FirebaseRoomNetworkAdapter: RoomNetwork {
 
                 listener(isRapidValue)
             })
+    }
+
+    func stopObservingGameStart() {
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("hasStarted")
+            .removeAllObservers()
     }
 }

@@ -12,12 +12,19 @@ import PencilKit
 class ClassicViewController: CanvasDelegateViewController {
     var classicGame: ClassicGame!
     var canvas: Canvas!
+    var timerBarView: TimerBarView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addCanvasToView()
         addDoneButtonToView()
+        addTopicToView()
+
+        if !(classicGame is NonRapidClassicGame) {
+            addTimerBarToView()
+            timerBarView?.start()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -29,10 +36,10 @@ class ClassicViewController: CanvasDelegateViewController {
     }
 
     private func addCanvasToView() {
-        let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+        let size = CGSize(width: self.view.bounds.width, height: self.view.bounds.height - 10)
 
         let topLeftOrigin = CGPoint(x: self.view.bounds.minX, y: self.view.bounds.minY)
-        let topLeftRect = CGRect(origin: topLeftOrigin, size: defaultSize)
+        let topLeftRect = CGRect(origin: topLeftOrigin, size: size)
         guard let canvas = BerryCanvas.createCanvas(within: topLeftRect) else {
             return
         }
@@ -54,12 +61,51 @@ class ClassicViewController: CanvasDelegateViewController {
         self.view.addSubview(button)
     }
 
+    private func addTimerBarToView() {
+        let timerBarView = TimerBarView(frame: CGRect(x: view.frame.minX, y: view.frame.maxY - 10,
+                                                      width: view.frame.width, height: 10),
+                                        duration: ClassicGame.drawingDuration,
+                                        completionHandler: finishDrawing)
+        view.addSubview(timerBarView)
+        self.timerBarView = timerBarView
+    }
+
+    private func addTopicToView() {
+        let label = UILabel(frame: CGRect(x: view.frame.minX, y: view.frame.minY + 30,
+                                          width: view.frame.width, height: 150))
+        label.text = "Round \(classicGame.currentRound): \(classicGame.getCurrentRoundTopic())"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Noteworthy", size: 30)
+
+        self.view.addSubview(label)
+    }
+
     @objc private func doneOnTap(sender: UIButton) {
+        timerBarView?.stop()
         finishDrawing()
     }
 
     private func finishDrawing() {
         classicGame.addUsersDrawing(image: canvas.drawingImage)
+
+        if classicGame is NonRapidClassicGame && classicGame.userIsNextRoundMaster() {
+            let nextRound = classicGame.currentRound + 1
+            let alert = AlertHelper.makeInputAlert(
+                title: "Enter topic for the next round",
+                message: "You are the round master for Round \(nextRound)",
+                placeholder: "Topic for Round \(nextRound)",
+                handler: { [weak self] topic in
+                    self?.classicGame.addNextRoundTopic(topic)
+                    self?.segueToNextScreen()
+                }
+            )
+            present(alert, animated: true)
+        } else {
+            segueToNextScreen()
+        }
+    }
+
+    private func segueToNextScreen() {
         if classicGame is NonRapidClassicGame {
             performSegue(withIdentifier: "classicUnwindSegueToHomeVC", sender: self)
         } else {

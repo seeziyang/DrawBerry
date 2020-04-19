@@ -27,14 +27,18 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
 
     func drawingsDidUpdate() {
         votingImagesCollectionView.reloadData()
-        // TODO: show spinning wheel or some loading indicator if player havent upload
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let voteResultsVC = segue.destination as? VoteResultsViewController {
+            classicGame.delegate = voteResultsVC
+            classicGame.observePlayerVotes()
+            if !(classicGame is NonRapidClassicGame) &&
+                    !classicGame.userIsNextRoundMaster() {
+                classicGame.observeNextRoundTopic()
+            }
+
             voteResultsVC.classicGame = classicGame
-            voteResultsVC.classicGame.delegate = voteResultsVC
-            voteResultsVC.classicGame.observePlayerVotes()
         } else if let classicVC = segue.destination as? ClassicViewController {
             classicVC.classicGame = classicGame
         }
@@ -53,19 +57,38 @@ class VotingViewController: UIViewController, ClassicGameDelegate {
             let player = classicGame.players[indexPath.row]
 
             if player === classicGame.user {
-                // TODO: show msg saying user cannot vote for themself
+                view.addSubview(ErrorToastView(message: "You cannot vote for yourself!", showFor: 5.0,
+                                               frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
                 return
             }
 
             voteForPlayerDrawing(player: player)
         } else {
-            // TODO: show msg saying not all players have drawn
+            view.addSubview(ErrorToastView(message: "Not all players have drawn yet!", showFor: 5.0,
+                                           frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
         }
     }
 
     private func voteForPlayerDrawing(player: ClassicPlayer) {
-        classicGame.userVoteFor(player: player)
-        segueToNextScreen()
+        if !(classicGame is NonRapidClassicGame)
+                && classicGame.userIsNextRoundMaster()
+                && !classicGame.isLastRound {
+            let nextRound = classicGame.currentRound + 1
+            let alert = AlertHelper.makeInputAlert(
+                title: "Enter topic for the next round",
+                message: "You are the round master for Round \(nextRound)",
+                placeholder: "Topic for Round \(nextRound)",
+                handler: { [weak self] topic in
+                    self?.classicGame.addNextRoundTopic(topic)
+                    self?.classicGame.userVoteFor(player: player)
+                    self?.segueToNextScreen()
+                }
+            )
+            present(alert, animated: true)
+        } else {
+            classicGame.userVoteFor(player: player)
+            segueToNextScreen()
+        }
     }
 
     private func segueToNextScreen() {
@@ -99,12 +122,22 @@ extension VotingViewController: UICollectionViewDataSource {
         imageView.contentMode = .scaleAspectFit
 
         cell.subviews.forEach { $0.removeFromSuperview() }
+        if imageView.image == nil {
+            showSpinningIndicator(cell: cell)
+        }
         cell.addSubview(imageView)
-        cell.backgroundColor = .systemYellow // TODO: remove
+        cell.backgroundView = UIImageView(image: #imageLiteral(resourceName: "paper-brown"))
 
         addTapGesture(cell: cell)
 
         return cell
+    }
+
+    private func showSpinningIndicator(cell: UICollectionViewCell) {
+        let spinningIndicator = UIActivityIndicatorView(style: .large)
+        spinningIndicator.center = cell.center
+        spinningIndicator.startAnimating()
+        cell.addSubview(spinningIndicator)
     }
 
     private func addTapGesture(cell: UICollectionViewCell) {

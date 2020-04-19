@@ -136,7 +136,8 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
             .observe(.value, with: { snapshot in
                 guard let roomValues = snapshot.value as? [String: Any],
                     let currRound = roomValues["currRound"] as? Int,
-                    let playersDict = roomValues["players"] as? [String: [String: Any]] else {
+                    let playersDict = roomValues["players"] as? [String: [String: Any]],
+                    let topicsDict = roomValues["topics"] as? [String: String] else {
                         return
                 }
 
@@ -154,9 +155,10 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork {
                                                  isRoomMaster: isRoomMaster, points: points))
                 }
 
-                let nonRapidClassicGame = NonRapidClassicGame(roomCode: roomCode,
-                                                              players: players,
-                                                              currentRound: currRound)
+                let topics: [String] = topicsDict.sorted { $0.key < $1.key }.map { $0.value }
+
+                let nonRapidClassicGame = NonRapidClassicGame(roomCode: roomCode, players: players,
+                                                              currentRound: currRound, topics: topics)
 
                 // [round1: [hasUploadedImage: Any]]
                 guard let userRounds = playersDict[userID]?["rounds"] as? [String: [String: Any]] else {

@@ -39,4 +39,10 @@ class GameNetworkStub: GameNetwork {
 
     func uploadKeyValuePair(key: String, playerUID: String, value: String) {
     }
+
+    func setTopic(topic: String, forRound round: Int) {
+    }
+
+    func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void) {
+    }
 }
