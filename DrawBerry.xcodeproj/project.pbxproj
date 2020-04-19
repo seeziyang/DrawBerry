@@ -26,7 +26,7 @@
 		1A432BD6241FB30A0097A14F /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD5241FB30A0097A14F /* GameRoom.swift */; };
 		1A432BD8241FB6240097A14F /* ClassicGameRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD7241FB6240097A14F /* ClassicGameRoomViewController.swift */; };
 		1A432BDA241FBA540097A14F /* EnterClassicRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD9241FBA540097A14F /* EnterClassicRoomViewController.swift */; };
-		1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
+		1A432BDD241FC5DF0097A14F /* FirebaseNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* FirebaseNetworkAdapter.swift */; };
 		1A432BDF241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDE241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift */; };
 		1A4595B92445B57F009D447D /* RoomEnteringNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4595B82445B57F009D447D /* RoomEnteringNetwork.swift */; };
 		1A4595BB2445BC07009D447D /* RoomNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4595BA2445BC07009D447D /* RoomNetwork.swift */; };
@@ -79,7 +79,7 @@
 		372CA581242BC147000E1E71 /* GameRoomStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED62422208C007FDB32 /* GameRoomStatus.swift */; };
 		372CA582242BC14D000E1E71 /* RoomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD3241FB2E00097A14F /* RoomPlayer.swift */; };
 		372CA583242BC190000E1E71 /* RoomCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA575242BBC90000E1E71 /* RoomCode.swift */; };
-		372CA585242BC241000E1E71 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
+		372CA585242BC241000E1E71 /* FirebaseNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* FirebaseNetworkAdapter.swift */; };
 		372CA586242BC286000E1E71 /* GameRoomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA573242BA995000E1E71 /* GameRoomType.swift */; };
 		372CA587242BC287000E1E71 /* GameRoomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA573242BA995000E1E71 /* GameRoomType.swift */; };
 		372CA588242BC2DE000E1E71 /* FirebaseGameNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */; };
@@ -101,7 +101,7 @@
 		3749D3A02425E38000CE798F /* GameRoomStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED62422208C007FDB32 /* GameRoomStatus.swift */; };
 		3749D3A12425E38200CE798F /* RoomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD3241FB2E00097A14F /* RoomPlayer.swift */; };
 		3749D3A22425E38500CE798F /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD5241FB30A0097A14F /* GameRoom.swift */; };
-		3749D3A32425E38D00CE798F /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */; };
+		3749D3A32425E38D00CE798F /* FirebaseNetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BDC241FC5DF0097A14F /* FirebaseNetworkAdapter.swift */; };
 		3749D3A42425E3A900CE798F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F39992421C0FB0084859F /* Player.swift */; };
 		3749D3A52425E3AD00CE798F /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		3749D3A62425E7A800CE798F /* CanvasDelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EE01D24230909005257E1 /* CanvasDelegateViewController.swift */; };
@@ -164,10 +164,10 @@
 		375E23AB2443065B00BA8AB1 /* ClassicRoomUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E23AA2443065B00BA8AB1 /* ClassicRoomUITest.swift */; };
 		375E23AD244894DC00BA8AB1 /* CooperativeGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E23AC244894DC00BA8AB1 /* CooperativeGameTests.swift */; };
 		375E23B424494EA000BA8AB1 /* GameRoomStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E23B324494EA000BA8AB1 /* GameRoomStub.swift */; };
-		37608F63244B388300EAAF7B /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F62244B388300EAAF7B /* NetworkAdapter.swift */; };
+		37608F63244B388300EAAF7B /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F62244B388300EAAF7B /* NetworkInterface.swift */; };
 		37608F65244B3ACD00EAAF7B /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F64244B3ACD00EAAF7B /* TestConstants.swift */; };
-		37608F66244B3B6A00EAAF7B /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F62244B388300EAAF7B /* NetworkAdapter.swift */; };
-		37608F67244B3B8A00EAAF7B /* NetworkAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F62244B388300EAAF7B /* NetworkAdapter.swift */; };
+		37608F66244B3B6A00EAAF7B /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F62244B388300EAAF7B /* NetworkInterface.swift */; };
+		37608F67244B3B8A00EAAF7B /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F62244B388300EAAF7B /* NetworkInterface.swift */; };
 		37608F69244C0B9000EAAF7B /* TeamBattleUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F68244C0B9000EAAF7B /* TeamBattleUITest.swift */; };
 		37608F6C244C0E1500EAAF7B /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F64244B3ACD00EAAF7B /* TestConstants.swift */; };
 		37608F6F244C171600EAAF7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F6D244C11F000EAAF7B /* User.swift */; };
@@ -327,7 +327,7 @@
 		1A432BD5241FB30A0097A14F /* GameRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoom.swift; sourceTree = "<group>"; };
 		1A432BD7241FB6240097A14F /* ClassicGameRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameRoomViewController.swift; sourceTree = "<group>"; };
 		1A432BD9241FBA540097A14F /* EnterClassicRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterClassicRoomViewController.swift; sourceTree = "<group>"; };
-		1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		1A432BDC241FC5DF0097A14F /* FirebaseNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNetworkAdapter.swift; sourceTree = "<group>"; };
 		1A432BDE241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoomNetworkAdapter.swift; sourceTree = "<group>"; };
 		1A4595B82445B57F009D447D /* RoomEnteringNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomEnteringNetwork.swift; sourceTree = "<group>"; };
 		1A4595BA2445BC07009D447D /* RoomNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomNetwork.swift; sourceTree = "<group>"; };
@@ -381,7 +381,7 @@
 		375E23AA2443065B00BA8AB1 /* ClassicRoomUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicRoomUITest.swift; sourceTree = "<group>"; };
 		375E23AC244894DC00BA8AB1 /* CooperativeGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameTests.swift; sourceTree = "<group>"; };
 		375E23B324494EA000BA8AB1 /* GameRoomStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomStub.swift; sourceTree = "<group>"; };
-		37608F62244B388300EAAF7B /* NetworkAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapter.swift; sourceTree = "<group>"; };
+		37608F62244B388300EAAF7B /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
 		37608F64244B3ACD00EAAF7B /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		37608F68244C0B9000EAAF7B /* TeamBattleUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleUITest.swift; sourceTree = "<group>"; };
 		37608F6D244C11F000EAAF7B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -580,11 +580,10 @@
 			isa = PBXGroup;
 			children = (
 				1A4595D0244601BF009D447D /* Firebase */,
-				1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */,
+				37608F62244B388300EAAF7B /* NetworkInterface.swift */,
 				1A4595B82445B57F009D447D /* RoomEnteringNetwork.swift */,
 				1A4595BA2445BC07009D447D /* RoomNetwork.swift */,
 				1A4595BC2445C25D009D447D /* GameNetwork.swift */,
-				37608F62244B388300EAAF7B /* NetworkAdapter.swift */,
 				1A4595CE2445FEBB009D447D /* UserProfileNetwork.swift */,
 				3E64DA722430F5AF00C1473A /* UserProfileNetworkDelegate.swift */,
 			);
@@ -594,6 +593,7 @@
 		1A4595D0244601BF009D447D /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				1A432BDC241FC5DF0097A14F /* FirebaseNetworkAdapter.swift */,
 				1A41C6AE2439766B00BD7BF0 /* FirebaseRoomEnteringNetworkAdapter.swift */,
 				1A432BDE241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift */,
 				1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */,
@@ -1248,7 +1248,7 @@
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
 				FC3C3BA72442DC67009AD0D6 /* CompetitiveCanvas.swift in Sources */,
 				1A86D6D82449A23800DD869D /* TimerBarView.swift in Sources */,
-				1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */,
+				1A432BDD241FC5DF0097A14F /* FirebaseNetworkAdapter.swift in Sources */,
 				3E1303C52440403300CB04F1 /* TeamBattleResultDelegate.swift in Sources */,
 				3E1A9EDA2440BD9C0084199C /* TeamBattleGameRoom.swift in Sources */,
 				1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */,
@@ -1269,7 +1269,7 @@
 				FC488980241C79FD00375140 /* CompetitivePlayer.swift in Sources */,
 				FC488982241C7A8B00375140 /* CompetitiveGame.swift in Sources */,
 				1A5709E5244881FA0007197F /* GameRoomViewController.swift in Sources */,
-				37608F63244B388300EAAF7B /* NetworkAdapter.swift in Sources */,
+				37608F63244B388300EAAF7B /* NetworkInterface.swift in Sources */,
 				3E21C64F243DD22500FF62DC /* TeamBattleGameViewDelegate.swift in Sources */,
 				1A4595B92445B57F009D447D /* RoomEnteringNetwork.swift in Sources */,
 				1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */,
@@ -1354,7 +1354,7 @@
 				FCA298632426196400AE1A83 /* Powerup.swift in Sources */,
 				FCA298642426196400AE1A83 /* PowerupManager.swift in Sources */,
 				3EA22E222425FF210065C426 /* AuthenticationTests.swift in Sources */,
-				37608F66244B3B6A00EAAF7B /* NetworkAdapter.swift in Sources */,
+				37608F66244B3B6A00EAAF7B /* NetworkInterface.swift in Sources */,
 				FCA2985C2426195500AE1A83 /* CompetitiveGame.swift in Sources */,
 				375E238A2443003E00BA8AB1 /* Team.swift in Sources */,
 				375E23AD244894DC00BA8AB1 /* CooperativeGameTests.swift in Sources */,
@@ -1423,7 +1423,7 @@
 				FC404617242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,
 				37608F70244C175A00EAAF7B /* User.swift in Sources */,
 				3749D3B32426092E00CE798F /* Palette.swift in Sources */,
-				372CA585242BC241000E1E71 /* NetworkHelper.swift in Sources */,
+				372CA585242BC241000E1E71 /* FirebaseNetworkAdapter.swift in Sources */,
 				3749D3BE2426565D00CE798F /* StringHelperTest.swift in Sources */,
 				3749D3B12426092A00CE798F /* CanvasDelegate.swift in Sources */,
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
@@ -1467,7 +1467,7 @@
 				375E23A72443052B00BA8AB1 /* EnterCooperativeRoomViewUITest.swift in Sources */,
 				3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */,
 				3749D3A02425E38000CE798F /* GameRoomStatus.swift in Sources */,
-				37608F67244B3B8A00EAAF7B /* NetworkAdapter.swift in Sources */,
+				37608F67244B3B8A00EAAF7B /* NetworkInterface.swift in Sources */,
 				379EE02524249150005257E1 /* BerryPalette.swift in Sources */,
 				375E23992443005000BA8AB1 /* TeamBattleDrawer.swift in Sources */,
 				375E23912443004600BA8AB1 /* TeamBattleGameViewDelegate.swift in Sources */,
@@ -1476,7 +1476,7 @@
 				3749D3BB242614F800CE798F /* Canvas.swift in Sources */,
 				375E23972443004D00BA8AB1 /* TeamBattleResultDelegate.swift in Sources */,
 				375E238F2443004300BA8AB1 /* TeamBattleGame.swift in Sources */,
-				3749D3A32425E38D00CE798F /* NetworkHelper.swift in Sources */,
+				3749D3A32425E38D00CE798F /* FirebaseNetworkAdapter.swift in Sources */,
 				3749D3AB2425F0B200CE798F /* UIImageExtension.swift in Sources */,
 				3792F462243DC7CC00FDEBDC /* MultiplayerNetworkGame.swift in Sources */,
 				379EE02424249144005257E1 /* CanvasDelegate.swift in Sources */,

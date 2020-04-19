@@ -6,7 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-protocol RoomNetwork: NetworkAdapter {
+protocol RoomNetwork: NetworkInterface {
     var roomCode: RoomCode { get }
 
     func leaveRoom(isRoomMaster: Bool)

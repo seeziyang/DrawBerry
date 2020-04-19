@@ -52,12 +52,16 @@ class GameNetworkStub: GameNetwork {
     }
 
     func getLoggedInUserID() -> String? {
-        return TestConstants.admin3_Cooperative.uid
+        TestConstants.admin3_Cooperative.uid
     }
 
     func setTopic(topic: String, forRound round: Int) {
     }
 
     func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void) {
+    }
+
+    func getLoggedInUserName() -> String? {
+        nil
     }
 }

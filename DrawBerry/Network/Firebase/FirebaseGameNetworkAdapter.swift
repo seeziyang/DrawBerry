@@ -9,7 +9,7 @@
 import Firebase
 import FirebaseStorage
 
-class FirebaseGameNetworkAdapter: GameNetwork {
+class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
     let roomCode: RoomCode
     let db: DatabaseReference
     let cloud: StorageReference

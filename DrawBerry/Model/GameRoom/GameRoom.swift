@@ -16,7 +16,7 @@ class GameRoom {
     let roomNetwork: RoomNetwork
     let roomCode: RoomCode
     private(set) var isRapid: Bool
-    internal(set) var players: [RoomPlayer] { // synced with database
+    var players: [RoomPlayer] { // synced with database
         didSet {
             players.sort()
         }

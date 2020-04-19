@@ -6,6 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 import XCTest
+@testable import DrawBerry
 
 class GameRoomStub: GameRoom {
     override init(roomCode: RoomCode, roomNetwork: RoomNetwork) {
