@@ -23,7 +23,7 @@ class NonRapidClassicGame: ClassicGame {
     }
 
     override func observePlayersDrawing() {
-        // users vote previous rounds drawing in non-rapid mode
+        // users vote previous round's drawing in non-rapid mode
         let round = currentRound - 1
 
         for player in players {
@@ -34,8 +34,9 @@ class NonRapidClassicGame: ClassicGame {
         }
     }
 
+    // players in non rapid classic game only stores one drawing of current round
     override func hasAllPlayersDrawnForCurrentRound() -> Bool {
-        players.allSatisfy { $0.hasDrawing(ofRound: 1) }
+        players.allSatisfy { $0.hasDrawing() }
     }
 
     override func userVoteFor(player: ClassicPlayer) {
@@ -55,6 +56,7 @@ class NonRapidClassicGame: ClassicGame {
         }
     }
 
+    // get the round master index for the current round
     static func calculateRoundMasterIndex(forRound round: Int, players: [ClassicPlayer]) -> Int {
         let firstRoundMasterIndex = players.sorted().firstIndex(where: { $0.isRoomMaster }) ?? 0
         return (firstRoundMasterIndex + round - 1) % players.count

@@ -176,6 +176,7 @@ class FirebaseRoomNetworkAdapter: RoomNetwork, FirebaseNetworkAdapter {
             })
     }
 
+    // Stop observing if game has started
     func stopObservingGameStart() {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)

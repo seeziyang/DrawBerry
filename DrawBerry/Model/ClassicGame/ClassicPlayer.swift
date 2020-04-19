@@ -55,6 +55,10 @@ class ClassicPlayer: MultiplayerPlayer {
         return index >= 0 && index < drawingImages.count
     }
 
+    func hasDrawing() -> Bool {
+        hasDrawing(ofRound: 1)
+    }
+
     func voteFor(player: ClassicPlayer) {
         votedPlayers.append(player)
     }

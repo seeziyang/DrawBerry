@@ -44,10 +44,10 @@ class RoomNetworkStub: RoomNetwork {
     }
 
     func getLoggedInUserID() -> String? {
-        return nil
+        nil
     }
 
     func getLoggedInUserName() -> String? {
-        return nil
+        nil
     }
 }

@@ -59,6 +59,7 @@
 		1A86D6D82449A23800DD869D /* TimerBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A86D6D72449A23800DD869D /* TimerBarView.swift */; };
 		1A953AD8243986B90016D481 /* MultiplayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* MultiplayerGame.swift */; };
 		1A953AD9243986B90016D481 /* MultiplayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* MultiplayerGame.swift */; };
+		1AC5EEAA244C9547001B58BB /* NonRapidClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC5EEA9244C9547001B58BB /* NonRapidClassicGameTests.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
 		1AD8A4242434A50000C05D40 /* ClassicGameEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */; };
 		371F28C32430F2A7006852EE /* GameRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A432BD5241FB30A0097A14F /* GameRoom.swift */; };
@@ -344,6 +345,7 @@
 		1A70411024337F7E00992F5D /* VoteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultsViewController.swift; sourceTree = "<group>"; };
 		1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		1A86D6D72449A23800DD869D /* TimerBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBarView.swift; sourceTree = "<group>"; };
+		1AC5EEA9244C9547001B58BB /* NonRapidClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonRapidClassicGameTests.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameEndViewController.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 			children = (
 				1A6C69222425C811005E6D45 /* ClassicPlayerTests.swift */,
 				1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */,
+				1AC5EEA9244C9547001B58BB /* NonRapidClassicGameTests.swift */,
 			);
 			path = ClassicGameTests;
 			sourceTree = "<group>";
@@ -1347,6 +1350,7 @@
 			files = (
 				371F28CB2431F96B006852EE /* CooperativePlayerTests.swift in Sources */,
 				FC6A83E3244446A40046C7D3 /* CompetitiveCanvas.swift in Sources */,
+				1AC5EEAA244C9547001B58BB /* NonRapidClassicGameTests.swift in Sources */,
 				FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */,
 				372CA57B242BC040000E1E71 /* FirebaseRoomNetworkAdapter.swift in Sources */,
 				372CA58B242C2FD9000E1E71 /* RoomCodeTests.swift in Sources */,

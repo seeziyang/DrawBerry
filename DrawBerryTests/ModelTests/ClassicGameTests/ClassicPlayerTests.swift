@@ -60,4 +60,13 @@ class ClassicPlayerTests: XCTestCase {
         XCTAssertNil(classicPlayer.getDrawingImage(ofRound: 99),
                      "ClassicPlayer's addDrawing or getDrawingImage is not correct")
     }
+
+    func testVoting() {
+        let votedForPlayer = ClassicPlayer(name: "amy", uid: "amybk", isRoomMaster: false)
+        classicPlayer.voteFor(player: votedForPlayer)
+
+        XCTAssertTrue(classicPlayer.hasVoted(inRound: 1), "ClassicPlayer's voting is not correct")
+        XCTAssertEqual(classicPlayer.getVotedPlayer(inRound: 1), votedForPlayer,
+                       "ClassicPlayer's voting is not correct")
+    }
 }

@@ -20,6 +20,8 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         self.cloud = Storage.storage().reference()
     }
 
+    // upload user's drawing for the given round
+    // updates db upon successful upload on cloud storage
     func uploadUserDrawing(image: UIImage, forRound round: Int) {
         guard let imageData = image.pngData(),
             let userID = getLoggedInUserID() else {
@@ -55,6 +57,7 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         updateCurrRound(prevRound: round)
     }
 
+    // update currRound in db if player was the last to draw
     private func updateCurrRound(prevRound round: Int) {
         guard let userID = getLoggedInUserID() else {
             return
@@ -93,6 +96,8 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
             })
     }
 
+    // download player's drawing for the given round
+    // calls the completionHandler upon successfully downloading
     private func downloadPlayerDrawing(playerUID: String, forRound round: Int,
                                        completionHandler: @escaping (UIImage) -> Void) {
         let cloudPathRef = cloud.child("activeRooms")
@@ -116,6 +121,8 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         })
     }
 
+    // observe if player has uploaded his/her drawing
+    // if uploaded, download that drawing and call the completionHandler
     func observeAndDownloadPlayerDrawing(playerUID: String, forRound round: Int,
                                          completionHandler: @escaping (UIImage) -> Void) {
         let dbPathRef = db.child("activeRooms")
@@ -139,6 +146,7 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         })
     }
 
+    // update who user voted for, and the voter and votees points
     func userVoteFor(playerUID: String, forRound round: Int,
                      updatedPlayerPoints: Int, updatedUserPoints: Int? = nil) {
         guard let userID = getLoggedInUserID() else {
@@ -171,6 +179,7 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         }
     }
 
+    // observe who player voted for
     func observePlayerVote(playerUID: String, forRound round: Int,
                            completionHandler: @escaping (String) -> Void) {
         let dbPathRef = db.child("activeRooms")
@@ -193,6 +202,8 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         })
     }
 
+    // removes game from db upon game end
+    // also removes uploaded drawings from cloud storage
     func endGame(isRoomMaster: Bool, numRounds: Int) {
         guard let userID = getLoggedInUserID() else {
             return
@@ -217,6 +228,7 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
             cloudPathRef.child("\(round).png").delete()
         }
     }
+
 
     func observeAndDownloadTeamResult(playerUID: String,
                                       completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
@@ -272,6 +284,7 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         dbPathRef.child("hasTeamResult").setValue(true)
     }
 
+    // set the topic for the given round
     func setTopic(topic: String, forRound round: Int) {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
@@ -281,6 +294,8 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
             .setValue(topic)
     }
 
+    // observe the topic set for the given round
+    // upon the setting of topic, completionHandler is called
     func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void) {
         let dbPathRef = db.child("activeRooms")
             .child(roomCode.type.rawValue)
