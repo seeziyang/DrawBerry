@@ -38,8 +38,6 @@ class CooperativeGame: MultiplayerNetworkGame<CooperativePlayer> {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let intermediate = players.filter { getIndex(of: $0) ?? 0 >= userIndex }
-        print(intermediate)
         players.filter { getIndex(of: $0) ?? 0 >= userIndex }
             .forEach { downloadDrawing(of: $0, completionHandler: futureDrawingsCompletionHandler) }
     }

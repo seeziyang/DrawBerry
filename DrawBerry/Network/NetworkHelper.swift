@@ -8,7 +8,7 @@
 
 import Firebase
 
-class NetworkHelper {
+struct NetworkHelper {
 
     static func getLoggedInUserID() -> String? {
         Auth.auth().currentUser?.uid
