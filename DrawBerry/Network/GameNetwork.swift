@@ -28,4 +28,8 @@ protocol GameNetwork {
                                       completionHandler: @escaping (TeamBattleTeamResult) -> Void)
 
     func uploadTeamResult(result: TeamBattleTeamResult)
+
+    func setTopic(topic: String, forRound round: Int)
+
+    func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void)
 }

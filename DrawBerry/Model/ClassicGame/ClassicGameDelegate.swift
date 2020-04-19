@@ -11,6 +11,8 @@ protocol ClassicGameDelegate: AnyObject {
 
     func votesDidUpdate()
 
+    func showCountdownTimer(for duration: Double)
+
     func segueToNextRound()
 
     func segueToGameEnd()
@@ -21,6 +23,9 @@ extension ClassicGameDelegate {
     }
 
     func votesDidUpdate() {
+    }
+
+    func showCountdownTimer(for duration: Double) {
     }
 
     func segueToNextRound() {

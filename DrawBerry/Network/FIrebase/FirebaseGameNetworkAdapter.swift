@@ -271,4 +271,31 @@ class FirebaseGameNetworkAdapter: GameNetwork {
         dbPathRef.child("teamResult").setValue(result.getDatabaseStorageDescription())
         dbPathRef.child("hasTeamResult").setValue(true)
     }
+
+    func setTopic(topic: String, forRound round: Int) {
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("topics")
+            .child("round\(round)")
+            .setValue(topic)
+    }
+
+    func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void) {
+        let dbPathRef = db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .child("topics")
+            .child("round\(round)")
+
+        dbPathRef.observe(.value, with: { snapshot in
+            guard let topic = snapshot.value as? String else {
+                return
+            }
+
+            completionHandler(topic)
+
+            dbPathRef.removeAllObservers()
+        })
+    }
 }

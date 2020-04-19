@@ -21,6 +21,7 @@ class CooperativeGameUITest: EnterRoomUITest {
     override func setUp() {
         super.setUp()
         CooperativeGameUITest.roomNetwork.deleteRoom()
+//        self.recordMode = true
     }
 
     override func tearDown() {

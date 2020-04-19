@@ -75,11 +75,17 @@ extension GameRoomViewController {
 
     func startGame() {
         if !room.canStart {
+            showNotEnoughPlayersError()
             return
         }
 
         room.startGame()
         segueToGameVC()
+    }
+
+    func showNotEnoughPlayersError() {
+        view.addSubview(ErrorToastView(message: "You need at least 2 players to start!", showFor: 7.5,
+                                       frameMaxX: view.frame.maxX, frameMaxY: view.frame.maxY))
     }
 }
 

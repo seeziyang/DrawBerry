@@ -20,12 +20,19 @@ class ClassicGameUITest: EnterRoomUITest {
 
     override func setUp() {
         super.setUp()
+//        self.recordMode = true
         ClassicGameUITest.roomNetwork.deleteRoom()
     }
 
     override func tearDown() {
         super.tearDown()
         ClassicGameUITest.roomNetwork.deleteRoom()
+    }
+
+    override internal func startGame(app: XCUIApplication, roomCode: RoomCode) {
+        app.navigationBars[roomCode.value].switches["rapidToggle"].tap()
+        app.navigationBars[roomCode.value].buttons["Start"].tap()
+        sleep(5)
     }
 
     func testClassicGameUILayout() {
@@ -241,6 +248,12 @@ extension ClassicGameUITest {
         let app = initialiseAppToEnterRoomScreen(type: ClassicGameUITest.testRoomCode.type)
         createRoom(app: app, roomCode: ClassicGameUITest.testRoomCode)
         startGame(app: app, roomCode: ClassicGameUITest.testRoomCode)
+
+        let topicTextField = app.textFields["Topic for Round 1"]
+        topicTextField.tap()
+        topicTextField.typeText("Topic")
+        app.buttons["Ok"].tap()
+
         return app
     }
 

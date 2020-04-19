@@ -22,4 +22,6 @@ protocol RoomNetwork {
     func observeGameStart(listener: @escaping (Bool) -> Void)
 
     func observeIsRapidToggle(listener: @escaping (Bool) -> Void)
+
+    func stopObservingGameStart()
 }
