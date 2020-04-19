@@ -12,6 +12,8 @@ protocol GameRoomDelegate: AnyObject {
     func gameHasStarted()
 
     func isRapidDidUpdate(isRapid: Bool)
+
+    func showNotEnoughPlayersError()
 }
 
 extension GameRoomDelegate {

@@ -66,7 +66,7 @@ class CompetitiveGameUITest: DrawBerryUITest {
 
     func testCompetitiveScoreboardUILayout() {
         let app = intializeAppMoveToScoreboardScreen()
-        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testCompetitiveModeRestartsAfterResultScreen() {

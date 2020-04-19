@@ -38,11 +38,22 @@ class VoteResultsViewController: UIViewController, ClassicGameDelegate {
     }
 
     func segueToNextRound() {
-        performSegue(withIdentifier: "segueToNextRound", sender: self)
+        self.performSegue(withIdentifier: "segueToNextRound", sender: self)
     }
 
     func segueToGameEnd() {
-        performSegue(withIdentifier: "segueToGameEnd", sender: self)
+        self.performSegue(withIdentifier: "segueToGameEnd", sender: self)
+    }
+
+    func showCountdownTimer(for duration: Double) {
+        let timerBarView = TimerBarView(
+            frame: CGRect(x: view.frame.minX, y: view.frame.minY + 30,
+                          width: view.frame.width, height: 10),
+            duration: duration
+        )
+
+        view.addSubview(timerBarView)
+        timerBarView.start()
     }
 }
 
@@ -67,6 +78,11 @@ extension VoteResultsViewController: UICollectionViewDataSource {
         cell.setDrawingImage(player.getDrawingImage(ofRound: classicGame.currentRound))
         cell.setName(player.name)
         cell.setPoints(player.points)
+
+        let voters = classicGame.players
+            .filter { $0.getVotedPlayer(inRound: classicGame.currentRound) == player }
+
+        cell.setVoters(votersName: voters.map { $0.name })
 
         return cell
     }

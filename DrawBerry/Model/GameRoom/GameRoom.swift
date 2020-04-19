@@ -10,7 +10,7 @@ import Firebase
 
 class GameRoom {
     static let maxPlayers = 8
-    static let minStartablePlayers = 1 // for testing, change to 3 for game
+    static let minStartablePlayers = 1 // for testing, set to 2 for non-testing
 
     weak var delegate: GameRoomDelegate?
     let roomNetwork: RoomNetwork
@@ -70,6 +70,7 @@ class GameRoom {
     }
 
     func startGame() {
+        roomNetwork.stopObservingGameStart()
         roomNetwork.startGame(isRapid: isRapid)
     }
 

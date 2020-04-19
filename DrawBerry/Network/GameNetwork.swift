@@ -30,4 +30,8 @@ protocol GameNetwork: NetworkAdapter {
     func uploadTeamResult(result: TeamBattleTeamResult)
 
     func getLoggedInUserID() -> String?
+
+    func setTopic(topic: String, forRound round: Int)
+
+    func observeTopic(forRound round: Int, completionHandler: @escaping (String) -> Void)
 }

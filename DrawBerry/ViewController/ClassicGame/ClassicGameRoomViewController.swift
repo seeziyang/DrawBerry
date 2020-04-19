@@ -36,10 +36,9 @@ class ClassicGameRoomViewController: UIViewController, GameRoomViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let classicVC = segue.destination as? ClassicViewController {
-            classicVC.classicGame = room.isRapid
-                ? ClassicGame(from: room)
-                : NonRapidClassicGame(from: room)
+        if let classicVC = segue.destination as? ClassicViewController,
+            let classicGame = sender as? ClassicGame {
+                classicVC.classicGame = classicGame
         }
 
         if let userProfileVC = segue.destination as? UserProfileViewController,
@@ -86,7 +85,23 @@ class ClassicGameRoomViewController: UIViewController, GameRoomViewController {
     }
 
     internal func segueToGameVC() {
-        performSegue(withIdentifier: "segueToClassicGame", sender: self)
+        let classicGame = room.isRapid ? ClassicGame(from: room) : NonRapidClassicGame(from: room)
+        if classicGame.user.isRoomMaster {
+            let alert = AlertHelper.makeInputAlert(
+                title: "Enter topic for the first round",
+                message: "As the room master, you are the round master for Round 1",
+                placeholder: "Topic for Round 1",
+                handler: { [weak self] topic in
+                    classicGame.addFirstRoundTopic(topic)
+                    self?.performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)
+                }
+            )
+            present(alert, animated: true)
+        } else {
+            classicGame.observeFirstRoundTopic(completionHandler: { [weak self] in
+                self?.performSegue(withIdentifier: "segueToClassicGame", sender: classicGame)
+            })
+        }
     }
 }
 
@@ -103,7 +118,8 @@ extension ClassicGameRoomViewController: UICollectionViewDataSource {
 
 extension ClassicGameRoomViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         getSizeForItem(at: indexPath)
     }

@@ -9,13 +9,16 @@
 import UIKit
 
 class VoteResultCollectionViewCell: UICollectionViewCell {
+    @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var drawingImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
+    @IBOutlet private weak var votersTextView: UITextView!
 
     func setDrawingImage(_ image: UIImage?) {
         drawingImageView.image = image
         drawingImageView.contentMode = .scaleAspectFit
+        contentView.sendSubviewToBack(backgroundImageView)
     }
 
     func setName(_ name: String) {
@@ -24,5 +27,12 @@ class VoteResultCollectionViewCell: UICollectionViewCell {
 
     func setPoints(_ points: Int) {
         pointsLabel.text = String(points)
+    }
+
+    func setVoters(votersName: [String]) {
+        var text = "Voted by:"
+        votersName.forEach { text += " \($0)," }
+        text.removeLast()
+        votersTextView.text = text
     }
 }

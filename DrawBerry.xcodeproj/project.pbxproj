@@ -10,6 +10,8 @@
 		1A000ED72422208C007FDB32 /* GameRoomStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED62422208C007FDB32 /* GameRoomStatus.swift */; };
 		1A000ED924222AE4007FDB32 /* ClassicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */; };
 		1A000EDB24222AF4007FDB32 /* ClassicGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000EDA24222AF4007FDB32 /* ClassicGame.swift */; };
+		1A06E5F6244B0CA300B9B5FB /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06E5F5244B0CA300B9B5FB /* AlertHelper.swift */; };
+		1A06E5F8244B442C00B9B5FB /* ErrorToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06E5F7244B442C00B9B5FB /* ErrorToastView.swift */; };
 		1A28DABD2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABE2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
 		1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */; };
@@ -54,6 +56,7 @@
 		1A6C69272425CE19005E6D45 /* ClassicGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */; };
 		1A70411124337F7E00992F5D /* VoteResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411024337F7E00992F5D /* VoteResultsViewController.swift */; };
 		1A70411324338AB200992F5D /* VoteResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */; };
+		1A86D6D82449A23800DD869D /* TimerBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A86D6D72449A23800DD869D /* TimerBarView.swift */; };
 		1A953AD8243986B90016D481 /* MultiplayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* MultiplayerGame.swift */; };
 		1A953AD9243986B90016D481 /* MultiplayerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41C6B024397EF000BD7BF0 /* MultiplayerGame.swift */; };
 		1AD5ADD42421F276003B23C9 /* GameRoomDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */; };
@@ -305,6 +308,8 @@
 		1A000ED62422208C007FDB32 /* GameRoomStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomStatus.swift; sourceTree = "<group>"; };
 		1A000ED824222AE4007FDB32 /* ClassicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicPlayer.swift; sourceTree = "<group>"; };
 		1A000EDA24222AF4007FDB32 /* ClassicGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGame.swift; sourceTree = "<group>"; };
+		1A06E5F5244B0CA300B9B5FB /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		1A06E5F7244B442C00B9B5FB /* ErrorToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorToastView.swift; sourceTree = "<group>"; };
 		1A28DABC2417C8B600CEADB1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1A3920F72425BF1D00847E72 /* GameRoomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomTests.swift; sourceTree = "<group>"; };
 		1A3920F92425BF6700847E72 /* RoomPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomPlayerTests.swift; sourceTree = "<group>"; };
@@ -333,6 +338,7 @@
 		1A6C69262425CE19005E6D45 /* ClassicGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameTests.swift; sourceTree = "<group>"; };
 		1A70411024337F7E00992F5D /* VoteResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultsViewController.swift; sourceTree = "<group>"; };
 		1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		1A86D6D72449A23800DD869D /* TimerBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBarView.swift; sourceTree = "<group>"; };
 		1AD5ADD32421F275003B23C9 /* GameRoomDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRoomDelegate.swift; sourceTree = "<group>"; };
 		1AD8A4232434A50000C05D40 /* ClassicGameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicGameEndViewController.swift; sourceTree = "<group>"; };
 		1F37164A758ACE561C1CAEC7 /* Pods-DrawBerry-DrawBerryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; path = "Target Support Files/Pods-DrawBerry-DrawBerryUITests/Pods-DrawBerry-DrawBerryUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -565,7 +571,7 @@
 		1A432BDB241FC5CE0097A14F /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				1A4595D0244601BF009D447D /* FIrebase */,
+				1A4595D0244601BF009D447D /* Firebase */,
 				1A432BDC241FC5DF0097A14F /* NetworkHelper.swift */,
 				1A4595B82445B57F009D447D /* RoomEnteringNetwork.swift */,
 				1A4595BA2445BC07009D447D /* RoomNetwork.swift */,
@@ -577,7 +583,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		1A4595D0244601BF009D447D /* FIrebase */ = {
+		1A4595D0244601BF009D447D /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
 				1A41C6AE2439766B00BD7BF0 /* FirebaseRoomEnteringNetworkAdapter.swift */,
@@ -585,7 +591,7 @@
 				1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */,
 				3E64DA732430F5AF00C1473A /* FirebaseUserProfileNetworkAdapter.swift */,
 			);
-			path = FIrebase;
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		1A5252B3241FAD0D00E7F68C /* ViewController */ = {
@@ -647,6 +653,8 @@
 				3E64DA762430F5BE00C1473A /* PlayerCollectionViewCell.swift */,
 				3E975D522431D0E400AE61E3 /* ImageCollectionViewCell.swift */,
 				1A70411224338AB200992F5D /* VoteResultCollectionViewCell.swift */,
+				1A86D6D72449A23800DD869D /* TimerBarView.swift */,
+				1A06E5F7244B442C00B9B5FB /* ErrorToastView.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -747,6 +755,7 @@
 				3EF004FB2419149A00136234 /* StringHelper.swift */,
 				3E2BDC85241A59C0001D8E8A /* Message.swift */,
 				3E2837DB2425BBB7001BAA2F /* Constants.swift */,
+				1A06E5F5244B0CA300B9B5FB /* AlertHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1227,6 +1236,7 @@
 				372CA59A242C67EB000E1E71 /* EndViewController.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
 				FC3C3BA72442DC67009AD0D6 /* CompetitiveCanvas.swift in Sources */,
+				1A86D6D82449A23800DD869D /* TimerBarView.swift in Sources */,
 				1A432BDD241FC5DF0097A14F /* NetworkHelper.swift in Sources */,
 				3E1303C52440403300CB04F1 /* TeamBattleResultDelegate.swift in Sources */,
 				3E1A9EDA2440BD9C0084199C /* TeamBattleGameRoom.swift in Sources */,
@@ -1268,6 +1278,7 @@
 				3EBFFE9E243D891D002675B3 /* TeamBattleGame.swift in Sources */,
 				3EF004FC2419149A00136234 /* StringHelper.swift in Sources */,
 				1A4595BB2445BC07009D447D /* RoomNetwork.swift in Sources */,
+				1A06E5F6244B0CA300B9B5FB /* AlertHelper.swift in Sources */,
 				379EE0202424556E005257E1 /* StrokeView.swift in Sources */,
 				3EBFFEA0243D8AC6002675B3 /* TeamBattleTeamResult.swift in Sources */,
 				FC6CB97D243607C90049D597 /* CompetitiveVotingViewController.swift in Sources */,
@@ -1315,6 +1326,7 @@
 				FC404616242F876B003A38A6 /* EarthquakePowerup.swift in Sources */,
 				3E64DA772430F5BE00C1473A /* PlayerCollectionViewCell.swift in Sources */,
 				FC3C3BAB2442ED5B009AD0D6 /* InvulnerableBerryCanvas.swift in Sources */,
+				1A06E5F8244B442C00B9B5FB /* ErrorToastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

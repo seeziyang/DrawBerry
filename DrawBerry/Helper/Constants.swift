@@ -22,4 +22,6 @@ enum Constants {
     static let profilePictureFileName = "profile.jpeg"
 
     static let votingCellHeightRatio: CGFloat = 1.5
+
+    static let errorLabelColor = #colorLiteral(red: 1, green: 0.4117647059, blue: 0.3803921569, alpha: 1)
 }
