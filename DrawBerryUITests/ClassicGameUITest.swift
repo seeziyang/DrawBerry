@@ -27,6 +27,19 @@ class ClassicGameUITest: EnterRoomUITest {
     override func tearDown() {
         super.tearDown()
         ClassicGameUITest.roomNetwork.deleteRoom()
+        ClassicGameUITest.removeTestRoomFromUserInDb()
+    }
+
+    private static func removeTestRoomFromUserInDb() {
+        guard let roomNetwork = roomNetwork as? FirebaseRoomNetworkAdapter else {
+            return
+        }
+
+        roomNetwork.db.child("users")
+            .child(EnterRoomUITest.defaultTestUser.uid)
+            .child("activeNonRapidGames")
+            .child(testRoomCode.value)
+            .removeValue()
     }
 
     override internal func startGame(app: XCUIApplication, roomCode: RoomCode) {
