@@ -50,12 +50,13 @@ class TeamBattleGame: NetworkGame {
         }
         self.gameResult = TeamBattleGameResult(numberOfTeams: teams.count)
 
-        self.userIndex = players.firstIndex(where: { $0.uid == NetworkHelper.getLoggedInUserID() }) ?? 0
+        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
+
+        self.userIndex = players.firstIndex(where: { $0.uid == gameNetwork.getLoggedInUserID() }) ?? 0
 
         self.currentRound = 1
 
         self.roomCode = room.roomCode
-        self.gameNetwork = FirebaseGameNetworkAdapter(roomCode: room.roomCode)
     }
 
     func incrementRound() {

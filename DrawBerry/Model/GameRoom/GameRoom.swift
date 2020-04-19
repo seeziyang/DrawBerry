@@ -16,7 +16,7 @@ class GameRoom {
     let roomNetwork: RoomNetwork
     let roomCode: RoomCode
     private(set) var isRapid: Bool
-    private(set) var players: [RoomPlayer] { // synced with database
+    internal(set) var players: [RoomPlayer] { // synced with database
         didSet {
             players.sort()
         }
@@ -24,7 +24,7 @@ class GameRoom {
 
     var didPlayersCountChange: Bool?
     var user: RoomPlayer? {
-        players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+        players.first(where: { $0.uid == roomNetwork.getLoggedInUserID() })
     }
 
     var status: GameRoomStatus {
@@ -50,7 +50,6 @@ class GameRoom {
         self.isRapid = true
 
         roomNetwork.observeRoomPlayers(listener: { [weak self] players in
-
             if let previousPlayers = self?.players {
                 self?.didPlayersCountChange = (previousPlayers.count != players.count)
             }

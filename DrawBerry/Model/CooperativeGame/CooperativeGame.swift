@@ -29,8 +29,8 @@ class CooperativeGame: MultiplayerNetworkGame<CooperativePlayer> {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let previousPlayers = players.filter { getIndex(of: $0) ?? 0 < userIndex }
-        previousPlayers.forEach { downloadDrawing(of: $0) }
+        players.filter { getIndex(of: $0) ?? 0 < userIndex }
+            .forEach { downloadDrawing(of: $0, completionHandler: previousDrawingsCompletionHandler) }
     }
 
     /// Downloads the subsequent drawings by observing for uploads.
@@ -38,19 +38,28 @@ class CooperativeGame: MultiplayerNetworkGame<CooperativePlayer> {
         guard let userIndex = getIndex(of: user) else {
             return
         }
-        let futurePlayers = players.filter { getIndex(of: $0) ?? 0 >= userIndex }
-        futurePlayers.forEach { downloadDrawing(of: $0) }
+        players.filter { getIndex(of: $0) ?? 0 >= userIndex }
+            .forEach { downloadDrawing(of: $0, completionHandler: futureDrawingsCompletionHandler) }
     }
 
     /// Downloads the drawing of the given player once it is available.
-    private func downloadDrawing(of player: CooperativePlayer) {
-        observe(player: player, for: currentRound, completionHandler: { [weak self] image in
-                self?.allDrawings.append(image)
-                self?.navigateIfUserIsNextPlayer(currentPlayer: player)
-                self?.viewingDelegate?.updateDrawings()
-                self?.navigateIfPlayerIsLast(currentPlayer: player)
-            }
-        )
+    private func downloadDrawing(of player: CooperativePlayer,
+                                 completionHandler: @escaping (UIImage, CooperativePlayer) -> Void) {
+        observe(player: player, for: currentRound, completionHandler: { image in
+            completionHandler(image, player)
+        })
+    }
+
+    private func previousDrawingsCompletionHandler(image: UIImage, player: CooperativePlayer) {
+        allDrawings.append(image)
+        navigateIfUserIsNextPlayer(currentPlayer: player)
+        navigateIfPlayerIsLast(currentPlayer: player)
+    }
+
+    private func futureDrawingsCompletionHandler(image: UIImage, player: CooperativePlayer) {
+        allDrawings.append(image)
+        viewingDelegate?.updateDrawings()
+        navigateIfPlayerIsLast(currentPlayer: player)
     }
 
     /// Navigates to the drawing screen if user is the next player.

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GameNetwork {
+protocol GameNetwork: NetworkAdapter {
     var roomCode: RoomCode { get }
 
     func uploadUserDrawing(image: UIImage, forRound round: Int)
@@ -28,6 +28,8 @@ protocol GameNetwork {
                                       completionHandler: @escaping (TeamBattleTeamResult) -> Void)
 
     func uploadTeamResult(result: TeamBattleTeamResult)
+
+    func getLoggedInUserID() -> String?
 
     func setTopic(topic: String, forRound round: Int)
 

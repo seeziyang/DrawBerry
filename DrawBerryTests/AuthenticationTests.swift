@@ -38,7 +38,7 @@ class AuthenticationTests: XCTestCase {
         Authentication.delegate = stub
         Authentication.login(email: validEmail, password: invalidPassword)
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertFalse(stub.result!)
+        XCTAssertFalse(stub.result ?? true)
     }
 
     func testLogoutSuccess() {

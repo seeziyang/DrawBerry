@@ -28,6 +28,7 @@ class EnterClassicRoomViewController: UIViewController, EnterRoomViewController 
         errorLabel.alpha = 0
 
         roomEnteringNetwork = FirebaseRoomEnteringNetworkAdapter()
+        roomCodeField.autocorrectionType = .no
         loadActiveNonRapidGamesTable()
     }
 
