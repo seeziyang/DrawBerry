@@ -102,8 +102,8 @@ class CompetitiveVotingViewController: UIViewController {
         drawingViews.values.forEach { $0.drawings.forEach { $0.removeFromSuperview() } }
     }
 
-    /// Collates all votes and draws the first and second place medals on the drawings.
-    /// Also awards score to the players according to their rankings
+    /// Collates votes and draws first and second place medals on the drawings.
+    /// Also awards score to the players according to their rankings.
     /// If two players have the same number of votes, they are both awarded the medal and score.
     private func collateVotesAndAssignScores() {
         let sortedPlayersByVotes = currentGame.players.sorted(by: { $0.votesGiven > $1.votesGiven })

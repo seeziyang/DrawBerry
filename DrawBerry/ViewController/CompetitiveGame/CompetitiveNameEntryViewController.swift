@@ -12,7 +12,6 @@ class CompetitiveNameEntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         messageLabel.isHidden = true
-        // Do any additional setup after loading the view.
     }
 
     let player1DefaultName = "Player 1", player2DefaultName = "Player 2",
@@ -41,7 +40,7 @@ class CompetitiveNameEntryViewController: UIViewController {
 
         if playerSet.count != playerNames.count {
             messageLabel.isHidden = false
-            messageLabel.text = "Duplicate names are not allowed!"
+            messageLabel.text = Message.competitiveGameDuplicateNamesNotAllowed
             return
         }
 
