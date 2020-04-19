@@ -10,6 +10,10 @@ import FBSnapshotTestCase
 @testable import DrawBerry
 
 class EnterRoomUITest: DrawBerryUITest {
+    static let defaultTestUser = (email: "admin1@drawberry.com",
+                                  password: "password1",
+                                  uid: "I1jcaAauaUQWp7uHuyMHlyDZRlP2")
+
     let roomTypeToName = [
         GameRoomType.ClassicRoom: "Classic",
         GameRoomType.CooperativeRoom: "Cooperative",
@@ -53,10 +57,10 @@ class EnterRoomUITest: DrawBerryUITest {
         passwordSecureTextField.clearText()
 
         emailTextField.tap()
-        emailTextField.typeText("admin1@drawberry.com")
+        emailTextField.typeText(EnterRoomUITest.defaultTestUser.email)
 
         passwordSecureTextField.tap()
-        passwordSecureTextField.typeText("password1")
+        passwordSecureTextField.typeText(EnterRoomUITest.defaultTestUser.password)
 
         app.buttons["login"].tap()
     }
