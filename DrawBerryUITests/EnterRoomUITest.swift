@@ -11,6 +11,8 @@ import Firebase
 @testable import DrawBerry
 
 class EnterRoomUITest: DrawBerryUITest {
+    static let defaultTestUser = UITestConstants.admin1_user
+
     let roomTypeToName = [
         GameRoomType.ClassicRoom: "Classic",
         GameRoomType.CooperativeRoom: "Cooperative",
@@ -30,7 +32,7 @@ class EnterRoomUITest: DrawBerryUITest {
     }
 
     internal func initialiseAppToEnterRoomScreen(type: GameRoomType) -> XCUIApplication {
-        return initialiseAppToEnterRoomScreen(type: type, as: UITestConstants.admin1_user)
+        return initialiseAppToEnterRoomScreen(type: type, as: EnterRoomUITest.defaultTestUser)
     }
 
     internal func joinRoom(app: XCUIApplication, roomCode: RoomCode) {
