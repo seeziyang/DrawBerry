@@ -72,6 +72,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         return dgrView[0]
     }
 
+    /// Undo the drawing to one stroke before.
     func undo() {
         drawingCanvas.drawing = PKDrawing().appending(delegate?.undo(on: self) ?? PKDrawing())
     }
@@ -92,6 +93,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         drawingCanvas.tool = tool
     }
 
+    /// Randomises the selected ink tool.
     func randomiseInkTool() {
         palette.randomiseInkTool()
     }
@@ -162,14 +164,14 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Creates the background with the given bounds.
     private static func createBackground(within bounds: CGRect) -> UIView {
-        let background = UIImageView(frame: getBackgroundRect(within: bounds))
+        let background = UIImageView(frame: CanvasRectGenerator.getBackgroundRect(within: bounds))
         background.image = BerryConstants.paperBackgroundImage
         return background
     }
 
     /// Creates the canvas view with the given bounds.
     private static func createCanvasView(within bounds: CGRect) -> PKCanvasView {
-        let newCanvasView = PKCanvasView(frame: getCanvasRect(within: bounds))
+        let newCanvasView = PKCanvasView(frame: CanvasRectGenerator.getCanvasRect(within: bounds))
         newCanvasView.allowsFingerDrawing = true
         newCanvasView.isOpaque = false
         newCanvasView.isUserInteractionEnabled = true
@@ -178,7 +180,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Creates the palette with the given bounds.
     private static func createPalette(within bounds: CGRect) -> BerryPalette {
-        let newPalette = BerryPalette(frame: getPalatteRect(within: bounds))
+        let newPalette = BerryPalette(frame: CanvasRectGenerator.getPalatteRect(within: bounds))
         initialise(palette: newPalette)
         return newPalette
     }
@@ -196,7 +198,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
 
     /// Creates the clear button with the given bounds.
     private static func createClearButton(within bounds: CGRect) -> UIButton {
-        let button = UIButton(frame: getClearButtonRect(within: bounds))
+        let button = UIButton(frame: CanvasRectGenerator.getClearButtonRect(within: bounds))
         let icon = BerryConstants.deleteIcon
         button.setImage(icon, for: .normal)
         return button
@@ -208,30 +210,6 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         delegate?.clear(canvas: self)
     }
 
-    private static func getClearButtonRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
-        let origin = CGPoint(
-            x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
-            y: BerryConstants.canvasPadding)
-        return CGRect(origin: origin, size: size)
-    }
-
-    private static func getCanvasRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: bounds.width, height: bounds.height - BerryConstants.paletteHeight)
-        let origin = CGPoint.zero
-        return CGRect(origin: origin, size: size)
-    }
-
-    private static func getPalatteRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: bounds.width, height: BerryConstants.paletteHeight)
-        let origin = CGPoint(x: 0, y: bounds.height - BerryConstants.paletteHeight)
-        return CGRect(origin: origin, size: size)
-    }
-
-    private static func getBackgroundRect(within bounds: CGRect) -> CGRect {
-        CGRect(origin: CGPoint.zero, size: bounds.size)
-    }
-
     func gestureRecognizer(
         _ gestureRecognizer: UIGestureRecognizer,
         shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer
@@ -239,6 +217,7 @@ class BerryCanvas: UIView, UIGestureRecognizerDelegate, PaletteObserver, Canvas 
         true
     }
 
+    /// Returns true if the given point is within the `Canvas` drawable limit.
     func isWithinDrawableLimit(position: CGPoint) -> Bool {
         guard let area = drawableArea else {
             return true

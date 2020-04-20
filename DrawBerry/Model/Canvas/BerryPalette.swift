@@ -98,10 +98,7 @@ class BerryPalette: UIView, Palette {
     }
 
     func selectFirstColorFirstStroke() {
-        if inks.count < 1 {
-            return
-        }
-        if strokes.count < 1 {
+        if inks.count < 1 || strokes.count < 1 {
             return
         }
         let color = inks[0]
@@ -163,7 +160,7 @@ class BerryPalette: UIView, Palette {
             rightNeighbourOrigin = undoButton?.getOriginWithRespectToSuperview() ?? topRightCorner
         }
         for stroke in strokes.reversed() {
-            let strokeRect = getStrokeViewRect(
+            let strokeRect = CanvasRectGenerator.getStrokeViewRect(
                 within: self.bounds, rightNeighbourOrigin: rightNeighbourOrigin)
             let strokeView = StrokeView(frame: strokeRect, stroke: stroke)
             strokeView.image = BerryConstants.strokeToAsset[stroke]
@@ -177,7 +174,7 @@ class BerryPalette: UIView, Palette {
     private func initialiseAllInkViews() {
         var xDisp = CGFloat.zero
         for ink in inks {
-            let inkRect = getInkViewRect(within: self.frame, horizontalDisplacement: xDisp)
+            let inkRect = CanvasRectGenerator.getInkViewRect(within: self.frame, horizontalDisplacement: xDisp)
             let inkView = InkView(frame: inkRect, color: ink)
             xDisp += inkView.bounds.width + BerryConstants.palettePadding
             inkView.image = BerryConstants.UIColorToAsset[ink]
@@ -196,7 +193,7 @@ class BerryPalette: UIView, Palette {
     }
 
     private func createUndoButton() -> UIButton {
-        let button = UIButton(frame: getUndoButtonRect(within: self.bounds))
+        let button = UIButton(frame: CanvasRectGenerator.getUndoButtonRect(within: self.bounds))
         let icon = BerryConstants.deleteIcon
         button.setImage(icon, for: .normal)
         button.addTarget(self, action: #selector(undoButtonTap), for: .touchDown)
@@ -213,7 +210,8 @@ class BerryPalette: UIView, Palette {
     private func createEraserView() -> UIImageView {
         let topRightCorner = CGPoint(x: bounds.width, y: bounds.height)
         let neighbourOrigin = isUndoButtonEnabled ? undoButton?.getOriginWithRespectToSuperview() : topRightCorner
-        let eraserRect = getEraserRect(within: self.frame, rightNeighbourOrigin: neighbourOrigin ?? topRightCorner)
+        let eraserRect = CanvasRectGenerator.getEraserRect(
+            within: self.frame, rightNeighbourOrigin: neighbourOrigin ?? topRightCorner)
         let newEraserView = UIImageView(frame: eraserRect)
         newEraserView.image = BerryConstants.eraserIcon
 
@@ -326,41 +324,6 @@ class BerryPalette: UIView, Palette {
         return PKInkingTool(defaultInkType, color: color, width: stroke.rawValue)
     }
 
-    /// Returns the `CGRect` for the `InkView` given the bounds and the horizontal displacement.
-    private func getInkViewRect(within bounds: CGRect, horizontalDisplacement: CGFloat) -> CGRect {
-        let size = CGSize(width: BerryConstants.toolLength, height: BerryConstants.toolLength)
-        let origin = CGPoint(
-            x: horizontalDisplacement + BerryConstants.palettePadding,
-            y: BerryConstants.palettePadding)
-        return CGRect(origin: origin, size: size)
-    }
-
-    /// Returns the `CGRect` for the `StrokeView` given the bounds and the origin of the right UI element.
-    private func getStrokeViewRect(within bounds: CGRect, rightNeighbourOrigin: CGPoint) -> CGRect {
-        let size = CGSize(width: BerryConstants.strokeWidth, height: BerryConstants.strokeLength)
-        let origin = CGPoint(
-            x: rightNeighbourOrigin.x - BerryConstants.strokeWidth - BerryConstants.palettePadding,
-            y: BerryConstants.palettePadding)
-        return CGRect(origin: origin, size: size)
-    }
-
-    /// Returns the `CGRect` for the eraser view given the bounds and the origin of the right UI element.
-    private func getEraserRect(within bounds: CGRect, rightNeighbourOrigin: CGPoint) -> CGRect {
-        let size = CGSize(width: BerryConstants.toolLength, height: BerryConstants.toolLength)
-        let origin = CGPoint(
-            x: rightNeighbourOrigin.x - BerryConstants.toolLength - BerryConstants.canvasPadding,
-            y: BerryConstants.palettePadding)
-        return CGRect(origin: origin, size: size)
-    }
-
-    /// Returns the `CGRect` for the undo button given the bounds.
-    private func getUndoButtonRect(within bounds: CGRect) -> CGRect {
-        let size = CGSize(width: BerryConstants.buttonRadius, height: BerryConstants.buttonRadius)
-        let origin = CGPoint(
-            x: bounds.width - BerryConstants.buttonRadius - BerryConstants.canvasPadding,
-            y: BerryConstants.canvasPadding)
-        return CGRect(origin: origin, size: size)
-    }
 }
 
 extension UIView {

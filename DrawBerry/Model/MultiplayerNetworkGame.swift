@@ -43,7 +43,9 @@ class MultiplayerNetworkGame<T: MultiplayerPlayer>: NetworkGame, MultiplayerGame
         self.roomCode = roomCode
     }
 
-    // Allow flexibility for users to customise networks
+    /// Sets the game network of the `MultiplayerNetworkGame`.
+    /// If the given network's `RoomCode` is inconsistent with the game's `RoomCode`,
+    /// do nothing.
     func setGameNetwork(to network: GameNetwork) {
         if network.roomCode != roomCode {
             return
@@ -52,12 +54,14 @@ class MultiplayerNetworkGame<T: MultiplayerPlayer>: NetworkGame, MultiplayerGame
         self.user = players.first(where: { $0.uid == network.getLoggedInUserID() }) ?? players[0]
     }
 
+    /// Adds the given `UIImage` to the user.
     func addUsersDrawing(image: UIImage) {
         user.addDrawing(image: image)
         upload(image: image, for: currentRound)
     }
 
-    func getIndex(of player: GamePlayer) -> Int? {
+    /// Returns the index of the given `GamePlayer`.
+    func getIndex(of player: T) -> Int? {
         players.firstIndex(where: { $0.uid == player.uid })
     }
 }

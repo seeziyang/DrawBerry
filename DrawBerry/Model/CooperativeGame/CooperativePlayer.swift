@@ -28,10 +28,12 @@ class CooperativePlayer: MultiplayerPlayer {
         )
     }
 
+    /// Adds a drawing to the player.
     func addDrawing(image: UIImage) {
         drawingImage = image
     }
 
+    /// Returns the drawing of the player.
     func getDrawingImage() -> UIImage? {
         drawingImage
     }
