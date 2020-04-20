@@ -6,7 +6,7 @@
 //  Copyright © 2020 DrawBerry. All rights reserved.
 //
 
-protocol RoomEnteringNetwork: NetworkAdapter {
+protocol RoomEnteringNetwork: NetworkInterface {
     func createRoom(roomCode: RoomCode)
 
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void)

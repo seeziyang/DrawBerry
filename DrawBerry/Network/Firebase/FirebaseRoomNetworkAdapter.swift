@@ -8,7 +8,7 @@
 
 import Firebase
 
-class FirebaseRoomNetworkAdapter: RoomNetwork {
+class FirebaseRoomNetworkAdapter: RoomNetwork, FirebaseNetworkAdapter {
     let db: DatabaseReference
     let roomCode: RoomCode
 
@@ -176,6 +176,7 @@ class FirebaseRoomNetworkAdapter: RoomNetwork {
             })
     }
 
+    // Stop observing if game has started
     func stopObservingGameStart() {
         db.child("activeRooms")
             .child(roomCode.type.rawValue)

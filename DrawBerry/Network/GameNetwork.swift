@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GameNetwork: NetworkAdapter {
+protocol GameNetwork: NetworkInterface {
     var roomCode: RoomCode { get }
 
     func uploadUserDrawing(image: UIImage, forRound round: Int)

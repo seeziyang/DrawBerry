@@ -42,4 +42,12 @@ class RoomNetworkStub: RoomNetwork {
 
     func stopObservingGameStart() {
     }
+
+    func getLoggedInUserID() -> String? {
+        nil
+    }
+
+    func getLoggedInUserName() -> String? {
+        nil
+    }
 }

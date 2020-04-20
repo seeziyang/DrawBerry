@@ -9,7 +9,7 @@
 import Firebase
 import FirebaseStorage
 
-class FirebaseUserProfileNetworkAdapter: UserProfileNetwork {
+class FirebaseUserProfileNetworkAdapter: UserProfileNetwork, FirebaseNetworkAdapter {
     let db: DatabaseReference
     let cloud: StorageReference
     var storageListResult: StorageListResult?

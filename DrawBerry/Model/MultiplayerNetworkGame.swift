@@ -9,7 +9,7 @@ import UIKit
 
 class MultiplayerNetworkGame<T: MultiplayerPlayer>: NetworkGame, MultiplayerGame {
     var players: [T]
-    var user: T
+    var user: T // the person playing on this app instance
 
     var currentRound: Int
     var maxRounds: Int
