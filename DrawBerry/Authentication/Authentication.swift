@@ -43,7 +43,7 @@ class Authentication {
             setDisplayNameRequest.displayName = username
             setDisplayNameRequest.commitChanges()
 
-            NetworkHelper.addUserToDB(userID: userID, email: email, username: username)
+            addUserToDB(userID: userID, email: email, username: username)
             delegate?.handleAuthenticationUpdate(status: true)
         }
     }
@@ -54,4 +54,12 @@ class Authentication {
         delegate?.handleAuthenticationUpdate(status: true)
     }
 
+    private static func addUserToDB(userID: String, email: String, username: String) {
+            let db: DatabaseReference = Database.database().reference()
+
+            db.child("users").child(userID).setValue([
+                "email": email,
+                "username": username
+            ])
+        }
 }

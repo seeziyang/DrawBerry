@@ -40,6 +40,8 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         super.init(from: roomCode, players: players, currentRound: currentRound, maxRounds: maxRounds)
     }
 
+    // Calculate the maximum number of rounds for a game with a given number of players
+    // Ensures that there's at least 6 rounds
     static func calculateMaxRounds(numPlayers: Int) -> Int {
         if numPlayers <= 3 {
             return numPlayers * 3
@@ -50,6 +52,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         }
     }
 
+    // observe other player's drawing for the current round
     func observePlayersDrawing() {
         // don't need to observe user as drawing is already added to user
         for player in players where player !== user {
@@ -60,14 +63,17 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         }
     }
 
+    // returns true if all players have drawn for the current round
     func hasAllPlayersDrawnForCurrentRound() -> Bool {
         players.allSatisfy { $0.hasDrawing(ofRound: currentRound) }
     }
 
+    // returns true if all players have voted for the current round
     func hasAllPlayersVotedForCurrentRound() -> Bool {
         players.allSatisfy { $0.hasVoted(inRound: currentRound) }
     }
 
+    // the user votes for another player
     func userVoteFor(player: ClassicPlayer) {
         user.voteFor(player: player)
 
@@ -82,6 +88,8 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         }
     }
 
+    // observe who other players voted for and update their points accordingly
+    // if all players have voted for the current round, end the current round and move to the next round
     func observePlayerVotes() {
         for player in players where player !== user {
             observePlayerVote(
@@ -110,6 +118,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         }
     }
 
+    // end current round
     private func endRound() {
         if isLastRound {
             endGame()
@@ -118,6 +127,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         }
     }
 
+    // move to the next round after viewingDuration, update currentRound and roundMaster
     private func moveToNextRound() {
         delegate?.showCountdownTimer(for: ClassicGame.viewingDuration)
         Timer.scheduledTimer(
@@ -131,6 +141,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         )
     }
 
+    // move to the next index in the circular array of players
     private func moveRoundMasterIndex() {
         roundMasterIndex = getNextRoundMasterIndex()
     }
@@ -143,6 +154,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         user === players[getNextRoundMasterIndex()]
     }
 
+    // ends the game after viewingDuration
     private func endGame() {
         delegate?.showCountdownTimer(for: ClassicGame.viewingDuration)
         Timer.scheduledTimer(
@@ -156,21 +168,25 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         )
     }
 
+    // get the topic for the current round
     func getCurrentRoundTopic() -> String {
         let index = currentRound - 1
         return topics[index]
     }
 
+    // set the topic for the first round
     func addFirstRoundTopic(_ topic: String) {
         setTopic(topic: topic, forRound: 1)
         topics.append(topic)
     }
 
+    // set the next round's topic
     func addNextRoundTopic(_ topic: String) {
         setTopic(topic: topic, forRound: currentRound + 1)
         topics.append(topic)
     }
 
+    // observe what is the topic for the first round
     func observeFirstRoundTopic(completionHandler: @escaping () -> Void) {
         observeTopic(for: 1, completionHandler: { [weak self] topic in
             self?.topics.append(topic)
@@ -178,6 +194,7 @@ class ClassicGame: MultiplayerNetworkGame<ClassicPlayer> {
         })
     }
 
+    // observe what is the topic for the next round
     func observeNextRoundTopic() {
         observeTopic(for: currentRound + 1, completionHandler: { [weak self] topic in
             self?.topics.append(topic)
