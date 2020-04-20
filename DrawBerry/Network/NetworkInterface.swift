@@ -10,20 +10,4 @@ protocol NetworkInterface {
     func getLoggedInUserID() -> String?
 
     func getLoggedInUserName() -> String?
-
-//    func addUserToDB(userID: String, email: String, username: String)
 }
-
-//extension NetworkInterface {
-//    func getLoggedInUserID() -> String? {
-//        NetworkHelper.getLoggedInUserID()
-//    }
-//
-//    func getLoggedInUserName() -> String? {
-//        NetworkHelper.getLoggedInUserName()
-//    }
-//
-//    func addUserToDB(userID: String, email: String, username: String) {
-//        NetworkHelper.addUserToDB(userID: userID, email: email, username: username)
-//    }
-//}
