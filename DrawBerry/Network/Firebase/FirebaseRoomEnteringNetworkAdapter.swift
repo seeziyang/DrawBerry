@@ -27,9 +27,12 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
     }
 
     // Create room with roomCode in db
-    func createRoom(roomCode: RoomCode) {
+    func createRoom(roomCode: RoomCode) -> Bool {
+        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+            return false
+        }
         guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
-                return
+            return false
         }
 
         db.child("activeRooms")
@@ -44,10 +47,18 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
                     ]
                 ]
             ])
+        return true
     }
 
     // Checks if room exists in db
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
+        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                completionHandler(false)
+            })
+            return
+        }
+
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -58,6 +69,12 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
 
     // Check if room can be entered
     func checkRoomEnterable(roomCode: RoomCode, completionHandler: @escaping (GameRoomStatus) -> Void) {
+        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                completionHandler(.invalid)
+            })
+            return
+        }
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)
@@ -85,6 +102,10 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
 
     // User joins a room
     func joinRoom(roomCode: RoomCode) {
+        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+            return
+        }
+
         guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
                 return
         }

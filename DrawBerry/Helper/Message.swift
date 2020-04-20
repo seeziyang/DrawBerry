@@ -27,6 +27,9 @@ enum Message {
 
     static let teamBattleResultError = "Error in getting result\n"
 
+    // Game Room
+    static let invalidRoomCode = "Invalid Room Code!"
+
     // Classic Room
     static let roomDoesNotExist = "Unable to join as room does not exist"
     static let roomFull = "Unable to join as room is full"

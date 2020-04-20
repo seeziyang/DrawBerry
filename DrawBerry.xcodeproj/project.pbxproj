@@ -178,6 +178,9 @@
 		3789191B2432E1680042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
 		3789191C2432E22F0042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
 		3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
+		378E7CB5244DF6B600D6E7AF /* FirebaseInvalidStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */; };
+		378E7CB6244DFC1300D6E7AF /* FirebaseInvalidStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */; };
+		378E7CB7244DFC1400D6E7AF /* FirebaseInvalidStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */; };
 		3792F44A243D683200FDEBDC /* NetworkGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792F449243D683200FDEBDC /* NetworkGame.swift */; };
 		3792F44E243DA71100FDEBDC /* MultiplayerNetworkGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792F44D243DA71100FDEBDC /* MultiplayerNetworkGame.swift */; };
 		3792F450243DA8D800FDEBDC /* MultiplayerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3792F44F243DA8D800FDEBDC /* MultiplayerPlayer.swift */; };
@@ -390,6 +393,7 @@
 		37608F71244C176A00EAAF7B /* UITestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestConstants.swift; sourceTree = "<group>"; };
 		3787ACF72430E26B0064A1F6 /* CooperativeGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameViewController.swift; sourceTree = "<group>"; };
 		3789191A2432E1680042B705 /* ComparablePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparablePlayer.swift; sourceTree = "<group>"; };
+		378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseInvalidStrings.swift; sourceTree = "<group>"; };
 		3792F449243D683200FDEBDC /* NetworkGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGame.swift; sourceTree = "<group>"; };
 		3792F44D243DA71100FDEBDC /* MultiplayerNetworkGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerNetworkGame.swift; sourceTree = "<group>"; };
 		3792F44F243DA8D800FDEBDC /* MultiplayerPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerPlayer.swift; sourceTree = "<group>"; };
@@ -600,6 +604,7 @@
 				1A432BDE241FC6AC0097A14F /* FirebaseRoomNetworkAdapter.swift */,
 				1A4C5F242422619500937244 /* FirebaseGameNetworkAdapter.swift */,
 				3E64DA732430F5AF00C1473A /* FirebaseUserProfileNetworkAdapter.swift */,
+				378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -1283,6 +1288,7 @@
 				3E2837DC2425BBB7001BAA2F /* Constants.swift in Sources */,
 				372CA596242C427D000E1E71 /* DrawingViewController.swift in Sources */,
 				3749D3AA2425F00500CE798F /* UIImageExtension.swift in Sources */,
+				378E7CB5244DF6B600D6E7AF /* FirebaseInvalidStrings.swift in Sources */,
 				3E64DA742430F5AF00C1473A /* UserProfileNetworkDelegate.swift in Sources */,
 				3EBFFE9C243D82B2002675B3 /* TeamBattleGuesser.swift in Sources */,
 				3749D39D2425ABD400CE798F /* Palette.swift in Sources */,
@@ -1433,6 +1439,7 @@
 				3749D3B72426096100CE798F /* BerryCanvas.swift in Sources */,
 				FCA298652426196400AE1A83 /* ExtraStrokePowerup.swift in Sources */,
 				3749D3CA242797AA00CE798F /* BerryPaletteTest.swift in Sources */,
+				378E7CB7244DFC1400D6E7AF /* FirebaseInvalidStrings.swift in Sources */,
 				371F28C42430F375006852EE /* CooperativeGame.swift in Sources */,
 				3749D3B92426099000CE798F /* StrokeView.swift in Sources */,
 				FCA298692426196A00AE1A83 /* Player.swift in Sources */,
@@ -1466,6 +1473,7 @@
 				375E239F2443005700BA8AB1 /* Word.swift in Sources */,
 				375E238D2443004000BA8AB1 /* TeamBattlePair.swift in Sources */,
 				375E23952443004A00BA8AB1 /* TeamBattleTeamResult.swift in Sources */,
+				378E7CB6244DFC1300D6E7AF /* FirebaseInvalidStrings.swift in Sources */,
 				3749D3A62425E7A800CE798F /* CanvasDelegateViewController.swift in Sources */,
 				3792F460243DC7C900FDEBDC /* NetworkGame.swift in Sources */,
 				375E23A72443052B00BA8AB1 /* EnterCooperativeRoomViewUITest.swift in Sources */,
