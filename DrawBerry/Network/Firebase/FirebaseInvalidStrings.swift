@@ -7,7 +7,10 @@
 //
 
 struct FirebaseInvalidStrings {
-    static let invalidRoomNames = Set<String>(arrayLiteral:
-        "[]"
-    )
+    static let invalidCharacters = [".", "#", "$", "[", "]"]
+
+    static func isInvalid(name: String) -> Bool {
+        let containsInvalidChar = !name.map { String($0) }.allSatisfy { !invalidCharacters.contains($0) }
+        return containsInvalidChar
+    }
 }

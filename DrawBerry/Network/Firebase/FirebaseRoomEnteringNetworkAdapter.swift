@@ -28,7 +28,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
 
     // Create room with roomCode in db
     func createRoom(roomCode: RoomCode) -> Bool {
-        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+        if FirebaseInvalidStrings.isInvalid(name: roomCode.value) {
             return false
         }
         guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
@@ -52,7 +52,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
 
     // Checks if room exists in db
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void) {
-        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+        if FirebaseInvalidStrings.isInvalid(name: roomCode.value) {
             DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                 completionHandler(false)
             })
@@ -69,7 +69,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
 
     // Check if room can be entered
     func checkRoomEnterable(roomCode: RoomCode, completionHandler: @escaping (GameRoomStatus) -> Void) {
-        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+        if FirebaseInvalidStrings.isInvalid(name: roomCode.value) {
             DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                 completionHandler(.invalid)
             })
@@ -102,7 +102,7 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
 
     // User joins a room
     func joinRoom(roomCode: RoomCode) {
-        if FirebaseInvalidStrings.invalidRoomNames.contains(roomCode.value) {
+        if FirebaseInvalidStrings.isInvalid(name: roomCode.value) {
             return
         }
 
