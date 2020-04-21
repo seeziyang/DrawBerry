@@ -9,5 +9,8 @@
 import UIKit
 
 protocol TeamBattleGameViewDelegate: AnyObject {
+
+    /// Handles the viewing of a newly uploaded drawing for the team.
     func updateDrawing(_ image: UIImage, for round: Int)
+
 }

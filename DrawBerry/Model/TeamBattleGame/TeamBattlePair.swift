@@ -17,7 +17,13 @@ class TeamBattlePair: Team {
     let drawer: TeamBattleDrawer
     let guesser: TeamBattleGuesser
     var drawings = [UIImage]()
+    var wordList: WordList? {
+        didSet {
+            guesser.wordList = wordList
+        }
+    }
 
+    /// Constructs a `TeamBattlePair` from a `TeamBattleDrawer` and `TeamBattleDrawer`.
     init(drawer: TeamBattleDrawer, guesser: TeamBattleGuesser) {
         self.teamID = drawer.uid
         self.drawer = drawer
@@ -26,8 +32,14 @@ class TeamBattlePair: Team {
         self.result = TeamBattleTeamResult(resultID: teamID)
     }
 
+    /// Updates the team result after successful retrieval by network.
     func updateResult(_ result: TeamBattleTeamResult) {
         self.result = result
+    }
+
+    /// Updates the team word list after successful retrieval by network.
+    func updateWordList(_ list: WordList) {
+        self.wordList = list
     }
 
 }

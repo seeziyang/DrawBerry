@@ -36,10 +36,12 @@ class TeamBattleGameRoomViewController: UIViewController, GameRoomViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let teamBattleDrawVC = segue.destination as? TeamBattleDrawingViewController {
             teamBattleDrawVC.game = TeamBattleGame(from: room)
+            teamBattleDrawVC.game.uploadTeamWordList()
         }
 
         if let teamBattleGuessVC = segue.destination as? TeamBattleGuessingViewController {
             teamBattleGuessVC.game = TeamBattleGame(from: room)
+            teamBattleGuessVC.game.downloadTeamWordList()
 
             teamBattleGuessVC.game.delegate = teamBattleGuessVC
             teamBattleGuessVC.game.observeTeamDrawing()
@@ -123,8 +125,7 @@ extension TeamBattleGameRoomViewController {
         handleTap(sender: sender)
     }
 
-    // TODO:
     internal func openUserProfile(at index: Int) {
-        // performSegue(withIdentifier: "segueTeamBattleToPlayerProfile", sender: self)
+        performSegue(withIdentifier: "segueTeamBattleToPlayerProfile", sender: self)
     }
 }

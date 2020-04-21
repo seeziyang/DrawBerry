@@ -11,7 +11,7 @@ import UIKit
 class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
 
     var game: TeamBattleGame!
-    var messageLabel: UILabel!
+    private var messageLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,11 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
 
     /// Updates game result whenever a new team result is downloaded from database
     func updateResults() {
-        guard game.gameResult.didGameFinish() else {
+        guard game.getGameResult().didGameFinish() else {
             return
         }
 
-        guard let team = game.userTeam, let rank = game.gameResult.getRank(team: team) else {
+        guard let team = game.userTeam, let rank = game.getGameResult().getRank(team: team) else {
             return
         }
 
@@ -34,7 +34,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         let rankMessage = "\n Your Rank: \(rank)"
         let message = scoreMessage + rankMessage
         changeDisplayMessage(text: message)
-        game.endGame()
+        addMenuButtonToView()
     }
 
     /// Adds the background canvas.
@@ -47,6 +47,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         view.addSubview(canvasBackground)
     }
 
+    /// Changes the display message of the text label.
     private func changeDisplayMessage(text: String) {
         messageLabel.text = text
     }
@@ -60,6 +61,24 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         message.numberOfLines = 8
         messageLabel = message
         view.addSubview(message)
+    }
+
+    /// Adds the button to return to the main menu.
+    private func addMenuButtonToView() {
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: self.view.frame.midX - 70, y: self.view.frame.maxY - 220,
+                              width: 150, height: 50)
+        button.backgroundColor = .systemYellow
+        button.setTitle("Main Menu", for: .normal)
+        button.addTarget(self, action: #selector(backToMenu(sender:)), for: .touchUpInside)
+
+        view.addSubview(button)
+    }
+
+    /// Returns to the main menu
+    @objc private func backToMenu(sender: UIButton) {
+        performSegue(withIdentifier: "teamBattleEndToMenu", sender: self)
+        game.endGame()
     }
 
 }

@@ -9,5 +9,6 @@
 protocol Word {
     var value: String { get }
     var difficulty: WordDifficulty { get }
-
 }
+
+

@@ -12,8 +12,8 @@ class TeamBattleTeamResult: Hashable, Comparable {
     let scoreForCorrectGuess = 100
     let scoreForIncorrectGuess = -10
 
-    var correctGuess = 0
-    var incorrectGuess = 0
+    private var correctGuess = 0
+    private var incorrectGuess = 0
 
     init(resultID: String) {
         self.resultID = resultID
@@ -38,23 +38,28 @@ class TeamBattleTeamResult: Hashable, Comparable {
         self.incorrectGuess = incorrectGuess
     }
 
+    /// Adds a correct guess to the current result.
     func addCorrectGuess() {
         correctGuess += 1
     }
 
-    func addincorrectGuess() {
+    /// Adds an incorrect guess to the current result.
+    func addIncorrectGuess() {
         incorrectGuess += 1
     }
 
+    /// Calculates the score for the team
     func calculateScore() -> Int {
         return correctGuess * scoreForCorrectGuess
             + incorrectGuess * scoreForIncorrectGuess
     }
 
+    /// Gets description for storage in database.
     func getDatabaseStorageDescription() -> String {
         return "\(resultID)/\(correctGuess)/\(incorrectGuess)"
     }
 
+    /// Gets description for display to player.
     func getDisplayDescription() -> String {
         return "Team Result: \n" +
         " Correct guesses: \(correctGuess)\n" +

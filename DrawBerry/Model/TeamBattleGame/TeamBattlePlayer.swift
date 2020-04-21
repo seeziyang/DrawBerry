@@ -21,6 +21,7 @@ class TeamBattlePlayer: ComparablePlayer {
         self.points = points
     }
 
+    /// Constructs a `TeamBattlePlayer` from a `RoomPlayer`.
     convenience init(from roomPlayer: RoomPlayer) {
         self.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
     }

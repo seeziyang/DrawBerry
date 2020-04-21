@@ -36,14 +36,17 @@ class EnterTeamBattleRoomViewController: UIViewController, EnterRoomViewControll
         }
     }
 
+    /// Exits the team battle mode.
     @IBAction private func backOnTap(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 
+    /// Joins an existing game room.
     @IBAction private func joinOnTap(_ sender: UIButton) {
         joinRoom()
     }
 
+    /// Creates a new game room.
     @IBAction private func createOnTap(_ sender: UIButton) {
         createRoom()
     }

@@ -18,27 +18,22 @@ class TeamBattleGameResult {
         self.numberOfTeams = numberOfTeams
     }
 
+    /// Checks if the results for all teams are known.
     func didGameFinish() -> Bool {
         return teamResults.count == numberOfTeams
     }
 
-    func isExistingTeam(result: TeamBattleTeamResult) -> Bool {
-        return teamResults.filter({ $0.resultID == result.resultID }).count == 1
-    }
-
+    /// Adds the team result to the collection.
     func updateTeamResult(_ result: TeamBattleTeamResult) {
         teamResults.insert(result)
     }
 
+    /// Gets the rank of the user's team
     func getRank(team: Team) -> Int? {
         for i in 0..<sortedTeamResults.count where sortedTeamResults[i].resultID == team.teamID {
             return i + 1
         }
         return nil
-    }
-
-    func getWinnerTeamID() -> String? {
-        return sortedTeamResults.first?.resultID
     }
 
 }
