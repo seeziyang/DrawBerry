@@ -9,12 +9,8 @@
 import Firebase
 import FirebaseStorage
 
-<<<<<<< HEAD:DrawBerry/Network/FIrebase/FirebaseGameNetworkAdapter.swift
-class FirebaseGameNetworkAdapter: GameNetwork {
 
-=======
 class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
->>>>>>> master:DrawBerry/Network/Firebase/FirebaseGameNetworkAdapter.swift
     let roomCode: RoomCode
     let db: DatabaseReference
     let cloud: StorageReference
@@ -222,22 +218,14 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
         }
     }
 
-<<<<<<< HEAD:DrawBerry/Network/FIrebase/FirebaseGameNetworkAdapter.swift
+
     func observeValue(key: String, playerUID: String, completionHandler: @escaping (String) -> Void) {
 
         let booleanKey = "has\(key)"
         let dbPathRef = dbDefaultRoomPath
-=======
-
-    func observeAndDownloadTeamResult(playerUID: String,
-                                      completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
-        let dbPathRef = db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
->>>>>>> master:DrawBerry/Network/Firebase/FirebaseGameNetworkAdapter.swift
-            .child("players")
-            .child(playerUID)
-            .child(booleanKey)
+                        .child("players")
+                        .child(playerUID)
+                        .child(booleanKey)
 
         dbPathRef.observe(.value, with: { snapshot in
             guard snapshot.value as? Bool ?? false else { // result not ready
