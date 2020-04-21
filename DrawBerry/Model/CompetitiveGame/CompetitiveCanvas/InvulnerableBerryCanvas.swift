@@ -10,7 +10,7 @@ import UIKit
 
 class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
     var decoratedCanvas: CompetitiveCanvas?
-    var defaultRotationValue: CGFloat = 0
+    var defaultRotationValue: CGFloat
 
     required init?(coder: NSCoder) {
         nil
@@ -18,6 +18,7 @@ class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
 
     internal init?(bounds: CGRect, canvas: CompetitiveCanvas) {
         self.decoratedCanvas = canvas
+        self.defaultRotationValue = canvas.defaultRotationValue
         super.init(canvas: canvas as? BerryCanvas ?? BerryCanvas())
     }
 
@@ -25,15 +26,15 @@ class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
         InvulnerableBerryCanvas(bounds: canvas.bounds, canvas: canvas)
     }
 
-    func addInkSplotch() {
+    func addInkSplotch(image: UIImageView) {
         // Does nothing because the user is invulnerable
     }
 
-    func rotateCanvas(by rotationValue: CGFloat) {
-        guard let rotation = decoratedCanvas?.transform.rotated(by: defaultRotationValue) else {
+    func rotateCanvas(rotationValue: CGFloat) {
+        guard let canvas = decoratedCanvas else {
             return
         }
-        decoratedCanvas?.transform = rotation
+        canvas.rotateCanvas(rotationValue: canvas.defaultRotationValue)
     }
 
     func hideDrawing() {
@@ -41,6 +42,6 @@ class InvulnerableBerryCanvas: BerryCanvas, CompetitiveCanvas {
     }
 
     func showDrawing() {
-        decoratedCanvas?.isHidden = false
+        decoratedCanvas?.showDrawing()
     }
 }

@@ -10,13 +10,13 @@ import Firebase
 
 class GameRoom {
     static let maxPlayers = 8
-    static let minStartablePlayers = 1 // for testing, set to 2 for non-testing
+    static let minStartablePlayers = 2 // for testing, set to 2 for non-testing
 
     weak var delegate: GameRoomDelegate?
     let roomNetwork: RoomNetwork
     let roomCode: RoomCode
     private(set) var isRapid: Bool
-    private(set) var players: [RoomPlayer] { // synced with database
+    var players: [RoomPlayer] { // synced with database
         didSet {
             players.sort()
         }
@@ -24,7 +24,7 @@ class GameRoom {
 
     var didPlayersCountChange: Bool?
     var user: RoomPlayer? {
-        players.first(where: { $0.uid == NetworkHelper.getLoggedInUserID() })
+        players.first(where: { $0.uid == roomNetwork.getLoggedInUserID() })
     }
 
     var status: GameRoomStatus {
@@ -50,7 +50,6 @@ class GameRoom {
         self.isRapid = true
 
         roomNetwork.observeRoomPlayers(listener: { [weak self] players in
-
             if let previousPlayers = self?.players {
                 self?.didPlayersCountChange = (previousPlayers.count != players.count)
             }

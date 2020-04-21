@@ -58,7 +58,8 @@ class CompetitiveViewController: CanvasDelegateViewController {
         updateStrokesLeftView()
     }
 
-    /// Checks to see if all players are done with drawing
+    /// Checks to see if all players are done with drawing.
+    /// If so, updates time left to 3 seconds or the current time, whichever is lower.
     private func checkForPlayersDoneWithDrawing() {
         for player in competitiveGame.players where
             player.canvasDrawing.getNumberOfStrokes() < CompetitiveGame.STROKES_PER_PLAYER + player.extraStrokes {
@@ -135,7 +136,6 @@ class CompetitiveViewController: CanvasDelegateViewController {
             minY = self.view.bounds.minY, maxY = self.view.bounds.maxY
 
         var playerNum = 0
-
         for y in stride(from: minY, to: maxY, by: (maxY + minY) / 2) {
             for x in stride(from: minX, to: maxX, by: (maxX + minX) / 2) {
                 let rect = CGRect(origin: CGPoint(x: x, y: y), size: defaultSize)

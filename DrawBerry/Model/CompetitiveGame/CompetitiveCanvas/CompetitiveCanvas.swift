@@ -14,8 +14,8 @@ protocol CompetitiveCanvas: Canvas {
 
     func getNumberOfStrokes() -> Int
 
-    func addInkSplotch()
-    func rotateCanvas(by rotationValue: CGFloat)
+    func addInkSplotch(image: UIImageView)
+    func rotateCanvas(rotationValue: CGFloat)
     func hideDrawing()
     func showDrawing()
 }

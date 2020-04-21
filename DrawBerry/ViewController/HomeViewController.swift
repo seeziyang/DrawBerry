@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         setupImagePicker()
 
         userProfileNetwork = FirebaseUserProfileNetworkAdapter()
-        userProfileNetwork.downloadProfileImage(delegate: self, playerUID: NetworkHelper.getLoggedInUserID())
+        userProfileNetwork.downloadProfileImage(delegate: self, playerUID: userProfileNetwork.getLoggedInUserID())
     }
 
     override func viewDidAppear(_ animated: Bool) {

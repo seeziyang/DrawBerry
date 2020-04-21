@@ -26,23 +26,15 @@ class CompetitiveBerryCanvas: BerryCanvas, CompetitiveCanvas {
     }
 
     /// Adds an ink splotch to the canvas.
-    func addInkSplotch() {
-        let inkSplotch = UIImageView(image: PowerupAssets.inkSplotchUIImage)
-
-        let randomWidth = CGFloat.random(in: 100...350)
-        let randomHeight = CGFloat.random(in: 100...350)
-
-        inkSplotch.frame = CGRect(x: .random(in: 0...bounds.maxX - randomWidth),
-                                  y: .random(in: 0...bounds.maxY - randomHeight),
-                                  width: randomWidth, height: randomHeight)
-
-        self.addSubview(inkSplotch)
-        self.bringSubviewToFront(inkSplotch)
+    func addInkSplotch(image: UIImageView) {
+        assert(self.bounds.contains(image.bounds))
+        self.addSubview(image)
+        self.bringSubviewToFront(image)
     }
 
     /// Rotates the canvas by the provided `rotationValue` in radians.
-    func rotateCanvas(by rotationValue: CGFloat) {
-        transform = self.transform.rotated(by: rotationValue)
+    func rotateCanvas(rotationValue: CGFloat) {
+        transform = CGAffineTransform(rotationAngle: rotationValue)
     }
 
     func hideDrawing() {

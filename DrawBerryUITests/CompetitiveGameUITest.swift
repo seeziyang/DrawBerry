@@ -12,7 +12,6 @@ import FBSnapshotTestCase
 class CompetitiveGameUITest: DrawBerryUITest {
     override func setUp() {
         super.setUp()
-//        self.recordMode = true
     }
 
     func testCompetitiveModeNameEntryUILayout() {
@@ -67,7 +66,7 @@ class CompetitiveGameUITest: DrawBerryUITest {
 
     func testCompetitiveScoreboardUILayout() {
         let app = intializeAppMoveToScoreboardScreen()
-        verifyAppCurrentScreen(app: app, tolerance: 0.001)
+        verifyAppCurrentScreen(app: app)
     }
 
     func testCompetitiveModeRestartsAfterResultScreen() {

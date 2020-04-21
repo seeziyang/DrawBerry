@@ -20,7 +20,6 @@ class ClassicGameUITest: EnterRoomUITest {
 
     override func setUp() {
         super.setUp()
-//        self.recordMode = true
         ClassicGameUITest.roomNetwork.deleteRoom()
     }
 
@@ -187,27 +186,9 @@ class ClassicGameUITest: EnterRoomUITest {
         verifyAppCurrentScreen(app: app)
     }
 
-    func testCompleteDrawing_onePlayer() {
-        let app = initialiseAppMoveToClassicCanvas()
-        let palette = getPalette(from: app)
-        let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
-        palette.children(matching: .image).element(boundBy: 2).tap()
-        palette.children(matching: .image).element(boundBy: 5).tap()
-        canvasScrollView.swipeRight()
-        palette.children(matching: .image).element(boundBy: 1).tap()
-        palette.children(matching: .image).element(boundBy: 4).tap()
-        canvasScrollView.swipeDown()
-
-        app.buttons["Done"].tap()
-        sleep(2)
-        verifyAppCurrentScreen(app: app, tolerance: 0.001)
-    }
-
     func testCompleteDrawing_twoPlayer() {
-        let app = initialiseAppToEnterRoomScreen(type: ClassicGameUITest.testRoomCode.type)
-        createRoom(app: app, roomCode: ClassicGameUITest.testRoomCode)
-        addSecondPlayer()
-        startGame(app: app, roomCode: ClassicGameUITest.testRoomCode)
+        let app = initialiseAppMoveToClassicCanvas()
+
         let palette = getPalette(from: app)
         let canvasScrollView = app.scrollViews.children(matching: .other).element(boundBy: 0)
         palette.children(matching: .image).element(boundBy: 2).tap()
@@ -238,21 +219,19 @@ extension XCUIElement {
 }
 
 extension ClassicGameUITest {
-    private func addSecondPlayer() {
-        RoomNetworkAdapterStub(roomCode: ClassicGameUITest.testRoomCode)
-            .joinRoom(userID: "xYbVyQTsJbXOnTXDh2Aw8b1VMYG2", username: "admin2")
-        sleep(3)
+    private func enterTopic(in app: XCUIApplication, topic: String) {
+        let topicTextField = app.textFields["Topic for Round 1"]
+        topicTextField.tap()
+        topicTextField.typeText(topic)
+        app.buttons["Ok"].tap()
     }
 
     private func initialiseAppMoveToClassicCanvas() -> XCUIApplication {
         let app = initialiseAppToEnterRoomScreen(type: ClassicGameUITest.testRoomCode.type)
         createRoom(app: app, roomCode: ClassicGameUITest.testRoomCode)
+        add(player: UITestConstants.admin2_user, to: ClassicGameUITest.testRoomCode)
         startGame(app: app, roomCode: ClassicGameUITest.testRoomCode)
-
-        let topicTextField = app.textFields["Topic for Round 1"]
-        topicTextField.tap()
-        topicTextField.typeText("Topic")
-        app.buttons["Ok"].tap()
+        enterTopic(in: app, topic: "Topic")
 
         return app
     }
