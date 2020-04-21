@@ -10,17 +10,23 @@ class TeamBattleGuesser: TeamBattlePlayer {
 
     var wordList: WordList?
 
-    func getDrawingTopic(for round: Int) -> String {
-        // TODO: use network
-        return wordList?.getWord(at: round - 1)?.value ?? ""
+    /// Gets the topic word for a game round.
+    private func getDrawingTopic(for round: Int) -> String? {
+        return wordList?.getWord(at: round - 1)?.value
     }
 
-    func getLengthHint(for round: Int) -> Int {
-        return getDrawingTopic(for: round).count
+    /// Gets the length of topic word for a game round.
+    func getLengthHint(for round: Int) -> Int? {
+        return getDrawingTopic(for: round)?.count
     }
 
+    /// Checks if a guess for a game round is correct.
     func isGuessCorrect(guess: String, for round: Int) -> Bool {
-        return guess == getDrawingTopic(for: round)
+
+        guard let word = getDrawingTopic(for: round) else {
+            return false
+        }
+        return guess == word
     }
 
 }
