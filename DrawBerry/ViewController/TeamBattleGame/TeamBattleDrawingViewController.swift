@@ -11,8 +11,8 @@ import UIKit
 class TeamBattleDrawingViewController: CanvasDelegateViewController {
 
     var game: TeamBattleGame!
-    var canvas: Canvas!
-    var topicTextLabel: UILabel!
+    private var canvas: Canvas!
+    private var topicTextLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,16 +22,14 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         if let teamBattleEndVC = segue.destination as? TeamBattleEndViewController {
-
             teamBattleEndVC.game = game
             teamBattleEndVC.game.resultDelegate = teamBattleEndVC
             teamBattleEndVC.game.observeAllTeamResult()
-
         }
     }
 
+    /// Adds canvas to background.
     private func addCanvasToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
 
@@ -47,6 +45,7 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         self.canvas = canvas
     }
 
+    /// Adds topic text label to background.
     private func addTopicTextLabelToView() {
         let frame = CGRect(x: self.view.frame.midX - 150, y: 50, width: 300, height: 50)
         let topicTextLabel = UILabel(frame: frame)
@@ -54,6 +53,7 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         guard let topic = game.userTeam?.drawer.getDrawingTopic() else {
             return
         }
+
         topicTextLabel.text = "Round \(game.currentRound) Topic: \(topic)"
         topicTextLabel.textAlignment = .center
         topicTextLabel.font = UIFont(name: "Noteworthy", size: 30)
@@ -61,13 +61,16 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         self.view.addSubview(topicTextLabel)
     }
 
+    /// Changes topic in the text label.
     private func reloadTopicText() {
         guard let topic = game.userTeam?.drawer.getDrawingTopic() else {
             return
         }
+
         topicTextLabel.text = "Round \(game.currentRound) Topic: \(topic)"
     }
 
+    /// Adds a button to the background
     private func addDoneButtonToView() {
         let button = UIButton(type: .system)
         button.frame = CGRect(x: self.view.frame.midX - 50, y: self.view.frame.maxY - 250,
@@ -79,20 +82,23 @@ class TeamBattleDrawingViewController: CanvasDelegateViewController {
         self.view.addSubview(button)
     }
 
+    /// Handles the tap gesture on the done button.
     @objc private func doneOnTap(sender: UIButton) {
         finishDrawing()
     }
 
+    /// Reloads the canvas for a new game round.
     private func reloadCanvas() {
         canvas.removeFromSuperview()
         addCanvasToView()
         view.sendSubviewToBack(canvas)
     }
 
+    /// Handles the event when player completed the drawing for one game round.
     private func finishDrawing() {
         game.addTeamDrawing(image: canvas.drawingImage)
 
-        // TODO:
+        // Game ends
         if game.currentRound >= TeamBattleGame.maxRounds {
             performSegue(withIdentifier: "drawToTeamBattleEnd", sender: self)
             return

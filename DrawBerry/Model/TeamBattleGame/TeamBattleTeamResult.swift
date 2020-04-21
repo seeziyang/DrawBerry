@@ -38,23 +38,28 @@ class TeamBattleTeamResult: Hashable, Comparable {
         self.incorrectGuess = incorrectGuess
     }
 
+    /// Adds a correct guess to the current result.
     func addCorrectGuess() {
         correctGuess += 1
     }
 
+    /// Adds an incorrect guess to the current result.
     func addIncorrectGuess() {
         incorrectGuess += 1
     }
 
+    /// Calculates the score for the team
     func calculateScore() -> Int {
         return correctGuess * scoreForCorrectGuess
             + incorrectGuess * scoreForIncorrectGuess
     }
 
+    /// Gets description for storage in database.
     func getDatabaseStorageDescription() -> String {
         return "\(resultID)/\(correctGuess)/\(incorrectGuess)"
     }
 
+    /// Gets description for display to player.
     func getDisplayDescription() -> String {
         return "Team Result: \n" +
         " Correct guesses: \(correctGuess)\n" +

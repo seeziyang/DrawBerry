@@ -18,6 +18,7 @@ class TeamBattleDrawer: TeamBattlePlayer {
         super.init(name: roomPlayer.name, uid: roomPlayer.uid, isRoomMaster: roomPlayer.isRoomMaster)
     }
 
+    /// Gets drawing topic word.
     func getDrawingTopic() -> String {
         return wordList.getNextWord().value
     }

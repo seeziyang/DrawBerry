@@ -15,11 +15,11 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
     @IBOutlet private weak var guessBox: UIView!
 
     var game: TeamBattleGame!
-    var messageLabel: UILabel!
-    var imageView: UIImageView!
-    var currentRound = 1
+    private var messageLabel: UILabel!
+    private var imageView: UIImageView!
+    private var currentRound = 1
 
-    var isGuesserWaiting: Bool = true {
+    private var isGuesserWaiting: Bool = true {
         didSet {
             if currentRound == TeamBattleGame.maxRounds {
                 return

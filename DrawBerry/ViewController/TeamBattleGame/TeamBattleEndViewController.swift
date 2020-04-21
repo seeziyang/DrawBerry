@@ -11,7 +11,7 @@ import UIKit
 class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
 
     var game: TeamBattleGame!
-    var messageLabel: UILabel!
+    private var messageLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +21,11 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
 
     /// Updates game result whenever a new team result is downloaded from database
     func updateResults() {
-        guard game.gameResult.didGameFinish() else {
+        guard game.getGameResult().didGameFinish() else {
             return
         }
 
-        guard let team = game.userTeam, let rank = game.gameResult.getRank(team: team) else {
+        guard let team = game.userTeam, let rank = game.getGameResult().getRank(team: team) else {
             return
         }
 
@@ -47,6 +47,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         view.addSubview(canvasBackground)
     }
 
+    /// Changes the display message of the text label.
     private func changeDisplayMessage(text: String) {
         messageLabel.text = text
     }
@@ -74,6 +75,7 @@ class TeamBattleEndViewController: UIViewController, TeamBattleResultDelegate {
         view.addSubview(button)
     }
 
+    /// Returns to the main menu
     @objc private func backToMenu(sender: UIButton) {
         performSegue(withIdentifier: "teamBattleEndToMenu", sender: self)
         game.endGame()

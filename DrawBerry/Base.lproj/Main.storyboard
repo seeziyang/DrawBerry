@@ -1542,6 +1542,7 @@
                         <outlet property="startButton" destination="RYd-Xi-0oy" id="c1B-mF-fB3"/>
                         <segue destination="dGP-aV-Yhp" kind="show" identifier="segueToTeamBattleDrawing" id="I1D-lI-ChQ"/>
                         <segue destination="dD7-qe-Kbz" kind="show" identifier="segueToTeamBattleGuessing" id="Ldr-Ki-sRU"/>
+                        <segue destination="uMC-2e-j9F" kind="show" identifier="segueTeamBattleToPlayerProfile" id="x8p-F4-FEd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45O-E8-1Fk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1592,23 +1593,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uv2-Cz-SjV">
-                                        <rect key="frame" x="404" y="110" width="130" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="130" id="lla-yS-nPb"/>
-                                        </constraints>
-                                        <state key="normal" title="Next"/>
-                                        <connections>
-                                            <action selector="goToNextDrawing:" destination="dD7-qe-Kbz" eventType="touchUpInside" id="YFJ-Ac-peP"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qab-6f-TBM">
-                                        <rect key="frame" x="234" y="110" width="130" height="50"/>
+                                        <rect key="frame" x="314" y="110" width="140" height="50"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="130" id="Lr8-iN-wL3"/>
-                                        </constraints>
                                         <state key="normal" title="Guess"/>
                                         <connections>
                                             <action selector="guessCurrentDrawing:" destination="dD7-qe-Kbz" eventType="touchUpInside" id="WhB-WZ-XuE"/>
@@ -1625,15 +1612,13 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="UCQ-v3-rne" secondAttribute="trailing" constant="5" id="3Ij-rU-ebi"/>
                                     <constraint firstItem="QMV-cX-Bc6" firstAttribute="top" secondItem="5k2-t0-Emk" secondAttribute="top" constant="20" id="8Ke-dI-o66"/>
-                                    <constraint firstItem="qab-6f-TBM" firstAttribute="top" secondItem="QMV-cX-Bc6" secondAttribute="bottom" constant="30" id="DCj-dZ-yKg"/>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="leading" secondItem="QMV-cX-Bc6" secondAttribute="leading" constant="80" id="DEi-aP-fQD"/>
+                                    <constraint firstItem="QMV-cX-Bc6" firstAttribute="trailing" secondItem="qab-6f-TBM" secondAttribute="trailing" constant="80" id="GlO-fW-vzv"/>
                                     <constraint firstItem="QMV-cX-Bc6" firstAttribute="centerX" secondItem="5k2-t0-Emk" secondAttribute="centerX" id="Hjd-HO-nKn"/>
-                                    <constraint firstItem="Uv2-Cz-SjV" firstAttribute="trailing" secondItem="QMV-cX-Bc6" secondAttribute="trailing" id="Lqa-fG-mV7"/>
-                                    <constraint firstAttribute="bottom" secondItem="qab-6f-TBM" secondAttribute="bottom" constant="40" id="QBI-UP-aZg"/>
                                     <constraint firstAttribute="bottom" secondItem="UCQ-v3-rne" secondAttribute="bottom" constant="20" id="QEq-CP-OK4"/>
-                                    <constraint firstAttribute="bottom" secondItem="Uv2-Cz-SjV" secondAttribute="bottom" constant="40" id="Xr8-kR-ij8"/>
-                                    <constraint firstItem="Uv2-Cz-SjV" firstAttribute="top" secondItem="QMV-cX-Bc6" secondAttribute="bottom" constant="30" id="Xts-j6-Yci"/>
-                                    <constraint firstItem="qab-6f-TBM" firstAttribute="leading" secondItem="QMV-cX-Bc6" secondAttribute="leading" id="aBu-iY-fxX"/>
-                                    <constraint firstItem="Uv2-Cz-SjV" firstAttribute="leading" secondItem="qab-6f-TBM" secondAttribute="trailing" constant="40" id="ody-o5-7jC"/>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="top" secondItem="QMV-cX-Bc6" secondAttribute="bottom" constant="30" id="dgI-0q-Uvb"/>
+                                    <constraint firstAttribute="bottom" secondItem="qab-6f-TBM" secondAttribute="bottom" constant="40" id="fJz-yw-ljj"/>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="centerX" secondItem="5k2-t0-Emk" secondAttribute="centerX" id="jRT-Tr-1pG"/>
                                     <constraint firstItem="UCQ-v3-rne" firstAttribute="leading" secondItem="QMV-cX-Bc6" secondAttribute="trailing" constant="20" id="pfd-Nz-ehr"/>
                                     <constraint firstItem="UCQ-v3-rne" firstAttribute="top" secondItem="5k2-t0-Emk" secondAttribute="top" constant="20" id="uLc-VV-l0N"/>
                                     <constraint firstAttribute="height" constant="200" id="wPU-td-QoQ"/>
@@ -1805,11 +1790,8 @@
         <segue reference="HnX-p1-WPu"/>
         <segue reference="6FN-2v-NBi"/>
         <segue reference="epa-EW-RcE"/>
-        <segue reference="onY-jZ-Yqx"/>
-        <segue reference="9o1-fk-ENI"/>
         <segue reference="Gg7-CT-DLI"/>
-        <segue reference="TXh-cz-zfd"/>
-
+        <segue reference="x8p-F4-FEd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="4000" height="3000"/>

@@ -12,9 +12,11 @@ class TeamBattleGame: NetworkGame {
     static let maxRounds = 3
     let gameNetwork: GameNetwork
     let roomCode: RoomCode
-    var players = [TeamBattlePlayer]()
-    var teams = [TeamBattlePair]()
-    var gameResult: TeamBattleGameResult
+
+    internal var players = [TeamBattlePlayer]()
+    private var teams = [TeamBattlePair]()
+    private var gameResult: TeamBattleGameResult
+
     weak var delegate: TeamBattleGameViewDelegate?
     weak var resultDelegate: TeamBattleResultDelegate?
 
@@ -23,6 +25,7 @@ class TeamBattleGame: NetworkGame {
         players[userIndex]
     }
 
+    /// The team which the user belongs to.
     var userTeam: TeamBattlePair? {
         for team in teams where team.teamPlayers.contains(user) {
             return team
@@ -58,15 +61,20 @@ class TeamBattleGame: NetworkGame {
         self.roomCode = room.roomCode
     }
 
+    func getGameResult() -> TeamBattleGameResult {
+        return gameResult
+    }
+
     func incrementRound() {
         currentRound += 1
     }
 
-    /// Uploads drawer's drawing to db
+    /// Uploads drawer's drawing to network.
     func addTeamDrawing(image: UIImage) {
         upload(image: image, for: currentRound)
     }
 
+    /// Observe and update the team drawing after successful retrieval by network.
     func observeTeamDrawing() {
         guard let id = userTeam?.teamID else {
             return
@@ -82,6 +90,7 @@ class TeamBattleGame: NetworkGame {
 
 /// Extensions to network interface
 extension TeamBattleGame {
+    /// Attempts to uploads the team word list to the network.
     func uploadTeamWordList() {
         guard let drawer = userTeam?.drawer else {
             return
@@ -92,6 +101,7 @@ extension TeamBattleGame {
                                        playerUID: drawer.uid, value: wordList.getDatabaseDescription())
     }
 
+    /// Attempts to download the team word list from the network.
     func downloadTeamWordList() {
         guard let drawer = userTeam?.drawer else {
             return
@@ -108,6 +118,7 @@ extension TeamBattleGame {
         })
     }
 
+    /// Attempts to upload the team result to the network.
     func addTeamResult(result: TeamBattleTeamResult) {
         let networkKey = "TeamResult"
         guard let id = userTeam?.drawer.uid else {
@@ -116,6 +127,7 @@ extension TeamBattleGame {
         gameNetwork.uploadKeyValuePair(key: networkKey, playerUID: id, value: result.getDatabaseStorageDescription())
     }
 
+    /// Attempts to download the team result from the network.
     func observeAllTeamResult() {
         let networkKey = "TeamResult"
         for team in teams {
@@ -134,6 +146,7 @@ extension TeamBattleGame {
         }
     }
 
+    /// Ends the game by deleting the room from the network
     func endGame() {
         endGame(isRoomMaster: user.isRoomMaster, numRounds: TeamBattleGame.maxRounds)
     }

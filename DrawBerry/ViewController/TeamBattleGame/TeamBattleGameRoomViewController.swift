@@ -125,8 +125,7 @@ extension TeamBattleGameRoomViewController {
         handleTap(sender: sender)
     }
 
-    // TODO:
     internal func openUserProfile(at index: Int) {
-        // performSegue(withIdentifier: "segueTeamBattleToPlayerProfile", sender: self)
+        performSegue(withIdentifier: "segueTeamBattleToPlayerProfile", sender: self)
     }
 }

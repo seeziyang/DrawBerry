@@ -14,6 +14,7 @@ struct WordList {
         self.words = words
     }
 
+    /// Constructs a `WordList` from database
     init?(databaseDescription: String) {
         let substrings = databaseDescription.split(separator: "/").map { String($0) }
         let words = substrings.map { TopicWord($0) }
@@ -33,6 +34,7 @@ struct WordList {
         return words[index]
     }
 
+    /// Gets description for storage in database.
     func getDatabaseDescription() -> String {
         var description = ""
         let separator = "/"
