@@ -104,4 +104,22 @@ class EnterRoomUITest: DrawBerryUITest {
         app.buttons["Log out"].tap()
     }
 
+    internal func createRoomProgramatically(roomMaster: User, roomCode: RoomCode) {
+        let db = Database.database().reference()
+        let userID = roomMaster.uid
+        let username = roomMaster.name
+
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .setValue([
+                "isRapid": true,
+                "players": [
+                    userID: [
+                        "username": username,
+                        "isRoomMaster": true
+                    ]
+                ]
+            ])
+    }
 }

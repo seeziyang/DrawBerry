@@ -44,11 +44,12 @@ class GameNetworkStub: GameNetwork {
         expectation?.fulfill()
     }
 
-    func observeAndDownloadTeamResult(playerUID: String,
-                                      completionHandler: @escaping (TeamBattleTeamResult) -> Void) {
+    func observeValue(key: String, playerUID: String,
+                      completionHandler: @escaping (String) -> Void) {
+
     }
 
-    func uploadTeamResult(result: TeamBattleTeamResult) {
+    func uploadKeyValuePair(key: String, playerUID: String, value: String) {
     }
 
     func getLoggedInUserID() -> String? {

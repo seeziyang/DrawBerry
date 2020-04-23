@@ -11,19 +11,53 @@ import Firebase
 @testable import DrawBerry
 
 class EnterClassicRoomViewUITest: EnterRoomUITest {
+    static let invalidRoomCode = RoomCode(value: "[]", type: .ClassicRoom)
+    static let existingRoomCode = RoomCode(value: "existing", type: .ClassicRoom)
+
+    override static func setUp() {
+        FirebaseApp.configure()
+    }
+
     override func setUp() {
         super.setUp()
+        EnterClassicRoomViewUITest.removeTestRoomFromUserInDb()
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        FirebaseRoomNetworkAdapter(roomCode: EnterClassicRoomViewUITest.existingRoomCode).deleteRoom()
     }
 
     func testEnterClassicRoomViewUILayout() {
-        EnterClassicRoomViewUITest.removeTestRoomFromUserInDb()
         let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
 
         verifyAppCurrentScreen(app: app)
     }
 
+    func testCreateClassicRoomView_invalidRoomCode() {
+        let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
+        createRoom(app: app, roomCode: EnterClassicRoomViewUITest.invalidRoomCode)
+
+        verifyAppCurrentScreen(app: app)
+    }
+
+    func testJoinClassicRoomView_invalidRoomCode() {
+        let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
+        joinRoom(app: app, roomCode: EnterClassicRoomViewUITest.invalidRoomCode)
+
+        verifyAppCurrentScreen(app: app)
+    }
+
+    func testJoinClassicRoom_roomCodeInUse() {
+        let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
+        createRoomProgramatically(
+            roomMaster: UITestConstants.admin2_user, roomCode: EnterClassicRoomViewUITest.existingRoomCode)
+        createRoom(app: app, roomCode: EnterClassicRoomViewUITest.existingRoomCode)
+
+        verifyAppCurrentScreen(app: app)
+    }
+
     private static func removeTestRoomFromUserInDb() {
-        FirebaseApp.configure()
         let db = Database.database().reference()
 
         db.child("users")

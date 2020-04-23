@@ -9,13 +9,14 @@
 import UIKit
 
 class TeamBattleGame: NetworkGame {
+    static let maxRounds = 3
     let gameNetwork: GameNetwork
     let roomCode: RoomCode
 
-    let maxRounds = 3
-    var players = [TeamBattlePlayer]()
-    var teams = [TeamBattlePair]()
-    var gameResult: TeamBattleGameResult
+    internal var players = [TeamBattlePlayer]()
+    private var teams = [TeamBattlePair]()
+    private var gameResult: TeamBattleGameResult
+
     weak var delegate: TeamBattleGameViewDelegate?
     weak var resultDelegate: TeamBattleResultDelegate?
 
@@ -24,6 +25,7 @@ class TeamBattleGame: NetworkGame {
         players[userIndex]
     }
 
+    /// The team which the user belongs to.
     var userTeam: TeamBattlePair? {
         for team in teams where team.teamPlayers.contains(user) {
             return team
@@ -59,21 +61,26 @@ class TeamBattleGame: NetworkGame {
         self.roomCode = room.roomCode
     }
 
+    func getGameResult() -> TeamBattleGameResult {
+        return gameResult
+    }
+
     func incrementRound() {
         currentRound += 1
     }
 
-    /// Uploads drawer's drawing to db
+    /// Uploads drawer's drawing to network.
     func addTeamDrawing(image: UIImage) {
         upload(image: image, for: currentRound)
     }
 
+    /// Observe and update the team drawing after successful retrieval by network.
     func observeTeamDrawing() {
         guard let id = userTeam?.teamID else {
             return
         }
 
-        for round in 1...maxRounds {
+        for round in 1...TeamBattleGame.maxRounds {
             observe(uid: id, for: round, completionHandler: { [weak self] image in
                 self?.delegate?.updateDrawing(image, for: round)
             })
@@ -83,17 +90,54 @@ class TeamBattleGame: NetworkGame {
 
 /// Extensions to network interface
 extension TeamBattleGame {
-    func addTeamResult(result: TeamBattleTeamResult) {
-        gameNetwork.uploadTeamResult(result: result)
+    /// Attempts to uploads the team word list to the network.
+    func uploadTeamWordList() {
+        guard let drawer = userTeam?.drawer else {
+            return
+        }
+        let wordList = drawer.wordList
+        let networkKey = "TeamWordList"
+        gameNetwork.uploadKeyValuePair(key: networkKey,
+                                       playerUID: drawer.uid, value: wordList.getDatabaseDescription())
     }
 
+    /// Attempts to download the team word list from the network.
+    func downloadTeamWordList() {
+        guard let drawer = userTeam?.drawer else {
+            return
+        }
+        let networkKey = "TeamWordList"
+        gameNetwork.observeValue(key: networkKey,
+                                 playerUID: drawer.uid, completionHandler: { [weak self] databaseDescription in
+            guard let wordList = WordList(databaseDescription:
+                databaseDescription) else {
+                return
+            }
+
+            self?.userTeam?.updateWordList(wordList)
+        })
+    }
+
+    /// Attempts to upload the team result to the network.
+    func addTeamResult(result: TeamBattleTeamResult) {
+        let networkKey = "TeamResult"
+        guard let id = userTeam?.drawer.uid else {
+            return
+        }
+        gameNetwork.uploadKeyValuePair(key: networkKey, playerUID: id, value: result.getDatabaseStorageDescription())
+    }
+
+    /// Attempts to download the team result from the network.
     func observeAllTeamResult() {
+        let networkKey = "TeamResult"
         for team in teams {
             let id = team.teamID
-            gameNetwork.observeAndDownloadTeamResult(
-                playerUID: id,
-                completionHandler: { [weak self] result in
-                    // TODO: maybe use delegate
+            gameNetwork.observeValue(
+                key: networkKey, playerUID: id,
+                completionHandler: { [weak self] databaseDescription in
+                    guard let result = TeamBattleTeamResult(databaseDescription: databaseDescription) else {
+                        return
+                    }
                     self?.gameResult.updateTeamResult(result)
                     team.updateResult(result)
                     self?.resultDelegate?.updateResults()
@@ -102,7 +146,8 @@ extension TeamBattleGame {
         }
     }
 
+    /// Ends the game by deleting the room from the network
     func endGame() {
-        endGame(isRoomMaster: user.isRoomMaster, numRounds: maxRounds)
+        endGame(isRoomMaster: user.isRoomMaster, numRounds: TeamBattleGame.maxRounds)
     }
 }

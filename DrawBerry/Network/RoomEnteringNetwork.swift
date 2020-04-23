@@ -7,7 +7,7 @@
 //
 
 protocol RoomEnteringNetwork: NetworkInterface {
-    func createRoom(roomCode: RoomCode)
+    func createRoom(roomCode: RoomCode) -> Bool
 
     func checkRoomExists(roomCode: RoomCode, completionHandler: @escaping (Bool) -> Void)
 

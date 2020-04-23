@@ -7,5 +7,6 @@
 //
 
 protocol TeamBattleResultDelegate: AnyObject {
+    /// Handles the viewing of result after all teams results are known.
     func updateResults()
 }

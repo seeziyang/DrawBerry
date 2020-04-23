@@ -15,13 +15,13 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
     @IBOutlet private weak var guessBox: UIView!
 
     var game: TeamBattleGame!
-    var messageLabel: UILabel!
-    var imageView: UIImageView!
-    var currentRound = 1
+    private var messageLabel: UILabel!
+    private var imageView: UIImageView!
+    private var currentRound = 1
 
-    var isGuesserWaiting: Bool = true {
+    private var isGuesserWaiting: Bool = true {
         didSet {
-            if currentRound == game.maxRounds {
+            if currentRound == TeamBattleGame.maxRounds {
                 return
             }
 
@@ -63,6 +63,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         }
     }
 
+    /// Handles the tap gesture of the guess button.
     @IBAction private func guessCurrentDrawing(_ sender: UIButton) {
         guard let guess = StringHelper.trim(string: userInputTextField.text) else {
             return
@@ -74,12 +75,11 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         }
 
         guard team.guesser.isGuessCorrect(guess: guess, for: currentRound) else {
-            team.result.addincorrectGuess()
+            team.result.addIncorrectGuess()
             showErrorMessage("Guess is wrong!")
             return
         }
 
-        //goToNextDrawing
         if !viewNextDrawing() {
             isGuesserWaiting = true
         }
@@ -88,13 +88,15 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
 
     }
 
+    /// Proceeds to the next round in game.
     func proceedToNextRound() {
         currentRound += 1
-        if currentRound > game.maxRounds {
+        if currentRound > TeamBattleGame.maxRounds {
             performSegue(withIdentifier: "guessToTeamBattleEnd", sender: self)
         }
     }
 
+    /// Check if the next drawing for the team is ready for view.
     func nextDrawingReady() -> Bool {
         let nextDrawingIndex = currentRound
 
@@ -124,10 +126,10 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         proceedToNextRound()
     }
 
+    /// Updates drawing for the team when network successfully downloads drawing.
     func updateDrawing(_ image: UIImage, for round: Int) {
         game.userTeam?.drawings.append(image)
 
-        // loads image if user is waiting on the round
         if isGuesserWaiting && round >= currentRound {
             isGuesserWaiting = false
         }
@@ -143,6 +145,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         view.addSubview(canvasBackground)
     }
 
+    /// Adds an image view in the background.
     private func addImageToView() {
         let defaultSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height - 200)
 
@@ -152,16 +155,18 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         view.addSubview(imageView)
     }
 
+    /// Shows an error message in the error text label.
     private func showErrorMessage(_ text: String) {
         errorMessageLabel.text = text
         errorMessageLabel.alpha = 1
     }
 
+    /// Changes the display message in the text label.
     func changeMessage(text: String) {
         messageLabel.text = text
     }
 
-    /// Display a message for the player.
+    /// Adds text label and displays a message for the player.
     private func displayMessage(text: String) {
         let message = UILabel(frame: self.view.frame)
         message.text = text

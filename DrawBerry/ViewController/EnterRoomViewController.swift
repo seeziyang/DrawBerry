@@ -61,6 +61,8 @@ extension EnterRoomViewController {
                     self?.showErrorMessage(Message.roomFull)
                 case .started:
                     self?.showErrorMessage(Message.roomStarted)
+                case .invalid:
+                    self?.showErrorMessage(Message.invalidRoomCode)
                 }
             })
     }
@@ -78,12 +80,15 @@ extension EnterRoomViewController {
 
         roomEnteringNetwork
             .checkRoomExists(roomCode: roomCode, completionHandler: { [weak self] roomExists in
-                if !roomExists {
-                    self?.roomEnteringNetwork.createRoom(roomCode: roomCode)
-                    self?.segueToRoomVC()
-                } else {
+                if roomExists {
                     self?.showErrorMessage(Message.roomCodeTaken)
+                    return
                 }
+                if !(self?.roomEnteringNetwork.createRoom(roomCode: roomCode) ?? false) {
+                    self?.showErrorMessage(Message.invalidRoomCode)
+                    return
+                }
+                self?.segueToRoomVC()
             })
     }
 }
