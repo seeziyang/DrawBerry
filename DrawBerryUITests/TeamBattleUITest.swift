@@ -64,23 +64,5 @@ extension TeamBattleUITest {
         TeamBattleUITest.roomNetwork.startGame(isRapid: true)
     }
 
-    private func createRoomProgramatically(roomMaster: User, roomCode: RoomCode) {
-        let db = Database.database().reference()
-        let userID = roomMaster.uid
-        let username = roomMaster.name
-
-        db.child("activeRooms")
-            .child(roomCode.type.rawValue)
-            .child(roomCode.value)
-            .setValue([
-                "isRapid": true,
-                "players": [
-                    userID: [
-                        "username": username,
-                        "isRoomMaster": true
-                    ]
-                ]
-            ])
-    }
 
 }
