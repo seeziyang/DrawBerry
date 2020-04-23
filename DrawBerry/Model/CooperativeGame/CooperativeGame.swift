@@ -50,12 +50,14 @@ class CooperativeGame: MultiplayerNetworkGame<CooperativePlayer> {
         })
     }
 
+    /// Callback function if user is downloading drawings of previous players.
     private func previousDrawingsCompletionHandler(image: UIImage, player: CooperativePlayer) {
         allDrawings.append(image)
         navigateIfUserIsNextPlayer(currentPlayer: player)
         navigateIfPlayerIsLast(currentPlayer: player)
     }
 
+    /// Callback function if user is downloading drawings of subsequent players.
     private func futureDrawingsCompletionHandler(image: UIImage, player: CooperativePlayer) {
         allDrawings.append(image)
         viewingDelegate?.updateDrawings()

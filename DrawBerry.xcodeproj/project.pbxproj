@@ -172,10 +172,14 @@
 		37608F6F244C171600EAAF7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F6D244C11F000EAAF7B /* User.swift */; };
 		37608F70244C175A00EAAF7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F6D244C11F000EAAF7B /* User.swift */; };
 		37608F72244C176A00EAAF7B /* UITestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F71244C176A00EAAF7B /* UITestConstants.swift */; };
+		37608F74244D9B3F00EAAF7B /* CanvasRectGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F73244D9B3E00EAAF7B /* CanvasRectGenerator.swift */; };
+		37608F77244DA70700EAAF7B /* CanvasRectGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F73244D9B3E00EAAF7B /* CanvasRectGenerator.swift */; };
+		37608F78244DA70800EAAF7B /* CanvasRectGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37608F73244D9B3E00EAAF7B /* CanvasRectGenerator.swift */; };
 		3787ACF82430E26B0064A1F6 /* CooperativeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3787ACF72430E26B0064A1F6 /* CooperativeGameViewController.swift */; };
 		3789191B2432E1680042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
 		3789191C2432E22F0042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
 		3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3789191A2432E1680042B705 /* ComparablePlayer.swift */; };
+		378E7CB3244DC94B00D6E7AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCEC3BEE2417941700F0DE03 /* Assets.xcassets */; };
 		378E7CB5244DF6B600D6E7AF /* FirebaseInvalidStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */; };
 		378E7CB6244DFC1300D6E7AF /* FirebaseInvalidStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */; };
 		378E7CB7244DFC1400D6E7AF /* FirebaseInvalidStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */; };
@@ -396,6 +400,7 @@
 		37608F68244C0B9000EAAF7B /* TeamBattleUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamBattleUITest.swift; sourceTree = "<group>"; };
 		37608F6D244C11F000EAAF7B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37608F71244C176A00EAAF7B /* UITestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestConstants.swift; sourceTree = "<group>"; };
+		37608F73244D9B3E00EAAF7B /* CanvasRectGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasRectGenerator.swift; sourceTree = "<group>"; };
 		3787ACF72430E26B0064A1F6 /* CooperativeGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CooperativeGameViewController.swift; sourceTree = "<group>"; };
 		3789191A2432E1680042B705 /* ComparablePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparablePlayer.swift; sourceTree = "<group>"; };
 		378E7CB4244DF6B600D6E7AF /* FirebaseInvalidStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseInvalidStrings.swift; sourceTree = "<group>"; };
@@ -645,6 +650,7 @@
 				37CE0661241FC1120085BE4A /* CanvasDelegate.swift */,
 				37CE06512418809D0085BE4A /* BerryCanvas.swift */,
 				37CE0657241B1E240085BE4A /* BerryPalette.swift */,
+				37608F73244D9B3E00EAAF7B /* CanvasRectGenerator.swift */,
 				379EE021242455AC005257E1 /* Stroke.swift */,
 				379EE01B24230283005257E1 /* PaletteObserver.swift */,
 			);
@@ -1121,6 +1127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				378E7CB3244DC94B00D6E7AF /* Assets.xcassets in Resources */,
 				1A28DABF2417C8B600CEADB1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1273,6 +1280,7 @@
 				FC59CA46241E18C9004D50EF /* HideDrawingPowerup.swift in Sources */,
 				1A5709DF244856540007197F /* Game.swift in Sources */,
 				1A5709E324486FD20007197F /* EnterRoomViewController.swift in Sources */,
+				37608F74244D9B3F00EAAF7B /* CanvasRectGenerator.swift in Sources */,
 				FC59CA42241E10EC004D50EF /* ExtraStrokePowerup.swift in Sources */,
 				372CA59A242C67EB000E1E71 /* EndViewController.swift in Sources */,
 				37CE065E241E1BF20085BE4A /* InkView.swift in Sources */,
@@ -1381,6 +1389,7 @@
 				FC6A83E3244446A40046C7D3 /* CompetitiveCanvas.swift in Sources */,
 				3EF54723244B18A200817F58 /* TeamBattlePairTest.swift in Sources */,
 				1AC5EEAA244C9547001B58BB /* NonRapidClassicGameTests.swift in Sources */,
+				37608F77244DA70700EAAF7B /* CanvasRectGenerator.swift in Sources */,
 				FCA2985A2426179F00AE1A83 /* Canvas.swift in Sources */,
 				372CA57B242BC040000E1E71 /* FirebaseRoomNetworkAdapter.swift in Sources */,
 				372CA58B242C2FD9000E1E71 /* RoomCodeTests.swift in Sources */,
@@ -1506,6 +1515,7 @@
 				375E23A72443052B00BA8AB1 /* EnterCooperativeRoomViewUITest.swift in Sources */,
 				3789191D2432E2300042B705 /* ComparablePlayer.swift in Sources */,
 				3749D3A02425E38000CE798F /* GameRoomStatus.swift in Sources */,
+				37608F78244DA70800EAAF7B /* CanvasRectGenerator.swift in Sources */,
 				37608F67244B3B8A00EAAF7B /* NetworkInterface.swift in Sources */,
 				379EE02524249150005257E1 /* BerryPalette.swift in Sources */,
 				375E23992443005000BA8AB1 /* TeamBattleDrawer.swift in Sources */,

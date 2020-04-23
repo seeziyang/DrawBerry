@@ -49,7 +49,7 @@ struct BerryConstants {
     static let berryGrey = #colorLiteral(red: 164 / 255, green: 164 / 255, blue: 164 / 255, alpha: 1)
     static let berryBlue = #colorLiteral(red: 10 / 255, green: 128 / 255, blue: 146 / 255, alpha: 1)
     static let berryRed = #colorLiteral(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
-    static let berryGreen = #colorLiteral(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
+    static let berryGreen =  #colorLiteral(red: 242 / 255, green: 49 / 255, blue: 60 / 255, alpha: 1)
 
     static let thickIcon = #imageLiteral(resourceName: "thick")
     static let mediumIcon = #imageLiteral(resourceName: "medium")
