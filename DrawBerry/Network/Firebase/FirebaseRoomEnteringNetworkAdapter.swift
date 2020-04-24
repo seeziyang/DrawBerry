@@ -106,10 +106,21 @@ class FirebaseRoomEnteringNetworkAdapter: RoomEnteringNetwork, FirebaseNetworkAd
             return
         }
 
-        guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
-                return
-        }
+        db.child("activeRooms")
+            .child(roomCode.type.rawValue)
+            .child(roomCode.value)
+            .observeSingleEvent(of: .value, with: { snapshot in
+                if snapshot.exists() {
+                    self.joinExistingRoom(roomCode: roomCode)
+                }
+            })
 
+    }
+
+    private func joinExistingRoom(roomCode: RoomCode) {
+        guard let userID = getLoggedInUserID(), let username = getLoggedInUserName() else {
+            return
+        }
         db.child("activeRooms")
             .child(roomCode.type.rawValue)
             .child(roomCode.value)

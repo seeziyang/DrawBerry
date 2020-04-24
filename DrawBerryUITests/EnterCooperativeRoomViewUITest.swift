@@ -56,4 +56,12 @@ class EnterCooperativeRoomViewUITest: EnterRoomUITest {
         verifyAppCurrentScreen(app: app)
     }
 
+    func testJoinCooperativeRoom_roomDoesNotExist() {
+        recordMode = true
+        let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
+        joinRoom(app: app, roomCode: EnterCooperativeRoomViewUITest.existingRoomCode)
+
+        verifyAppCurrentScreen(app: app)
+    }
+
 }

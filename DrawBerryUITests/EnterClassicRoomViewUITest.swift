@@ -48,11 +48,18 @@ class EnterClassicRoomViewUITest: EnterRoomUITest {
         verifyAppCurrentScreen(app: app)
     }
 
-    func testJoinClassicRoom_roomCodeInUse() {
+    func testCreateClassicRoom_roomCodeInUse() {
         let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
         createRoomProgramatically(
             roomMaster: UITestConstants.admin2_user, roomCode: EnterClassicRoomViewUITest.existingRoomCode)
         createRoom(app: app, roomCode: EnterClassicRoomViewUITest.existingRoomCode)
+
+        verifyAppCurrentScreen(app: app)
+    }
+
+    func testJoinClassicRoom_roomDoesNotExist() {
+        let app = initialiseAppToEnterRoomScreen(type: .ClassicRoom)
+        joinRoom(app: app, roomCode: EnterClassicRoomViewUITest.existingRoomCode)
 
         verifyAppCurrentScreen(app: app)
     }
