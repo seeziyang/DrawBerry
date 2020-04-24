@@ -9,7 +9,6 @@
 import Firebase
 import FirebaseStorage
 
-
 class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
     let roomCode: RoomCode
     let db: DatabaseReference
@@ -217,7 +216,6 @@ class FirebaseGameNetworkAdapter: GameNetwork, FirebaseNetworkAdapter {
             cloudPathRef.child("\(round).png").delete()
         }
     }
-
 
     func observeValue(key: String, playerUID: String, completionHandler: @escaping (String) -> Void) {
 

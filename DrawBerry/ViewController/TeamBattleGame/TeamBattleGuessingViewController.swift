@@ -88,6 +88,15 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
 
     }
 
+    /// Handles the tap gesture of the skip button
+    @IBAction private func skipToNextDrawing(_ sender: UIButton) {
+        guard viewNextDrawing() || currentRound == TeamBattleGame.maxRounds else {
+            showErrorMessage("Drawing is not ready!")
+            return
+        }
+        proceedToNextRound()
+    }
+
     /// Proceeds to the next round in game.
     func proceedToNextRound() {
         currentRound += 1
@@ -118,13 +127,6 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
         return false
     }
 
-    @IBAction private func goToNextDrawing(_ sender: UIButton) {
-        guard viewNextDrawing() else {
-            showErrorMessage("Drawing is not ready!")
-            return
-        }
-        proceedToNextRound()
-    }
 
     /// Updates drawing for the team when network successfully downloads drawing.
     func updateDrawing(_ image: UIImage, for round: Int) {

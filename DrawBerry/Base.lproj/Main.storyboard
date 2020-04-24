@@ -1594,8 +1594,11 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qab-6f-TBM">
-                                        <rect key="frame" x="314" y="110" width="140" height="50"/>
+                                        <rect key="frame" x="234" y="107" width="140" height="50"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="140" id="45J-GB-liJ"/>
+                                        </constraints>
                                         <state key="normal" title="Guess"/>
                                         <connections>
                                             <action selector="guessCurrentDrawing:" destination="dD7-qe-Kbz" eventType="touchUpInside" id="WhB-WZ-XuE"/>
@@ -1607,21 +1610,31 @@
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WF6-LQ-0vs">
+                                        <rect key="frame" x="394" y="107" width="140" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Skip"/>
+                                        <connections>
+                                            <action selector="skipToNextDrawing:" destination="dD7-qe-Kbz" eventType="touchUpInside" id="JXD-do-j9s"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="top" secondItem="QMV-cX-Bc6" secondAttribute="bottom" constant="27" id="04B-an-htz"/>
+                                    <constraint firstItem="WF6-LQ-0vs" firstAttribute="leading" secondItem="qab-6f-TBM" secondAttribute="trailing" constant="20" id="0PZ-be-V6U"/>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="top" secondItem="WF6-LQ-0vs" secondAttribute="top" id="1j5-1O-hbX"/>
                                     <constraint firstAttribute="trailing" secondItem="UCQ-v3-rne" secondAttribute="trailing" constant="5" id="3Ij-rU-ebi"/>
+                                    <constraint firstItem="WF6-LQ-0vs" firstAttribute="trailing" secondItem="QMV-cX-Bc6" secondAttribute="trailing" id="5XK-sP-x4p"/>
                                     <constraint firstItem="QMV-cX-Bc6" firstAttribute="top" secondItem="5k2-t0-Emk" secondAttribute="top" constant="20" id="8Ke-dI-o66"/>
-                                    <constraint firstItem="qab-6f-TBM" firstAttribute="leading" secondItem="QMV-cX-Bc6" secondAttribute="leading" constant="80" id="DEi-aP-fQD"/>
-                                    <constraint firstItem="QMV-cX-Bc6" firstAttribute="trailing" secondItem="qab-6f-TBM" secondAttribute="trailing" constant="80" id="GlO-fW-vzv"/>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="baseline" secondItem="WF6-LQ-0vs" secondAttribute="firstBaseline" id="Amd-VB-rDr"/>
                                     <constraint firstItem="QMV-cX-Bc6" firstAttribute="centerX" secondItem="5k2-t0-Emk" secondAttribute="centerX" id="Hjd-HO-nKn"/>
                                     <constraint firstAttribute="bottom" secondItem="UCQ-v3-rne" secondAttribute="bottom" constant="20" id="QEq-CP-OK4"/>
-                                    <constraint firstItem="qab-6f-TBM" firstAttribute="top" secondItem="QMV-cX-Bc6" secondAttribute="bottom" constant="30" id="dgI-0q-Uvb"/>
-                                    <constraint firstAttribute="bottom" secondItem="qab-6f-TBM" secondAttribute="bottom" constant="40" id="fJz-yw-ljj"/>
-                                    <constraint firstItem="qab-6f-TBM" firstAttribute="centerX" secondItem="5k2-t0-Emk" secondAttribute="centerX" id="jRT-Tr-1pG"/>
+                                    <constraint firstAttribute="bottom" secondItem="qab-6f-TBM" secondAttribute="bottom" constant="43" id="nrk-2o-ocr"/>
                                     <constraint firstItem="UCQ-v3-rne" firstAttribute="leading" secondItem="QMV-cX-Bc6" secondAttribute="trailing" constant="20" id="pfd-Nz-ehr"/>
                                     <constraint firstItem="UCQ-v3-rne" firstAttribute="top" secondItem="5k2-t0-Emk" secondAttribute="top" constant="20" id="uLc-VV-l0N"/>
                                     <constraint firstAttribute="height" constant="200" id="wPU-td-QoQ"/>
+                                    <constraint firstItem="qab-6f-TBM" firstAttribute="leading" secondItem="QMV-cX-Bc6" secondAttribute="leading" id="wrL-ua-mYH"/>
                                 </constraints>
                             </view>
                         </subviews>
