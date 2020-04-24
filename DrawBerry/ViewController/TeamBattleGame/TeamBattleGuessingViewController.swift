@@ -90,7 +90,7 @@ class TeamBattleGuessingViewController: UIViewController, TeamBattleGameViewDele
 
     /// Handles the tap gesture of the skip button
     @IBAction private func skipToNextDrawing(_ sender: UIButton) {
-        guard viewNextDrawing() || currentRound == 3 else {
+        guard viewNextDrawing() || currentRound == TeamBattleGame.maxRounds else {
             showErrorMessage("Drawing is not ready!")
             return
         }
