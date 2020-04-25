@@ -34,8 +34,8 @@ class LoginViewController: UIViewController {
         background.image = Constants.loginBackground
         background.alpha = Constants.backgroundAlpha
         errorLabel.alpha = 0
-        emailTextField.text = "admin@drawberry.com"
-        passwordTextField.text = "admin123"
+//        emailTextField.text = "admin@drawberry.com"
+//        passwordTextField.text = "admin123"
     }
 
     /// Shows an error message on the page
