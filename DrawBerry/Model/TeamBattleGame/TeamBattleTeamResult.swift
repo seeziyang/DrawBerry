@@ -12,8 +12,8 @@ class TeamBattleTeamResult: Hashable, Comparable {
     let scoreForCorrectGuess = 100
     let scoreForIncorrectGuess = -10
 
-    private var correctGuess = 0
-    private var incorrectGuess = 0
+    private(set) var correctGuess = 0
+    private(set) var incorrectGuess = 0
 
     init(resultID: String) {
         self.resultID = resultID

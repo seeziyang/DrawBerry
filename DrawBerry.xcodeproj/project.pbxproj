@@ -541,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				3749D3BD2426565D00CE798F /* StringHelperTest.swift */,
+				371F28CC2431FA7C006852EE /* CooperativeGameTests */,
 				FC0829A02425F8FF00251AB4 /* CompetitiveGameTests */,
 				1A3920F62425BEDB00847E72 /* GameRoomTests */,
 				3EF5472E244B26A000817F58 /* TeamBattleGameTests */,
@@ -963,8 +964,6 @@
 				1A3920F42425BE9700847E72 /* ModelTests */,
 				3EA22E212425FF210065C426 /* AuthenticationTests.swift */,
 				3ED1B74E2439D53D002AB9DD /* UserProfileNetworkAdapterTest.swift */,
-				371F28CC2431FA7C006852EE /* CooperativeGameTests */,
-				371F28C82430F45B006852EE /* GameNetworkStub.swift */,
 				375E23B324494EA000BA8AB1 /* GameRoomStub.swift */,
 				1A4595C62445C61C009D447D /* RoomNetworkStub.swift */,
 				371F28C82430F45B006852EE /* GameNetworkStub.swift */,
@@ -1492,7 +1491,6 @@
 				3749D39F2425E2F100CE798F /* FirebaseRoomNetworkAdapter.swift in Sources */,
 				379EE02B24249187005257E1 /* StrokeView.swift in Sources */,
 				3749D3C0242658A300CE798F /* LoginViewUITest.swift in Sources */,
-				375E239B2443005200BA8AB1 /* TeamBattleGuesser.swift in Sources */,
 				37608F6C244C0E1500EAAF7B /* TestConstants.swift in Sources */,
 				3749D3A52425E3AD00CE798F /* GameRoomDelegate.swift in Sources */,
 				372CA587242BC287000E1E71 /* GameRoomType.swift in Sources */,
