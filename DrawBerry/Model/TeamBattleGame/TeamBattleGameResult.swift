@@ -11,7 +11,7 @@ class TeamBattleGameResult {
     var teamResults = Set<TeamBattleTeamResult>()
 
     var sortedTeamResults: [TeamBattleTeamResult] {
-        return teamResults.sorted()
+        return teamResults.sorted().reversed()
     }
 
     init(numberOfTeams: Int) {
